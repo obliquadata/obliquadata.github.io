@@ -28,14 +28,22 @@ jobs:
           ls -la scripts || true
           ls -la data || true
 
-      - name: Ensure generator exists
-        run: test -f scripts/update-leaders.mjs
+      - name: Resolve generator path
+        run: |
+          if [ -f scripts/update-leaders.mjs ]; then
+            echo "GENERATOR_PATH=scripts/update-leaders.mjs" >> $GITHUB_ENV
+          elif [ -f update-leaders.mjs ]; then
+            echo "GENERATOR_PATH=update-leaders.mjs" >> $GITHUB_ENV
+          else
+            echo "Could not find update-leaders.mjs in scripts/ or repo root"
+            exit 1
+          fi
 
       - name: Create data directory if missing
         run: mkdir -p data
 
       - name: Run leader database generator
-        run: node scripts/update-leaders.mjs
+        run: node "$GENERATOR_PATH"
 
       - name: Show generated leaders file
         run: |
