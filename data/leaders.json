@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-07T22:58:04.307Z",
+  "generatedAt": "2026-04-07T23:05:59.257Z",
   "count": 1982,
   "source": "wikidata",
   "leaders": [
@@ -2222,13 +2222,13 @@
       "iso2": "BD",
       "role": "Head of government",
       "articleTitle": "Muhammad_Yunus",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Muhammad_Yunus_speaking_at_Jamuna_State_Guesthouse%2C_Dhaka_2026-02-16_%28cropped%29.jpg/330px-Muhammad_Yunus_speaking_at_Jamuna_State_Guesthouse%2C_Dhaka_2026-02-16_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Muhammad%20Yunus%20(cropped).jpg?width=900",
       "corruptionScore": -1.12086641788483,
       "coords": {
         "lon": 89.866666666,
         "lat": 24.016666666
       },
-      "summary": "Muhammad Yunus is a Bangladeshi economist and statesman. Yunus pioneered the modern concept of microcredit and microfinance, for which he was awarded the Nobel Peace Prize in 2006. He is the founder of Grameen Bank and the first Bangladeshi to win the Nobel Peace Prize. Following the July Uprising, he was appointed as the 5th chief adviser of Bangladesh, the head of the interim government, serving from 2024 to 2026."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q52183|http://www.wikidata.org/entity/Q902|Head of government",
@@ -2256,13 +2256,13 @@
       "iso2": "BD",
       "role": "Head of state",
       "articleTitle": "Sheikh_Mujibur_Rahman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Official_Portrait_of_Bangabandhu_Sheikh_Mujibur_Rahman.jpg/330px-Official_Portrait_of_Bangabandhu_Sheikh_Mujibur_Rahman.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh%20Mujibur%20Rahman%20portrait%20(PID-h0066).jpg?width=900",
       "corruptionScore": -1.12086641788483,
       "coords": {
         "lon": 89.866666666,
         "lat": 24.016666666
       },
-      "summary": "Sheikh Mujibur Rahman, also known by the honorific Bangabandhu, was a Bangladeshi politician, revolutionary, statesman, activist and diarist who was the founding president of Bangladesh. As the leader of Bangladesh, he led the country as its president and prime minister from 1972 until his assassination in a coup d'état in 1975."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q3346340|http://www.wikidata.org/entity/Q902|Head of state",
@@ -2273,13 +2273,13 @@
       "iso2": "BD",
       "role": "Head of state",
       "articleTitle": "Syed_Nazrul_Islam",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/President_Syed_Nazrul_Islam.jpeg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sayed%20nazrul%20islam.jpg?width=900",
       "corruptionScore": -1.12086641788483,
       "coords": {
         "lon": 89.866666666,
         "lat": 24.016666666
       },
-      "summary": "Syed Nazrul Islam was a Bangladeshi politician and a senior leader of the Awami League. During the Bangladesh War of Independence, he was declared as the Acting President of Bangladesh by the Provisional Government."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q57485|http://www.wikidata.org/entity/Q902|Head of state",
@@ -2290,13 +2290,13 @@
       "iso2": "BD",
       "role": "Head of state",
       "articleTitle": "Zillur_Rahman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Zillur_Rahman_in_Dhaka_on_September_07%2C_2011.jpg/330px-Zillur_Rahman_in_Dhaka_on_September_07%2C_2011.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zillur%20Rahman%20in%20Dhaka%20on%20September%2007%2C%202011.jpg?width=900",
       "corruptionScore": -1.12086641788483,
       "coords": {
         "lon": 89.866666666,
         "lat": 24.016666666
       },
-      "summary": "Mohammed Zillur Rahman was a Bangladeshi politician who served as President of Bangladesh from 2009 until his death in 2013. He was also a senior presidium member of the Awami League. He is the third president of Bangladesh to die in office and the first to die of natural causes, as both Sheikh Mujibur Rahman and Ziaur Rahman were assassinated."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q310082|http://www.wikidata.org/entity/Q244|Head of government",
@@ -2375,13 +2375,13 @@
       "iso2": "BB",
       "role": "Head of government",
       "articleTitle": "Owen_Arthur",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Owen%20Arthur-2.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Owen_Arthur-2.jpg",
       "corruptionScore": 1.34458589553833,
       "coords": {
         "lon": -59.5525,
         "lat": 13.17
       },
-      "summary": ""
+      "summary": "Owen Seymour Arthur was a Barbadian politician who served as the fifth prime minister of Barbados from 6 September 1994 to 15 January 2008. He is the longest-serving Barbadian prime minister to date. He also served as Leader of the Opposition from 1 August 1993 to 6 September 1994 and from 23 October 2010 to 21 February 2013."
     },
     {
       "id": "http://www.wikidata.org/entity/Q9333540|http://www.wikidata.org/entity/Q244|Head of state",
@@ -2392,13 +2392,13 @@
       "iso2": "BB",
       "role": "Head of state",
       "articleTitle": "Sandra_Mason",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandra%20of%20Barbados.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Sandra_of_Barbados.jpg/330px-Sandra_of_Barbados.jpg",
       "corruptionScore": 1.34458589553833,
       "coords": {
         "lon": -59.5525,
         "lat": 13.17
       },
-      "summary": ""
+      "summary": "Dame Sandra Prunella Mason is a Barbadian politician, lawyer, and diplomat who served as the first president of Barbados from 2021 to 2025. She was previously the eighth and final governor-general of Barbados from 2018 to 2021, the second woman to hold the office. On 20 October 2021, Mason was elected by the Parliament of Barbados to become the country's first president, and took office on 30 November 2021, when Barbados ceased to be a constitutional monarchy and became a republic."
     },
     {
       "id": "http://www.wikidata.org/entity/Q56235580|http://www.wikidata.org/entity/Q184|Head of government",
@@ -2409,13 +2409,13 @@
       "iso2": "BY",
       "role": "Head of government",
       "articleTitle": "Alexander_Turchin",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aliaksandr%20Tur%C4%8Dyn.png?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80_%D0%A2%D1%83%D1%80%D1%87%D0%B8%D0%BD_%2807-04-2025%29.jpg/330px-%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80_%D0%A2%D1%83%D1%80%D1%87%D0%B8%D0%BD_%2807-04-2025%29.jpg",
       "corruptionScore": -0.665028035640717,
       "coords": {
         "lon": 28.046666666,
         "lat": 53.528333333
       },
-      "summary": ""
+      "summary": "Alexander Genrikhovich Turchin is a Belarusian politician serving as the 11th prime minister of Belarus since 10 March 2025. He was previously the chairman of the executive committee of Minsk Region from 3 December 2019 and was the first deputy prime minister of Belarus from 2018 to 2019."
     },
     {
       "id": "http://www.wikidata.org/entity/Q2866|http://www.wikidata.org/entity/Q184|Head of state",
@@ -2426,13 +2426,13 @@
       "iso2": "BY",
       "role": "Head of state",
       "articleTitle": "Alexander_Lukashenko",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%20%D0%9B%D1%83%D0%BA%D0%B0%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%20(13-04-2023)%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80_%D0%9B%D1%83%D0%BA%D0%B0%D1%88%D0%B5%D0%BD%D0%BA%D0%BE_-_08_%2814-03-2025%29.jpg/330px-%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80_%D0%9B%D1%83%D0%BA%D0%B0%D1%88%D0%B5%D0%BD%D0%BA%D0%BE_-_08_%2814-03-2025%29.jpg",
       "corruptionScore": -0.665028035640717,
       "coords": {
         "lon": 28.046666666,
         "lat": 53.528333333
       },
-      "summary": ""
+      "summary": "Alexander Grigoryevich Lukashenko is a Belarusian politician and dictator who has been the first and only president of Belarus since the office's establishment in 1994, making him the current longest-tenured European president."
     },
     {
       "id": "http://www.wikidata.org/entity/Q27043179|http://www.wikidata.org/entity/Q184|Head of government",
@@ -4007,13 +4007,13 @@
       "iso2": "BF",
       "role": "Head of state",
       "articleTitle": "Maurice_Yaméogo",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Maurice_Yam%C3%A9ogo%2C_1960_%28cropped%29.jpg/330px-Maurice_Yam%C3%A9ogo%2C_1960_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Maurice%20Yam%C3%A9ogo%2C%201960.jpg?width=900",
       "corruptionScore": -0.169615507125854,
       "coords": {
         "lon": -2.066667,
         "lat": 12.266667
       },
-      "summary": "Maurice Nawalagmba Yaméogo was the first President of the Republic of Upper Volta, now called Burkina Faso. He proclaimed the independence of the country on August 5, 1960, and also tried to create a union between Ivory Coast and Upper Volta. On January 3, 1966, he left the presidency due to a nationwide strike."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q16105972|http://www.wikidata.org/entity/Q965|Head of state",
@@ -4024,13 +4024,13 @@
       "iso2": "BF",
       "role": "Head of state",
       "articleTitle": "Michel_Kafando",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Michel_Kafando_-_2015_%28cropped%29.jpg/330px-Michel_Kafando_-_2015_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Michel%20Kafando%20-%202015%20(cropped).jpg?width=900",
       "corruptionScore": -0.169615507125854,
       "coords": {
         "lon": -2.066667,
         "lat": 12.266667
       },
-      "summary": "Michel Kafando is a Burkinabé diplomat and politician, who served as Interim President of Burkina Faso from 2014 to 2015. He previously served as Minister of Foreign Affairs from 1982 to 1983 and as Permanent Representative of Burkina Faso to the United Nations from 1998 to 2011."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q22043905|http://www.wikidata.org/entity/Q965|Head of government",
@@ -4041,13 +4041,13 @@
       "iso2": "BF",
       "role": "Head of government",
       "articleTitle": "Paul_Kaba_Thieba",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Paul_Kaba_Thieba_%28cropped%29.jpg/330px-Paul_Kaba_Thieba_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Kaba%20Thieba%20(cropped).jpg?width=900",
       "corruptionScore": -0.169615507125854,
       "coords": {
         "lon": -2.066667,
         "lat": 12.266667
       },
-      "summary": "Paul Kaba Thieba is a Burkinabé economist and politician who was appointed and served as Prime Minister of Burkina Faso from 6 January 2016 to 18 January 2019. Thieba was appointed by President Roch Marc Christian Kaboré on 6 January 2016, shortly after Kaboré took office. Previously he worked at the Central Bank of West African States and the West African Monetary Union."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q110666454|http://www.wikidata.org/entity/Q965|Head of state",
@@ -4058,13 +4058,13 @@
       "iso2": "BF",
       "role": "Head of state",
       "articleTitle": "Paul-Henri_Sandaogo_Damiba",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Le_lieutenant-colonel_Paul_Henri_Sandaogo_Damiba%2C_Ouagadougou_le_27_janvier_2022_%28cropped%29.jpg/330px-Le_lieutenant-colonel_Paul_Henri_Sandaogo_Damiba%2C_Ouagadougou_le_27_janvier_2022_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20lieutenant-colonel%20Paul%20Henri%20Sandaogo%20Damiba%2C%20Ouagadougou%20le%2027%20janvier%202022%20(cropped).jpg?width=900",
       "corruptionScore": -0.169615507125854,
       "coords": {
         "lon": -2.066667,
         "lat": 12.266667
       },
-      "summary": "Paul-Henri Sandaogo Damiba is a Burkinabé military officer who served as interim president of Burkina Faso from 31 January 2022 to 30 September 2022, when he was removed in a coup d'état by his own military colleague Ibrahim Traoré. Damiba had come to power just eight months earlier, on 24 January 2022, when he removed president Roch Marc Christian Kaboré in a coup."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q599988|http://www.wikidata.org/entity/Q965|Head of state",
@@ -4551,13 +4551,13 @@
       "iso2": "CA",
       "role": "Head of government",
       "articleTitle": "John_Diefenbaker",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Diefenbaker%201961.png?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/John_G._Diefenbaker.jpg/330px-John_G._Diefenbaker.jpg",
       "corruptionScore": 1.67150104045868,
       "coords": {
         "lon": -109,
         "lat": 56
       },
-      "summary": ""
+      "summary": "John George Diefenbaker was the 13th prime minister of Canada, serving from 1957 to 1963. He was the only Progressive Conservative party leader between 1935 and 1979 to lead the party to an election victory, doing so three times, although only once with a majority of the seats in the House of Commons."
     },
     {
       "id": "http://www.wikidata.org/entity/Q128686|http://www.wikidata.org/entity/Q16|Head of government",
@@ -4568,13 +4568,13 @@
       "iso2": "CA",
       "role": "Head of government",
       "articleTitle": "John_Sparrow_David_Thompson",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20John%20SD%20Thompson.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Sir_John_SD_Thompson.jpg/330px-Sir_John_SD_Thompson.jpg",
       "corruptionScore": 1.67150104045868,
       "coords": {
         "lon": -109,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Sir John Sparrow David Thompson was the fourth prime minister of Canada, serving from 1892 until his death in 1894. He had previously been fifth premier of Nova Scotia for a brief period in 1882. He is the only post-Confederation provincial premier to become prime minister, as of 2026."
     },
     {
       "id": "http://www.wikidata.org/entity/Q128568|http://www.wikidata.org/entity/Q16|Head of government",
@@ -4602,13 +4602,13 @@
       "iso2": "CA",
       "role": "Head of government",
       "articleTitle": "Justin_Trudeau",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Justin%20Trudeau%20at%20the%20European%20Commission%20-%202025.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Prime_Minister_Trudeau%27s_message_on_Christmas_2023_%280m29s%29_%28cropped%29.jpg/330px-Prime_Minister_Trudeau%27s_message_on_Christmas_2023_%280m29s%29_%28cropped%29.jpg",
       "corruptionScore": 1.67150104045868,
       "coords": {
         "lon": -109,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Justin Pierre James Trudeau is a Canadian politician who served as the 23rd prime minister of Canada from 2015 to 2025. He led the Liberal Party from 2013 until his resignation in 2025 and was the member of Parliament (MP) for Papineau from 2008 until 2025."
     },
     {
       "id": "http://www.wikidata.org/entity/Q128553|http://www.wikidata.org/entity/Q16|Head of government",
@@ -4619,13 +4619,13 @@
       "iso2": "CA",
       "role": "Head of government",
       "articleTitle": "Kim_Campbell",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kim%20Campbell.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Kim_Campbell.jpg/330px-Kim_Campbell.jpg",
       "corruptionScore": 1.67150104045868,
       "coords": {
         "lon": -109,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Avril Phaedra Douglas \"Kim\" Campbell is a Canadian politician who was the 19th prime minister of Canada from June to November 1993. Campbell is the first and only female prime minister of Canada. Prior to becoming the final Progressive Conservative (PC) prime minister, she was also the first woman to serve as minister of justice in Canadian history and the first woman to become minister of defence in a NATO member state."
     },
     {
       "id": "http://www.wikidata.org/entity/Q128604|http://www.wikidata.org/entity/Q16|Head of government",
@@ -5344,7 +5344,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q306|http://www.wikidata.org/entity/Q298|Head of state",
       "leader": "Sebastián Piñera",
-      "startDate": "2010-03-11",
+      "startDate": "2018-03-11",
       "country": "Chile",
       "continent": "South America",
       "iso2": "CL",
@@ -6064,13 +6064,13 @@
       "iso2": "CZ",
       "role": "Head of government",
       "articleTitle": "Miloš_Zeman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Milo%C5%A1_Zeman_2022.jpg/330px-Milo%C5%A1_Zeman_2022.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Milo%C5%A1%20Zeman%202022.jpg?width=900",
       "corruptionScore": 0.767809867858887,
       "coords": {
         "lon": 15,
         "lat": 50
       },
-      "summary": "Miloš Zeman is a Czech politician who served as the third president of the Czech Republic from 2013 to 2023. He also previously served as the prime minister of the Czech Republic from 1998 to 2002. As leader of the Czech Social Democratic Party from 1993 to 2001, he is credited with the revival of the party into one of the country's major political forces. Zeman briefly served as the President of the Chamber of Deputies from 1996 to 1998."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q29032|http://www.wikidata.org/entity/Q213|Head of state",
@@ -6081,13 +6081,13 @@
       "iso2": "CZ",
       "role": "Head of state",
       "articleTitle": "Miloš_Zeman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Milo%C5%A1_Zeman_2022.jpg/330px-Milo%C5%A1_Zeman_2022.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Milo%C5%A1%20Zeman%202022.jpg?width=900",
       "corruptionScore": 0.767809867858887,
       "coords": {
         "lon": 15,
         "lat": 50
       },
-      "summary": "Miloš Zeman is a Czech politician who served as the third president of the Czech Republic from 2013 to 2023. He also previously served as the prime minister of the Czech Republic from 1998 to 2002. As leader of the Czech Social Democratic Party from 1993 to 2001, he is credited with the revival of the party into one of the country's major political forces. Zeman briefly served as the President of the Chamber of Deputies from 1996 to 1998."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q155880|http://www.wikidata.org/entity/Q213|Head of government",
@@ -6098,13 +6098,13 @@
       "iso2": "CZ",
       "role": "Head of government",
       "articleTitle": "Mirek_Topolánek",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Mirek_Topolanek.jpg/330px-Mirek_Topolanek.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mirek%20Topolanek.jpg?width=900",
       "corruptionScore": 0.767809867858887,
       "coords": {
         "lon": 15,
         "lat": 50
       },
-      "summary": "Mirek Topolánek is a Czech politician and business manager who served as the prime minister of the Czech Republic from 2006 to 2009 and the leader of the Civic Democratic Party (ODS) from 2002 to 2010. Between 2006 and 2009, Topolánek was the member of the Chamber of Deputies (MP) and senator from Ostrava from 1996 until 2004. After leaving politics in 2010, Topolánek has been active in the electric power industry as a vocal lobbyist for the fossil fuel industry."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q3377548|http://www.wikidata.org/entity/Q213|Head of government",
@@ -6115,13 +6115,13 @@
       "iso2": "CZ",
       "role": "Head of government",
       "articleTitle": "Petr_Fiala",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Petr_Fiala%2C_2025.06.26_%2801%29_%28cropped%29_2.jpg/330px-Petr_Fiala%2C_2025.06.26_%2801%29_%28cropped%29_2.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Petr%20Fiala%20(2024)%20(cropped).jpg?width=900",
       "corruptionScore": 0.767809867858887,
       "coords": {
         "lon": 15,
         "lat": 50
       },
-      "summary": "Petr Fiala is a Czech politician and political scientist who served as the prime minister of the Czech Republic from 2021 to 2025 and leader of the Civic Democratic Party (ODS) from 2014 to 2026. He previously served as the Minister of Education, Youth and Sports from 2012 to 2013. Prior to entering politics, he was the rector of Masaryk University."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q35786|http://www.wikidata.org/entity/Q213|Head of government",
@@ -6472,13 +6472,13 @@
       "iso2": "DK",
       "role": "Head of government",
       "articleTitle": "Christian_Albrecht_Bluhme",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bluhme.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Bluhme.jpg/330px-Bluhme.jpg",
       "corruptionScore": 2.37605309486389,
       "coords": {
         "lon": 10,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Christian Albrecht Bluhme was a Danish lawyer and conservative politician who was the second Prime Minister of Denmark. He led the country during the latter part of the Second Schleswig War.\n"
     },
     {
       "id": "http://www.wikidata.org/entity/Q782403|http://www.wikidata.org/entity/Q35|Head of government",
@@ -6489,13 +6489,13 @@
       "iso2": "DK",
       "role": "Head of government",
       "articleTitle": "Christian_Emil_Krag-Juel-Vind-Frijs",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/K%20V%20Frijs.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/K_V_Frijs.jpg/330px-K_V_Frijs.jpg",
       "corruptionScore": 2.37605309486389,
       "coords": {
         "lon": 10,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Christian Emil Krag-Juel-Vind-Frijs was a Danish nobleman and politician. He was Council President of Denmark from 1865 to 1870 as the leader of the Frijs Cabinet."
     },
     {
       "id": "http://www.wikidata.org/entity/Q153940|http://www.wikidata.org/entity/Q35|Head of state",
@@ -6506,13 +6506,13 @@
       "iso2": "DK",
       "role": "Head of state",
       "articleTitle": "Christian_I_of_Denmark",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Christian%20I%20of%20Denmark%2C%20Norway%20%26%20Sweden%201440s.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Christian_I_of_Denmark%2C_Norway_%26_Sweden_1440s.jpg/330px-Christian_I_of_Denmark%2C_Norway_%26_Sweden_1440s.jpg",
       "corruptionScore": 2.37605309486389,
       "coords": {
         "lon": 10,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Christian I (Christiern I) was a German noble and Scandinavian monarch under the Kalmar Union. He was king of Denmark (1448–1481), Norway (1450–1481) and Sweden (1457–1464). From 1460 to 1481, he was also duke of Schleswig and count of Holstein. He was the first king of the House of Oldenburg."
     },
     {
       "id": "http://www.wikidata.org/entity/Q154460|http://www.wikidata.org/entity/Q35|Head of state",
@@ -6523,13 +6523,13 @@
       "iso2": "DK",
       "role": "Head of state",
       "articleTitle": "Christian_II_of_Denmark",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Christian%20II%20of%20Denmark%2C%20drawing%20by%20Jan%20Gossaert%20c%201523.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lucas_Cranach_%28I%29_-_Bildnis_Christians_II.%2C_K%C3%B6nig_von_D%C3%A4nemark_%28MbK%2C_Leipzig%29.jpg/330px-Lucas_Cranach_%28I%29_-_Bildnis_Christians_II.%2C_K%C3%B6nig_von_D%C3%A4nemark_%28MbK%2C_Leipzig%29.jpg",
       "corruptionScore": 2.37605309486389,
       "coords": {
         "lon": 10,
         "lat": 56
       },
-      "summary": ""
+      "summary": "Christian II, a monarch under the Kalmar Union, reigned as King of Denmark and Norway from 1513 until 1523. He was briefly King of Sweden from 1520 until 1521. As king of Denmark and Norway, he was concurrently Duke of Schleswig and Holstein in joint rule with his uncle Frederick."
     },
     {
       "id": "http://www.wikidata.org/entity/Q154998|http://www.wikidata.org/entity/Q35|Head of state",
@@ -7543,13 +7543,13 @@
       "iso2": "DM",
       "role": "Head of state",
       "articleTitle": "Crispin_Sorhaindo",
-      "image": "https://upload.wikimedia.org/wikipedia/en/3/3a/Crispin_Sorhaindo.jpg",
+      "image": "",
       "corruptionScore": 0.544514536857605,
       "coords": {
         "lon": -61.333333,
         "lat": 15.416667
       },
-      "summary": "Crispin Anselm Sorhaindo OBE was the fourth President of Dominica. He served from 25 October 1993 until 5 October 1998."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q366200|http://www.wikidata.org/entity/Q784|Head of government",
@@ -7560,13 +7560,13 @@
       "iso2": "DM",
       "role": "Head of government",
       "articleTitle": "Edison_James",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Edison_James_visits_EU_%28cropped%29.jpg/330px-Edison_James_visits_EU_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Edison%20James%20visits%20EU%20(cropped).jpg?width=900",
       "corruptionScore": 0.544514536857605,
       "coords": {
         "lon": -61.333333,
         "lat": 15.416667
       },
-      "summary": "Edison Chenfil James is a Dominican politician who was the prime minister of Dominica from June 14, 1995, to February 3, 2000, as well as the member of parliament for the Marigot constituency from 1990."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q1707507|http://www.wikidata.org/entity/Q784|Head of state",
@@ -7583,7 +7583,7 @@
         "lon": -61.333333,
         "lat": 15.416667
       },
-      "summary": "Eliud Thaddeus Williams is a Dominican politician who served as seventh President of Dominica from 2012 to 2013."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q258685|http://www.wikidata.org/entity/Q784|Head of government",
@@ -7611,13 +7611,13 @@
       "iso2": "DM",
       "role": "Head of state",
       "articleTitle": "Fred_Degazon",
-      "image": "https://upload.wikimedia.org/wikipedia/en/d/d1/Fred_Degazon.jpg",
+      "image": "",
       "corruptionScore": 0.544514536857605,
       "coords": {
         "lon": -61.333333,
         "lat": 15.416667
       },
-      "summary": "Frederick Eutrope Degazon was a Dominican politician who served as the first President of the country from 1979 to 1980."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q310129|http://www.wikidata.org/entity/Q784|Head of state",
@@ -7945,7 +7945,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q151944|http://www.wikidata.org/entity/Q786|Head of government",
       "leader": "Leonel Fernández",
-      "startDate": "1996-08-16",
+      "startDate": "2004-08-16",
       "country": "Dominican Republic",
       "continent": "North America",
       "iso2": "DO",
@@ -8087,13 +8087,13 @@
       "iso2": "EG",
       "role": "Head of state",
       "articleTitle": "Abdel_Fattah_el-Sisi",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/AbdelFattah%20Elsisi%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/AbdelFattah_Elsisi_%28cropped%29.jpg/330px-AbdelFattah_Elsisi_%28cropped%29.jpg",
       "corruptionScore": -0.747790396213531,
       "coords": {
         "lon": 29,
         "lat": 27
       },
-      "summary": ""
+      "summary": "Abdel Fattah Saeed Hussein Khalil el-Sisi is an Egyptian politician and retired military officer who is the 6th president of Egypt since 2014."
     },
     {
       "id": "http://www.wikidata.org/entity/Q54901515|http://www.wikidata.org/entity/Q79|Head of government",
@@ -8104,13 +8104,13 @@
       "iso2": "EG",
       "role": "Head of government",
       "articleTitle": "Mostafa_Madbouly",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mostafa%20Madbouly%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Mostafa_Madbouly_%28cropped%29.jpg/330px-Mostafa_Madbouly_%28cropped%29.jpg",
       "corruptionScore": -0.747790396213531,
       "coords": {
         "lon": 29,
         "lat": 27
       },
-      "summary": ""
+      "summary": "Mostafa Kamal Madbouly is an Egyptian politician who has served as the 54th Prime Minister of Egypt since 2018. He was appointed by President Abdel Fattah el-Sisi to succeed Sherif Ismail following his government's resignation in the wake of el-Sisi's re-election. Madbouly also served in Sherif Ismail's cabinet as minister of housing, and had also briefly served as acting prime minister."
     },
     {
       "id": "http://www.wikidata.org/entity/Q211000|http://www.wikidata.org/entity/Q792|Head of government",
@@ -8121,13 +8121,13 @@
       "iso2": "SV",
       "role": "Head of government",
       "articleTitle": "Antonio_Saca",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonio%20Saca.png?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Antonio_Saca_2007.jpg/330px-Antonio_Saca_2007.jpg",
       "corruptionScore": -0.561315059661865,
       "coords": {
         "lon": -88.866111,
         "lat": 13.668889
       },
-      "summary": ""
+      "summary": "Elías Antonio \"Tony\" Saca González is a Salvadoran politician, businessman, and journalist who was President of El Salvador from 2004 to 2009 as a member of the Nationalist Republican Alliance (ARENA). Saca is the most recent Salvadoran president to be a member of ARENA. He is currently serving a minimum 10-year prison sentence on corruption charges."
     },
     {
       "id": "http://www.wikidata.org/entity/Q381002|http://www.wikidata.org/entity/Q792|Head of government",
@@ -8172,13 +8172,13 @@
       "iso2": "SV",
       "role": "Head of government",
       "articleTitle": "Nayib_Bukele",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nayib%20Bukele%20in%20the%20White%20House%2C%202025%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Presidente_Nayib_Bukele_%28cropped%29.jpg/330px-Presidente_Nayib_Bukele_%28cropped%29.jpg",
       "corruptionScore": -0.561315059661865,
       "coords": {
         "lon": -88.866111,
         "lat": 13.668889
       },
-      "summary": ""
+      "summary": "Nayib Armando Bukele Ortez is a Salvadoran politician and businessman who has served as the 81st president of El Salvador since 2019."
     },
     {
       "id": "http://www.wikidata.org/entity/Q17712353|http://www.wikidata.org/entity/Q792|Head of state",
@@ -9464,13 +9464,13 @@
       "iso2": "FR",
       "role": "Head of government",
       "articleTitle": "Manuel_Valls",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Manuel_Valls_2025_%28cropped%29.jpg/330px-Manuel_Valls_2025_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Valls%20Schaefer%20Munich%20Economic%20Summit%202015%20(cropped).JPG?width=900",
       "corruptionScore": 1.18482184410095,
       "coords": {
         "lon": 2,
         "lat": 47
       },
-      "summary": "Manuel Carlos Valls Galfetti is a French–Spanish politician who served as Minister of the Overseas in the Bayrou government and first Lecornu government from 2024 to 2025. He served as Prime Minister of France from 2014 until 2016 under President François Hollande and was also involved in Spanish politics from 2018 to 2021."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q438465|http://www.wikidata.org/entity/Q142|Head of government",
@@ -9481,13 +9481,13 @@
       "iso2": "FR",
       "role": "Head of government",
       "articleTitle": "Michel_Barnier",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Barnier_Portrait.jpg/330px-Barnier_Portrait.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Barnier%20cropped.jpg?width=900",
       "corruptionScore": 1.18482184410095,
       "coords": {
         "lon": 2,
         "lat": 47
       },
-      "summary": "Michel Jean Barnier is a French politician who was Prime Minister of France from September to December 2024. A member of a series of Neo-Gaullist parties, Barnier has served in several French cabinet positions under the governments from Édouard Balladur to François Fillon from 1993 to 2009. At the European Union (EU) level, Barnier was European Commissioner for Internal Market and Services from 2010 to 2014 and vice-president of the European People's Party (EPP) from 2010 to 2015. From October 2016 to 2021, he was the EU's chief negotiator on Britain's exit from the European Union."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q329|http://www.wikidata.org/entity/Q142|Head of state",
@@ -9515,13 +9515,13 @@
       "iso2": "FR",
       "role": "Head of state",
       "articleTitle": "René_Coty",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ren%C3%A9_Coty_-_1954.jpg/330px-Ren%C3%A9_Coty_-_1954.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ren%C3%A9%20Coty%20-%201954.jpg?width=900",
       "corruptionScore": 1.18482184410095,
       "coords": {
         "lon": 2,
         "lat": 47
       },
-      "summary": "Gustave Jules René Coty was President of France from 1954 to 1959. He was the second and last president of the Fourth French Republic."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q20089181|http://www.wikidata.org/entity/Q142|Head of government",
@@ -9532,13 +9532,13 @@
       "iso2": "FR",
       "role": "Head of government",
       "articleTitle": "Sébastien_Lecornu",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Portrait_officiel_de_S%C3%A9bastien_Lecornu_-_Ministre_des_Arm%C3%A9es_%28cropped%29.jpg/330px-Portrait_officiel_de_S%C3%A9bastien_Lecornu_-_Ministre_des_Arm%C3%A9es_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/S%C3%A9bastien%20Lecornu%202024%20(2x3%20crop).jpg?width=900",
       "corruptionScore": 1.18482184410095,
       "coords": {
         "lon": 2,
         "lat": 47
       },
-      "summary": "Sébastien Lecornu is a French politician who has served as Prime Minister of France since September 2025. Positioned on the right of the ideological political spectrum, Lecornu has promoted Gaullist, Séguinist, and socially conservative beliefs."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q2124|http://www.wikidata.org/entity/Q142|Head of state",
@@ -10042,13 +10042,13 @@
       "iso2": "DE",
       "role": "Head of state",
       "articleTitle": "Horst_Köhler",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Horst%20K%C3%B6hler.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Horst_K%C3%B6hler.jpg/330px-Horst_K%C3%B6hler.jpg",
       "corruptionScore": 1.66416621208191,
       "coords": {
         "lon": 10,
         "lat": 51
       },
-      "summary": ""
+      "summary": "Horst Köhler was a German politician who served as President of Germany from 2004 to 2010. As the candidate of the two Christian Democratic sister parties and also candidate of the liberal FDP, Köhler was elected to his first five-year term by the Federal Convention on 23 May 2004 and was subsequently inaugurated on 1 July 2004. He was reelected to a second term on 23 May 2009. Just a year later, on 31 May 2010, he resigned from his office in a controversy over a comment on the role of the German Armed Forces in light of a visit to the troops in Afghanistan. During his tenure as president, whose office is mostly concerned with ceremonial matters, Köhler was a highly popular politician, with approval rates above those of both Chancellor Gerhard Schröder and later Chancellor Angela Merkel."
     },
     {
       "id": "http://www.wikidata.org/entity/Q2538|http://www.wikidata.org/entity/Q183|Head of state",
@@ -10059,13 +10059,13 @@
       "iso2": "DE",
       "role": "Head of state",
       "articleTitle": "Joachim_Gauck",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/2012-06-05%20Bundespraesident%20Joachim%20Gauck%20Berlin.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/2023-11-28_Joachim_Gauck-Maischberger_%283x4_cropped%29.jpg/330px-2023-11-28_Joachim_Gauck-Maischberger_%283x4_cropped%29.jpg",
       "corruptionScore": 1.66416621208191,
       "coords": {
         "lon": 10,
         "lat": 51
       },
-      "summary": ""
+      "summary": "Joachim Wilhelm Gauck is a German politician who served as President of Germany from 2012 to 2017. A former Lutheran pastor, he came to prominence as an anti-communist civil rights activist in East Germany."
     },
     {
       "id": "http://www.wikidata.org/entity/Q2551|http://www.wikidata.org/entity/Q183|Head of state",
@@ -10076,13 +10076,13 @@
       "iso2": "DE",
       "role": "Head of state",
       "articleTitle": "Johannes_Rau",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv%20B%20145%20Bild-F073494-0025%2C%20Bundespressekonferenz%2C%20Bundestagswahlkampf%2C%20Rau.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Johannes_rau_2004-05-16_berlin_%281%29.jpg/330px-Johannes_rau_2004-05-16_berlin_%281%29.jpg",
       "corruptionScore": 1.66416621208191,
       "coords": {
         "lon": 10,
         "lat": 51
       },
-      "summary": ""
+      "summary": "Johannes Rau was a German politician who served as President of Germany from 1999 to 2004. A member of the Social Democratic Party, he previously served as the Minister-President of North Rhine-Westphalia from 1978 to 1998. In the latter role, he also served as President of the Bundesrat in 1982–1983 and in 1994–1995."
     },
     {
       "id": "http://www.wikidata.org/entity/Q2569|http://www.wikidata.org/entity/Q183|Head of state",
@@ -10093,13 +10093,13 @@
       "iso2": "DE",
       "role": "Head of state",
       "articleTitle": "Karl_Carstens",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv%20B%20145%20Bild-F040153-0032%2C%20Bonn%2C%20Pressekonferenz%20CDU-Vorstand%2C%20Carstens.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Karl_Carstens_%28cropped%29.jpg",
       "corruptionScore": 1.66416621208191,
       "coords": {
         "lon": 10,
         "lat": 51
       },
-      "summary": ""
+      "summary": "Karl Carstens was a German politician. He served as the president of West Germany from 1979 to 1984."
     },
     {
       "id": "http://www.wikidata.org/entity/Q2492|http://www.wikidata.org/entity/Q183|Head of government",
@@ -11130,13 +11130,13 @@
       "iso2": "HT",
       "role": "Head of government",
       "articleTitle": "Jack_Guy_Lafontant",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jack_Guy_Lafontant_%28cropped%29.jpg/330px-Jack_Guy_Lafontant_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jack%20Guy%20Lafontant%20(cropped).jpg?width=900",
       "corruptionScore": -1.44387412071228,
       "coords": {
         "lon": -72.8,
         "lat": 19
       },
-      "summary": "Jack Guy Lafontant is a Haitian politician who served as Prime Minister of Haiti from 21 March 2017 until 16 September 2018."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q209617|http://www.wikidata.org/entity/Q790|Head of state",
@@ -11164,13 +11164,13 @@
       "iso2": "HT",
       "role": "Head of government",
       "articleTitle": "Jean-Henry_Céant",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Jean-Henry_C%C3%A9ant_%28cropped%29.jpg/330px-Jean-Henry_C%C3%A9ant_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean-Henry%20C%C3%A9ant%20(cropped).jpg?width=900",
       "corruptionScore": -1.44387412071228,
       "coords": {
         "lon": -72.8,
         "lat": 19
       },
-      "summary": "Jean Henry Céant is a Haitian politician who was the twenty-first Prime Minister of Haiti. He was sanctioned by the Canadian government for his involvement in human rights violations and supporting criminal gangs on 17 November 2022."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q62596591|http://www.wikidata.org/entity/Q790|Head of government",
@@ -11181,13 +11181,13 @@
       "iso2": "HT",
       "role": "Head of government",
       "articleTitle": "Jean-Michel_Lapin",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jean_Michel_Lapin_%28cropped%29.jpg/330px-Jean_Michel_Lapin_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Michel%20Lapin%20(cropped).jpg?width=900",
       "corruptionScore": -1.44387412071228,
       "coords": {
         "lon": -72.8,
         "lat": 19
       },
-      "summary": "Jean-Michel Lapin is a Haitian politician who served as acting Prime Minister of Haiti from 2019 to 2020."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q6207072|http://www.wikidata.org/entity/Q790|Head of state",
@@ -11198,13 +11198,13 @@
       "iso2": "HT",
       "role": "Head of state",
       "articleTitle": "Jocelerme_Privert",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Jocelerme_Privert_%2830186877591%29.jpg/330px-Jocelerme_Privert_%2830186877591%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Privert%20joceleme%201.jpg?width=900",
       "corruptionScore": -1.44387412071228,
       "coords": {
         "lon": -72.8,
         "lat": 19
       },
-      "summary": "Jocelerme Privert is a Haitian accountant and bureaucrat who served as the interim President of Haiti from 2016 to 2017."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q87188650|http://www.wikidata.org/entity/Q790|Head of government",
@@ -11617,7 +11617,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q879376|http://www.wikidata.org/entity/Q189|Head of government",
       "leader": "Bjarni Benediktsson",
-      "startDate": "2024-04-09",
+      "startDate": "2017-01-11",
       "country": "Iceland",
       "continent": "Europe",
       "iso2": "IS",
@@ -11759,13 +11759,13 @@
       "iso2": "IN",
       "role": "Head of government",
       "articleTitle": "Atal_Bihari_Vajpayee",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Atal%20Bihari%20Vajpayee%20(crop%202).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Atal_Bihari_Vajpayee_%28crop_2%29.jpg/330px-Atal_Bihari_Vajpayee_%28crop_2%29.jpg",
       "corruptionScore": -0.366014748811722,
       "coords": {
         "lon": 83,
         "lat": 22.8
       },
-      "summary": ""
+      "summary": "Atal Bihari Vajpayee was an Indian poet, writer and statesman who served as the prime minister of India, first for a term of 13 days in 1996, then for 6 years from 1998 to 2004. He was the first non-Congress prime minister to serve a full term in the office. Vajpayee was one of the co-founders and a senior leader of the Bharatiya Janata Party (BJP). He was a volunteer and full-time functionary (pracharak) of the Rashtriya Swayamsevak Sangh (RSS), a right-wing Hindutva paramilitary volunteer organisation. He was also a Hindi poet and a writer. The Sangh's emphasis on self-cultivation and disciplined nation-building left a lasting mark on Vajpayee's early worldview. Scholars have observed that Vajpayee combined cultural nationalism with political moderation, shaping a distinctive strand of post-Independence Indian conservatism rooted in civilisational identity. His speeches and poetry are noted for blending political pragmatism with themes drawn from India's cultural and philosophical traditions. Vajpayee represented a current in Hindu nationalism that sought to harmonise cultural identity with democratic pluralism."
     },
     {
       "id": "http://www.wikidata.org/entity/Q555247|http://www.wikidata.org/entity/Q668|Head of state",
@@ -11776,13 +11776,13 @@
       "iso2": "IN",
       "role": "Head of state",
       "articleTitle": "B._D._Jatti",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Basappa%20Danappa%20Jatti%2C%205th%20Vice%20President%20of%20India.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Basappa_Danappa_Jatti%2C_5th_Vice_President_of_India.jpg/330px-Basappa_Danappa_Jatti%2C_5th_Vice_President_of_India.jpg",
       "corruptionScore": -0.366014748811722,
       "coords": {
         "lon": 83,
         "lat": 22.8
       },
-      "summary": ""
+      "summary": "Basappa Danappa Jatti was the vice president of India, serving from 1974 to 1979. He was the acting president of India from 11 February to 25 July 1977. He also served as the chief minister of Karnataka. Jatti rose from a being a Municipality member to India's second-highest office during a five-decade-long chequered political career."
     },
     {
       "id": "http://www.wikidata.org/entity/Q334279|http://www.wikidata.org/entity/Q668|Head of government",
@@ -11793,13 +11793,13 @@
       "iso2": "IN",
       "role": "Head of government",
       "articleTitle": "Chandra_Shekhar",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chandra%20Shekhar%20Singh%202010%20stamp%20alt.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/Chandra_Shekhar_official_portrait.png",
       "corruptionScore": -0.366014748811722,
       "coords": {
         "lon": 83,
         "lat": 22.8
       },
-      "summary": ""
+      "summary": "Chandra Shekhar was an Indian politician and the prime minister of India, between 10 November 1990 and 21 June 1991. He headed a minority government of a breakaway faction of the Janata Dal with outside support from the Indian National Congress. He was the second Indian Prime Minister who had never held any prior government office."
     },
     {
       "id": "http://www.wikidata.org/entity/Q319824|http://www.wikidata.org/entity/Q668|Head of government",
@@ -11810,13 +11810,13 @@
       "iso2": "IN",
       "role": "Head of government",
       "articleTitle": "Charan_Singh",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Charan%20Singh%201990%20stamp%20of%20India.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Charan_Singh_Portrait.jpg/330px-Charan_Singh_Portrait.jpg",
       "corruptionScore": -0.366014748811722,
       "coords": {
         "lon": 83,
         "lat": 22.8
       },
-      "summary": ""
+      "summary": "Chaudhary Charan Singh was an Indian politician, peasant leader, author and an independence activist who briefly served as the prime minister of India from July 1979 to January 1980. Singh was principally known for his land and agricultural reform initiatives, and was Member of Parliament (MP) for Baghpat. During his premiership, he was a member of the Janata Party (Secular). He served as the Chief Minister of Uttar Pradesh as a member of Bharatiya Kranti Dal. He also briefly served as the deputy prime minister of India from January 1979 to July 1979 as a member of the Janata Party. Singh is widely regarded as the \"Champion of Farmers\", dedicated to advocating for the well being and rights of farmers."
     },
     {
       "id": "http://www.wikidata.org/entity/Q19901232|http://www.wikidata.org/entity/Q668|Head of state",
@@ -12864,13 +12864,13 @@
       "iso2": "IL",
       "role": "Head of state",
       "articleTitle": "Dalia_Itzik",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Dalya_Itzik_1.png/330px-Dalya_Itzik_1.png",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalya%20Itzik%201.png?width=900",
       "corruptionScore": 0.829359412193298,
       "coords": {
         "lon": 35,
         "lat": 31
       },
-      "summary": "Dalia Itzik is an Israeli former politician who last served as a member of the Knesset for Kadima. She has previously served in several ministerial positions, and on 4 May 2006 became the first female speaker of the Knesset, and served as President of Israel in an interim capacity in July 2007."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q37610|http://www.wikidata.org/entity/Q801|Head of government",
@@ -12881,13 +12881,13 @@
       "iso2": "IL",
       "role": "Head of government",
       "articleTitle": "David_Ben-Gurion",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/David_Ben-Gurion_%28D597-087%29.jpg/330px-David_Ben-Gurion_%28D597-087%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Ben-Gurion%20(D597-087).jpg?width=900",
       "corruptionScore": 0.829359412193298,
       "coords": {
         "lon": 35,
         "lat": 31
       },
-      "summary": "David Ben-Gurion was the primary national founder and first prime minister of the State of Israel. As head of the Jewish Agency from 1935, and later president of the Jewish Agency Executive, he was the de facto leader of the Jewish community in Palestine, and largely led the movement for an independent Jewish state in Mandatory Palestine."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q37610|http://www.wikidata.org/entity/Q801|Head of state",
@@ -12898,13 +12898,13 @@
       "iso2": "IL",
       "role": "Head of state",
       "articleTitle": "David_Ben-Gurion",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/David_Ben-Gurion_%28D597-087%29.jpg/330px-David_Ben-Gurion_%28D597-087%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Ben-Gurion%20(D597-087).jpg?width=900",
       "corruptionScore": 0.829359412193298,
       "coords": {
         "lon": 35,
         "lat": 31
       },
-      "summary": "David Ben-Gurion was the primary national founder and first prime minister of the State of Israel. As head of the Jewish Agency from 1935, and later president of the Jewish Agency Executive, he was the de facto leader of the Jewish community in Palestine, and largely led the movement for an independent Jewish state in Mandatory Palestine."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q125731|http://www.wikidata.org/entity/Q801|Head of government",
@@ -12915,13 +12915,13 @@
       "iso2": "IL",
       "role": "Head of government",
       "articleTitle": "Ehud_Barak",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Ehud_Barak_1999.jpg/330px-Ehud_Barak_1999.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ehud%20Barak%202016%20-%20Herzliya%20Conference%202016%203015%20(cropped).jpg?width=900",
       "corruptionScore": 0.829359412193298,
       "coords": {
         "lon": 35,
         "lat": 31
       },
-      "summary": "Ehud Barak is an Israeli former general and politician who served as the prime minister and Minister of Defense from 1999 to 2001. He was leader of the Labor Party between 1997 and 2001 and between 2007 and 2011. He was also Minister of Defense from 2007 to 2013."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q93181|http://www.wikidata.org/entity/Q801|Head of government",
@@ -13419,7 +13419,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q192818|http://www.wikidata.org/entity/Q38|Head of government",
       "leader": "Bettino Craxi",
-      "startDate": "1986-08-01",
+      "startDate": "1983-08-04",
       "country": "Italy",
       "continent": "Europe",
       "iso2": "IT",
@@ -13561,13 +13561,13 @@
       "iso2": "IT",
       "role": "Head of government",
       "articleTitle": "Francesco_Cossiga",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cossiga%20Francesco.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Cossiga_Francesco.jpg/330px-Cossiga_Francesco.jpg",
       "corruptionScore": 0.550129175186157,
       "coords": {
         "lon": 12.5,
         "lat": 42.5
       },
-      "summary": ""
+      "summary": "Francesco Maurizio Cossiga was an Italian politician who served as the president of Italy from 1985 to 1992. A member of Christian Democracy, he was Prime Minister of Italy from 1979 to 1980. Cossiga is widely considered one of the most prominent and influential politicians of the First Italian Republic."
     },
     {
       "id": "http://www.wikidata.org/entity/Q1230|http://www.wikidata.org/entity/Q38|Head of state",
@@ -13578,13 +13578,13 @@
       "iso2": "IT",
       "role": "Head of state",
       "articleTitle": "Francesco_Cossiga",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cossiga%20Francesco.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Cossiga_Francesco.jpg/330px-Cossiga_Francesco.jpg",
       "corruptionScore": 0.550129175186157,
       "coords": {
         "lon": 12.5,
         "lat": 42.5
       },
-      "summary": ""
+      "summary": "Francesco Maurizio Cossiga was an Italian politician who served as the president of Italy from 1985 to 1992. A member of Christian Democracy, he was Prime Minister of Italy from 1979 to 1980. Cossiga is widely considered one of the most prominent and influential politicians of the First Italian Republic."
     },
     {
       "id": "http://www.wikidata.org/entity/Q451791|http://www.wikidata.org/entity/Q38|Head of government",
@@ -13612,13 +13612,13 @@
       "iso2": "IT",
       "role": "Head of state",
       "articleTitle": "Giorgio_Napolitano",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Presidente%20Napolitano.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Presidente_Napolitano.jpg/330px-Presidente_Napolitano.jpg",
       "corruptionScore": 0.550129175186157,
       "coords": {
         "lon": 12.5,
         "lat": 42.5
       },
-      "summary": ""
+      "summary": "Giorgio Napolitano was an Italian politician who served as the president of Italy from 2006 to 2015. At the time the longest-serving president in Italian history, and the first to achieve re-election, he played a dominant role in Italian politics for almost a decade, leading some critics to refer to him as Re Giorgio."
     },
     {
       "id": "http://www.wikidata.org/entity/Q336259|http://www.wikidata.org/entity/Q38|Head of government",
@@ -13629,13 +13629,13 @@
       "iso2": "IT",
       "role": "Head of government",
       "articleTitle": "Giovanni_Goria",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20Goria.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Giovanni_Goria.jpg/330px-Giovanni_Goria.jpg",
       "corruptionScore": 0.550129175186157,
       "coords": {
         "lon": 12.5,
         "lat": 42.5
       },
-      "summary": ""
+      "summary": "Giovanni Giuseppe Goria  was an Italian politician. He served as the 46th prime minister of Italy from 1987 until 1988."
     },
     {
       "id": "http://www.wikidata.org/entity/Q1241|http://www.wikidata.org/entity/Q38|Head of state",
@@ -13963,7 +13963,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q38484|http://www.wikidata.org/entity/Q38|Head of government",
       "leader": "Romano Prodi",
-      "startDate": "1996-05-17",
+      "startDate": "2006-05-17",
       "country": "Italy",
       "continent": "Europe",
       "iso2": "IT",
@@ -14014,7 +14014,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q11860|http://www.wikidata.org/entity/Q38|Head of government",
       "leader": "Silvio Berlusconi",
-      "startDate": "1994-05-10",
+      "startDate": "2005-04-23",
       "country": "Italy",
       "continent": "Europe",
       "iso2": "IT",
@@ -14458,7 +14458,7 @@
       "leader": "Karim Massimov",
       "startDate": "2014-04-02",
       "country": "Kazakhstan",
-      "continent": "Asia",
+      "continent": "Europe",
       "iso2": "KZ",
       "role": "Head of government",
       "articleTitle": "Karim_Massimov",
@@ -14475,7 +14475,7 @@
       "leader": "Nursultan Nazarbayev",
       "startDate": "1991-01-01",
       "country": "Kazakhstan",
-      "continent": "Europe",
+      "continent": "Asia",
       "iso2": "KZ",
       "role": "Head of state",
       "articleTitle": "Nursultan_Nazarbayev",
@@ -14944,7 +14944,7 @@
         "lon": 173.033333333,
         "lat": 1.466666666
       },
-      "summary": "Tion Otang is an I-Kiribati bureaucrat. On March 28, 2003, Teburoro Tito, President of Kiribati was removed from power by a motion of no confidence in the House of Assembly of Kiribati. On such occasions, the Council of State assumes all executive functions until the next presidential election. As then-Chair of the Public Service Commission, Otang was also ex officio Chair of the Council of State. The Council of State remained in power until the election of Anote Tong on July 10, 2003."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q12243161|http://www.wikidata.org/entity/Q817|Head of state",
@@ -14972,13 +14972,13 @@
       "iso2": "KW",
       "role": "Head of state",
       "articleTitle": "Nawaf_Al-Ahmad_Al-Jaber_Al-Sabah",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Nawaf_Al-Ahmad_Al-Jaber_Al-Sabah_%28cropped%29.jpg/330px-Nawaf_Al-Ahmad_Al-Jaber_Al-Sabah_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nawaf%20Al-Ahmad%20Al-Jaber%20Al-Sabah%20(cropped).jpg?width=900",
       "corruptionScore": 0.206611827015877,
       "coords": {
         "lon": 47.6,
         "lat": 29.166667
       },
-      "summary": "Sheikh Nawaf Al-Ahmad Al-Jaber Al-Sabah was Emir of Kuwait from 2020 until his death in 2023."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q57555|http://www.wikidata.org/entity/Q817|Head of state",
@@ -14989,13 +14989,13 @@
       "iso2": "KW",
       "role": "Head of state",
       "articleTitle": "Sabah_Al-Ahmad_Al-Jaber_Al-Sabah",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Russian_meeting_with_Emir_of_Kuwait_Sabah_Al-Ahmad_Al-Jaber_Al-Sabah_%28cropped%29.jpg/330px-Russian_meeting_with_Emir_of_Kuwait_Sabah_Al-Ahmad_Al-Jaber_Al-Sabah_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh%20Sabah%20IV%20(cropped).jpg?width=900",
       "corruptionScore": 0.206611827015877,
       "coords": {
         "lon": 47.6,
         "lat": 29.166667
       },
-      "summary": "Sabah Al-Ahmad Al-Jaber Al-Sabah was the Emir of Kuwait from 24 January 2006 until his death in 2020."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q12219691|http://www.wikidata.org/entity/Q817|Head of government",
@@ -15006,13 +15006,13 @@
       "iso2": "KW",
       "role": "Head of government",
       "articleTitle": "Sabah_Al-Khalid_Al-Sabah",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sabah_Al-Khalid_Al-Sabah_2014_%28cropped%29.jpg/330px-Sabah_Al-Khalid_Al-Sabah_2014_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Evangelos%20Venizelos%20and%20Sabah%20Al-Khalid%20Al-Sabah%202014.jpg?width=900",
       "corruptionScore": 0.206611827015877,
       "coords": {
         "lon": 47.6,
         "lat": 29.166667
       },
-      "summary": "Sabah Al-Khalid Al-Sabah is Crown Prince of Kuwait. A senior member of the Al-Sabah ruling family, he held various government positions from 2006 to 2022, serving as Foreign Minister from 2011 to 2019 and as Prime Minister from 2019 to 2022. He was appointed Crown Prince by Emir Mishal Al-Ahmad Al-Sabah on 1 June 2024."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q112703041|http://www.wikidata.org/entity/Q813|Head of government",
@@ -15346,13 +15346,13 @@
       "iso2": "LV",
       "role": "Head of state",
       "articleTitle": "Edgars_Rinkēvičs",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgars%20Rink%C4%93vi%C4%8Ds%20as%20president-elect%2C%202023-05-31%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Edgars_Rink%C4%93vi%C4%8Ds_as_president-elect%2C_2023-05-31_%28cropped%29.jpg/330px-Edgars_Rink%C4%93vi%C4%8Ds_as_president-elect%2C_2023-05-31_%28cropped%29.jpg",
       "corruptionScore": 0.698113977909088,
       "coords": {
         "lon": 25,
         "lat": 57
       },
-      "summary": ""
+      "summary": "Edgars Rinkēvičs is a Latvian public official and politician serving as the 11th and current president of Latvia since July 2023. He previously served as the minister of foreign affairs of Latvia from 2011 to 2023, and head of the Chancery of the President of Latvia as state secretary of the Ministry of Defence, as well as a deputy of the Saeima. Upon taking office as president, Rinkēvičs became the first openly gay head of state in a European Union country."
     },
     {
       "id": "http://www.wikidata.org/entity/Q348043|http://www.wikidata.org/entity/Q211|Head of state",
@@ -15380,13 +15380,13 @@
       "iso2": "LV",
       "role": "Head of government",
       "articleTitle": "Evika_Siliņa",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Evika%20Sili%C5%86a%20(2024)%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Evika_Sili%C5%86a_%282024%29_%28cropped%29.jpg/330px-Evika_Sili%C5%86a_%282024%29_%28cropped%29.jpg",
       "corruptionScore": 0.698113977909088,
       "coords": {
         "lon": 25,
         "lat": 57
       },
-      "summary": ""
+      "summary": "Evika Siliņa is a Latvian lawyer and politician who has been serving as the prime minister of Latvia since 15 September 2023. From 2022 to 2023, she served as Minister of Welfare in the second cabinet of prime minister Krišjānis Kariņš. She is a member of the Unity political party, and the second female head of government of Latvia."
     },
     {
       "id": "http://www.wikidata.org/entity/Q3736499|http://www.wikidata.org/entity/Q211|Head of government",
@@ -15397,13 +15397,13 @@
       "iso2": "LV",
       "role": "Head of government",
       "articleTitle": "Krišjānis_Kariņš",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Karins%2C%20Krisjanis-9702.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Arturs_Kri%C5%A1j%C4%81nis_Kari%C5%86%C5%A1%2C_23.03.23_%28cropped%29.jpg/330px-Arturs_Kri%C5%A1j%C4%81nis_Kari%C5%86%C5%A1%2C_23.03.23_%28cropped%29.jpg",
       "corruptionScore": 0.698113977909088,
       "coords": {
         "lon": 25,
         "lat": 57
       },
-      "summary": ""
+      "summary": "Arturs Krišjānis Kariņš is a Latvian and American politician who served as the prime minister of Latvia from 2019 until 2023. A linguist and businessman by profession, he previously served as Latvia's minister of Economics and a Member of the European Parliament. Born in Wilmington, Delaware, United States, to parents who had left Latvia during the Soviet occupation, he was active in the American Latvian community throughout his youth."
     },
     {
       "id": "http://www.wikidata.org/entity/Q3089345|http://www.wikidata.org/entity/Q211|Head of government",
@@ -15414,13 +15414,13 @@
       "iso2": "LV",
       "role": "Head of government",
       "articleTitle": "Laimdota_Straujuma",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/26.janv%C4%81ra%20Saeimas%20%C4%81rk%C4%81rtas%20s%C4%93de%20(24621032625)%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/26.janv%C4%81ra_Saeimas_%C4%81rk%C4%81rtas_s%C4%93de_%2824621032625%29_%28cropped%29.jpg/330px-26.janv%C4%81ra_Saeimas_%C4%81rk%C4%81rtas_s%C4%93de_%2824621032625%29_%28cropped%29.jpg",
       "corruptionScore": 0.698113977909088,
       "coords": {
         "lon": 25,
         "lat": 57
       },
-      "summary": ""
+      "summary": "Laimdota Straujuma is a Latvian economist who was the prime minister of Latvia from January 2014 to February 2016. Before her tenure as prime minister, she served as the minister of Agriculture from 2011 to 2014. She was the first woman to serve as the head of government of the country. After her resignation on 7 December 2015, she announced her intention to resume a seat in the Saeima."
     },
     {
       "id": "http://www.wikidata.org/entity/Q6112509|http://www.wikidata.org/entity/Q211|Head of government",
@@ -15561,7 +15561,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q57537|http://www.wikidata.org/entity/Q1013|Head of state",
       "leader": "Letsie III of Lesotho",
-      "startDate": "1996-02-07",
+      "startDate": "1990-01-01",
       "country": "Lesotho",
       "continent": "Africa",
       "iso2": "LS",
@@ -16332,13 +16332,13 @@
       "iso2": "LU",
       "role": "Head of government",
       "articleTitle": "Jean-Jacques_Willmar",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Jean-Jacques_Willmar.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean-Jacques%20Willmar.jpg?width=900",
       "corruptionScore": 1.92665910720825,
       "coords": {
         "lon": 6.13,
         "lat": 49.77
       },
-      "summary": "Jean-Jacques Madeleine Willmar was a Luxembourgish politician and jurist. An Orangist, he served as prime minister of Luxembourg for five years, from 6 December 1848 until 23 September 1853."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q315685|http://www.wikidata.org/entity/Q32|Head of government",
@@ -16349,13 +16349,13 @@
       "iso2": "LU",
       "role": "Head of government",
       "articleTitle": "Joseph_Bech",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Joseph_Bech_%28detail%29.jpg/330px-Joseph_Bech_%28detail%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Bech%20(detail).jpg?width=900",
       "corruptionScore": 1.92665910720825,
       "coords": {
         "lon": 6.13,
         "lat": 49.77
       },
-      "summary": "Joseph Bech was a Luxembourgish politician and lawyer. He was the prime minister of Luxembourg, serving for eleven years, from 16 July 1926 to 5 November 1937. He returned to the position after World War II, and served for another four years, from 29 December 1953 until 29 March 1958. The 1982–1983 academic year at the College of Europe was named in his honour."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q975968|http://www.wikidata.org/entity/Q32|Head of government",
@@ -16366,13 +16366,13 @@
       "iso2": "LU",
       "role": "Head of government",
       "articleTitle": "Léon_Kauffman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/L%C3%A9on_Kauffman_%281869-1952%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/L%C3%A9on%20Kauffman%20(1869-1952).jpg?width=900",
       "corruptionScore": 1.92665910720825,
       "coords": {
         "lon": 6.13,
         "lat": 49.77
       },
-      "summary": "Léon Kauffman was a Luxembourgish politician. He was prime minister of Luxembourg, serving for one year, from 18 June 1917 until 28 September 1918."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q592101|http://www.wikidata.org/entity/Q32|Head of government",
@@ -16383,13 +16383,13 @@
       "iso2": "LU",
       "role": "Head of government",
       "articleTitle": "Luc_Frieden",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Luc_Frieden_EP_2025_%28cropped%29.jpg/330px-Luc_Frieden_EP_2025_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Luc%20Frieden%20EP%202025%20(cropped).jpg?width=900",
       "corruptionScore": 1.92665910720825,
       "coords": {
         "lon": 6.13,
         "lat": 49.77
       },
-      "summary": "Luc Frieden is a Luxembourgish politician and lawyer serving as prime minister of Luxembourg since November 2023. A member of the Christian Social People's Party (CSV), he held numerous cabinet positions in the Luxembourgish government between 1998 and 2013, notably serving as the minister for the Treasury and Budget during the transition from the Franc to the Euro and as minister of Finance during the European debt crisis. Frieden then left politics and was active in the private sector, serving as president of the Luxembourgish Chamber of Commerce and Eurochambres, the business federation of European Chambers of Commerce and Industry."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q665685|http://www.wikidata.org/entity/Q32|Head of government",
@@ -16547,7 +16547,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q57363|http://www.wikidata.org/entity/Q1019|Head of state",
       "leader": "Andry Rajoelina",
-      "startDate": "2025-10-14",
+      "startDate": "2019-01-19",
       "country": "Madagascar",
       "continent": "Africa",
       "iso2": "MG",
@@ -16621,13 +16621,13 @@
       "iso2": "MW",
       "role": "Head of government",
       "articleTitle": "Lazarus_Chakwera",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lazarus%20Chakwera%202017.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Lazarus_Chakwera_2021.jpg/330px-Lazarus_Chakwera_2021.jpg",
       "corruptionScore": -0.602811515331268,
       "coords": {
         "lon": 34,
         "lat": -13
       },
-      "summary": ""
+      "summary": "Lazarus McCarthy Chakwera is a Malawian politician, theologian, and pastor who served as the sixth president of Malawi from 2020 to 2025. A member of the Malawi Congress Party (MCP), he has served as the party's president since 2013. He also served as President of the Malawian Assemblies of God from 1989 to 2013, and during his presidency concurrently served as Minister of Defense from 2020 to 2023."
     },
     {
       "id": "http://www.wikidata.org/entity/Q16202782|http://www.wikidata.org/entity/Q1020|Head of state",
@@ -16638,13 +16638,13 @@
       "iso2": "MW",
       "role": "Head of state",
       "articleTitle": "Lazarus_Chakwera",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lazarus%20Chakwera%202017.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Lazarus_Chakwera_2021.jpg/330px-Lazarus_Chakwera_2021.jpg",
       "corruptionScore": -0.602811515331268,
       "coords": {
         "lon": 34,
         "lat": -13
       },
-      "summary": ""
+      "summary": "Lazarus McCarthy Chakwera is a Malawian politician, theologian, and pastor who served as the sixth president of Malawi from 2020 to 2025. A member of the Malawi Congress Party (MCP), he has served as the party's president since 2013. He also served as President of the Malawian Assemblies of God from 1989 to 2013, and during his presidency concurrently served as Minister of Defense from 2020 to 2023."
     },
     {
       "id": "http://www.wikidata.org/entity/Q7176020|http://www.wikidata.org/entity/Q1020|Head of state",
@@ -16655,13 +16655,13 @@
       "iso2": "MW",
       "role": "Head of state",
       "articleTitle": "Peter_Mutharika",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur%20Peter%20Mutharika%202014%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Malawian_President_Peter_Mutharika_in_2020.jpg/330px-Malawian_President_Peter_Mutharika_in_2020.jpg",
       "corruptionScore": -0.602811515331268,
       "coords": {
         "lon": 34,
         "lat": -13
       },
-      "summary": ""
+      "summary": "Arthur Peter Mutharika is a Malawian politician and lawyer who has been the seventh president of Malawi since 2025. A member of the Democratic Progressive Party (DPP) and the younger brother of the third president, Bingu wa Mutharika, he served as the fifth president from 2014 to 2020 and has also been leading the DPP since 2012."
     },
     {
       "id": "http://www.wikidata.org/entity/Q57550|http://www.wikidata.org/entity/Q833|Head of state",
@@ -16672,13 +16672,13 @@
       "iso2": "MY",
       "role": "Head of state",
       "articleTitle": "Abdul_Halim_of_Kedah",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Abdul%20Halim%20of%20Kedah.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Abdul_Halim_of_Kedah.jpg/330px-Abdul_Halim_of_Kedah.jpg",
       "corruptionScore": 0.295621365308762,
       "coords": {
         "lon": 102.314361666,
         "lat": 3.7805111
       },
-      "summary": ""
+      "summary": "Al-Mu’tassimu Billahi Muhibbuddin Sultan Abdul Halim Mu'adzam Shah ibni Almarhum Sultan Badlishah was Sultan of Kedah from 1958 until his death in 2017, and served twice as the King of Malaysia from 1970 to 1975 and from 2011 to 2016. He was the first and only ruler to reign as king twice, as well as the oldest elected to the office. Prior to his death, he was the second longest-reigning living monarch in the world after Queen Elizabeth II of the United Kingdom."
     },
     {
       "id": "http://www.wikidata.org/entity/Q264516|http://www.wikidata.org/entity/Q833|Head of government",
@@ -18032,13 +18032,13 @@
       "iso2": "MR",
       "role": "Head of state",
       "articleTitle": "Sidi_Ould_Cheikh_Abdallahi",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Sidi_Mohamed_Ould_Cheikh_Abdallahi.jpg/330px-Sidi_Mohamed_Ould_Cheikh_Abdallahi.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sidi%20Mohamed%20Ould%20Cheikh%20Abdallahi.jpg?width=900",
       "corruptionScore": -0.822652637958527,
       "coords": {
         "lon": -11,
         "lat": 21
       },
-      "summary": "Sidi Mohamed Ould Cheikh Abdallahi was a Mauritanian politician who was President of Mauritania from 2007 to 2008. He served in the government during the 1970s, and after a long period of absence from politics he won the March 2007 presidential election, taking office on 19 April 2007. He was deposed in a military coup d'état on 6 August 2008."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q1371357|http://www.wikidata.org/entity/Q1025|Head of government",
@@ -18049,13 +18049,13 @@
       "iso2": "MR",
       "role": "Head of government",
       "articleTitle": "Yahya_Ould_Ahmed_El_Waghef",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/Yahya_Ould_Ahmed_El_Waghef_mauritanie.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Yahya%20Ould%20Ahmed%20El%20Waghef%20mauritanie.jpg?width=900",
       "corruptionScore": -0.822652637958527,
       "coords": {
         "lon": -11,
         "lat": 21
       },
-      "summary": "Yahya Ould Ahmed El Waghef is a Mauritanian politician. He was appointed as Prime Minister of Mauritania on 6 May 2008, serving until the August 2008 coup d'état. Yahya is also President of the National Pact for Democracy and Development (ADIL), and he was Secretary-General of the Presidency from 2007 to 2008."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q3571335|http://www.wikidata.org/entity/Q1025|Head of government",
@@ -18072,7 +18072,7 @@
         "lon": -11,
         "lat": 21
       },
-      "summary": "Yahya Ould Hademine is a Mauritanian engineer and politician who served as Defense Minister of Mauritania. He served as the Prime Minister of Mauritania from August 21, 2014 to October 29, 2018."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q184941|http://www.wikidata.org/entity/Q1025|Head of government",
@@ -18100,13 +18100,13 @@
       "iso2": "MU",
       "role": "Head of state",
       "articleTitle": "Ameenah_Gurib-Fakim",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Ameenah_Gurib-Fakim_%28cropped%29.jpg/330px-Ameenah_Gurib-Fakim_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ameenah%20Gurib-Fakim.jpg?width=900",
       "corruptionScore": 0.453197360038757,
       "coords": {
         "lon": 57.5,
         "lat": -20.2
       },
-      "summary": "Dr. Bibi Ameenah Firdaus Gurib-Fakim GCSK is a Mauritian politician and biodiversity scientist who served as the sixth president of Mauritius from 2015 to 2018. In December 2014, she was selected to be the presidential candidate of the Alliance Lepep. After Kailash Purryag resigned on 29 May 2015, both Prime Minister Sir Anerood Jugnauth and Leader of the Opposition Paul Berenger positively welcomed her nomination, which was unanimously approved in a vote in the National Assembly."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q27662367|http://www.wikidata.org/entity/Q1027|Head of state",
@@ -18219,13 +18219,13 @@
       "iso2": "MX",
       "role": "Head of state",
       "articleTitle": "Adolfo_López_Mateos",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Retrato%20de%20Adolfo%20L%C3%B3pez%20Mateos.png?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Adolfo_L%C3%B3pez_Mateos_%281963%29_%28cropped%29%28c%29.jpg/330px-Adolfo_L%C3%B3pez_Mateos_%281963%29_%28cropped%29%28c%29.jpg",
       "corruptionScore": -1.02057874202728,
       "coords": {
         "lon": -102,
         "lat": 23
       },
-      "summary": ""
+      "summary": "Adolfo López Mateos was a Mexican politician and lawyer who served as President of Mexico from 1958 to 1964. Previously, he served as Secretary of Labor and Social Welfare from 1952 to 1957 and a Senator from the State of Mexico from 1946 to 1952."
     },
     {
       "id": "http://www.wikidata.org/entity/Q327920|http://www.wikidata.org/entity/Q96|Head of state",
@@ -18236,13 +18236,13 @@
       "iso2": "MX",
       "role": "Head of state",
       "articleTitle": "Adolfo_Ruiz_Cortines",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Adolfo%20Ruiz%20Cortines.png?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Adolfo_Ruiz_Cortines_%28cropped%29.jpg/330px-Adolfo_Ruiz_Cortines_%28cropped%29.jpg",
       "corruptionScore": -1.02057874202728,
       "coords": {
         "lon": -102,
         "lat": 23
       },
-      "summary": ""
+      "summary": "Adolfo Tomás Ruiz Cortines was a Mexican politician who served as President of Mexico from 1952 to 1958. A member of the Institutional Revolutionary Party (PRI), he previously served as Governor of Veracruz and Secretary of the Interior. During his presidency, which constituted the Mexican Miracle, women gained the right to vote, and he instituted numerous public health, education, infrastructure, and works projects."
     },
     {
       "id": "http://www.wikidata.org/entity/Q217498|http://www.wikidata.org/entity/Q96|Head of state",
@@ -18253,13 +18253,13 @@
       "iso2": "MX",
       "role": "Head of state",
       "articleTitle": "Álvaro_Obregón",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Obreg%C3%B3n%20Salido%2C%20%C3%81lvaro.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Obreg%C3%B3n_Salido%2C_%C3%81lvaro_%28cropped%29%282%29.jpg/330px-Obreg%C3%B3n_Salido%2C_%C3%81lvaro_%28cropped%29%282%29.jpg",
       "corruptionScore": -1.02057874202728,
       "coords": {
         "lon": -102,
         "lat": 23
       },
-      "summary": ""
+      "summary": "Álvaro Obregón Salido was a Mexican general, inventor and politician who served as the 46th President of Mexico from 1920 to 1924. Obregón was re-elected to the presidency in 1928 but was assassinated before he could take office."
     },
     {
       "id": "http://www.wikidata.org/entity/Q318508|http://www.wikidata.org/entity/Q96|Head of government",
@@ -18270,13 +18270,13 @@
       "iso2": "MX",
       "role": "Head of government",
       "articleTitle": "Andrés_Manuel_López_Obrador",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Conferencia%20de%20prensa%20del%20Presidente%20de%20M%C3%A9xico%20-%20Mi%C3%A9rcoles%2024%20de%20junio%20de%202020%206%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Andr%C3%A9s_Manuel_L%C3%B3pez_Obrador_junio_2024.jpg/330px-Andr%C3%A9s_Manuel_L%C3%B3pez_Obrador_junio_2024.jpg",
       "corruptionScore": -1.02057874202728,
       "coords": {
         "lon": -102,
         "lat": 23
       },
-      "summary": ""
+      "summary": "Andrés Manuel López Obrador, also known by his initials AMLO, is a Mexican former politician, political scientist, and writer who served as the 65th president of Mexico from 2018 to 2024. He served as Head of Government of Mexico City from 2000 to 2005."
     },
     {
       "id": "http://www.wikidata.org/entity/Q318508|http://www.wikidata.org/entity/Q96|Head of state",
@@ -19902,13 +19902,13 @@
       "iso2": "NA",
       "role": "Head of state",
       "articleTitle": "Netumbo_Nandi-Ndaitwah",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Netumbo%20Nandi-Ndaitwah%202025.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Netumbo_Nandi-Ndaitwah_2025.jpg/330px-Netumbo_Nandi-Ndaitwah_2025.jpg",
       "corruptionScore": 0.110072031617165,
       "coords": {
         "lon": 17,
         "lat": -23
       },
-      "summary": ""
+      "summary": "Ndemupelila Netumbo Nandi-Ndaitwah, nicknamed NNN, is a Namibian politician who has been the fifth and current president of Namibia since 21 March 2025. She is the country's first female president. Previously, she served as the third vice president under President Nangolo Mbumba between 2024 and 2025. She held various high level political and ministerial position as well as various responsibility within SWAPO party and its government over an uninterrupted period of 57 years."
     },
     {
       "id": "http://www.wikidata.org/entity/Q7395683|http://www.wikidata.org/entity/Q1030|Head of government",
@@ -20004,13 +20004,13 @@
       "iso2": "NR",
       "role": "Head of government",
       "articleTitle": "Bernard_Dowiyogo",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Bernard_Dowiyogo_visiting_Lincoln_University_%28cropped%29.jpg/330px-Bernard_Dowiyogo_visiting_Lincoln_University_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bernard%20Dowiyogo%20visiting%20Lincoln%20University%20(cropped).jpg?width=900",
       "corruptionScore": 0.58861643075943,
       "coords": {
         "lon": 166.935,
         "lat": -0.5275
       },
-      "summary": "Bernard Annen Auwen Dowiyogo was a Nauruan politician who served as President of Nauru on seven separate occasions. During this time, he also served as a Member of Parliament for the constituency of Ubenide."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q58096|http://www.wikidata.org/entity/Q697|Head of government",
@@ -20168,7 +20168,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q560557|http://www.wikidata.org/entity/Q697|Head of government",
       "leader": "René Harris",
-      "startDate": "2003-01-01",
+      "startDate": "2001-01-01",
       "country": "Nauru",
       "continent": "Oceania",
       "iso2": "NR",
@@ -21341,7 +21341,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q57665|http://www.wikidata.org/entity/Q20|Head of government",
       "leader": "Jens Stoltenberg",
-      "startDate": "2005-10-17",
+      "startDate": "2000-03-17",
       "country": "Norway",
       "continent": "Europe",
       "iso2": "NO",
@@ -21653,13 +21653,13 @@
       "iso2": "PK",
       "role": "Head of government",
       "articleTitle": "Imran_Khan",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Prime%20Minister%20Imran%20Khan%20Adresses%20the%20Forum%2001.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Prime_Minister_Imran_Khan_Adresses_the_Forum_01.jpg/330px-Prime_Minister_Imran_Khan_Adresses_the_Forum_01.jpg",
       "corruptionScore": -0.999357461929321,
       "coords": {
         "lon": 71,
         "lat": 30
       },
-      "summary": ""
+      "summary": "Imran Ahmed Khan Niazi is a Pakistani former cricketer, philanthropist, and politician who served as the 19th prime minister of Pakistan from August 2018 until April 2022. As a cricketer, he captained the Pakistan national cricket team to victory in the 1992 Cricket World Cup. After retiring from cricket, he founded the Shaukat Khanum Memorial Cancer Hospital and Research Centre, Pakistan's first cancer hospital. He is the founder of the political party Pakistan Tehreek-e-Insaf (PTI) and was its chairman from 1996 to 2023."
     },
     {
       "id": "http://www.wikidata.org/entity/Q14257286|http://www.wikidata.org/entity/Q843|Head of state",
@@ -21670,13 +21670,13 @@
       "iso2": "PK",
       "role": "Head of state",
       "articleTitle": "Mamnoon_Hussain",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/President%20Mamnoon%20Hussain.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/President_Mamnoon_Hussain.jpg/330px-President_Mamnoon_Hussain.jpg",
       "corruptionScore": -0.999357461929321,
       "coords": {
         "lon": 71,
         "lat": 30
       },
-      "summary": ""
+      "summary": " Mamnoon Hussain was a Pakistani politician, industrialist and statesman who served as the 12th president of Pakistan from 2013 to 2018. He also served as the governor of Sindh from June 1999 until being deposed in a coup d'état in October 1999, when the federal and all provincial governments were overthrown by Pervez Musharraf."
     },
     {
       "id": "http://www.wikidata.org/entity/Q8168180|http://www.wikidata.org/entity/Q843|Head of government",
@@ -21721,13 +21721,13 @@
       "iso2": "PK",
       "role": "Head of government",
       "articleTitle": "Nawaz_Sharif",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/PrimeMinisterNawazSharif.jpg/330px-PrimeMinisterNawazSharif.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nawaz%20Sharif%20January%202015.jpg?width=900",
       "corruptionScore": -0.999357461929321,
       "coords": {
         "lon": 71,
         "lat": 30
       },
-      "summary": "Mian Muhammad Nawaz Sharif is a Pakistani politician and businessman who served as the prime minister of Pakistan for three non-consecutive terms, first serving from 1990 to 1993, then from 1997 to 1999 and later from 2013 to 2017. He is the longest-serving prime minister in the country's history, having served a total of more than 9 years across three tenures, with each term ending in his ousting."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q7461686|http://www.wikidata.org/entity/Q843|Head of government",
@@ -21738,13 +21738,13 @@
       "iso2": "PK",
       "role": "Head of government",
       "articleTitle": "Shahid_Khaqan_Abbasi",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Shahid_Khaqan_Abbasi_%28cropped%29.jpg/330px-Shahid_Khaqan_Abbasi_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Shahid%20Khaqan%20Abbasi%20(cropped).jpg?width=900",
       "corruptionScore": -0.999357461929321,
       "coords": {
         "lon": 71,
         "lat": 30
       },
-      "summary": "Shahid Khaqan Abbasi is a Pakistani politician and businessman who served as the prime minister of Pakistan from August 2017 to May 2018. He also currently leads Awaam Pakistan (AP) as its chairman. Abbasi was the senior vice president of the Pakistan Muslim League-N (PML-N), and had been the secretary-general of the Pakistan Democratic Movement (PDM), an anti-PTI coalition of political parties in Pakistan. He had been a Member of the National Assembly of Pakistan from October 2018 to August 2023 and previously served as a member of the National Assembly for 8 non-consecutive terms since 1988."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q2096387|http://www.wikidata.org/entity/Q843|Head of government",
@@ -23636,7 +23636,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q946|http://www.wikidata.org/entity/Q36|Head of government",
       "leader": "Donald Tusk",
-      "startDate": "2023-12-13",
+      "startDate": "2007-11-16",
       "country": "Poland",
       "continent": "Europe",
       "iso2": "PL",
@@ -23659,13 +23659,13 @@
       "iso2": "PL",
       "role": "Head of government",
       "articleTitle": "Ewa_Kopacz",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ewa%20Kopacz%20-%20Konwencja%20PO%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Official_portrait_of_Ewa_Kopacz_4_%28cropped%29.jpg/330px-Official_portrait_of_Ewa_Kopacz_4_%28cropped%29.jpg",
       "corruptionScore": 0.565399944782257,
       "coords": {
         "lon": 19,
         "lat": 52
       },
-      "summary": ""
+      "summary": "Ewa Bożena Kopacz is a Polish politician who has served as a Vice-President of the European Parliament since 2019. She previously was Marshal of the Sejm from 2011 to 2014, the first woman to hold the office, as well as Prime Minister of Poland from 2014 to 2015. In addition, Kopacz was Minister of Health from 2007 until 2011. Since 2001, she has been a member of Civic Platform, which she chaired from 2014 to 2016. Kopacz succeeded Donald Tusk as prime minister, becoming the second woman to hold the office after Hanna Suchocka (1992–1993). Her term as prime minister ended on 16 November 2015, when she was succeeded by Beata Szydło."
     },
     {
       "id": "http://www.wikidata.org/entity/Q362851|http://www.wikidata.org/entity/Q36|Head of state",
@@ -23676,13 +23676,13 @@
       "iso2": "PL",
       "role": "Head of state",
       "articleTitle": "Grzegorz_Schetyna",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grzegorz%20Schetyna%20Kancelaria%20Senatu%202023.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Grzegorz_Schetyna_2023_%28cropped%29.jpg/330px-Grzegorz_Schetyna_2023_%28cropped%29.jpg",
       "corruptionScore": 0.565399944782257,
       "coords": {
         "lon": 19,
         "lat": 52
       },
-      "summary": ""
+      "summary": "Grzegorz Juliusz Schetyna is a Polish politician who was Leader of Civic Platform and Leader of the Opposition from 26 January 2016 to 25 January 2020. He has served as Minister of Foreign Affairs of Poland from 2014 to 2015, Marshal of the Sejm from 2010 to 2011, Acting President of Poland 2010, Deputy Prime Minister of Poland from 2007 to 2009 and Minister of the Interior and Administration 2007 to 2009. He has been a Member of the Sejm from 1997."
     },
     {
       "id": "http://www.wikidata.org/entity/Q55930|http://www.wikidata.org/entity/Q36|Head of government",
@@ -23727,13 +23727,13 @@
       "iso2": "PL",
       "role": "Head of government",
       "articleTitle": "Jan_Olszewski",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Jan_Olszewski_3_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Olszewski(3).JPG?width=900",
       "corruptionScore": 0.565399944782257,
       "coords": {
         "lon": 19,
         "lat": 52
       },
-      "summary": "Jan Ferdynand Olszewski was a Polish conservative lawyer and politician who served as the Prime Minister of Poland for five months between December 1991 and early June 1992 and later became a leading figure of the conservative Movement for the Reconstruction of Poland."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q55910|http://www.wikidata.org/entity/Q36|Head of government",
@@ -23744,13 +23744,13 @@
       "iso2": "PL",
       "role": "Head of government",
       "articleTitle": "Jerzy_Buzek",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Official_portrait_of_Jerzy_Buzek_2019.jpg/330px-Official_portrait_of_Jerzy_Buzek_2019.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jerzy%20Buzek%2C%202010.JPG?width=900",
       "corruptionScore": 0.565399944782257,
       "coords": {
         "lon": 19,
         "lat": 52
       },
-      "summary": "Jerzy Karol Buzek is a Polish politician and former Member of the European Parliament from Poland. He has served as Prime Minister of Poland from 1997 to 2001, since being elected to the European Parliament in 2004, he served as President of the European Parliament between 2009 and 2012. He is married to Ludgarda Buzek and is the father of Polish actress Agata Buzek."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q55924|http://www.wikidata.org/entity/Q36|Head of government",
@@ -24724,7 +24724,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q1842040|http://www.wikidata.org/entity/Q218|Head of government",
       "leader": "Gheorghe Tătărescu",
-      "startDate": "1939-11-24",
+      "startDate": "1934-01-04",
       "country": "Romania",
       "continent": "Europe",
       "iso2": "RO",
@@ -24792,7 +24792,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q153047|http://www.wikidata.org/entity/Q218|Head of government",
       "leader": "Ion C. Brătianu",
-      "startDate": "1881-06-09",
+      "startDate": "1881-03-13",
       "country": "Romania",
       "continent": "Europe",
       "iso2": "RO",
@@ -24962,7 +24962,7 @@
     {
       "id": "http://www.wikidata.org/entity/Q539251|http://www.wikidata.org/entity/Q218|Head of government",
       "leader": "Lascăr Catargi",
-      "startDate": "1889-03-29",
+      "startDate": "1891-12-29",
       "country": "Romania",
       "continent": "Europe",
       "iso2": "RO",
@@ -25189,13 +25189,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Nicolae_Golescu",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolae%20Constantin%20Golescu.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Nicolae_Constantin_Golescu.jpg/330px-Nicolae_Constantin_Golescu.jpg",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": ""
+      "summary": "Nicolae Golescu was a Wallachian Romanian politician who served as the Prime Minister of Romania in 1860 and May–November 1868."
     },
     {
       "id": "http://www.wikidata.org/entity/Q313581|http://www.wikidata.org/entity/Q218|Head of government",
@@ -25223,13 +25223,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Nicolae_Rădescu",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolae%20Radescu.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Nicolae_Radescu.jpg",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": ""
+      "summary": "Nicolae Rădescu was a Romanian army officer and political figure. He was the last pre-communist rule Prime Minister of Romania, serving from 7 December 1944 to 1 March 1945."
     },
     {
       "id": "http://www.wikidata.org/entity/Q126671|http://www.wikidata.org/entity/Q218|Head of government",
@@ -25240,13 +25240,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Nicolae_Văcăroiu",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolae%20V%C4%83c%C4%83roiu.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Nicolae_V%C4%83c%C4%83roiu_%28cropped%29.jpg/330px-Nicolae_V%C4%83c%C4%83roiu_%28cropped%29.jpg",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": ""
+      "summary": "Nicolae Văcăroiu is a Romanian politician, member of the Social Democratic Party (PSD), who served as Prime Minister between 1992 and 1996. Before the 1989 Revolution, he worked at the Committee for State Planning, together with Theodor Stolojan. He was the President of the Senate of Romania for almost eight years, during two legislatures."
     },
     {
       "id": "http://www.wikidata.org/entity/Q11163124|http://www.wikidata.org/entity/Q218|Head of state",
@@ -25274,13 +25274,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Octavian_Goga",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Octavian_Goga_%281%29.jpg/330px-Octavian_Goga_%281%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Octavian%20Goga.jpg?width=900",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": "Octavian Goga was a Romanian far-right politician, poet, playwright, journalist, and translator. Octavian Goga was the first fascist Prime Minister of Romania."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q2268352|http://www.wikidata.org/entity/Q218|Head of government",
@@ -25291,13 +25291,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Patriarch_Miron_of_Romania",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Miron_Cristia_patriach_of_Romania.JPG",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Patriarhul%20Romaniei%20-%20Miron%20Cristea.jpg?width=900",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": "Miron Cristea was a Romanian cleric and politician."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q316823|http://www.wikidata.org/entity/Q218|Head of government",
@@ -25308,13 +25308,13 @@
       "iso2": "RO",
       "role": "Head of government",
       "articleTitle": "Petre_Roman",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Petre_Roman_EP_%283x4_cropped%29.jpg/330px-Petre_Roman_EP_%283x4_cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Petre%20Roman%20EP%20(cropped).jpg?width=900",
       "corruptionScore": 0.0404953435063362,
       "coords": {
         "lon": 25,
         "lat": 46
       },
-      "summary": "Petre Roman is a Romanian engineer and politician who was Prime Minister of Romania from 1989 to 1991, when his government was overthrown by the intervention of the miners led by Miron Cozma in the September 1991 Mineriad. Although regarded as the first Romanian prime minister since 1945 who was not a communist or communist sympathiser, he was a socialist. He later self-identified as a liberal. He was also the president of the Senate from 1996 to 1999 and Minister of Foreign Affairs from 1999 to 2000."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q1119350|http://www.wikidata.org/entity/Q218|Head of government",
@@ -25831,7 +25831,7 @@
       "leader": "Alexander I of Russia",
       "startDate": "1801-03-14",
       "country": "Russian Empire",
-      "continent": "North America",
+      "continent": "Asia",
       "iso2": "",
       "role": "Head of state",
       "articleTitle": "Alexander_I_of_Russia",
@@ -25848,7 +25848,7 @@
       "leader": "Alexander II of Russia",
       "startDate": "1855-03-02",
       "country": "Russian Empire",
-      "continent": "Asia",
+      "continent": "North America",
       "iso2": "",
       "role": "Head of state",
       "articleTitle": "Alexander_II_of_Russia",
@@ -25984,7 +25984,7 @@
       "leader": "Nicholas I of Russia",
       "startDate": "1825-12-05",
       "country": "Russian Empire",
-      "continent": "Asia",
+      "continent": "North America",
       "iso2": "",
       "role": "Head of state",
       "articleTitle": "Nicholas_I_of_Russia",
@@ -26052,7 +26052,7 @@
       "leader": "Peter II of Russia",
       "startDate": "1727-05-17",
       "country": "Russian Empire",
-      "continent": "North America",
+      "continent": "Asia",
       "iso2": "",
       "role": "Head of state",
       "articleTitle": "Peter_II_of_Russia",
@@ -27076,13 +27076,13 @@
       "iso2": "SN",
       "role": "Head of government",
       "articleTitle": "Macky_Sall",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Macky%20Sall%20-%202008.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/President_Macky_Sall_in_2020.jpg/330px-President_Macky_Sall_in_2020.jpg",
       "corruptionScore": 0.0578322261571884,
       "coords": {
         "lon": -14.283333,
         "lat": 14.366667
       },
-      "summary": ""
+      "summary": "Macky Sall is a Senegalese politician who served as the fourth president of Senegal from 2012 to 2024. He previously served as the eighth prime minister from 2004 to 2007, under President Abdoulaye Wade and president of the National Assembly from 2007 to 2008."
     },
     {
       "id": "http://www.wikidata.org/entity/Q57438|http://www.wikidata.org/entity/Q1041|Head of state",
@@ -27093,13 +27093,13 @@
       "iso2": "SN",
       "role": "Head of state",
       "articleTitle": "Macky_Sall",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Macky%20Sall%20-%202008.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/President_Macky_Sall_in_2020.jpg/330px-President_Macky_Sall_in_2020.jpg",
       "corruptionScore": 0.0578322261571884,
       "coords": {
         "lon": -14.283333,
         "lat": 14.366667
       },
-      "summary": ""
+      "summary": "Macky Sall is a Senegalese politician who served as the fourth president of Senegal from 2012 to 2024. He previously served as the eighth prime minister from 2004 to 2007, under President Abdoulaye Wade and president of the National Assembly from 2007 to 2008."
     },
     {
       "id": "http://www.wikidata.org/entity/Q17320405|http://www.wikidata.org/entity/Q1041|Head of government",
@@ -27110,13 +27110,13 @@
       "iso2": "SN",
       "role": "Head of government",
       "articleTitle": "Mahammed_Dionne",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mohammed%20Dionne.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Mohammed_Dionne.jpg/330px-Mohammed_Dionne.jpg",
       "corruptionScore": 0.0578322261571884,
       "coords": {
         "lon": -14.283333,
         "lat": 14.366667
       },
-      "summary": ""
+      "summary": "Mahammed Boun Abdallah Dionne was a Senegalese politician who served as the Prime Minister of Senegal from 2014 to 2019. He was the third prime minister appointed by President Macky Sall. Dionne served at the Central Bank of West African States, the United Nations Industrial Development Organization (ONUDI), and as the advisor of the president, before his appointment as prime minister. He was a computer engineer by training."
     },
     {
       "id": "http://www.wikidata.org/entity/Q222031|http://www.wikidata.org/entity/Q403|Head of state",
@@ -27127,13 +27127,13 @@
       "iso2": "RS",
       "role": "Head of state",
       "articleTitle": "Aleksandar_Vučić",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aleksandar%20Vu%C4%8Di%C4%87%202024%20(cropped).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Aleksandar_Vu%C4%8Di%C4%87_2025_%28cropped%29.jpg/330px-Aleksandar_Vu%C4%8Di%C4%87_2025_%28cropped%29.jpg",
       "corruptionScore": -0.447204262018204,
       "coords": {
         "lon": 20.933333333,
         "lat": 43.95
       },
-      "summary": ""
+      "summary": "Aleksandar Vučić is a Serbian politician serving as President of Serbia since 2017. A founding member of the Serbian Progressive Party (SNS), he previously served as President of the SNS from 2012 to 2023, First Deputy Prime Minister from 2012 to 2014, and Prime Minister of Serbia from 2014 to 2017."
     },
     {
       "id": "http://www.wikidata.org/entity/Q42478807|http://www.wikidata.org/entity/Q403|Head of government",
@@ -27280,13 +27280,13 @@
       "iso2": "SL",
       "role": "Head of state",
       "articleTitle": "Ernest_Bai_Koroma",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ernest_Bai_Koroma_February_2015.jpg/330px-Ernest_Bai_Koroma_February_2015.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ernest%20Bai%20Koroma.jpg?width=900",
       "corruptionScore": -0.574557840824127,
       "coords": {
         "lon": -12.1,
         "lat": 8.5
       },
-      "summary": "Ernest Bai Koroma is a Sierra Leonean politician who served as the fourth President of Sierra Leone from 17 September 2007 to 4 April 2018."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q107067181|http://www.wikidata.org/entity/Q1044|Head of government",
@@ -27297,13 +27297,13 @@
       "iso2": "SL",
       "role": "Head of government",
       "articleTitle": "Jacob_Jusu_Saffa",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Jacob_Jusu_Saffa_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacob%20Jusu%20Saffa%20(cropped).jpg?width=900",
       "corruptionScore": -0.574557840824127,
       "coords": {
         "lon": -12.1,
         "lat": 8.5
       },
-      "summary": "Jacob Jusu Saffa is a Sierra Leonean politician who served as Chief Minister of Sierra Leone from 30 April 2021 to 10 July 2023."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q283829|http://www.wikidata.org/entity/Q1044|Head of state",
@@ -27314,13 +27314,13 @@
       "iso2": "SL",
       "role": "Head of state",
       "articleTitle": "Julius_Maada_Bio",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Julius_Maada_Bio_-_2023_%28cropped%29.jpg/330px-Julius_Maada_Bio_-_2023_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Julius%20Maada%20Bio%20-%202023%20(cropped).jpg?width=900",
       "corruptionScore": -0.574557840824127,
       "coords": {
         "lon": -12.1,
         "lat": 8.5
       },
-      "summary": "Julius Maada Wonie Bio is a Sierra Leonean politician and former military officer who has served as the 5th president of Sierra Leone since 4 April 2018. He is a retired brigadier in the Sierra Leone Army and was the military head of state of Sierra Leone from 16 January 1996 to 29 March 1996, at only 32 years old in a military junta government known as the National Provisional Ruling Council (NPRC)."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q5642345|http://www.wikidata.org/entity/Q334|Head of state",
@@ -27331,13 +27331,13 @@
       "iso2": "SG",
       "role": "Head of state",
       "articleTitle": "Halimah_Yacob",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/President_Halimah_Yacob_in_2019.jpg/330px-President_Halimah_Yacob_in_2019.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/President%20Halimah%20Yacob%20in%202019.jpg?width=900",
       "corruptionScore": 2.04018402099609,
       "coords": {
         "lon": 103.8,
         "lat": 1.3
       },
-      "summary": "Halimah binte Yacob is a Singaporean politician and lawyer who was the eighth president of Singapore from 2017 to 2023, making her the first woman to serve in this role after being elected uncontested in the 2017 presidential election."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q6504758|http://www.wikidata.org/entity/Q334|Head of government",
@@ -28844,13 +28844,13 @@
       "iso2": "SE",
       "role": "Head of state",
       "articleTitle": "Gustaf_VI_Adolf",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustaf%20VI%20Adolf%20of%20Sweden%201962.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/King_Gustaf_VI_Adolf_of_Sweden_FVMF.003289_%28cropped_2%29.jpg/330px-King_Gustaf_VI_Adolf_of_Sweden_FVMF.003289_%28cropped_2%29.jpg",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": ""
+      "summary": "Gustaf VI Adolf was King of Sweden from 29 October 1950 until his death in 1973. He was the eldest son of Gustaf V and his wife, Victoria of Baden. Before Gustaf Adolf acceded to the throne, he was crown prince for nearly 43 years during his father's reign. As king, and shortly before his death, he gave his approval to constitutional changes which removed the Swedish monarchy's last political powers. He was a lifelong amateur archeologist particularly interested in Ancient Italian cultures."
     },
     {
       "id": "http://www.wikidata.org/entity/Q53740|http://www.wikidata.org/entity/Q34|Head of government",
@@ -28861,13 +28861,13 @@
       "iso2": "SE",
       "role": "Head of government",
       "articleTitle": "Ingvar_Carlsson",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ingvar%20Carlsson.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ingvar_Carlsson_p%C3%A5_Idrottsgalan_2013.jpg/330px-Ingvar_Carlsson_p%C3%A5_Idrottsgalan_2013.jpg",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": ""
+      "summary": "Gösta Ingvar Carlsson is a Swedish retired politician who served as Prime Minister of Sweden from 1986 to 1991 and again from 1994 to 1996. He was leader of the Swedish Social Democratic Party from 1986 to 1996. He led Sweden into the European Union."
     },
     {
       "id": "http://www.wikidata.org/entity/Q4935873|http://www.wikidata.org/entity/Q34|Head of government",
@@ -28878,13 +28878,13 @@
       "iso2": "SE",
       "role": "Head of government",
       "articleTitle": "Magdalena_Andersson",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Prime%20Minister%20Andersson%20(2021).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Magdalena_Andersson_in_2022_%28cropped%29.jpg/330px-Magdalena_Andersson_in_2022_%28cropped%29.jpg",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": ""
+      "summary": "Eva Magdalena Andersson is a Swedish politician and economist who has served as Leader of the Opposition since 2022 and as Leader of the Swedish Social Democratic Party since 2021. She has served as a Member of the Riksdag for Stockholm County since 2014. She previously served as the first female Prime Minister of Sweden from 2021 to 2022, as well as Minister for Finance from 2014 to 2021 and Chair of the International Monetary and Financial Committee from 2020 to 2022."
     },
     {
       "id": "http://www.wikidata.org/entity/Q52926|http://www.wikidata.org/entity/Q34|Head of state",
@@ -28895,13 +28895,13 @@
       "iso2": "SE",
       "role": "Head of state",
       "articleTitle": "Oscar_I_of_Sweden",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Erik%20(Wahlberg)%20Wahlbergson%20-%20Oscar%20I%2C%20King%20of%20Sweden%20and%20Norway%201844-1859%20-%20Google%20Art%20Project.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/King_Oscar_I_of_Sweden.jpg/330px-King_Oscar_I_of_Sweden.jpg",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": ""
+      "summary": "Oscar I was King of Sweden and Norway from 8 March 1844 until his death. He was the second monarch of the House of Bernadotte."
     },
     {
       "id": "http://www.wikidata.org/entity/Q52924|http://www.wikidata.org/entity/Q34|Head of state",
@@ -28912,13 +28912,13 @@
       "iso2": "SE",
       "role": "Head of state",
       "articleTitle": "Oscar_II",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Portr%C3%A4tt_av_Oscar_II_i_amiralsuniform._1900-1907._Foto_Lars_Larsson_%28Cropped%29.jpg/330px-Portr%C3%A4tt_av_Oscar_II_i_amiralsuniform._1900-1907._Foto_Lars_Larsson_%28Cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Portr%C3%A4tt%20av%20Oscar%20II%20i%20amiralsuniform.%201900-1907.%20Foto%20Lars%20Larsson.jpg?width=900",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": "Oscar II was King of Sweden from 1872 until his death in 1907 and King of Norway from 1872 to 1905."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q2740012|http://www.wikidata.org/entity/Q34|Head of government",
@@ -28929,13 +28929,13 @@
       "iso2": "SE",
       "role": "Head of government",
       "articleTitle": "Stefan_Löfven",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Stefan_L%C3%B6fven_%28cropped%29.jpg/330px-Stefan_L%C3%B6fven_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stefan%20L%C3%B6fven%20efter%20slutdebatten%20i%20SVT%202014%20(cropped).jpg?width=900",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": "Kjell Stefan Löfven is a Swedish politician who served as Prime Minister of Sweden from 2014 to 2021 and as Leader of the Social Democratic Party from 2012 to 2021. He is currently serving as President of European Socialists since 2022."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q1780398|http://www.wikidata.org/entity/Q34|Head of government",
@@ -28946,13 +28946,13 @@
       "iso2": "SE",
       "role": "Head of government",
       "articleTitle": "Ulf_Kristersson",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Ulf_Kristersson_June_2025_%28cropped%29.jpg/330px-Ulf_Kristersson_June_2025_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ulf%20Kristersson%20on%2029%20June%202023.jpg?width=900",
       "corruptionScore": 2.0282461643219,
       "coords": {
         "lon": 15,
         "lat": 61
       },
-      "summary": "Ulf Hjalmar Kristersson is a Swedish politician who has served as Prime Minister of Sweden since 2022 and as Leader of the Moderate Party since 2017. He has been a Member of the Riksdag for Södermanland County since 2014, previously holding a seat for Stockholm County from 1991 to 2000. He also served as Minister for Social Security from 2010 to 2014 and as chairman of the Moderate Youth League from 1988 to 1992."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q30917|http://www.wikidata.org/entity/Q39|Head of government",
@@ -28963,13 +28963,13 @@
       "iso2": "CH",
       "role": "Head of government",
       "articleTitle": "Federal_Council_(Switzerland)",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Gruppenbild_Bundesrat_2026.jpg/330px-Gruppenbild_Bundesrat_2026.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gruppenbild%20Bundesrat%202026.jpg?width=900",
       "corruptionScore": 2.02199912071228,
       "coords": {
         "lon": 8.231973,
         "lat": 46.798562
       },
-      "summary": "The Federal Council is the federal cabinet of the Swiss Confederation. Its seven members also serve as the collective head of state and government of Switzerland. Since World War II, the Federal Council is by convention a permanent grand coalition government composed of representatives of the country's major parties and language regions."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q30917|http://www.wikidata.org/entity/Q39|Head of state",
@@ -30476,13 +30476,13 @@
       "iso2": "TN",
       "role": "Head of government",
       "articleTitle": "Youssef_Chahed",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Youssef%20Chahed.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/PM_Youssef_Chahed.png/330px-PM_Youssef_Chahed.png",
       "corruptionScore": -0.341899782419205,
       "coords": {
         "lon": 10,
         "lat": 34
       },
-      "summary": ""
+      "summary": "Youssef Chahed is a Tunisian politician who served as the 14th prime minister of Tunisia from 27 August 2016 to 27 February 2020. He served as Secretary of State for Fisheries and Minister of Local Affairs in the past."
     },
     {
       "id": "http://www.wikidata.org/entity/Q204487|http://www.wikidata.org/entity/Q948|Head of state",
@@ -30493,13 +30493,13 @@
       "iso2": "TN",
       "role": "Head of state",
       "articleTitle": "Zine_El_Abidine_Ben_Ali",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zine%20El%20Abidine%20Ben%20Ali.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Zine_El_Abidine_Ben_Ali_%28cropped%29.jpg/330px-Zine_El_Abidine_Ben_Ali_%28cropped%29.jpg",
       "corruptionScore": -0.341899782419205,
       "coords": {
         "lon": 10,
         "lat": 34
       },
-      "summary": ""
+      "summary": "Zine El Abidine Ben Ali, commonly known as Ben Ali or Ezzine, was a Tunisian politician, military officer and dictator who served as the second President of Tunisia from 1987 to 2011. In that year, during the Tunisian revolution, he was overthrown and fled to Saudi Arabia."
     },
     {
       "id": "http://www.wikidata.org/entity/Q1076524|http://www.wikidata.org/entity/Q43|Head of state",
@@ -30510,13 +30510,13 @@
       "iso2": "TR",
       "role": "Head of state",
       "articleTitle": "Abdülhalik_Renda",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/TBMM%20Ba%C5%9Fkan%C4%B1%20Abd%C3%BClhalik%20Renda.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/TBMM_Ba%C5%9Fkan%C4%B1_Abd%C3%BClhalik_Renda.jpg/330px-TBMM_Ba%C5%9Fkan%C4%B1_Abd%C3%BClhalik_Renda.jpg",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": ""
+      "summary": "Mustafa Abdülhalik Renda was a Turkish civil servant and politician of Albanian descent who was acting President of Turkey for one day after Atatürk's death in November 1938."
     },
     {
       "id": "http://www.wikidata.org/entity/Q42852|http://www.wikidata.org/entity/Q43|Head of government",
@@ -30527,13 +30527,13 @@
       "iso2": "TR",
       "role": "Head of government",
       "articleTitle": "Abdullah_Gül",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Abdullah%20G%C3%BCl%20(cropped%20version).jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/%D0%90%D0%B1%D0%B4%D1%83%D0%BB%D0%BB%D0%B0%D1%85_%D0%93%D1%8E%D0%BB%D1%8C_%288613568906%29.jpg/330px-%D0%90%D0%B1%D0%B4%D1%83%D0%BB%D0%BB%D0%B0%D1%85_%D0%93%D1%8E%D0%BB%D1%8C_%288613568906%29.jpg",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": ""
+      "summary": "Abdullah Gül is a Turkish politician who served as the president of Turkey from 2007 to 2014. He previously served for four months as Prime Minister from 2002 to 2003, and concurrently served as both Deputy Prime Minister and as Foreign Minister between 2003 and 2007. He is currently a member of the Advisory Panel for the President of the Islamic Development Bank."
     },
     {
       "id": "http://www.wikidata.org/entity/Q42852|http://www.wikidata.org/entity/Q43|Head of state",
@@ -30663,13 +30663,13 @@
       "iso2": "TR",
       "role": "Head of state",
       "articleTitle": "Cemal_Gürsel",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Cemal_G%C3%BCrsel_%281960%29_%28cropped%29.jpg/330px-Cemal_G%C3%BCrsel_%281960%29_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cemal%20G%C3%BCrsel%20(1960).jpg?width=900",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": "Cemal Gürsel was a Turkish military officer and politician who was the president of Turkey, serving from 1960 to 1966 after taking power in a coup d'état."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q158500|http://www.wikidata.org/entity/Q43|Head of state",
@@ -30680,13 +30680,13 @@
       "iso2": "TR",
       "role": "Head of state",
       "articleTitle": "Cevdet_Sunay",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Turkse_chef_Generale_staf_%28Generaal_Sunay%29%2C_Bestanddeelnr_916-7535_%28cropped%29.jpg/330px-Turkse_chef_Generale_staf_%28Generaal_Sunay%29%2C_Bestanddeelnr_916-7535_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Turkse%20chef%20Generale%20staf%20(Generaal%20Sunay)%2C%20Bestanddeelnr%20916-7535%20(cropped).jpg?width=900",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": "Ahmet Cevdet Sunay was a Turkish politician and military officer who served as the president of Turkey from 1966 to 1973."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q1348747|http://www.wikidata.org/entity/Q43|Head of government",
@@ -30697,13 +30697,13 @@
       "iso2": "TR",
       "role": "Head of government",
       "articleTitle": "Erdal_İnönü",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Erdal_in%C3%B6n%C3%BC_SHP.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Erdal%20%C4%B0n%C3%B6n%C3%BC%20(1941)%20(cropped).jpg?width=900",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": "Erdal İnönü was a Turkish theoretical physicist and politician who served as the interim prime minister of Turkey between 16 May and 25 June 1993. He also served as the deputy prime minister of Turkey from 1991 to 1993 and as the minister of foreign affairs from March to October 1995. He served as the leader of the Social Democracy Party (SODEP) from 1983 to 1985 and later the Social Democratic Populist Party (SHP) from 1986 to 1993. He was the son of the second president of Turkey, İsmet İnönü."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q313357|http://www.wikidata.org/entity/Q43|Head of state",
@@ -30714,13 +30714,13 @@
       "iso2": "TR",
       "role": "Head of state",
       "articleTitle": "Fahri_Korutürk",
-      "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Fahri_Korut%C3%BCrk.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Korut%C3%BCrk%20with%20cadets%20(cropped).jpg?width=900",
       "corruptionScore": -0.50248908996582,
       "coords": {
         "lon": 36,
         "lat": 39
       },
-      "summary": "Fahri Sabit Korutürk was a Turkish admiral, diplomat and politician who was the president of Turkey from 1973 to 1980. Before his presidency, he served as the commander of the Turkish Naval Forces from 1957 to 1960."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q462737|http://www.wikidata.org/entity/Q43|Head of state",
@@ -32703,13 +32703,13 @@
       "iso2": "US",
       "role": "Head of government",
       "articleTitle": "Woodrow_Wilson",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Woodrow%20Wilson%2C%20Harris%20%26%20Ewing%20bw%20photo%20portrait%2C%201919.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg/330px-President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg",
       "corruptionScore": 1.12343263626099,
       "coords": {
         "lon": -98.5795,
         "lat": 39.828175
       },
-      "summary": ""
+      "summary": "Thomas Woodrow Wilson was the 28th president of the United States, serving from 1913 to 1921. He was the only Democrat to serve as president during the Progressive Era, when Republicans dominated the presidency and legislative branches. As president, Wilson made significant economic reforms and led the United States through World War I. He was the leading architect of the League of Nations, and his stance on foreign policy came to be known as Wilsonianism."
     },
     {
       "id": "http://www.wikidata.org/entity/Q11896|http://www.wikidata.org/entity/Q30|Head of government",
@@ -32720,13 +32720,13 @@
       "iso2": "US",
       "role": "Head of government",
       "articleTitle": "Zachary_Taylor",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zachary%20Taylor%202.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg/330px-Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg",
       "corruptionScore": 1.12343263626099,
       "coords": {
         "lon": -98.5795,
         "lat": 39.828175
       },
-      "summary": ""
+      "summary": "Zachary Taylor was an American military officer and politician who was the 12th president of the United States, serving from 1849 until his death in 1850. Taylor was a career officer in the United States Army, rising to the rank of major general and becoming a national hero for his victories in the Mexican–American War. As a result, he won election to the White House despite his vague political beliefs. His top priority as president was to preserve the Union. He died 16 months into his term from a stomach disease. Taylor had the third-shortest presidential term in U.S. history."
     },
     {
       "id": "http://www.wikidata.org/entity/Q19946921|http://www.wikidata.org/entity/Q77|Head of government",
@@ -32737,13 +32737,13 @@
       "iso2": "UY",
       "role": "Head of government",
       "articleTitle": "Yamandú_Orsi",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Yamand%C3%BA%20Orsi.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Yamand%C3%BA_Orsi_durante_su_asunci%C3%B3n_presidencial_%28cropped%29.jpg/330px-Yamand%C3%BA_Orsi_durante_su_asunci%C3%B3n_presidencial_%28cropped%29.jpg",
       "corruptionScore": 1.57394731044769,
       "coords": {
         "lon": -56,
         "lat": -33
       },
-      "summary": ""
+      "summary": "Yamandú Ramón Antonio Orsi Martínez is a Uruguayan politician and history teacher who has been the 43rd president of Uruguay since March 2025. A member of the left-wing Movement of Popular Participation, the main faction of the Broad Front party, he served as intendant of the Canelones Department from 2015 to February 2020, and a second term from November 2020 to 2024."
     },
     {
       "id": "http://www.wikidata.org/entity/Q19946921|http://www.wikidata.org/entity/Q77|Head of state",
@@ -32754,13 +32754,13 @@
       "iso2": "UY",
       "role": "Head of state",
       "articleTitle": "Yamandú_Orsi",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Yamand%C3%BA%20Orsi.jpg?width=900",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Yamand%C3%BA_Orsi_durante_su_asunci%C3%B3n_presidencial_%28cropped%29.jpg/330px-Yamand%C3%BA_Orsi_durante_su_asunci%C3%B3n_presidencial_%28cropped%29.jpg",
       "corruptionScore": 1.57394731044769,
       "coords": {
         "lon": -56,
         "lat": -33
       },
-      "summary": ""
+      "summary": "Yamandú Ramón Antonio Orsi Martínez is a Uruguayan politician and history teacher who has been the 43rd president of Uruguay since March 2025. A member of the left-wing Movement of Popular Participation, the main faction of the Broad Front party, he served as intendant of the Canelones Department from 2015 to February 2020, and a second term from November 2020 to 2024."
     },
     {
       "id": "http://www.wikidata.org/entity/Q28002959|http://www.wikidata.org/entity/Q265|Head of government",
@@ -32907,13 +32907,13 @@
       "iso2": "VU",
       "role": "Head of state",
       "articleTitle": "Tallis_Obed_Moses",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Tallis_Obed_Moses_2017.jpg/330px-Tallis_Obed_Moses_2017.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tallis%20Obed%20Moses%202017.jpg?width=900",
       "corruptionScore": -0.0148651544004679,
       "coords": {
         "lon": 168.016669444,
         "lat": -16.633330555
       },
-      "summary": "Tallis Obed Moses is a Vanuatuan politician and pastor who served as the president of Vanuatu from 6 July 2017 to 6 July 2022."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q2494|http://www.wikidata.org/entity/Q237|Head of state",
@@ -32941,13 +32941,13 @@
       "iso2": "VA",
       "role": "Head of state",
       "articleTitle": "Pope_John_Paul_I",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Paus_Johannes_Paulus_I_%28Bestanddeelnr_929-9074%29_%28cropped%29.jpg/330px-Paus_Johannes_Paulus_I_%28Bestanddeelnr_929-9074%29_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Paus%20Johannes%20Paulus%20I%20(Bestanddeelnr%20929-9074)%20(cropped).jpg?width=900",
       "corruptionScore": null,
       "coords": {
         "lon": 12.453,
         "lat": 41.904
       },
-      "summary": "Pope John Paul I was head of the Catholic Church and sovereign of Vatican City from 26 August 1978 until his death 33 days later. His reign is among the shortest in papal history, giving rise to the most recent year of three popes—the first since 1605. John Paul I remains the most recent Italian-born pope, the last in a succession of such popes that started with Clement VII in 1523. John Paul I also holds the dual status as being the first pope born in the 20th century as well as the last pope to die in it."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q989|http://www.wikidata.org/entity/Q237|Head of state",
@@ -32958,13 +32958,13 @@
       "iso2": "VA",
       "role": "Head of state",
       "articleTitle": "Pope_John_Paul_II",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/330px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pope%20John%20Paul%20II%20smile.jpg?width=900",
       "corruptionScore": null,
       "coords": {
         "lon": 12.453,
         "lat": 41.904
       },
-      "summary": "Pope John Paul II was head of the Catholic Church and sovereign of Vatican City from 16 October 1978 until his death in 2005. He was the first non-Italian pope since Adrian VI in the 16th century, as well as the third-longest-serving pope in history, after St. Peter and Pius IX."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q23873|http://www.wikidata.org/entity/Q237|Head of state",
@@ -32975,13 +32975,13 @@
       "iso2": "VA",
       "role": "Head of state",
       "articleTitle": "Pope_John_XXIII",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ioannes_XXIII%2C_by_De_Agostini%2C_1958%E2%80%931963.jpg/330px-Ioannes_XXIII%2C_by_De_Agostini%2C_1958%E2%80%931963.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ioannes%20XXIII%2C%20by%20De%20Agostini%2C%201958%E2%80%931963.jpg?width=900",
       "corruptionScore": null,
       "coords": {
         "lon": 12.453,
         "lat": 41.904
       },
-      "summary": "Pope John XXIII was head of the Catholic Church and sovereign of Vatican City from 28 October 1958 until his death on 3 June 1963."
+      "summary": ""
     },
     {
       "id": "http://www.wikidata.org/entity/Q6109517|http://www.wikidata.org/entity/Q237|Head of state",
