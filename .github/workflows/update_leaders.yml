@@ -14,18 +14,34 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
+
+      - name: Show repo structure
+        run: |
+          pwd
+          ls -la
+          ls -la scripts || true
+          ls -la data || true
+
+      - name: Ensure generator exists
+        run: test -f scripts/update-leaders.mjs
 
       - name: Create data directory if missing
-        run: mkdir -p data scripts
+        run: mkdir -p data
 
       - name: Run leader database generator
         run: node scripts/update-leaders.mjs
+
+      - name: Show generated leaders file
+        run: |
+          ls -la data
+          wc -c data/leaders.json
+          head -n 20 data/leaders.json
 
       - name: Commit updated leaders database
         run: |
