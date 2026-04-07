@@ -416,7 +416,7 @@
             <img id="leaderImage" alt="Mystery leader portrait" />
             <div class="photo-badge">
               <div class="badge" id="roleBadge">Mystery leader</div>
-              <div class="badge" id="blurBadge">Very blurry</div>
+              <div class="badge" id="blurBadge">Tenure unknown</div>
             </div>
             <div class="meta-badge">
               <div class="badge" id="sourceBadge">Source: Wikimedia</div>
@@ -490,6 +490,7 @@
       {
         id: "france-macron-head-of-state",
         leader: "Emmanuel Macron",
+        startDate: "2017-05-14",
         country: "France",
         continent: "Europe",
         iso2: "FR",
@@ -502,6 +503,7 @@
       {
         id: "poland-duda-head-of-state",
         leader: "Andrzej Duda",
+        startDate: "2015-08-06",
         country: "Poland",
         continent: "Europe",
         iso2: "PL",
@@ -514,6 +516,7 @@
       {
         id: "burundi-ndayishimiye-head-of-state",
         leader: "Évariste Ndayishimiye",
+        startDate: "2020-06-18",
         country: "Burundi",
         continent: "Africa",
         iso2: "BI",
@@ -526,6 +529,7 @@
       {
         id: "togo-gnassingbe-head-of-state",
         leader: "Faure Gnassingbé",
+        startDate: "2005-05-04",
         country: "Togo",
         continent: "Africa",
         iso2: "TG",
@@ -538,6 +542,7 @@
       {
         id: "australia-albanese-head-of-government",
         leader: "Anthony Albanese",
+        startDate: "2022-05-23",
         country: "Australia",
         continent: "Oceania",
         iso2: "AU",
@@ -550,6 +555,7 @@
       {
         id: "india-modi-head-of-government",
         leader: "Narendra Modi",
+        startDate: "2014-05-26",
         country: "India",
         continent: "Asia",
         iso2: "IN",
@@ -737,9 +743,32 @@
     }
 
     function blurForWrongGuessCount(wrongCount) {
-      if (wrongCount === 0) return { blur: 22, scale: 1.04, label: "Very blurry" };
-      if (wrongCount === 1) return { blur: 10, scale: 1.02, label: "Half blurry" };
-      return { blur: 0, scale: 1, label: "Clear" };
+      if (wrongCount === 0) return { blur: 22, scale: 1.04 };
+      if (wrongCount === 1) return { blur: 10, scale: 1.02 };
+      return { blur: 0, scale: 1 };
+    }
+
+    function formatTenure(startDate) {
+      if (!startDate) return "Tenure unknown";
+      const start = new Date(startDate);
+      if (Number.isNaN(start.getTime())) return "Tenure unknown";
+      const now = new Date();
+      let years = now.getUTCFullYear() - start.getUTCFullYear();
+      let months = now.getUTCMonth() - start.getUTCMonth();
+      if (now.getUTCDate() < start.getUTCDate()) {
+        months -= 1;
+      }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+      if (years <= 0) {
+        return `Serving ${Math.max(months, 0)} mo`;
+      }
+      if (months <= 0) {
+        return `Serving ${years}y`;
+      }
+      return `Serving ${years}y ${months}mo`;
     }
 
     function renderDots() {
@@ -754,11 +783,10 @@
     function updateBlur() {
       const wrong = guesses.filter((g) => !g.correct).length;
       const state = gameOver && guesses.some((g) => g.correct)
-        ? { blur: 0, scale: 1, label: "Solved" }
+        ? { blur: 0, scale: 1 }
         : blurForWrongGuessCount(wrong);
       leaderImage.style.filter = `blur(${state.blur}px)`;
       leaderImage.style.transform = `scale(${state.scale})`;
-      blurBadge.textContent = state.label;
     }
 
     function corruptionHint(guessMeta) {
@@ -829,7 +857,8 @@
         return {
           ...entry,
           image: data?.thumbnail?.source || data?.originalimage?.source || entry.image || "",
-          summary: data?.extract || entry.summary || ""
+          summary: data?.extract || entry.summary || "",
+          tenureText: entry.tenureText || formatTenure(entry.startDate)
         };
       } catch {
         return entry;
@@ -838,7 +867,8 @@
 
     function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
-      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
+      const tenureText = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
+      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country} • ${tenureText}`;
       revealText.textContent = mysteryLeader.summary || "No summary available for this leader yet.";
     }
 
@@ -849,6 +879,7 @@
 
     function applyLeaderToUI() {
       roleBadge.textContent = mysteryLeader.role;
+      blurBadge.textContent = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
       leaderMetaBadge.textContent = randomPreviewMode ? "Random preview" : "Daily puzzle";
       sourceBadge.textContent = "Source: Wikimedia";
       leaderImage.src = mysteryLeader.image || "";
@@ -870,7 +901,6 @@
       shareButton.disabled = false;
       leaderImage.style.filter = "blur(0px)";
       leaderImage.style.transform = "scale(1)";
-      blurBadge.textContent = won ? "Solved" : "Revealed";
       setStatus(won ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, won ? "good" : "bad");
       setRevealVisible(true);
       saveState();
