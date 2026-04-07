@@ -175,6 +175,36 @@
       flex-wrap: wrap;
     }
 
+    .reveal-card {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal-card.open {
+      display: block;
+    }
+
+    .reveal-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .reveal-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .reveal-text {
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
     .dot {
       width: 14px;
       height: 14px;
@@ -394,6 +424,11 @@
             </div>
           </div>
           <div class="guess-dots" id="guessDots"></div>
+          <div class="reveal-card" id="revealCard">
+            <h3 id="revealTitle"></h3>
+            <div class="reveal-meta" id="revealMeta"></div>
+            <div class="reveal-text" id="revealText"></div>
+          </div>
         </section>
 
         <section class="game-panel">
@@ -556,6 +591,10 @@
     const leaderMetaBadge = document.getElementById("leaderMetaBadge");
     const howToPlayButton = document.getElementById("howToPlayButton");
     const implementationNotesButton = document.getElementById("implementationNotesButton");
+    const revealCard = document.getElementById("revealCard");
+    const revealTitle = document.getElementById("revealTitle");
+    const revealMeta = document.getElementById("revealMeta");
+    const revealText = document.getElementById("revealText");
     const howToPlayModal = document.getElementById("howToPlayModal");
     const implementationNotesModal = document.getElementById("implementationNotesModal");
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
@@ -787,10 +826,25 @@
         const res = await fetch(`${WIKIPEDIA_SUMMARY_BASE}${encodeURIComponent(entry.articleTitle)}`);
         if (!res.ok) return entry;
         const data = await res.json();
-        return { ...entry, image: data?.thumbnail?.source || data?.originalimage?.source || entry.image || "" };
+        return {
+          ...entry,
+          image: data?.thumbnail?.source || data?.originalimage?.source || entry.image || "",
+          summary: data?.extract || entry.summary || ""
+        };
       } catch {
         return entry;
       }
+    }
+
+    function setRevealContent() {
+      revealTitle.textContent = mysteryLeader.leader;
+      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
+      revealText.textContent = mysteryLeader.summary || "No summary available for this leader yet.";
+    }
+
+    function setRevealVisible(isVisible) {
+      revealCard.classList.toggle("open", isVisible);
+      if (isVisible) setRevealContent();
     }
 
     function applyLeaderToUI() {
@@ -805,6 +859,7 @@
         portraitWrap.classList.remove("ready");
         sourceBadge.textContent = "Image unavailable";
       };
+      setRevealVisible(false);
       updateBlur();
     }
 
@@ -817,6 +872,7 @@
       leaderImage.style.transform = "scale(1)";
       blurBadge.textContent = won ? "Solved" : "Revealed";
       setStatus(won ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, won ? "good" : "bad");
+      setRevealVisible(true);
       saveState();
     }
 
@@ -866,6 +922,7 @@
       guessInput.disabled = gameOver;
       shareButton.disabled = !gameOver;
       setStatus(gameOver ? (guesses.some((g) => g.correct) ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`) : "Daily puzzle loaded. Start guessing.", gameOver ? (guesses.some((g) => g.correct) ? "good" : "bad") : "info");
+      setRevealVisible(gameOver);
       return true;
     }
 
