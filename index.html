@@ -83,6 +83,20 @@
       flex-wrap: wrap;
     }
 
+    .topbar-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
     .date-chip {
       padding: 10px 12px;
       border-radius: 18px;
@@ -334,6 +348,15 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (max-width: 980px) {
+      .topbar-right {
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .topbar-actions {
+        justify-content: flex-start;
+      }
+
       .layout { grid-template-columns: 1fr; }
       .attempt-grid { grid-template-columns: 1fr; }
     }
@@ -348,7 +371,13 @@
           <h1>Leaderle</h1>
           <div class="subtitle">Guess the country of today’s mystery world leader. You have 6 tries. The portrait starts very blurry, becomes half blurry after 1 wrong guess, and fully clear after 2 wrong guesses.</div>
         </div>
-        <div class="date-chip" id="dateChip">Daily puzzle</div>
+        <div class="topbar-right">
+          <div class="date-chip" id="dateChip">Daily puzzle</div>
+          <div class="topbar-actions">
+            <button class="ghost" id="howToPlayButton" type="button">How to play</button>
+            <button class="ghost" id="implementationNotesButton" type="button">Implementation notes</button>
+          </div>
+        </div>
       </div>
 
       <div class="layout">
@@ -365,10 +394,6 @@
             </div>
           </div>
           <div class="guess-dots" id="guessDots"></div>
-          <div class="footer-actions" style="margin-top:16px;">
-            <button class="ghost" id="howToPlayButton" type="button">How to play</button>
-            <button class="ghost" id="implementationNotesButton" type="button">Implementation notes</button>
-          </div>
         </section>
 
         <section class="game-panel">
