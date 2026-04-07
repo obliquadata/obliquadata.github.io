@@ -17,9 +17,7 @@
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       min-height: 100vh;
@@ -30,12 +28,7 @@
         linear-gradient(180deg, #020814, var(--bg));
       padding: 28px 16px 40px;
     }
-
-    .shell {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
+    .shell { max-width: 1200px; margin: 0 auto; }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -43,350 +36,141 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(22px);
     }
-
     .main { padding: 24px; }
-    .side { display: none; }
-
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      color: #d5e7ff;
-      font-size: 0.86rem;
-      font-weight: 700;
-      margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05); color: #d5e7ff; font-size: 0.86rem;
+      font-weight: 700; margin-bottom: 12px;
     }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.4rem, 4.4vw, 4rem);
-      letter-spacing: -0.04em;
-      line-height: 0.96;
-    }
-
-    .subtitle {
-      margin-top: 10px;
-      color: var(--muted);
-      line-height: 1.55;
-      max-width: 70ch;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: start;
-      flex-wrap: wrap;
-    }
-
-    .topbar-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .topbar-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-
+    h1 { margin: 0; font-size: clamp(2.4rem, 4.4vw, 4rem); letter-spacing: -0.04em; line-height: 0.96; }
+    .subtitle { margin-top: 10px; color: var(--muted); line-height: 1.55; max-width: 70ch; }
+    .topbar { display: flex; justify-content: space-between; gap: 14px; align-items: start; flex-wrap: wrap; }
+    .topbar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .topbar-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
     .date-chip {
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 0.92rem;
+      padding: 10px 12px; border-radius: 18px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); color: var(--muted); font-size: 0.92rem;
     }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 350px minmax(0, 1fr);
-      gap: 22px;
-      margin-top: 24px;
-      align-items: start;
-    }
-
+    .layout { display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 22px; margin-top: 24px; align-items: start; }
     .portrait-panel {
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 16px;
+      border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); padding: 16px;
     }
-
     .portrait-wrap {
-      position: relative;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #122037, #0a1324);
-      border: 1px solid rgba(255,255,255,0.08);
+      position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 20px;
+      background: linear-gradient(180deg, #122037, #0a1324); border: 1px solid rgba(255,255,255,0.08);
     }
-
     .portrait-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: blur(22px);
-      transform: scale(1.04);
-      transition: filter 260ms ease, transform 260ms ease, opacity 200ms ease;
-      opacity: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: blur(22px); transform: scale(1.04);
+      transition: filter 260ms ease, transform 260ms ease, opacity 200ms ease; opacity: 0;
     }
-
     .portrait-wrap.ready img { opacity: 1; }
-
-    .photo-badge,
-    .meta-badge {
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      pointer-events: none;
+    .photo-badge, .meta-badge {
+      position: absolute; left: 12px; right: 12px; display: flex; justify-content: space-between;
+      gap: 10px; flex-wrap: wrap; pointer-events: none;
     }
-
     .photo-badge { top: 12px; }
     .meta-badge { bottom: 12px; }
-
     .badge {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(2, 8, 20, 0.72);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.82rem;
-      color: #edf5ff;
-      backdrop-filter: blur(12px);
+      padding: 7px 10px; border-radius: 999px; background: rgba(2, 8, 20, 0.72);
+      border: 1px solid rgba(255,255,255,0.1); font-size: 0.82rem; color: #edf5ff; backdrop-filter: blur(12px);
     }
-
-    .guess-dots {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
-
+    .guess-dots { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .reveal-card {
-      display: none;
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.08);
+      display: none; margin-top: 16px; padding: 14px; border-radius: 18px;
+      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08);
     }
-
-    .reveal-card.open {
-      display: block;
-    }
-
-    .reveal-card h3 {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
-    }
-
-    .reveal-meta {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 10px;
-    }
-
-    .reveal-text {
-      color: var(--text);
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
+    .reveal-card.open { display: block; }
+    .reveal-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .reveal-meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 10px; }
+    .reveal-text { color: var(--text); line-height: 1.55; font-size: 0.95rem; }
     .dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
+      width: 14px; height: 14px; border-radius: 999px; background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.08);
     }
-
     .dot.used { background: rgba(244, 63, 94, 0.82); }
     .dot.win { background: rgba(34, 197, 94, 0.9); }
-
     .game-panel { display: flex; flex-direction: column; gap: 14px; }
     .controls, .footer-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    input, button {
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 1rem;
-    }
-
+    input, button { border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); font-size: 1rem; }
     input {
-      flex: 1;
-      min-width: 240px;
-      padding: 15px 16px;
-      background: rgba(255,255,255,0.045);
-      color: var(--text);
-      outline: none;
+      flex: 1; min-width: 240px; padding: 15px 16px; background: rgba(255,255,255,0.045);
+      color: var(--text); outline: none;
     }
-
     button {
-      padding: 14px 16px;
-      cursor: pointer;
-      color: white;
-      font-weight: 700;
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      transition: transform 120ms ease, opacity 120ms ease;
+      padding: 14px 16px; cursor: pointer; color: white; font-weight: 700;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb); transition: transform 120ms ease, opacity 120ms ease;
     }
-
     button.secondary { background: rgba(255,255,255,0.05); color: var(--text); }
     button.ghost { background: transparent; border-color: rgba(255,255,255,0.12); color: var(--muted); }
     button:hover { transform: translateY(-1px); }
     button:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
-
     .status { min-height: 24px; color: var(--muted); font-size: 0.96rem; }
     .status.good { color: #8af0a8; }
     .status.bad { color: #ffb0bd; }
     .status.info { color: #9fdfff; }
-
     .attempts { display: grid; gap: 12px; }
-
     .attempt {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.035);
+      padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.035);
       border: 1px solid rgba(255,255,255,0.08);
     }
-
     .attempt-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 10px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      align-items: center; margin-bottom: 10px;
     }
-
     .attempt-title { font-size: 1rem; font-weight: 800; }
     .pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
-
     .pill {
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.84rem;
-      font-weight: 800;
+      padding: 7px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.84rem; font-weight: 800;
     }
-
     .pill.good { background: rgba(34,197,94,0.13); color: #99f6b3; }
     .pill.bad { background: rgba(244,63,94,0.13); color: #ffb3c0; }
-
     .attempt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-    .hint-box,
-    .mini,
-    .panel {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.035);
+    .hint-box, .mini, .panel, .code-block {
+      padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.035);
       border: 1px solid rgba(255,255,255,0.08);
     }
-
     .hint-box {
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(3, 10, 24, 0.42);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 0.93rem;
+      padding: 12px; border-radius: 14px; background: rgba(3, 10, 24, 0.42);
+      border: 1px solid rgba(255,255,255,0.06); color: var(--muted); line-height: 1.45; font-size: 0.93rem;
     }
-
-    .mini strong, .panel h2, .side h2, .hint-box b { color: var(--text); }
+    .mini strong, .panel h2, .hint-box b { color: var(--text); }
     .mini strong { display: block; margin-bottom: 6px; font-size: 0.95rem; }
-    .mini span, .panel p, .panel li, .side p, .side li { color: var(--muted); line-height: 1.55; font-size: 0.94rem; }
-
+    .mini span, .panel p, .panel li { color: var(--muted); line-height: 1.55; font-size: 0.94rem; }
     .distance-line {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
+      margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 0.95rem;
     }
-
     .emoji-bar { font-size: 1.2rem; letter-spacing: 0.06em; }
-    .stack { display: grid; gap: 14px; margin-top: 14px; }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #cfe7ff; font-size: 0.9em; }
-    .small { font-size: 0.86rem; color: #8ea3c3; line-height: 1.5; }
-
+    .code-block { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86rem; color: #cfe7ff; }
     .loader {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,0.18);
-      border-top-color: white;
-      display: inline-block;
-      vertical-align: middle;
-      animation: spin 1s linear infinite;
-      margin-right: 8px;
+      width: 20px; height: 20px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.18);
+      border-top-color: white; display: inline-block; vertical-align: middle;
+      animation: spin 1s linear infinite; margin-right: 8px;
     }
-
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 8, 20, 0.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 1000;
+      position: fixed; inset: 0; background: rgba(2, 8, 20, 0.72); display: none;
+      align-items: center; justify-content: center; padding: 20px; z-index: 1000;
     }
-
     .modal-overlay.open { display: flex; }
-
     .modal {
-      width: min(720px, 100%);
-      max-height: 85vh;
-      overflow: auto;
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(10, 17, 32, 0.97);
-      border: 1px solid rgba(255,255,255,0.12);
+      width: min(840px, 100%); max-height: 85vh; overflow: auto; padding: 22px;
+      border-radius: 24px; background: rgba(10, 17, 32, 0.97); border: 1px solid rgba(255,255,255,0.12);
       box-shadow: var(--shadow);
     }
-
     .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px;
     }
-
     .modal-head h2 { margin: 0; font-size: 1.35rem; }
     .modal-close { min-width: 44px; padding: 10px 12px; line-height: 1; }
     .modal-grid { display: grid; gap: 12px; margin-top: 12px; }
-
     @keyframes spin { to { transform: rotate(360deg); } }
-
     @media (max-width: 980px) {
-      .topbar-right {
-        width: 100%;
-        align-items: flex-start;
-      }
-
-      .topbar-actions {
-        justify-content: flex-start;
-      }
-
+      .topbar-right { width: 100%; align-items: flex-start; }
+      .topbar-actions { justify-content: flex-start; }
       .layout { grid-template-columns: 1fr; }
       .attempt-grid { grid-template-columns: 1fr; }
     }
@@ -399,7 +183,7 @@
         <div>
           <div class="eyebrow">Daily leader guessing game</div>
           <h1>Leaderle</h1>
-          <div class="subtitle">Guess the country of today’s mystery world leader. You have 6 tries. The portrait starts very blurry, becomes half blurry after 1 wrong guess, and fully clear after 2 wrong guesses.</div>
+          <div class="subtitle">Guess the country of today’s mystery world leader. This GitHub Pages version loads a local leader database from JSON instead of querying external APIs on every page load.</div>
         </div>
         <div class="topbar-right">
           <div class="date-chip" id="dateChip">Daily puzzle</div>
@@ -409,7 +193,6 @@
           </div>
         </div>
       </div>
-
       <div class="layout">
         <section class="portrait-panel">
           <div class="portrait-wrap" id="portraitWrap">
@@ -419,7 +202,7 @@
               <div class="badge" id="blurBadge">Tenure unknown</div>
             </div>
             <div class="meta-badge">
-              <div class="badge" id="sourceBadge">Source: Wikimedia</div>
+              <div class="badge" id="sourceBadge">Source: local database</div>
               <div class="badge" id="leaderMetaBadge">Daily puzzle</div>
             </div>
           </div>
@@ -430,27 +213,22 @@
             <div class="reveal-text" id="revealText"></div>
           </div>
         </section>
-
         <section class="game-panel">
           <div class="controls">
             <input id="guessInput" list="countryOptions" placeholder="Enter a country" autocomplete="off" />
             <datalist id="countryOptions"></datalist>
             <button id="guessButton">Submit guess</button>
           </div>
-
           <div class="footer-actions">
             <button class="secondary" id="shareButton" disabled>Copy result</button>
             <button class="ghost" id="randomButton">Preview random leader</button>
             <button class="ghost" id="resetButton">Reset today</button>
           </div>
-
           <div class="status info" id="statusMessage">Initialising…</div>
           <div class="attempts" id="attempts"></div>
         </section>
       </div>
     </main>
-
-    
   </div>
 
   <div class="modal-overlay" id="howToPlayModal" aria-hidden="true">
@@ -474,19 +252,55 @@
         <button class="ghost modal-close" id="closeImplementationNotesButton" type="button">✕</button>
       </div>
       <div class="modal-grid">
-        <div class="panel"><h2>Key fixes in this version</h2><ul><li>The blur works because <code>blur()</code> and <code>scale()</code> are handled separately.</li><li>The query is filtered to sovereign states to avoid local leaders like mayors.</li><li>Each country includes coordinates so guesses can show a geographic proximity emoji bar.</li></ul></div>
-        <div class="panel"><h2>Emoji distance bar</h2><p>The distance indicator uses country coordinates and a haversine calculation. The closer the guess, the more green squares appear. The exact country shows <code>🟩🟩🟩🟩🟩</code>.</p></div>
+        <div class="panel">
+          <h2>Recommended repo structure</h2>
+          <div class="code-block">/
+index.html
+data/
+  leaders.json
+.github/
+  workflows/
+    update-leaders.yml</div>
+        </div>
+        <div class="panel">
+          <h2>How this version works</h2>
+          <p>The page first tries to load <code>./data/leaders.json</code>. If that file is missing, it falls back to a small built-in sample list so the page still works while you set up the repository.</p>
+        </div>
+        <div class="panel">
+          <h2>GitHub Actions updater</h2>
+          <div class="code-block">name: Update leaders database
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/update-leaders.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/leaders.json
+          git commit -m "Update leaders database" || exit 0
+          git push</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     const MAX_GUESSES = 6;
-    const STORAGE_PREFIX = "leaderle-state-v5";
-    const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
-    const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/independent?status=true&fields=name,cca2,region,latlng";
+    const STORAGE_PREFIX = "leaderle-state-json-v1";
+    const LEADERS_JSON_URL = "./data/leaders.json";
 
-    const SAMPLE_LEADERS = [
+    const FALLBACK_LEADERS = [
       {
         id: "france-macron-head-of-state",
         leader: "Emmanuel Macron",
@@ -495,49 +309,10 @@
         continent: "Europe",
         iso2: "FR",
         role: "Head of state",
-        articleTitle: "Emmanuel Macron",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Emmanuel_Macron_in_2023.jpg/640px-Emmanuel_Macron_in_2023.jpg",
         corruptionScore: 1.3,
-        coords: { lat: 46.2276, lon: 2.2137 }
-      },
-      {
-        id: "poland-duda-head-of-state",
-        leader: "Andrzej Duda",
-        startDate: "2015-08-06",
-        country: "Poland",
-        continent: "Europe",
-        iso2: "PL",
-        role: "Head of state",
-        articleTitle: "Andrzej Duda",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Andrzej_Duda_2025.jpg/640px-Andrzej_Duda_2025.jpg",
-        corruptionScore: 0.6,
-        coords: { lat: 51.9194, lon: 19.1451 }
-      },
-      {
-        id: "burundi-ndayishimiye-head-of-state",
-        leader: "Évariste Ndayishimiye",
-        startDate: "2020-06-18",
-        country: "Burundi",
-        continent: "Africa",
-        iso2: "BI",
-        role: "Head of state",
-        articleTitle: "Évariste Ndayishimiye",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/%C3%89variste_Ndayishimiye_2020_%28cropped%29.jpg/640px-%C3%89variste_Ndayishimiye_2020_%28cropped%29.jpg",
-        corruptionScore: -1.1,
-        coords: { lat: -3.3731, lon: 29.9189 }
-      },
-      {
-        id: "togo-gnassingbe-head-of-state",
-        leader: "Faure Gnassingbé",
-        startDate: "2005-05-04",
-        country: "Togo",
-        continent: "Africa",
-        iso2: "TG",
-        role: "Head of state",
-        articleTitle: "Faure Gnassingbé",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Faure_Gnassingb%C3%A9_2023.jpg/640px-Faure_Gnassingb%C3%A9_2023.jpg",
-        corruptionScore: -0.7,
-        coords: { lat: 8.6195, lon: 0.8248 }
+        coords: { lat: 46.2276, lon: 2.2137 },
+        summary: "Emmanuel Macron is a French politician who has served as President of France since 2017."
       },
       {
         id: "australia-albanese-head-of-government",
@@ -547,10 +322,10 @@
         continent: "Oceania",
         iso2: "AU",
         role: "Head of government",
-        articleTitle: "Anthony Albanese",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Anthony_Albanese_2022_%28cropped%29.jpg/640px-Anthony_Albanese_2022_%28cropped%29.jpg",
         corruptionScore: 1.8,
-        coords: { lat: -25.2744, lon: 133.7751 }
+        coords: { lat: -25.2744, lon: 133.7751 },
+        summary: "Anthony Albanese is an Australian politician serving as Prime Minister of Australia since 2022."
       },
       {
         id: "india-modi-head-of-government",
@@ -560,10 +335,10 @@
         continent: "Asia",
         iso2: "IN",
         role: "Head of government",
-        articleTitle: "Narendra Modi",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Official_Photograph_of_Prime_Minister_Narendra_Modi_Portrait.png/640px-Official_Photograph_of_Prime_Minister_Narendra_Modi_Portrait.png",
         corruptionScore: -0.2,
-        coords: { lat: 20.5937, lon: 78.9629 }
+        coords: { lat: 20.5937, lon: 78.9629 },
+        summary: "Narendra Modi is an Indian politician serving as Prime Minister of India since 2014."
       }
     ];
 
@@ -606,7 +381,32 @@
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
     const closeImplementationNotesButton = document.getElementById("closeImplementationNotesButton");
 
-    let leaderPool = [...SAMPLE_LEADERS];
+    const memoryStorage = (() => {
+      const store = new Map();
+      return {
+        getItem(key) { return store.has(key) ? store.get(key) : null; },
+        setItem(key, value) { store.set(key, String(value)); },
+        removeItem(key) { store.delete(key); }
+      };
+    })();
+
+    function getSafeStorage() {
+      try {
+        if (typeof window !== "undefined" && window.localStorage) {
+          const testKey = "__leaderle_storage_test__";
+          window.localStorage.setItem(testKey, "ok");
+          window.localStorage.removeItem(testKey);
+          return window.localStorage;
+        }
+      } catch (error) {
+        console.warn("localStorage unavailable, using memory storage instead.", error);
+      }
+      return memoryStorage;
+    }
+
+    const safeStorage = getSafeStorage();
+
+    let leaderPool = [...FALLBACK_LEADERS];
     let playableCountries = new Map();
     let mysteryLeader = null;
     let guesses = [];
@@ -617,121 +417,69 @@
       const d = new Date();
       return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
     }
-
-    function getStorageKey() {
-      return `${STORAGE_PREFIX}:${getTodayKey()}`;
-    }
-
+    function getStorageKey() { return `${STORAGE_PREFIX}:${getTodayKey()}`; }
     function formatToday() {
-      return new Intl.DateTimeFormat("en-GB", {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        timeZone: "UTC"
-      }).format(new Date());
+      return new Intl.DateTimeFormat("en-GB", { weekday: "short", year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(new Date());
     }
-
     function hashString(str) {
       let hash = 0;
-      for (let i = 0; i < str.length; i++) {
+      for (let i = 0; i < str.length; i += 1) {
         hash = ((hash << 5) - hash) + str.charCodeAt(i);
         hash |= 0;
       }
       return Math.abs(hash);
     }
-
     function normalize(text) {
-      return (text || "")
-        .normalize("NFKD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[’'`]/g, "")
-        .replace(/&/g, "and")
-        .replace(/[^a-zA-Z0-9]+/g, " ")
-        .trim()
-        .toLowerCase();
+      return (text || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[’'`]/g, "").replace(/&/g, "and").replace(/[^a-zA-Z0-9]+/g, " ").trim().toLowerCase();
     }
-
-    function slugifyForLookup(text) {
-      return normalize(text).replace(/\s+/g, "");
-    }
-
+    function slugifyForLookup(text) { return normalize(text).replace(/\s+/g, ""); }
     function saveState() {
       if (!mysteryLeader) return;
-      localStorage.setItem(getStorageKey(), JSON.stringify({ mysteryLeaderId: mysteryLeader.id, guesses, gameOver, randomPreviewMode }));
+      safeStorage.setItem(getStorageKey(), JSON.stringify({ mysteryLeaderId: mysteryLeader.id, guesses, gameOver, randomPreviewMode }));
     }
-
     function loadState() {
-      try { return JSON.parse(localStorage.getItem(getStorageKey()) || "null"); }
-      catch { return null; }
+      try { return JSON.parse(safeStorage.getItem(getStorageKey()) || "null"); } catch { return null; }
     }
-
-    function clearTodayState() {
-      localStorage.removeItem(getStorageKey());
-    }
-
+    function clearTodayState() { safeStorage.removeItem(getStorageKey()); }
     function setStatus(message, type = "info", loading = false) {
       statusMessage.className = `status ${type}`;
       statusMessage.innerHTML = `${loading ? '<span class="loader"></span>' : ''}${message}`;
     }
 
-    async function buildCountryOptions() {
-      const uniqueCountryMap = new Map();
+    async function loadLeaderDatabase() {
+      try {
+        const res = await fetch(LEADERS_JSON_URL, { cache: "no-cache" });
+        if (!res.ok) throw new Error(`leaders.json request failed: ${res.status}`);
+        const json = await res.json();
+        const items = Array.isArray(json) ? json : json.leaders;
+        if (!Array.isArray(items) || items.length === 0) throw new Error("leaders.json did not contain a usable leader array");
+        leaderPool = items.filter((entry) => entry && entry.id && entry.country && entry.leader);
+        if (!leaderPool.length) throw new Error("leaders.json contained no valid leaders");
+      } catch (error) {
+        console.warn("Failed to load local leaders database, using fallback leaders.", error);
+        leaderPool = [...FALLBACK_LEADERS];
+      }
+    }
 
+    function buildCountryOptions() {
+      const uniqueCountryMap = new Map();
       for (const entry of leaderPool) {
         if (!uniqueCountryMap.has(entry.country)) {
           uniqueCountryMap.set(entry.country, {
-            continent: entry.continent,
-            corruptionScore: entry.corruptionScore,
-            coords: entry.coords,
+            continent: entry.continent || null,
+            corruptionScore: entry.corruptionScore ?? null,
+            coords: entry.coords || null,
             iso2: entry.iso2 || null
           });
         }
       }
-
-      try {
-        const res = await fetch(REST_COUNTRIES_URL);
-        if (!res.ok) throw new Error(`REST Countries request failed: ${res.status}`);
-        const countries = await res.json();
-
-        for (const country of countries) {
-          const name = country?.name?.common;
-          if (!name) continue;
-          if (!uniqueCountryMap.has(name)) {
-            const latlng = Array.isArray(country.latlng) && country.latlng.length >= 2
-              ? { lat: Number(country.latlng[0]), lon: Number(country.latlng[1]) }
-              : null;
-            uniqueCountryMap.set(name, {
-              continent: country.region || null,
-              corruptionScore: null,
-              coords: latlng,
-              iso2: country.cca2 || null
-            });
-          }
-        }
-      } catch (error) {
-        console.error("Failed to load full country list", error);
-      }
-
       playableCountries = uniqueCountryMap;
-      countryOptions.innerHTML = [...playableCountries.keys()]
-        .sort((a, b) => a.localeCompare(b))
-        .map((country) => `<option value="${country}"></option>`)
-        .join("");
+      countryOptions.innerHTML = [...playableCountries.keys()].sort((a, b) => a.localeCompare(b)).map((country) => `<option value="${country}"></option>`).join("");
     }
 
-    function chooseDailyLeader(pool) {
-      return pool[hashString(getTodayKey()) % pool.length];
-    }
-
-    function chooseRandomLeader(pool) {
-      return pool[Math.floor(Math.random() * pool.length)];
-    }
-
-    function getCountryMeta(countryName) {
-      return playableCountries.get(countryName) || null;
-    }
-
+    function chooseDailyLeader(pool) { return pool[hashString(getTodayKey()) % pool.length]; }
+    function chooseRandomLeader(pool) { return pool[Math.floor(Math.random() * pool.length)]; }
+    function getCountryMeta(countryName) { return playableCountries.get(countryName) || null; }
     function canonicalCountry(input) {
       const cleaned = normalize(input);
       const aliasHit = aliases[slugifyForLookup(input)];
@@ -747,7 +495,6 @@
       if (wrongCount === 1) return { blur: 10, scale: 1.02 };
       return { blur: 0, scale: 1 };
     }
-
     function formatTenure(startDate) {
       if (!startDate) return "Tenure unknown";
       const start = new Date(startDate);
@@ -755,22 +502,12 @@
       const now = new Date();
       let years = now.getUTCFullYear() - start.getUTCFullYear();
       let months = now.getUTCMonth() - start.getUTCMonth();
-      if (now.getUTCDate() < start.getUTCDate()) {
-        months -= 1;
-      }
-      if (months < 0) {
-        years -= 1;
-        months += 12;
-      }
-      if (years <= 0) {
-        return `Serving ${Math.max(months, 0)} mo`;
-      }
-      if (months <= 0) {
-        return `Serving ${years}y`;
-      }
+      if (now.getUTCDate() < start.getUTCDate()) months -= 1;
+      if (months < 0) { years -= 1; months += 12; }
+      if (years <= 0) return `Serving ${Math.max(months, 0)} mo`;
+      if (months <= 0) return `Serving ${years}y`;
       return `Serving ${years}y ${months}mo`;
     }
-
     function renderDots() {
       const won = guesses.some((g) => g.correct);
       guessDots.innerHTML = Array.from({ length: MAX_GUESSES }, (_, i) => {
@@ -779,16 +516,12 @@
         return `<div class="${cls}"></div>`;
       }).join("");
     }
-
     function updateBlur() {
       const wrong = guesses.filter((g) => !g.correct).length;
-      const state = gameOver && guesses.some((g) => g.correct)
-        ? { blur: 0, scale: 1 }
-        : blurForWrongGuessCount(wrong);
+      const state = gameOver && guesses.some((g) => g.correct) ? { blur: 0, scale: 1 } : blurForWrongGuessCount(wrong);
       leaderImage.style.filter = `blur(${state.blur}px)`;
       leaderImage.style.transform = `scale(${state.scale})`;
     }
-
     function corruptionHint(guessMeta) {
       const targetScore = mysteryLeader.corruptionScore;
       const guessScore = guessMeta?.corruptionScore;
@@ -797,7 +530,6 @@
       if (targetScore < guessScore) return `${guessMeta.country} has a lower corruption-control score.`;
       return `${guessMeta.country} has about the same corruption-control score.`;
     }
-
     function haversineKm(a, b) {
       if (!a || !b) return null;
       const R = 6371;
@@ -809,7 +541,6 @@
       const x = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
       return Math.round(R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x)));
     }
-
     function distanceEmojiBar(distanceKm, correct) {
       if (correct) return "🟩🟩🟩🟩🟩";
       if (distanceKm == null) return "⬜⬜⬜⬜⬜";
@@ -848,40 +579,20 @@
       renderDots();
       updateBlur();
     }
-
-    async function enrichLeaderImage(entry) {
-      try {
-        const res = await fetch(`${WIKIPEDIA_SUMMARY_BASE}${encodeURIComponent(entry.articleTitle)}`);
-        if (!res.ok) return entry;
-        const data = await res.json();
-        return {
-          ...entry,
-          image: data?.thumbnail?.source || data?.originalimage?.source || entry.image || "",
-          summary: data?.extract || entry.summary || "",
-          tenureText: entry.tenureText || formatTenure(entry.startDate)
-        };
-      } catch {
-        return entry;
-      }
-    }
-
     function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
-      const tenureText = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
       revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
       revealText.textContent = mysteryLeader.summary || "No summary available for this leader yet.";
     }
-
     function setRevealVisible(isVisible) {
       revealCard.classList.toggle("open", isVisible);
       if (isVisible) setRevealContent();
     }
-
     function applyLeaderToUI() {
       roleBadge.textContent = mysteryLeader.role;
       blurBadge.textContent = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
       leaderMetaBadge.textContent = randomPreviewMode ? "Random preview" : "Daily puzzle";
-      sourceBadge.textContent = "Source: Wikimedia";
+      sourceBadge.textContent = "Source: local database";
       leaderImage.src = mysteryLeader.image || "";
       leaderImage.alt = "Mystery leader portrait";
       portraitWrap.classList.remove("ready");
@@ -893,7 +604,6 @@
       setRevealVisible(false);
       updateBlur();
     }
-
     function finishGame(won) {
       gameOver = true;
       guessButton.disabled = true;
@@ -905,7 +615,6 @@
       setRevealVisible(true);
       saveState();
     }
-
     function submitGuess() {
       if (gameOver || !mysteryLeader) return;
       const country = canonicalCountry(guessInput.value.trim());
@@ -937,7 +646,6 @@
       setStatus(`Not quite. ${remaining} guess${remaining === 1 ? "" : "es"} left.`, "info");
       saveState();
     }
-
     function restoreFromSavedState(saved) {
       if (!saved) return false;
       const found = leaderPool.find((entry) => entry.id === saved.mysteryLeaderId);
@@ -955,11 +663,11 @@
       setRevealVisible(gameOver);
       return true;
     }
-
+    function chooseLeaderData(useRandom) { return useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool); }
     async function selectLeader(useRandom = false) {
       randomPreviewMode = useRandom;
-      const base = useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool);
-      mysteryLeader = await enrichLeaderImage(base);
+      const base = chooseLeaderData(useRandom);
+      mysteryLeader = { ...base, tenureText: base.tenureText || formatTenure(base.startDate) };
       guesses = [];
       gameOver = false;
       guessButton.disabled = false;
@@ -970,13 +678,11 @@
       setStatus(useRandom ? "Random preview loaded." : "Daily puzzle loaded. Start guessing.", "info");
       saveState();
     }
-
     function buildShareText() {
       const result = guesses.some((g) => g.correct) ? guesses.length : "X";
       const rows = guesses.map((g) => g.proximityBar).join("\n");
       return `Leaderle ${getTodayKey()} ${result}/${MAX_GUESSES}\n${rows}`;
     }
-
     async function copyShare() {
       try {
         await navigator.clipboard.writeText(buildShareText());
@@ -985,17 +691,8 @@
         setStatus("Could not copy automatically. Clipboard permissions may be blocked.", "bad");
       }
     }
-
-    function openModal(modal) {
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-    }
-
-    function closeModal(modal) {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-    }
-
+    function openModal(modal) { modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); }
+    function closeModal(modal) { modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); }
     function bindModalEvents() {
       howToPlayButton.addEventListener("click", () => openModal(howToPlayModal));
       implementationNotesButton.addEventListener("click", () => openModal(implementationNotesModal));
@@ -1013,35 +710,47 @@
         }
       });
     }
-
+    function assert(condition, message) {
+      if (!condition) throw new Error(`Self-test failed: ${message}`);
+    }
+    function runSelfTests() {
+      assert(distanceEmojiBar(0, true) === "🟩🟩🟩🟩🟩", "correct distance bar should be all green");
+      assert(distanceEmojiBar(500, false) === "🟩🟩🟩🟩🟨", "nearby distance bar threshold should work");
+      assert(formatTenure(null) === "Tenure unknown", "missing tenure should be handled");
+      safeStorage.setItem("__leaderle_test__", "ok");
+      assert(safeStorage.getItem("__leaderle_test__") === "ok", "safe storage set/get should work");
+      safeStorage.removeItem("__leaderle_test__");
+    }
     async function init() {
       dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
       bindModalEvents();
-      await buildCountryOptions();
+      runSelfTests();
+      setStatus("Loading local leaders database…", "info", true);
+      await loadLeaderDatabase();
+      buildCountryOptions();
       const saved = loadState();
       if (!restoreFromSavedState(saved)) {
         await selectLeader(false);
       }
     }
-
     guessButton.addEventListener("click", submitGuess);
-    guessInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") submitGuess();
-    });
+    guessInput.addEventListener("keydown", (event) => { if (event.key === "Enter") submitGuess(); });
     shareButton.addEventListener("click", copyShare);
     resetButton.addEventListener("click", async () => {
       clearTodayState();
+      await loadLeaderDatabase();
+      buildCountryOptions();
       await selectLeader(false);
     });
     randomButton.addEventListener("click", async () => {
+      await loadLeaderDatabase();
+      buildCountryOptions();
       await selectLeader(true);
     });
-
     init().catch((error) => {
       console.error(error);
       dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
       setStatus("Something went wrong while loading the puzzle. See the console for details.", "bad");
-      bindModalEvents();
     });
   </script>
 </body>
