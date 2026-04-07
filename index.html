@@ -449,6 +449,7 @@
     const MAX_GUESSES = 6;
     const STORAGE_PREFIX = "leaderle-state-v5";
     const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
+    const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/independent?status=true&fields=name,cca2,region,latlng";
 
     const SAMPLE_LEADERS = [
       {
@@ -629,19 +630,49 @@
       statusMessage.innerHTML = `${loading ? '<span class="loader"></span>' : ''}${message}`;
     }
 
-    function buildCountryOptions() {
+    async function buildCountryOptions() {
       const uniqueCountryMap = new Map();
+
       for (const entry of leaderPool) {
         if (!uniqueCountryMap.has(entry.country)) {
           uniqueCountryMap.set(entry.country, {
             continent: entry.continent,
             corruptionScore: entry.corruptionScore,
-            coords: entry.coords
+            coords: entry.coords,
+            iso2: entry.iso2 || null
           });
         }
       }
+
+      try {
+        const res = await fetch(REST_COUNTRIES_URL);
+        if (!res.ok) throw new Error(`REST Countries request failed: ${res.status}`);
+        const countries = await res.json();
+
+        for (const country of countries) {
+          const name = country?.name?.common;
+          if (!name) continue;
+          if (!uniqueCountryMap.has(name)) {
+            const latlng = Array.isArray(country.latlng) && country.latlng.length >= 2
+              ? { lat: Number(country.latlng[0]), lon: Number(country.latlng[1]) }
+              : null;
+            uniqueCountryMap.set(name, {
+              continent: country.region || null,
+              corruptionScore: null,
+              coords: latlng,
+              iso2: country.cca2 || null
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load full country list", error);
+      }
+
       playableCountries = uniqueCountryMap;
-      countryOptions.innerHTML = [...playableCountries.keys()].sort((a, b) => a.localeCompare(b)).map((country) => `<option value="${country}"></option>`).join("");
+      countryOptions.innerHTML = [...playableCountries.keys()]
+        .sort((a, b) => a.localeCompare(b))
+        .map((country) => `<option value="${country}"></option>`)
+        .join("");
     }
 
     function chooseDailyLeader(pool) {
@@ -899,7 +930,7 @@
     async function init() {
       dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
       bindModalEvents();
-      buildCountryOptions();
+      await buildCountryOptions();
       const saved = loadState();
       if (!restoreFromSavedState(saved)) {
         await selectLeader(false);
