@@ -868,7 +868,7 @@
     function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
       const tenureText = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
-      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country} • ${tenureText}`;
+      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
       revealText.textContent = mysteryLeader.summary || "No summary available for this leader yet.";
     }
 
