@@ -29,8 +29,9 @@ const WORLD_BANK_CORRUPTION_URL = "https://api.worldbank.org/v2/country/all/indi
 const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
 
 const USER_AGENT = "LeaderleDatabaseGenerator/2.0 (https://github.com/obliquadata/obliquadata.github.io)";
-const SUMMARY_CONCURRENCY = 4;
-const SUMMARY_DELAY_MS = 120;
+const SUMMARY_CONCURRENCY = 1;
+const SUMMARY_DELAY_MS = 250;
+const ENABLE_SUMMARY_FETCH = true;
 const MAX_RETRIES = 4;
 const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
 
@@ -149,6 +150,7 @@ function buildOfficeQuery(property, officeLabel) {
       ?country p:${property} ?stmt .
       ?stmt ps:${property} ?leader .
       FILTER NOT EXISTS { ?stmt wikibase:rank wikibase:DeprecatedRank }
+      FILTER NOT EXISTS { ?stmt pq:P582 ?end }
       OPTIONAL { ?stmt pq:P580 ?start . }
       ?country wdt:P31/wdt:P279* wd:Q3624078 .
       OPTIONAL { ?country wdt:P30 ?continent . }
@@ -158,7 +160,7 @@ function buildOfficeQuery(property, officeLabel) {
       ?article schema:about ?leader ; schema:isPartOf <https://en.wikipedia.org/> .
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
     }
-  `.trim().replaceAll("\n", "\n") + `\n# ${officeLabel}`;
+  `.trim();
 }
 
 async function fetchWikidataOffice(property, officeLabel) {
@@ -233,6 +235,10 @@ async function fetchCorruptionMap() {
 }
 
 async function fetchSummaryForLeader(leader) {
+  if (!ENABLE_SUMMARY_FETCH) {
+    return leader;
+  }
+
   await sleep(SUMMARY_DELAY_MS);
   try {
     const data = await fetchJsonWithRetry(
@@ -284,6 +290,17 @@ function validateLeaders(leaders) {
       throw new Error(`Invalid leader entry: ${JSON.stringify(leader)}`);
     }
   }
+
+  const counts = new Map();
+  for (const leader of leaders) {
+    const key = `${leader.country}::${leader.role}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+
+  const duplicatePairs = [...counts.entries()].filter(([, count]) => count > 1);
+  if (duplicatePairs.length > 25) {
+    throw new Error(`Too many duplicate country-role pairs detected: ${duplicatePairs.length}`);
+  }
 }
 
 async function writeOutput(leaders, source) {
@@ -305,6 +322,9 @@ async function main() {
     console.log("Fetching heads of state and heads of government from Wikidata...");
     leaders = await fetchLeaderPool();
     console.log(`Fetched ${leaders.length} leader entries from Wikidata.`);
+    if (leaders.length > 450) {
+      throw new Error(`Unexpectedly high number of current leaders fetched (${leaders.length}). This suggests the current-office filter failed.`);
+    }
   } catch (error) {
     console.warn(`Live leader fetch failed: ${error.message}`);
     console.warn("Falling back to starter leaders so deployment remains usable.");
@@ -316,7 +336,12 @@ async function main() {
   const corruptionMap = await fetchCorruptionMap();
   const leadersWithCorruption = addCorruptionScores(leaders, corruptionMap);
 
-  console.log("Fetching Wikipedia summaries and thumbnails...");
+  if (ENABLE_SUMMARY_FETCH) {
+    console.log("Fetching Wikipedia summaries and thumbnails...");
+  } else {
+    console.log("Skipping Wikipedia summary fetch to avoid rate limits.");
+  }
+
   const enrichedLeaders = await mapWithConcurrency(
     leadersWithCorruption,
     SUMMARY_CONCURRENCY,
