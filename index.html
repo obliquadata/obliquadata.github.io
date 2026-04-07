@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderle</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: rgba(10, 17, 32, 0.82);
+      --text: #eef4ff;
+      --muted: #9fb0ca;
+      --good: #22c55e;
+      --bad: #f43f5e;
+      --warn: #f59e0b;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(76, 201, 240, 0.17), transparent 24%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.16), transparent 28%),
+        linear-gradient(180deg, #020814, var(--bg));
+      padding: 28px 16px 40px;
+    }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .main { padding: 24px; }
+    .side {
+      padding: 22px;
+      align-self: start;
+      position: sticky;
+      top: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #d5e7ff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 4.4vw, 4rem);
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+
+    .date-chip {
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 350px minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .portrait-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px;
+    }
+
+    .portrait-wrap {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #122037, #0a1324);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: blur(22px);
+      transform: scale(1.04);
+      transition: filter 260ms ease, transform 260ms ease, opacity 200ms ease;
+      opacity: 0;
+    }
+
+    .portrait-wrap.ready img { opacity: 1; }
+
+    .photo-badge,
+    .meta-badge {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      pointer-events: none;
+    }
+
+    .photo-badge { top: 12px; }
+    .meta-badge { bottom: 12px; }
+
+    .badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(2, 8, 20, 0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem;
+      color: #edf5ff;
+      backdrop-filter: blur(12px);
+    }
+
+    .guess-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .dot.used { background: rgba(244, 63, 94, 0.82); }
+    .dot.win { background: rgba(34, 197, 94, 0.9); }
+
+    .hint-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .mini {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .mini span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
+    .game-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .controls, .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    input, button {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 1rem;
+    }
+
+    input {
+      flex: 1;
+      min-width: 240px;
+      padding: 15px 16px;
+      background: rgba(255,255,255,0.045);
+      color: var(--text);
+      outline: none;
+    }
+
+    input::placeholder { color: #7890b3; }
+
+    button {
+      padding: 14px 16px;
+      cursor: pointer;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      transition: transform 120ms ease, opacity 120ms ease;
+    }
+
+    button.secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    button.ghost {
+      background: transparent;
+      border-color: rgba(255,255,255,0.12);
+      color: var(--muted);
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
+
+    .status {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .status.good { color: #8af0a8; }
+    .status.bad { color: #ffb0bd; }
+    .status.info { color: #9fdfff; }
+
+    .attempts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .attempt {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .attempt-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .attempt-title {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .pill-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .pill.good { background: rgba(34,197,94,0.13); color: #99f6b3; }
+    .pill.bad { background: rgba(244,63,94,0.13); color: #ffb3c0; }
+    .pill.warn { background: rgba(245,158,11,0.14); color: #ffd791; }
+
+    .attempt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .hint-box {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(3, 10, 24, 0.42);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.93rem;
+    }
+
+    .hint-box b { color: var(--text); }
+
+    .distance-line {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .emoji-bar {
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+    }
+
+    .side h2 {
+      margin: 8px 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .side p, .side li {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.94rem;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .panel {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #cfe7ff;
+      font-size: 0.9em;
+    }
+
+    .small {
+      font-size: 0.86rem;
+      color: #8ea3c3;
+      line-height: 1.5;
+    }
+
+    .loader {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.18);
+      border-top-color: white;
+      display: inline-block;
+      vertical-align: middle;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .layout { grid-template-columns: 1fr; }
+      .hint-row, .attempt-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <main class="card main">
+      <div class="topbar">
+        <div>
+          <div class="eyebrow">Daily leader guessing game</div>
+          <h1>Leaderle</h1>
+          <div class="subtitle">
+            Guess the country of today’s mystery world leader. You have 6 tries. The portrait starts very blurry, becomes half blurry after 1 wrong guess, and fully clear after 2 wrong guesses.
+          </div>
+        </div>
+        <div class="date-chip" id="dateChip">Loading daily puzzle…</div>
+      </div>
+
+      <div class="layout">
+        <section class="portrait-panel">
+          <div class="portrait-wrap" id="portraitWrap">
+            <img id="leaderImage" alt="Mystery leader portrait" />
+            <div class="photo-badge">
+              <div class="badge" id="roleBadge">Mystery leader</div>
+              <div class="badge" id="blurBadge">Very blurry</div>
+            </div>
+            <div class="meta-badge">
+              <div class="badge" id="sourceBadge">Source: Wikimedia</div>
+              <div class="badge" id="leaderMetaBadge">Daily puzzle</div>
+            </div>
+          </div>
+          <div class="guess-dots" id="guessDots"></div>
+
+          <div class="hint-row">
+            <div class="mini">
+              <strong>Corruption hint</strong>
+              <span>After a wrong guess, you are told whether the mystery country scores as more or less corrupt than your guess.</span>
+            </div>
+            <div class="mini">
+              <strong>Continent hint</strong>
+              <span>You are also told whether the guessed country is on the correct continent.</span>
+            </div>
+            <div class="mini">
+              <strong>Distance hint</strong>
+              <span>Each guess now gets a 5-square emoji bar that becomes greener as the guess gets geographically closer.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="game-panel">
+          <div class="controls">
+            <input id="guessInput" list="countryOptions" placeholder="Enter a country" autocomplete="off" />
+            <datalist id="countryOptions"></datalist>
+            <button id="guessButton">Submit guess</button>
+          </div>
+
+          <div class="footer-actions">
+            <button class="secondary" id="shareButton" disabled>Copy result</button>
+            <button class="ghost" id="randomButton">Preview random leader</button>
+            <button class="ghost" id="resetButton">Reset today</button>
+          </div>
+
+          <div class="status info" id="statusMessage"><span class="loader"></span>Loading live leader data…</div>
+          <div class="attempts" id="attempts"></div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="card side">
+      <div class="eyebrow">Implementation notes</div>
+      <div class="stack">
+        <div class="panel">
+          <h2>Key fixes in this version</h2>
+          <ul>
+            <li>The blur now works because <code>blur()</code> and <code>scale()</code> are handled separately.</li>
+            <li>The Wikidata query is filtered to sovereign states to avoid local leaders like mayors.</li>
+            <li>Each country includes map coordinates so guesses can show a geographic proximity emoji bar.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h2>Emoji distance bar</h2>
+          <p>
+            The distance indicator uses country coordinates and a haversine calculation. The closer the guess, the more green squares appear. The exact country shows <code>🟩🟩🟩🟩🟩</code>.
+          </p>
+        </div>
+
+        <div class="panel small">
+          This is still best treated as a polished front-end prototype. For a real launch, move the daily answer selection to a backend or serverless function.
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const MAX_GUESSES = 6;
+    const STORAGE_PREFIX = "leaderle-state-v3";
+    const WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql";
+    const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
+    const WORLD_BANK_CORRUPTION_URL = "https://api.worldbank.org/v2/country/all/indicator/CC.EST?format=json&per_page=400&mrv=1";
+
+    const dateChip = document.getElementById("dateChip");
+    const guessInput = document.getElementById("guessInput");
+    const guessButton = document.getElementById("guessButton");
+    const shareButton = document.getElementById("shareButton");
+    const resetButton = document.getElementById("resetButton");
+    const randomButton = document.getElementById("randomButton");
+    const statusMessage = document.getElementById("statusMessage");
+    const attemptsEl = document.getElementById("attempts");
+    const guessDots = document.getElementById("guessDots");
+    const countryOptions = document.getElementById("countryOptions");
+    const leaderImage = document.getElementById("leaderImage");
+    const portraitWrap = document.getElementById("portraitWrap");
+    const blurBadge = document.getElementById("blurBadge");
+    const roleBadge = document.getElementById("roleBadge");
+    const sourceBadge = document.getElementById("sourceBadge");
+    const leaderMetaBadge = document.getElementById("leaderMetaBadge");
+
+    const aliases = {
+      usa: "United States",
+      us: "United States",
+      uk: "United Kingdom",
+      uae: "United Arab Emirates",
+      drc: "Democratic Republic of the Congo",
+      congo: "Republic of the Congo",
+      czechia: "Czech Republic",
+      caboverde: "Cape Verde",
+      timorleste: "Timor-Leste"
+    };
+
+    let leaderPool = [];
+    let corruptionMap = new Map();
+    let playableCountries = new Map();
+    let mysteryLeader = null;
+    let guesses = [];
+    let gameOver = false;
+    let randomPreviewMode = false;
+
+    function getTodayKey() {
+      const d = new Date();
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
+    }
+
+    function getStorageKey() {
+      return `${STORAGE_PREFIX}:${getTodayKey()}`;
+    }
+
+    function formatToday() {
+      return new Intl.DateTimeFormat("en-GB", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC"
+      }).format(new Date());
+    }
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function normalize(text) {
+      return (text || "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[’'`]/g, "")
+        .replace(/&/g, "and")
+        .replace(/[^a-zA-Z0-9]+/g, " ")
+        .trim()
+        .toLowerCase();
+    }
+
+    function slugifyForLookup(text) {
+      return normalize(text).replace(/\s+/g, "");
+    }
+
+    function saveState() {
+      if (!mysteryLeader) return;
+      localStorage.setItem(getStorageKey(), JSON.stringify({
+        mysteryLeaderId: mysteryLeader.id,
+        guesses,
+        gameOver,
+        randomPreviewMode
+      }));
+    }
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(getStorageKey()) || "null");
+      } catch {
+        return null;
+      }
+    }
+
+    function clearTodayState() {
+      localStorage.removeItem(getStorageKey());
+    }
+
+    function setStatus(message, type = "info", loading = false) {
+      statusMessage.className = `status ${type}`;
+      statusMessage.innerHTML = `${loading ? '<span class="loader"></span>' : ''}${message}`;
+    }
+
+    function commonsImageToUrl(imageUri) {
+      if (!imageUri) return null;
+      const fileName = decodeURIComponent(imageUri.split("/").pop() || "");
+      return fileName ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileName)}?width=900` : null;
+    }
+
+    function parsePointWkt(wkt) {
+      const match = /^Point\(([-\d.]+) ([-\d.]+)\)$/.exec(wkt || "");
+      if (!match) return null;
+      return { lon: Number(match[1]), lat: Number(match[2]) };
+    }
+
+    async function fetchJson(url, options = {}) {
+      const res = await fetch(url, options);
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      return res.json();
+    }
+
+    async function fetchCorruptionMap() {
+      try {
+        const json = await fetchJson(WORLD_BANK_CORRUPTION_URL);
+        const rows = Array.isArray(json) ? json[1] : [];
+        const map = new Map();
+        for (const row of rows || []) {
+          if (!row?.country?.id || row.value == null) continue;
+          map.set(String(row.country.id).toUpperCase(), Number(row.value));
+        }
+        return map;
+      } catch (error) {
+        console.error("Failed to fetch corruption data", error);
+        return new Map();
+      }
+    }
+
+    function buildLeaderQuery() {
+      return `
+        SELECT DISTINCT ?country ?countryLabel ?leader ?leaderLabel ?article ?officeLabel ?continentLabel ?iso2 ?image ?coord WHERE {
+          VALUES ?officeProp { wdt:P35 wdt:P6 }
+          ?country ?officeProp ?leader .
+          ?country wdt:P31/wdt:P279* wd:Q3624078 .
+          BIND(IF(?officeProp = wdt:P35, "Head of state", "Head of government") AS ?officeLabel)
+          OPTIONAL { ?country wdt:P30 ?continent . }
+          OPTIONAL { ?country wdt:P297 ?iso2 . }
+          OPTIONAL { ?country wdt:P625 ?coord . }
+          OPTIONAL { ?leader wdt:P18 ?image . }
+          ?article schema:about ?leader ;
+                   schema:isPartOf <https://en.wikipedia.org/> .
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+        }
+      `.trim();
+    }
+
+    function inferContinent(continentLabel) {
+      if (continentLabel) {
+        const c = continentLabel.toLowerCase();
+        if (c.includes("africa")) return "Africa";
+        if (c.includes("europe")) return "Europe";
+        if (c.includes("asia")) return "Asia";
+        if (c.includes("north america")) return "North America";
+        if (c.includes("south america")) return "South America";
+        if (c.includes("oceania") || c.includes("australia")) return "Oceania";
+        if (c.includes("antarctica")) return "Antarctica";
+      }
+      return null;
+    }
+
+    async function fetchLeaderPool() {
+      const query = buildLeaderQuery();
+      const url = `${WIKIDATA_ENDPOINT}?format=json&query=${encodeURIComponent(query)}`;
+      const json = await fetchJson(url, { headers: { Accept: "application/sparql-results+json" } });
+
+      const rows = json?.results?.bindings || [];
+      const pool = rows.map((row) => {
+        const articleUrl = row.article?.value || "";
+        const articleTitle = decodeURIComponent(articleUrl.split("/wiki/")[1] || "");
+        const iso2 = (row.iso2?.value || "").toUpperCase();
+        const corruptionScore = corruptionMap.get(iso2) ?? null;
+        const continent = inferContinent(row.continentLabel?.value || "");
+        const coords = parsePointWkt(row.coord?.value || "");
+        return {
+          id: `${row.leader?.value || ""}|${row.country?.value || ""}|${row.officeLabel?.value || ""}`,
+          leader: row.leaderLabel?.value || "Unknown leader",
+          country: row.countryLabel?.value || "Unknown country",
+          continent,
+          iso2,
+          role: row.officeLabel?.value || "Leader",
+          articleTitle,
+          image: commonsImageToUrl(row.image?.value || ""),
+          corruptionScore,
+          coords,
+          articleUrl
+        };
+      })
+      .filter((entry) => entry.country && entry.articleTitle && entry.continent)
+      .sort((a, b) => `${a.country}-${a.leader}-${a.role}`.localeCompare(`${b.country}-${b.leader}-${b.role}`));
+
+      const uniqueCountryMap = new Map();
+      for (const entry of pool) {
+        if (!uniqueCountryMap.has(entry.country)) {
+          uniqueCountryMap.set(entry.country, {
+            continent: entry.continent,
+            iso2: entry.iso2,
+            corruptionScore: entry.corruptionScore,
+            coords: entry.coords
+          });
+        }
+      }
+      playableCountries = uniqueCountryMap;
+      return pool;
+    }
+
+    async function enrichLeaderImage(entry) {
+      try {
+        const data = await fetchJson(`${WIKIPEDIA_SUMMARY_BASE}${encodeURIComponent(entry.articleTitle)}`);
+        const thumb = data?.thumbnail?.source || data?.originalimage?.source || entry.image;
+        return {
+          ...entry,
+          summary: data?.extract || "",
+          image: thumb || entry.image,
+          sourceLabel: data?.titles?.display || entry.articleTitle.replaceAll("_", " ")
+        };
+      } catch (error) {
+        console.error("Failed to fetch summary for", entry.articleTitle, error);
+        return {
+          ...entry,
+          summary: "",
+          sourceLabel: entry.articleTitle.replaceAll("_", " ")
+        };
+      }
+    }
+
+    function buildCountryOptions() {
+      const html = [...playableCountries.keys()]
+        .sort((a, b) => a.localeCompare(b))
+        .map((country) => `<option value="${country}"></option>`)
+        .join("");
+      countryOptions.innerHTML = html;
+    }
+
+    function chooseDailyLeader(pool) {
+      const index = hashString(getTodayKey()) % pool.length;
+      return pool[index];
+    }
+
+    function chooseRandomLeader(pool) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function getCountryMeta(countryName) {
+      return playableCountries.get(countryName) || null;
+    }
+
+    function canonicalCountry(input) {
+      const cleaned = normalize(input);
+      const aliasHit = aliases[slugifyForLookup(input)];
+      if (aliasHit && playableCountries.has(aliasHit)) return aliasHit;
+      for (const name of playableCountries.keys()) {
+        if (normalize(name) === cleaned) return name;
+      }
+      return null;
+    }
+
+    function blurForWrongGuessCount(wrongCount) {
+      if (wrongCount === 0) return { blur: 22, scale: 1.04, label: "Very blurry" };
+      if (wrongCount === 1) return { blur: 10, scale: 1.02, label: "Half blurry" };
+      return { blur: 0, scale: 1, label: "Clear" };
+    }
+
+    function renderDots() {
+      const won = guesses.some((g) => g.correct);
+      guessDots.innerHTML = Array.from({ length: MAX_GUESSES }, (_, i) => {
+        const used = i < guesses.length;
+        const cls = won && i === guesses.length - 1 ? "dot win" : used ? "dot used" : "dot";
+        return `<div class="${cls}"></div>`;
+      }).join("");
+    }
+
+    function updateBlur() {
+      const wrong = guesses.filter((g) => !g.correct).length;
+      const state = gameOver && guesses.some((g) => g.correct)
+        ? { blur: 0, scale: 1, label: "Solved" }
+        : blurForWrongGuessCount(wrong);
+      leaderImage.style.filter = `blur(${state.blur}px)`;
+      leaderImage.style.transform = `scale(${state.scale})`;
+      blurBadge.textContent = state.label;
+    }
+
+    function corruptionHint(guessMeta) {
+      const targetScore = mysteryLeader.corruptionScore;
+      const guessScore = guessMeta?.corruptionScore;
+      if (targetScore == null || guessScore == null) {
+        return "Corruption comparison unavailable for one of these countries.";
+      }
+      if (targetScore > guessScore) return `${guessMeta.country} has a higher corruption-control score.`;
+      if (targetScore < guessScore) return `${guessMeta.country} has a lower corruption-control score.`;
+      return `${guessMeta.country} has about the same corruption-control score.`;
+    }
+
+    function haversineKm(a, b) {
+      if (!a || !b) return null;
+      const R = 6371;
+      const toRad = (deg) => (deg * Math.PI) / 180;
+      const dLat = toRad(b.lat - a.lat);
+      const dLon = toRad(b.lon - a.lon);
+      const lat1 = toRad(a.lat);
+      const lat2 = toRad(b.lat);
+      const x = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+      return Math.round(R * c);
+    }
+
+    function distanceEmojiBar(distanceKm, correct) {
+      if (correct) return "🟩🟩🟩🟩🟩";
+      if (distanceKm == null) return "⬜⬜⬜⬜⬜";
+      if (distanceKm <= 750) return "🟩🟩🟩🟩🟨";
+      if (distanceKm <= 2000) return "🟩🟩🟩🟩⬜";
+      if (distanceKm <= 4000) return "🟩🟩🟩🟨⬜";
+      if (distanceKm <= 6500) return "🟩🟩🟩⬜⬜";
+      if (distanceKm <= 9000) return "🟩🟩🟨⬜⬜";
+      if (distanceKm <= 12000) return "🟩🟨⬜⬜⬜";
+      return "⬜⬜⬜⬜⬜";
+    }
+
+    function buildAttemptCard(guess) {
+      const resultPill = guess.correct
+        ? `<span class="pill good">Correct</span>`
+        : `<span class="pill bad">Incorrect</span>`;
+      const continentPill = guess.correct
+        ? `<span class="pill good">Correct country</span>`
+        : guess.sameContinent
+          ? `<span class="pill good">Correct continent</span>`
+          : `<span class="pill bad">Wrong continent</span>`;
+      const distanceText = guess.distanceKm == null ? "Distance unavailable" : `${guess.distanceKm.toLocaleString()} km away`;
+
+      return `
+        <div class="attempt">
+          <div class="attempt-head">
+            <div class="attempt-title">${guess.country}</div>
+            <div class="pill-group">${resultPill}${continentPill}</div>
+          </div>
+          <div class="attempt-grid">
+            <div class="hint-box"><b>Corruption hint:</b><br>${guess.correct ? `The mystery country is <b>${mysteryLeader.country}</b>.` : guess.corruptionHint}</div>
+            <div class="hint-box"><b>Continent hint:</b><br>${guess.correct ? `${mysteryLeader.country} is in <b>${mysteryLeader.continent}</b>.` : (guess.sameContinent ? `Yes, ${guess.country} is on the correct continent.` : `No, ${guess.country} is not on the correct continent.`)}</div>
+          </div>
+          <div class="distance-line">
+            <div><b>Distance:</b> ${distanceText}</div>
+            <div class="emoji-bar">${guess.proximityBar}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAttempts() {
+      attemptsEl.innerHTML = guesses.map(buildAttemptCard).join("");
+      renderDots();
+      updateBlur();
+    }
+
+    function applyLeaderToUI() {
+      roleBadge.textContent = mysteryLeader.role;
+      leaderMetaBadge.textContent = randomPreviewMode ? "Random preview" : "Daily puzzle";
+      sourceBadge.textContent = "Source: Wikimedia";
+      leaderImage.src = mysteryLeader.image || "";
+      leaderImage.alt = `Portrait of a mystery leader from ${mysteryLeader.country}`;
+      leaderImage.onload = () => portraitWrap.classList.add("ready");
+      leaderImage.onerror = () => {
+        portraitWrap.classList.remove("ready");
+        leaderImage.removeAttribute("src");
+        sourceBadge.textContent = "Image unavailable";
+      };
+      if (leaderImage.complete && leaderImage.naturalWidth > 0) {
+        portraitWrap.classList.add("ready");
+      }
+      updateBlur();
+    }
+
+    function finishGame(won) {
+      gameOver = true;
+      guessButton.disabled = true;
+      guessInput.disabled = true;
+      shareButton.disabled = false;
+      leaderImage.style.filter = "blur(0px)";
+      leaderImage.style.transform = "scale(1)";
+      blurBadge.textContent = won ? "Solved" : "Revealed";
+      if (won) {
+        setStatus(`Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.`, "good");
+      } else {
+        setStatus(`Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, "bad");
+      }
+      saveState();
+    }
+
+    function submitGuess() {
+      if (gameOver || !mysteryLeader) return;
+      const raw = guessInput.value.trim();
+      const country = canonicalCountry(raw);
+      if (!country) {
+        setStatus("That country is not in the current playable pool. Try a country from the suggestions.", "bad");
+        return;
+      }
+      if (guesses.some((g) => g.country === country)) {
+        setStatus("You already guessed that country.", "bad");
+        return;
+      }
+
+      const guessMeta = getCountryMeta(country);
+      const correct = country === mysteryLeader.country;
+      const sameContinent = correct ? true : guessMeta?.continent === mysteryLeader.continent;
+      const distanceKm = correct ? 0 : haversineKm(guessMeta?.coords, mysteryLeader.coords);
+      const guessRecord = {
+        country,
+        correct,
+        sameContinent,
+        distanceKm,
+        proximityBar: distanceEmojiBar(distanceKm, correct),
+        corruptionHint: correct ? "" : corruptionHint({ ...guessMeta, country })
+      };
+      guesses.push(guessRecord);
+      guessInput.value = "";
+      renderAttempts();
+
+      if (correct) {
+        finishGame(true);
+        return;
+      }
+
+      const remaining = MAX_GUESSES - guesses.length;
+      if (remaining <= 0) {
+        finishGame(false);
+      } else {
+        setStatus(`Not quite. ${remaining} guess${remaining === 1 ? '' : 'es'} left.`, "info");
+        saveState();
+      }
+    }
+
+    function restoreFromSavedState(saved) {
+      if (!saved) return false;
+      const found = leaderPool.find((entry) => entry.id === saved.mysteryLeaderId);
+      if (!found) return false;
+      mysteryLeader = found;
+      guesses = Array.isArray(saved.guesses) ? saved.guesses : [];
+      gameOver = Boolean(saved.gameOver);
+      randomPreviewMode = Boolean(saved.randomPreviewMode);
+      applyLeaderToUI();
+      renderAttempts();
+      if (gameOver) {
+        guessButton.disabled = true;
+        guessInput.disabled = true;
+        shareButton.disabled = false;
+        const won = guesses.some((g) => g.correct);
+        setStatus(won
+          ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.`
+          : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, won ? "good" : "bad");
+      } else {
+        setStatus("Daily puzzle loaded. Start guessing.", "info");
+      }
+      return true;
+    }
+
+    async function selectLeader(useRandom = false) {
+      randomPreviewMode = useRandom;
+      const base = useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool);
+      mysteryLeader = await enrichLeaderImage(base);
+      guesses = [];
+      gameOver = false;
+      guessButton.disabled = false;
+      guessInput.disabled = false;
+      shareButton.disabled = true;
+      portraitWrap.classList.remove("ready");
+      applyLeaderToUI();
+      renderAttempts();
+      setStatus(useRandom ? "Random preview loaded." : "Daily puzzle loaded. Start guessing.", "info");
+      saveState();
+    }
+
+    function buildShareText() {
+      const result = guesses.some((g) => g.correct) ? guesses.length : "X";
+      const rows = guesses.map((g) => g.proximityBar).join("\n");
+      return `Leaderle ${getTodayKey()} ${result}/${MAX_GUESSES}\n${rows}`;
+    }
+
+    async function copyShare() {
+      try {
+        await navigator.clipboard.writeText(buildShareText());
+        setStatus("Result copied to clipboard.", "good");
+      } catch {
+        setStatus("Could not copy automatically. Clipboard permissions may be blocked.", "bad");
+      }
+    }
+
+    async function init() {
+      dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
+      guessButton.disabled = true;
+      shareButton.disabled = true;
+      guessInput.disabled = true;
+      setStatus("Loading live leader data…", "info", true);
+
+      corruptionMap = await fetchCorruptionMap();
+      leaderPool = await fetchLeaderPool();
+
+      if (!leaderPool.length) {
+        setStatus("Could not load live leader data. Check your network or API availability.", "bad");
+        return;
+      }
+
+      buildCountryOptions();
+      const saved = loadState();
+      if (!restoreFromSavedState(saved)) {
+        await selectLeader(false);
+      }
+    }
+
+    guessButton.addEventListener("click", submitGuess);
+    guessInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") submitGuess();
+    });
+    shareButton.addEventListener("click", copyShare);
+    resetButton.addEventListener("click", async () => {
+      clearTodayState();
+      await selectLeader(false);
+    });
+    randomButton.addEventListener("click", async () => {
+      await selectLeader(true);
+    });
+
+    init().catch((error) => {
+      console.error(error);
+      setStatus("Something went wrong while loading the puzzle. See the console for details.", "bad");
+    });
+  </script>
+</body>
+</html>
