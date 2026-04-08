@@ -28,6 +28,9 @@
         linear-gradient(180deg, #020814, var(--bg));
       padding: 28px 16px 40px;
     }
+    #shareButton {
+      display: none;
+    }
     .shell { max-width: 1200px; margin: 0 auto; }
     .card {
       background: var(--card);
@@ -640,6 +643,7 @@
       guessButton.disabled = true;
       guessInput.disabled = true;
       shareButton.disabled = false;
+      shareButton.style.display = "inline-flex";
       leaderImage.style.filter = "blur(0px)";
       leaderImage.style.transform = "scale(1)";
       setStatus(won ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, won ? "good" : "bad");
@@ -692,6 +696,7 @@
       guessButton.disabled = gameOver;
       guessInput.disabled = gameOver;
       shareButton.disabled = !gameOver;
+      shareButton.style.display = gameOver ? "inline-flex" : "none";
       setStatus(gameOver ? (guesses.some((g) => g.correct) ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`) : "Daily puzzle loaded. Start guessing.", gameOver ? (guesses.some((g) => g.correct) ? "good" : "bad") : "info");
       setRevealVisible(gameOver);
       return true;
@@ -707,6 +712,7 @@
       guessButton.disabled = false;
       guessInput.disabled = false;
       shareButton.disabled = true;
+      shareButton.style.display = "none";
       applyLeaderToUI();
       renderAttempts();
       setStatus(useRandom ? "Random preview loaded." : "Daily puzzle loaded. Start guessing.", "info");
