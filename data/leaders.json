@@ -88,15 +88,15 @@
       "continent": "Africa",
       "iso2": "DZ",
       "role": "Head of government",
-      "image": "",
+      "image": "https://tse3.mm.bing.net/th/id/OIP.drtmG0PSB8rwGemvZdRPxAAAAA?pid=Api",
       "corruptionScore": -0.589308321475983,
       "coords": {
         "lon": 1,
         "lat": 28
       },
       "summary": "Sifi Ghrieb is an Algerian politician who has been serving as the Prime Minister of Algeria since September 2025.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q3052772|http://www.wikidata.org/entity/Q228|Head of state",
@@ -924,15 +924,15 @@
       "continent": "Africa",
       "iso2": "BI",
       "role": "Head of government",
-      "image": "",
+      "image": "https://biographs.org/images/89/89544/gervais-ndirakobuca-1.jpg",
       "corruptionScore": -1.55602598190308,
       "coords": {
         "lon": 29.816667,
         "lat": -3.666667
       },
       "summary": "Gervais Ndirakobuca is a Burundian politician, retired police lieutenant general and former rebel commander serving as the President of the Senate of Burundi since 5 August 2025. Prior to that, he was the Prime Minister of Burundi from 7 september 2022 until 5 August 2025. And prior to that, he was the Minister of Interior, Public Security, and Community Development. He is known for his violent crackdown of the 2015 civil protest in Burundi and was under United States and European Union sanctions for human rights violations when President Évariste Ndayishimiye appointed him security minister.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q57319|http://www.wikidata.org/entity/Q424|Head of state",
@@ -2360,23 +2360,23 @@
       "imageIssue": null
     },
     {
-      "id": "http://www.wikidata.org/entity/Q627337|http://www.wikidata.org/entity/Q1007|Head of government",
-      "leader": "Rui Duarte de Barros",
-      "articleTitle": "Rui_Duarte_de_Barros",
-      "startDate": "2023-12-21",
+      "id": "http://www.wikidata.org/entity/Q112988233|http://www.wikidata.org/entity/Q1007|Head of government",
+      "leader": "Ilídio Vieira Té",
+      "articleTitle": "Il%C3%ADdio_Vieira_T%C3%A9",
+      "startDate": "2025-11-28",
       "country": "Guinea-Bissau",
       "continent": "Africa",
       "iso2": "GW",
       "role": "Head of government",
-      "image": "",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFT76Yg9vcX7w-axlIOmei7lRCX0XcuetPf8gJ0Ge2cV14TZOAKOUmGTDcXsQ0jIbeYQ03tPP9kshFOCq1MvIeG81i9rcMPYRF-S8AD_klNJx1LYD4hRuzUwv4Gcs1jZdPbkdb18-Nnsn36AalKMJOLNVV2edV3-cU-OpffMv97kNRCSbQ-JcpLtms/s320/292005854_427826602690024_3653335174379393779_n.jpg",
       "corruptionScore": -1.1783698797226,
       "coords": {
         "lon": -15,
         "lat": 12
       },
-      "summary": "Rui Duarte de Barros is a Bissau-Guinean economist and politician who has served as the prime minister of Guinea-Bissau from 17 January 2024 to 7 August 2025. His previous positions include being the Minister of Economy and Finance, as well as being the acting prime minister from 16 May 2012 to 3 July 2014 following a military coup.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "summary": "Ilídio Vieira Té is a Bissau-Guinean politician who has served as prime minister of Guinea-Bissau since 28 November 2025, while also retaining the finance portfolio.",
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q108418519|http://www.wikidata.org/entity/Q1006|Head of state",
@@ -3975,23 +3975,23 @@
       "imageIssue": null
     },
     {
-      "id": "http://www.wikidata.org/entity/Q33181566|http://www.wikidata.org/entity/Q235|Head of government",
-      "leader": "Philippe Mettoux",
-      "articleTitle": "Philippe_Mettoux",
-      "startDate": "2025-07-04",
+      "id": "http://www.wikidata.org/entity/Q5178674|http://www.wikidata.org/entity/Q235|Head of government",
+      "leader": "Christophe Mirmand",
+      "articleTitle": "Christophe_Mirmand",
+      "startDate": "2025-07-21",
       "country": "Monaco",
       "continent": "Europe",
       "iso2": "MC",
       "role": "Head of government",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Christophe%20Mirmand.jpg?width=900",
       "corruptionScore": 1.25135612487793,
       "coords": {
         "lon": 7.42,
         "lat": 43.731111111
       },
-      "summary": "Philippe Mettoux is a French government official who was the designated Minister of State of Monaco, and was set to assume office on 4 July 2025 before renouncing. He previously worked for SNCF and as a political advisor.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "summary": "Christophe Mirmand is a French senior civil servant who has served as Minister of State of Monaco since 21 July 2025.",
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q27058418|http://www.wikidata.org/entity/Q711|Head of state",
@@ -4135,15 +4135,15 @@
       "continent": "Africa",
       "iso2": "MZ",
       "role": "Head of government",
-      "image": "",
+      "image": "https://portaldogoverno.gov.mz/wp-content/uploads/2025/09/images-1.jpeg",
       "corruptionScore": -0.828437745571136,
       "coords": {
         "lon": 35,
         "lat": -19
       },
       "summary": "Maria Benvinda Levy is a Mozambican jurist and politician who has been the 16th Prime Minister of Mozambique since her appointment by President Daniel Chapo in 2025. Prior to her tenure as prime minister she was Minister of Justice from 2008 to 2015, and a judge in Maputo.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q3462649|http://www.wikidata.org/entity/Q836|Head of government",
@@ -5123,15 +5123,15 @@
       "continent": "Africa",
       "iso2": "RW",
       "role": "Head of government",
-      "image": "",
+      "image": "https://www.primature.gov.rw/fileadmin/user_upload/Primature/Officials_Images/Justin_PM.jpeg",
       "corruptionScore": 0.671653091907501,
       "coords": {
         "lon": 30,
         "lat": -2
       },
       "summary": "Justin Nsengiyumva is a Rwandan banker and politician serving as the current Prime Minister of Rwanda since 25 July 2025.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q1231345|http://www.wikidata.org/entity/Q1037|Head of state",
@@ -5248,42 +5248,42 @@
       "imageIssue": null
     },
     {
-      "id": "http://www.wikidata.org/entity/Q57546|http://www.wikidata.org/entity/Q238|Head of state",
-      "leader": "Denise Bronzetti",
-      "articleTitle": "Denise_Bronzetti",
-      "startDate": "2025-04-01",
+      "id": "http://www.wikidata.org/entity/Q1346506432|http://www.wikidata.org/entity/Q238|Head of state",
+      "leader": "Alice Mina",
+      "articleTitle": "Alice_Mina",
+      "startDate": "2026-04-01",
       "country": "San Marino",
       "continent": "Europe",
       "iso2": "SM",
       "role": "Head of state",
-      "image": "",
+      "image": "https://pace.coe.int/members/image/8953/5436",
       "corruptionScore": 1.25135612487793,
       "coords": {
         "lon": 12.466666666,
         "lat": 43.933333333
       },
-      "summary": "Denise Bronzetti is a Sammarinese politician who has been one of the Captains Regent of San Marino alongside Italo Righi since 2025, and a member of the Grand and General Council since 2006, as a member of the Party of Socialists and Democrats. She was one of the Captains Regent from 2012 to 2013.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "summary": "Alice Mina is a Sammarinese politician who has served as one of the Captains Regent of San Marino alongside Vladimiro Selva since 1 April 2026. She is also a member of the Grand and General Council and is affiliated with the Sammarinese Christian Democratic Party.",
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q1353628|http://www.wikidata.org/entity/Q238|Head of state",
-      "leader": "Italo Righi",
-      "articleTitle": "Italo_Righi",
-      "startDate": "2025-04-01",
+      "leader": "Vladimiro Selva",
+      "articleTitle": "Vladimiro_Selva",
+      "startDate": "2026-04-01",
       "country": "San Marino",
       "continent": "Europe",
       "iso2": "SM",
       "role": "Head of state",
-      "image": "",
+      "image": "https://www.consigliograndeegenerale.sm/contents/instance18/files/photo/17025844_17000062_SelvaVladimiro.jpg",
       "corruptionScore": 1.25135612487793,
       "coords": {
         "lon": 12.466666666,
         "lat": 43.933333333
       },
-      "summary": "Italo Righi is a Sammarinese politician who has been serving as Captain Regent alongside Denise Bronzetti from 1 April to 1 October 2025. He was previously Captain Regent from 1 April 2012 to 1 October 2012, with Maurizio Rattini.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "summary": "Vladimiro Selva is a Sammarinese politician who has served as one of the Captains Regent of San Marino alongside Alice Mina since 1 April 2026. He is also a member of the Grand and General Council and is affiliated with Libera San Marino.",
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q131749390|http://www.wikidata.org/entity/Q1039|Head of government",
@@ -6206,15 +6206,15 @@
       "continent": "Africa",
       "iso2": "TG",
       "role": "Head of state",
-      "image": "",
+      "image": "https://tse4.mm.bing.net/th/id/OIP.qCQG3zH1uXwFaFKVP6zMVwHaIc?pid=Api",
       "corruptionScore": -0.619174957275391,
       "coords": {
         "lon": 1.183333,
         "lat": 8.25
       },
       "summary": "Jean-Lucien Kwassi Lanyo Savi de Tové is a Togolese politician and civil servant who has been serving as the fifth president of Togo since 2025. A member of the Pan-African Patriotic Convergence (CPP), he was previously the Minister of Trade, Industry and Handicrafts in the governments of Edem Kodjo and Yawovi Agboyibo from 2005 to 2007.",
-      "imageVerified": false,
-      "imageIssue": "missing-url"
+      "imageVerified": true,
+      "imageIssue": null
     },
     {
       "id": "http://www.wikidata.org/entity/Q5437258|http://www.wikidata.org/entity/Q678|Head of government",
