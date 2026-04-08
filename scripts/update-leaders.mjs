@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * Leaderle database generator (v2)
+ * Leaderle database generator (v3)
  *
- * More reliable than v1 because it:
- * - splits the Wikidata fetch into two smaller queries
- * - uses retries with backoff for flaky upstreams
- * - degrades gracefully instead of failing the whole run immediately
- * - always writes a valid leaders.json if at least one source succeeds
- *
- * Usage:
- *   node scripts/update-leaders.mjs
+ * - Fetches current heads of state and heads of government
+ * - Requires start date, no end date, no death date, and continent
+ * - Includes selected extra entities explicitly
+ * - Filters shared monarch Charles III to UK only for head-of-state entries
+ * - Verifies image URLs so unusable leaders are excluded
+ * - Fetches Wikipedia summaries with low concurrency
  */
 
 import fs from "node:fs/promises";
@@ -28,7 +26,7 @@ const WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql";
 const WORLD_BANK_CORRUPTION_URL = "https://api.worldbank.org/v2/country/all/indicator/CC.EST?format=json&per_page=400&mrv=1";
 const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
 
-const USER_AGENT = "LeaderleDatabaseGenerator/2.0 (https://github.com/obliquadata/obliquadata.github.io)";
+const USER_AGENT = "LeaderleDatabaseGenerator/3.0 (https://github.com/obliquadata/obliquadata.github.io)";
 const SUMMARY_CONCURRENCY = 1;
 const SUMMARY_DELAY_MS = 250;
 const IMAGE_CHECK_CONCURRENCY = 6;
@@ -36,10 +34,21 @@ const ENABLE_SUMMARY_FETCH = true;
 const MAX_RETRIES = 4;
 const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
 
+const EXTRA_ENTITIES = [
+  "Q458",    // European Union
+  "Q1246",   // Kosovo
+  "Q26988",  // Cook Islands
+  "Q34020",  // Niue
+  "Q8646",   // Hong Kong
+  "Q14773",  // Macau
+  "Q223"     // Greenland
+];
+
 const FALLBACK_LEADERS = [
   {
     id: "france-macron-head-of-state",
     leader: "Emmanuel Macron",
+    articleTitle: "Emmanuel Macron",
     startDate: "2017-05-14",
     country: "France",
     continent: "Europe",
@@ -53,6 +62,7 @@ const FALLBACK_LEADERS = [
   {
     id: "australia-albanese-head-of-government",
     leader: "Anthony Albanese",
+    articleTitle: "Anthony Albanese",
     startDate: "2022-05-23",
     country: "Australia",
     continent: "Oceania",
@@ -66,6 +76,7 @@ const FALLBACK_LEADERS = [
   {
     id: "india-modi-head-of-government",
     leader: "Narendra Modi",
+    articleTitle: "Narendra Modi",
     startDate: "2014-05-26",
     country: "India",
     continent: "Asia",
@@ -134,9 +145,7 @@ async function fetchJsonWithRetry(url, options = {}, label = "request") {
     } catch (error) {
       lastError = error;
       const retryable = RETRYABLE_STATUS.has(error.status);
-      if (!retryable || attempt === MAX_RETRIES) {
-        throw error;
-      }
+      if (!retryable || attempt === MAX_RETRIES) throw error;
       const delay = 1000 * Math.pow(2, attempt - 1);
       console.warn(`${label} failed on attempt ${attempt}/${MAX_RETRIES}: ${error.message}. Retrying in ${delay}ms...`);
       await sleep(delay);
@@ -165,9 +174,7 @@ async function fetchWithRetry(url, options = {}, label = "request") {
     } catch (error) {
       lastError = error;
       const retryable = RETRYABLE_STATUS.has(error.status);
-      if (!retryable || attempt === MAX_RETRIES) {
-        throw error;
-      }
+      if (!retryable || attempt === MAX_RETRIES) throw error;
       const delay = 1000 * Math.pow(2, attempt - 1);
       console.warn(`${label} failed on attempt ${attempt}/${MAX_RETRIES}: ${error.message}. Retrying in ${delay}ms...`);
       await sleep(delay);
@@ -176,22 +183,39 @@ async function fetchWithRetry(url, options = {}, label = "request") {
   throw lastError;
 }
 
-function buildOfficeQuery(property, officeLabel, extraCountryFilter = "") {
+function buildOfficeQuery(property, extraValues = []) {
+  const extraValuesBlock = extraValues.length
+    ? `UNION { VALUES ?country { ${extraValues.map((qid) => `wd:${qid}`).join(" ")} } }`
+    : "";
+
+  const sharedMonarchFilter = property === "P35"
+    ? `
+      FILTER NOT EXISTS {
+        VALUES ?sharedMonarch { wd:Q43274 }
+        FILTER(?leader = ?sharedMonarch && ?country != wd:Q145)
+      }
+    `
+    : "";
+
   return `
     SELECT DISTINCT ?country ?countryLabel ?leader ?leaderLabel ?article ?continentLabel ?iso2 ?image ?coord ?start WHERE {
+      {
+        ?country wdt:P31/wdt:P279* wd:Q3624078 .
+      }
+      ${extraValuesBlock}
+
       ?country wdt:${property} ?leader .
       ?country p:${property} ?stmt .
       ?stmt ps:${property} ?leader .
 
+      ?stmt pq:P580 ?start .
       FILTER NOT EXISTS { ?stmt wikibase:rank wikibase:DeprecatedRank }
       FILTER NOT EXISTS { ?stmt pq:P582 ?end }
       FILTER NOT EXISTS { ?leader wdt:P570 ?dateOfDeath }
 
-      OPTIONAL { ?stmt pq:P580 ?start . }
+      ?country wdt:P30 ?continent .
+      ${sharedMonarchFilter}
 
-      ${extraCountryFilter || "?country wdt:P31/wdt:P279* wd:Q3624078 ."}
-
-      OPTIONAL { ?country wdt:P30 ?continent . }
       OPTIONAL { ?country wdt:P297 ?iso2 . }
       OPTIONAL { ?country wdt:P625 ?coord . }
       OPTIONAL { ?leader wdt:P18 ?image . }
@@ -204,8 +228,8 @@ function buildOfficeQuery(property, officeLabel, extraCountryFilter = "") {
   `.trim();
 }
 
-async function fetchWikidataOffice(property, officeLabel, extraCountryFilter = "") {
-  const query = buildOfficeQuery(property, officeLabel, extraCountryFilter);
+async function fetchWikidataOffice(property, officeLabel, extraValues = []) {
+  const query = buildOfficeQuery(property, extraValues);
   const url = `${WIKIDATA_ENDPOINT}?format=json&query=${encodeURIComponent(query)}`;
   const json = await fetchJsonWithRetry(
     url,
@@ -220,32 +244,24 @@ async function fetchWikidataOffice(property, officeLabel, extraCountryFilter = "
     return {
       id: `${row.leader?.value || ""}|${row.country?.value || ""}|${officeLabel}`,
       leader: row.leaderLabel?.value || "Unknown leader",
+      articleTitle,
       startDate: row.start?.value ? row.start.value.slice(0, 10) : null,
       country: row.countryLabel?.value || "Unknown country",
       continent: inferContinent(row.continentLabel?.value || ""),
       iso2: (row.iso2?.value || "").toUpperCase(),
       role: officeLabel,
-      articleTitle,
       image: commonsImageToUrl(row.image?.value || ""),
       corruptionScore: null,
       coords: parsePointWkt(row.coord?.value || ""),
       summary: ""
     };
-  }).filter((entry) => entry.country && entry.articleTitle && entry.continent);
+  }).filter((entry) => entry.country && entry.articleTitle && entry.continent && entry.startDate);
 }
 
 async function fetchLeaderPool() {
-  const sovereignStateFilter = "?country wdt:P31/wdt:P279* wd:Q3624078 .";
-  const kosovoFilter = "VALUES ?country { wd:Q1246 }";
-  const euFilter = "VALUES ?country { wd:Q458 }";
-
   const results = await Promise.allSettled([
-    fetchWikidataOffice("P35", "Head of state", sovereignStateFilter),
-    fetchWikidataOffice("P6", "Head of government", sovereignStateFilter),
-
-    // Kosovo as extra entity
-    fetchWikidataOffice("P35", "Head of state", kosovoFilter),
-    fetchWikidataOffice("P6", "Head of government", kosovoFilter)
+    fetchWikidataOffice("P35", "Head of state", EXTRA_ENTITIES),
+    fetchWikidataOffice("P6", "Head of government", EXTRA_ENTITIES)
   ]);
 
   const successful = results
@@ -263,26 +279,7 @@ async function fetchLeaderPool() {
     return true;
   });
 
-  // Manual EU entry
-  leaders.push({
-    id: "european-union-von-der-leyen-head-of-government",
-    leader: "Ursula von der Leyen",
-    startDate: "2019-12-01",
-    country: "European Union",
-    continent: "Europe",
-    iso2: "EU",
-    role: "Head of government",
-    articleTitle: "Ursula von der Leyen",
-    image: "",
-    corruptionScore: null,
-    coords: { lat: 50.8503, lon: 4.3517 },
-    summary: ""
-  });
-
-  leaders.sort((a, b) =>
-    `${a.country}-${a.leader}-${a.role}`.localeCompare(`${b.country}-${b.leader}-${b.role}`)
-  );
-
+  leaders.sort((a, b) => `${a.country}-${a.leader}-${a.role}`.localeCompare(`${b.country}-${b.leader}-${b.role}`));
   return leaders;
 }
 
@@ -303,10 +300,7 @@ async function fetchCorruptionMap() {
 }
 
 async function fetchSummaryForLeader(leader) {
-  if (!ENABLE_SUMMARY_FETCH) {
-    return leader;
-  }
-
+  if (!ENABLE_SUMMARY_FETCH) return leader;
   await sleep(SUMMARY_DELAY_MS);
   try {
     const data = await fetchJsonWithRetry(
@@ -360,10 +354,8 @@ async function imageUrlWorks(url) {
 }
 
 async function ensureWorkingImage(leader) {
-  const hasWorkingImage = await imageUrlWorks(leader.image);
-  if (hasWorkingImage) {
-    return leader;
-  }
+  const ok = await imageUrlWorks(leader.image);
+  if (ok) return leader;
   console.warn(`Dropping ${leader.leader} (${leader.country}, ${leader.role}) because the image is unavailable.`);
   return null;
 }
@@ -386,17 +378,6 @@ function validateLeaders(leaders) {
     if (!leader.image) {
       throw new Error(`Leader is missing image after filtering: ${leader.leader} (${leader.country}, ${leader.role})`);
     }
-  }
-
-  const counts = new Map();
-  for (const leader of leaders) {
-    const key = `${leader.country}::${leader.role}`;
-    counts.set(key, (counts.get(key) || 0) + 1);
-  }
-
-  const duplicatePairs = [...counts.entries()].filter(([, count]) => count > 1);
-  if (duplicatePairs.length > 25) {
-    throw new Error(`Too many duplicate country-role pairs detected: ${duplicatePairs.length}`);
   }
 }
 
@@ -435,10 +416,7 @@ async function main() {
 
   if (ENABLE_SUMMARY_FETCH) {
     console.log("Fetching Wikipedia summaries and thumbnails...");
-  } else {
-    console.log("Skipping Wikipedia summary fetch to avoid rate limits.");
   }
-
   const enrichedLeaders = await mapWithConcurrency(
     leadersWithCorruption,
     SUMMARY_CONCURRENCY,
