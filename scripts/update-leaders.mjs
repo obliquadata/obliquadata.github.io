@@ -31,6 +31,7 @@ const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summar
 const USER_AGENT = "LeaderleDatabaseGenerator/2.0 (https://github.com/obliquadata/obliquadata.github.io)";
 const SUMMARY_CONCURRENCY = 1;
 const SUMMARY_DELAY_MS = 250;
+const IMAGE_CHECK_CONCURRENCY = 6;
 const ENABLE_SUMMARY_FETCH = true;
 const MAX_RETRIES = 4;
 const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
@@ -130,6 +131,37 @@ async function fetchJsonWithRetry(url, options = {}, label = "request") {
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt += 1) {
     try {
       return await fetchJson(url, options);
+    } catch (error) {
+      lastError = error;
+      const retryable = RETRYABLE_STATUS.has(error.status);
+      if (!retryable || attempt === MAX_RETRIES) {
+        throw error;
+      }
+      const delay = 1000 * Math.pow(2, attempt - 1);
+      console.warn(`${label} failed on attempt ${attempt}/${MAX_RETRIES}: ${error.message}. Retrying in ${delay}ms...`);
+      await sleep(delay);
+    }
+  }
+  throw lastError;
+}
+
+async function fetchWithRetry(url, options = {}, label = "request") {
+  let lastError = null;
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt += 1) {
+    try {
+      const res = await fetch(url, {
+        ...options,
+        headers: {
+          "user-agent": USER_AGENT,
+          ...(options.headers || {})
+        }
+      });
+      if (!res.ok) {
+        const error = new Error(`Request failed (${res.status}) for ${url}`);
+        error.status = res.status;
+        throw error;
+      }
+      return res;
     } catch (error) {
       lastError = error;
       const retryable = RETRYABLE_STATUS.has(error.status);
@@ -274,6 +306,32 @@ async function mapWithConcurrency(items, concurrency, mapper) {
   return results;
 }
 
+async function imageUrlWorks(url) {
+  if (!url) return false;
+  try {
+    const headRes = await fetchWithRetry(url, { method: "HEAD", redirect: "follow" }, `Image HEAD ${url}`);
+    const type = headRes.headers.get("content-type") || "";
+    return type.startsWith("image/") || type === "application/octet-stream";
+  } catch {
+    try {
+      const getRes = await fetchWithRetry(url, { method: "GET", redirect: "follow" }, `Image GET ${url}`);
+      const type = getRes.headers.get("content-type") || "";
+      return type.startsWith("image/") || type === "application/octet-stream";
+    } catch {
+      return false;
+    }
+  }
+}
+
+async function ensureWorkingImage(leader) {
+  const hasWorkingImage = await imageUrlWorks(leader.image);
+  if (hasWorkingImage) {
+    return leader;
+  }
+  console.warn(`Dropping ${leader.leader} (${leader.country}, ${leader.role}) because the image is unavailable.`);
+  return null;
+}
+
 function addCorruptionScores(leaders, corruptionMap) {
   return leaders.map((leader) => ({
     ...leader,
@@ -288,6 +346,9 @@ function validateLeaders(leaders) {
   for (const leader of leaders) {
     if (!leader.id || !leader.country || !leader.leader || !leader.role) {
       throw new Error(`Invalid leader entry: ${JSON.stringify(leader)}`);
+    }
+    if (!leader.image) {
+      throw new Error(`Leader is missing image after filtering: ${leader.leader} (${leader.country}, ${leader.role})`);
     }
   }
 
@@ -348,9 +409,16 @@ async function main() {
     fetchSummaryForLeader
   );
 
-  validateLeaders(enrichedLeaders);
-  await writeOutput(enrichedLeaders, source);
-  console.log(`Wrote ${enrichedLeaders.length} leaders to ${outputPath}`);
+  console.log("Verifying leader images...");
+  const leadersWithWorkingImages = (await mapWithConcurrency(
+    enrichedLeaders,
+    IMAGE_CHECK_CONCURRENCY,
+    ensureWorkingImage
+  )).filter(Boolean);
+
+  validateLeaders(leadersWithWorkingImages);
+  await writeOutput(leadersWithWorkingImages, source);
+  console.log(`Wrote ${leadersWithWorkingImages.length} leaders to ${outputPath}`);
 }
 
 main().catch((error) => {
