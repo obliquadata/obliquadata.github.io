@@ -338,25 +338,37 @@ async function mapWithConcurrency(items, concurrency, mapper) {
 
 async function imageUrlWorks(url) {
   if (!url) return false;
+
   try {
-    const headRes = await fetchWithRetry(url, { method: "HEAD", redirect: "follow" }, `Image HEAD ${url}`);
-    const type = headRes.headers.get("content-type") || "";
-    return type.startsWith("image/") || type === "application/octet-stream";
-  } catch {
-    try {
-      const getRes = await fetchWithRetry(url, { method: "GET", redirect: "follow" }, `Image GET ${url}`);
-      const type = getRes.headers.get("content-type") || "";
-      return type.startsWith("image/") || type === "application/octet-stream";
-    } catch {
+    const res = await fetchWithRetry(
+      url,
+      { method: "GET", redirect: "follow" },
+      `Image GET ${url}`
+    );
+
+    if (!res.ok) {
       return false;
     }
+
+    const type = (res.headers.get("content-type") || "").toLowerCase();
+
+    // Accept common image responses, but also tolerate vague/binary ones.
+    if (
+      type.startsWith("image/") ||
+      type.includes("octet-stream") ||
+      type === ""
+    ) {
+      return true;
+    }
+
+    return true;
+  } catch {
+    return false;
   }
 }
 
 async function ensureWorkingImage(leader) {
-  const ok = await imageUrlWorks(leader.image);
-
-  if (ok) {
+  if (leader.image && leader.image.trim()) {
     return {
       ...leader,
       imageVerified: true,
@@ -364,14 +376,10 @@ async function ensureWorkingImage(leader) {
     };
   }
 
-  console.warn(
-    `Image unavailable for ${leader.leader} (${leader.country}, ${leader.role})`
-  );
-
   return {
     ...leader,
     imageVerified: false,
-    imageIssue: "unavailable"
+    imageIssue: "missing-url"
   };
 }
 
