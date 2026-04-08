@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leaderle</title>
+  <title>World Leadle</title>
   <style>
     :root {
       --bg: #07111f;
@@ -182,7 +182,7 @@
       <div class="topbar">
         <div>
           <div class="eyebrow">Daily leader guessing game</div>
-          <h1>Leaderle</h1>
+          <h1>World Leadle</h1>
           <div class="subtitle">Guess the country of today’s mystery world leader. This GitHub Pages version loads a local leader database from JSON and only fetches a Wikipedia summary for the revealed leader when needed.</div>
         </div>
         <div class="topbar-right">
@@ -716,7 +716,7 @@
       const result = guesses.some((g) => g.correct) ? guesses.length : "X";
       const rows = guesses.map((g) => g.proximityBar).join("\n");
       const shareUrl = window.location.href;
-      return `Leaderle ${getTodayKey()} ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
+      return `World Leadle ${getTodayKey()} - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
     }
     async function copyShare() {
       try {
