@@ -183,7 +183,7 @@
         <div>
           <div class="eyebrow">Daily leader guessing game</div>
           <h1>Leaderle</h1>
-          <div class="subtitle">Guess the country of today’s mystery world leader. This GitHub Pages version loads a local leader database from JSON instead of querying external APIs on every page load.</div>
+          <div class="subtitle">Guess the country of today’s mystery world leader. This GitHub Pages version loads a local leader database from JSON and only fetches a Wikipedia summary for the revealed leader when needed.</div>
         </div>
         <div class="topbar-right">
           <div class="date-chip" id="dateChip">Daily puzzle</div>
@@ -220,7 +220,7 @@
             <button id="guessButton">Submit guess</button>
           </div>
           <div class="footer-actions">
-            <button class="secondary" id="shareButton" disabled>Copy result</button>
+            <button class="secondary" id="shareButton" disabled>Share result</button>
             <button class="ghost" id="randomButton">Preview random leader</button>
             <button class="ghost" id="resetButton">Reset today</button>
           </div>
@@ -253,43 +253,30 @@
       </div>
       <div class="modal-grid">
         <div class="panel">
-          <h2>Recommended repo structure</h2>
-          <div class="code-block">/
-index.html
-data/
-  leaders.json
-.github/
-  workflows/
-    update-leaders.yml</div>
+          <h2>Summary strategy</h2>
+          <p>This version keeps <code>data/leaders.json</code> lightweight and only fetches a Wikipedia summary when a leader is revealed. That avoids mass rate limits during scheduled database generation.</p>
         </div>
         <div class="panel">
-          <h2>How this version works</h2>
-          <p>The page first tries to load <code>./data/leaders.json</code>. If that file is missing, it falls back to a small built-in sample list so the page still works while you set up the repository.</p>
-        </div>
-        <div class="panel">
-          <h2>GitHub Actions updater</h2>
-          <div class="code-block">name: Update leaders database
-
-on:
-  schedule:
-    - cron: '17 3 * * *'
-  workflow_dispatch:
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: node scripts/update-leaders.mjs
-      - run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/leaders.json
-          git commit -m "Update leaders database" || exit 0
-          git push</div>
+          <h2>Expected JSON shape</h2>
+          <div class="code-block">{
+  "generatedAt": "...",
+  "count": 198,
+  "leaders": [
+    {
+      "id": "...",
+      "leader": "...",
+      "country": "...",
+      "role": "Head of state",
+      "articleTitle": "...",
+      "image": "...",
+      "continent": "...",
+      "startDate": "YYYY-MM-DD",
+      "coords": { "lat": 0, "lon": 0 },
+      "corruptionScore": 0.0,
+      "summary": ""
+    }
+  ]
+}</div>
         </div>
       </div>
     </div>
@@ -297,13 +284,15 @@ jobs:
 
   <script>
     const MAX_GUESSES = 6;
-    const STORAGE_PREFIX = "leaderle-state-json-v1";
+    const STORAGE_PREFIX = "leaderle-state-json-v3";
     const LEADERS_JSON_URL = "./data/leaders.json";
+    const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
 
     const FALLBACK_LEADERS = [
       {
         id: "france-macron-head-of-state",
         leader: "Emmanuel Macron",
+        articleTitle: "Emmanuel Macron",
         startDate: "2017-05-14",
         country: "France",
         continent: "Europe",
@@ -317,6 +306,7 @@ jobs:
       {
         id: "australia-albanese-head-of-government",
         leader: "Anthony Albanese",
+        articleTitle: "Anthony Albanese",
         startDate: "2022-05-23",
         country: "Australia",
         continent: "Oceania",
@@ -330,6 +320,7 @@ jobs:
       {
         id: "india-modi-head-of-government",
         leader: "Narendra Modi",
+        articleTitle: "Narendra Modi",
         startDate: "2014-05-26",
         country: "India",
         continent: "Asia",
@@ -579,20 +570,59 @@ jobs:
       renderDots();
       updateBlur();
     }
-    function setRevealContent() {
+
+    async function fetchRevealSummary(leader) {
+      if (leader.summary && leader.summary.trim()) {
+        return leader.summary;
+      }
+      if (!leader.articleTitle) {
+        return "No summary available for this leader yet.";
+      }
+      try {
+        revealText.textContent = "Loading summary…";
+        const res = await fetch(`${WIKIPEDIA_SUMMARY_BASE}${encodeURIComponent(leader.articleTitle)}`);
+        if (!res.ok) {
+          throw new Error(`Summary request failed: ${res.status}`);
+        }
+        const data = await res.json();
+        const summary = data?.extract || "No summary available for this leader yet.";
+        leader.summary = summary;
+        if (data?.thumbnail?.source || data?.originalimage?.source) {
+          const nextImage = data?.thumbnail?.source || data?.originalimage?.source;
+          if (nextImage && !leader.image) {
+            leader.image = nextImage;
+            leaderImage.src = nextImage;
+          }
+        }
+        return summary;
+      } catch (error) {
+        console.warn("Failed to fetch reveal summary", error);
+        return "No summary available for this leader yet.";
+      }
+    }
+
+    async function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
       revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
-      revealText.textContent = mysteryLeader.summary || "No summary available for this leader yet.";
+      revealText.textContent = mysteryLeader.summary || "Loading summary…";
+      const summary = await fetchRevealSummary(mysteryLeader);
+      if (mysteryLeader && revealCard.classList.contains("open")) {
+        revealText.textContent = summary;
+      }
     }
+
     function setRevealVisible(isVisible) {
       revealCard.classList.toggle("open", isVisible);
-      if (isVisible) setRevealContent();
+      if (isVisible) {
+        void setRevealContent();
+      }
     }
+
     function applyLeaderToUI() {
       roleBadge.textContent = mysteryLeader.role;
       blurBadge.textContent = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
       leaderMetaBadge.textContent = randomPreviewMode ? "Random preview" : "Daily puzzle";
-      sourceBadge.textContent = "Source: Wikimedia";
+      sourceBadge.textContent = "Source: local database";
       leaderImage.src = mysteryLeader.image || "";
       leaderImage.alt = "Mystery leader portrait";
       portraitWrap.classList.remove("ready");
@@ -604,6 +634,7 @@ jobs:
       setRevealVisible(false);
       updateBlur();
     }
+
     function finishGame(won) {
       gameOver = true;
       guessButton.disabled = true;
@@ -615,6 +646,7 @@ jobs:
       setRevealVisible(true);
       saveState();
     }
+
     function submitGuess() {
       if (gameOver || !mysteryLeader) return;
       const country = canonicalCountry(guessInput.value.trim());
@@ -646,6 +678,7 @@ jobs:
       setStatus(`Not quite. ${remaining} guess${remaining === 1 ? "" : "es"} left.`, "info");
       saveState();
     }
+
     function restoreFromSavedState(saved) {
       if (!saved) return false;
       const found = leaderPool.find((entry) => entry.id === saved.mysteryLeaderId);
@@ -663,6 +696,7 @@ jobs:
       setRevealVisible(gameOver);
       return true;
     }
+
     function chooseLeaderData(useRandom) { return useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool); }
     async function selectLeader(useRandom = false) {
       randomPreviewMode = useRandom;
@@ -681,7 +715,8 @@ jobs:
     function buildShareText() {
       const result = guesses.some((g) => g.correct) ? guesses.length : "X";
       const rows = guesses.map((g) => g.proximityBar).join("\n");
-      return `Leaderle ${getTodayKey()} ${result}/${MAX_GUESSES}\n${rows}`;
+      const shareUrl = window.location.href;
+      return `Leaderle ${getTodayKey()} ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
     }
     async function copyShare() {
       try {
@@ -720,6 +755,7 @@ jobs:
       safeStorage.setItem("__leaderle_test__", "ok");
       assert(safeStorage.getItem("__leaderle_test__") === "ok", "safe storage set/get should work");
       safeStorage.removeItem("__leaderle_test__");
+      assert(buildShareText().includes(window.location.href), "share text should include page URL");
     }
     async function init() {
       dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
