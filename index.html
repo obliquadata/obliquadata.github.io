@@ -336,17 +336,313 @@
       }
     ];
 
-    const aliases = {
-      usa: "United States",
-      us: "United States",
-      uk: "United Kingdom",
-      uae: "United Arab Emirates",
-      drc: "Democratic Republic of the Congo",
-      congo: "Republic of the Congo",
-      czechia: "Czech Republic",
-      caboverde: "Cape Verde",
-      timorleste: "Timor-Leste"
-    };
+  const aliases = {
+    // United States
+    us: "United States",
+    usa: "United States",
+    unitedstates: "United States",
+    unitedstatesofamerica: "United States",
+    america: "United States",
+    theunitedstates: "United States",
+    theunitedstatesofamerica: "United States",
+
+    // United Kingdom
+    uk: "United Kingdom",
+    unitedkingdom: "United Kingdom",
+    greatbritain: "United Kingdom",
+    britain: "United Kingdom",
+    gb: "United Kingdom",
+    gbr: "United Kingdom",
+    theuk: "United Kingdom",
+    theunitedkingdom: "United Kingdom",
+
+    // Netherlands
+    netherlands: "Kingdom of the Netherlands",
+    thenetherlands: "Kingdom of the Netherlands",
+    holland: "Kingdom of the Netherlands",
+    kingdomofthenetherlands: "Kingdom of the Netherlands",
+    dutchkingdom: "Kingdom of the Netherlands",
+
+    // Denmark
+    denmark: "Kingdom of Denmark",
+    kingdomofdenmark: "Kingdom of Denmark",
+
+    // Norway / Sweden / Belgium / Spain / Thailand / Cambodia etc. if database uses kingdom names
+    norway: "Kingdom of Norway",
+    kingdomofnorway: "Kingdom of Norway",
+
+    sweden: "Kingdom of Sweden",
+    kingdomofsweden: "Kingdom of Sweden",
+
+    belgium: "Kingdom of Belgium",
+    kingdomofbelgium: "Kingdom of Belgium",
+
+    spain: "Kingdom of Spain",
+    kingdomofspain: "Kingdom of Spain",
+
+    thailand: "Kingdom of Thailand",
+    kingdomofthailand: "Kingdom of Thailand",
+
+    cambodia: "Kingdom of Cambodia",
+    kingdomofcambodia: "Kingdom of Cambodia",
+
+    morocco: "Kingdom of Morocco",
+    kingdomofmorocco: "Kingdom of Morocco",
+
+    jordan: "Hashemite Kingdom of Jordan",
+    kingdomofjordan: "Hashemite Kingdom of Jordan",
+    hashemitekingdomofjordan: "Hashemite Kingdom of Jordan",
+
+    saudiarabia: "Saudi Arabia",
+    kingdomofsaudiarabia: "Saudi Arabia",
+    ksa: "Saudi Arabia",
+
+    bhutan: "Kingdom of Bhutan",
+    kingdomofbhutan: "Kingdom of Bhutan",
+
+    bahrain: "Kingdom of Bahrain",
+    kingdomofbahrain: "Kingdom of Bahrain",
+
+    eswatini: "Kingdom of Eswatini",
+    swaziland: "Kingdom of Eswatini",
+    kingdomofeswatini: "Kingdom of Eswatini",
+
+    lesotho: "Kingdom of Lesotho",
+    kingdomoflesotho: "Kingdom of Lesotho",
+
+    tonga: "Kingdom of Tonga",
+    kingdomoftonga: "Kingdom of Tonga",
+
+    // Korea
+    northkorea: "Korea, North",
+    dprk: "Korea, North",
+    democraticpeoplesrepublicofkorea: "Korea, North",
+    peoplesrepublicofkorea: "Korea, North",
+    korea north: "Korea, North",
+
+    southkorea: "Korea, South",
+    rok: "Korea, South",
+    republicofkorea: "Korea, South",
+    korea south: "Korea, South",
+
+    // Taiwan / ROC
+    taiwan: "Taiwan",
+    roc: "Taiwan",
+    republicofchina: "Taiwan",
+    republicofchinataiwan: "Taiwan",
+    chinese taipei: "Taiwan",
+
+    // China
+    china: "China",
+    prc: "China",
+    peoplesrepublicofchina: "China",
+    mainlandchina: "China",
+
+    // UAE
+    uae: "United Arab Emirates",
+    unitedarabemirates: "United Arab Emirates",
+    theuae: "United Arab Emirates",
+
+    // Russia
+    russia: "Russia",
+    russianfederation: "Russia",
+    rf: "Russia",
+
+    // Iran
+    iran: "Iran",
+    islamicrepublicofiran: "Iran",
+
+    // Syria
+    syria: "Syria",
+    syrianarabrepublic: "Syria",
+
+    // Laos
+    laos: "Laos",
+    lao: "Laos",
+    laopdr: "Laos",
+    laopeople sdemocraticrepublic": "Laos",
+    laopeoplesdemocraticrepublic: "Laos",
+
+    // Vietnam
+    vietnam: "Vietnam",
+    viet nam: "Vietnam",
+    socialistrepublicofvietnam: "Vietnam",
+
+    // Myanmar
+    myanmar: "Myanmar",
+    burma: "Myanmar",
+    republicoftheunionofmyanmar: "Myanmar",
+
+    // Brunei
+    brunei: "Brunei",
+    bruneidarussalam: "Brunei",
+
+    // Moldova
+    moldova: "Moldova",
+    republicofmoldova: "Moldova",
+
+    // Czech Republic / Czechia
+    czechia: "Czech Republic",
+    czechrepublic: "Czech Republic",
+
+    // North Macedonia
+    northmacedonia: "North Macedonia",
+    macedonia: "North Macedonia",
+    republicofnorthmacedonia: "North Macedonia",
+
+    // DRC / Congo
+    drc: "Democratic Republic of the Congo",
+    congodrc: "Democratic Republic of the Congo",
+    democraticrepublicofthecongo: "Democratic Republic of the Congo",
+    democraticrepublicofcongo: "Democratic Republic of the Congo",
+    drcongo: "Democratic Republic of the Congo",
+    congo kinshasa: "Democratic Republic of the Congo",
+    congokinshasa: "Democratic Republic of the Congo",
+    zaire: "Democratic Republic of the Congo",
+
+    republicofthecongo: "Republic of the Congo",
+    republicofcongo: "Republic of the Congo",
+    congo: "Republic of the Congo",
+    congo brazzaville: "Republic of the Congo",
+    congobrazzaville: "Republic of the Congo",
+
+    // Côte d'Ivoire
+    ivorycoast: "Côte d'Ivoire",
+    coteivoire: "Côte d'Ivoire",
+    cotedivoire: "Côte d'Ivoire",
+    coted ivoire": "Côte d'Ivoire",
+
+    // Cabo Verde
+    caboverde: "Cape Verde",
+    capeverde: "Cape Verde",
+
+    // Timor-Leste
+    timorleste: "Timor-Leste",
+    easttimor: "Timor-Leste",
+    democraticrepublicoftimorleste: "Timor-Leste",
+
+    // Palestine
+    palestine: "State of Palestine",
+    stateofpalestine: "State of Palestine",
+    palestinianterritories: "State of Palestine",
+    palestinianterritory: "State of Palestine",
+
+    // Kosovo
+    kosovo: "Kosovo",
+    republicofkosovo: "Kosovo",
+
+    // Vatican
+    vatican: "Vatican City",
+    vaticancity: "Vatican City",
+    holysee: "Vatican City",
+    theholysee: "Vatican City",
+
+    // Türkiye
+    turkey: "Türkiye",
+    turkiye: "Türkiye",
+    republicofturkiye: "Türkiye",
+    republicofturkey: "Türkiye",
+
+    // Tanzania
+    tanzania: "Tanzania",
+    unitedrepublicoftanzania: "Tanzania",
+
+    // Venezuela
+    venezuela: "Venezuela",
+    bolivarianrepublicofvenezuela: "Venezuela",
+
+    // Bolivia
+    bolivia: "Bolivia",
+    plurinationalstateofbolivia: "Bolivia",
+
+    // Micronesia
+    micronesia: "Federated States of Micronesia",
+    federatedstatesofmicronesia: "Federated States of Micronesia",
+    fsm: "Federated States of Micronesia",
+
+    // Marshall Islands
+    marshallislands: "Marshall Islands",
+    republicofthemarshallislands: "Marshall Islands",
+    rmi: "Marshall Islands",
+
+    // Dominican Republic
+    dominicanrepublic: "Dominican Republic",
+    dr: "Dominican Republic",
+
+    // Central African Republic
+    centralafricanrepublic: "Central African Republic",
+    car: "Central African Republic",
+
+    // Bosnia and Herzegovina
+    bosnia: "Bosnia and Herzegovina",
+    bosniaandherzegovina: "Bosnia and Herzegovina",
+    bih: "Bosnia and Herzegovina",
+
+    // Antigua and Barbuda
+    antigua: "Antigua and Barbuda",
+    antiguaandbarbuda: "Antigua and Barbuda",
+
+    // Saint Kitts and Nevis
+    stkitts: "Saint Kitts and Nevis",
+    stkittsandnevis: "Saint Kitts and Nevis",
+    saintkitts: "Saint Kitts and Nevis",
+    saintkittsandnevis: "Saint Kitts and Nevis",
+    stkittsnevis: "Saint Kitts and Nevis",
+
+    // Saint Vincent and the Grenadines
+    stvincent: "Saint Vincent and the Grenadines",
+    stvincentandthegrenadines: "Saint Vincent and the Grenadines",
+    saintvincent: "Saint Vincent and the Grenadines",
+    saintvincentandthegrenadines: "Saint Vincent and the Grenadines",
+    svg: "Saint Vincent and the Grenadines",
+
+    // São Tomé and Príncipe
+    saotome: "São Tomé and Príncipe",
+    saotomeandprincipe: "São Tomé and Príncipe",
+    saotomeprincipe: "São Tomé and Príncipe",
+    sao tome and principe: "São Tomé and Príncipe",
+
+    // Trinidad and Tobago
+    trinidad: "Trinidad and Tobago",
+    trinidadandtobago: "Trinidad and Tobago",
+    tnt: "Trinidad and Tobago",
+
+    // Papua New Guinea
+    papuanewguinea: "Papua New Guinea",
+    png: "Papua New Guinea",
+
+    // Solomon Islands
+    solomonislands: "Solomon Islands",
+
+    // New Zealand / Realm-style alternates if needed
+    newzealand: "New Zealand",
+    nz: "New Zealand",
+
+    // European Union
+    eu: "European Union",
+    europeanunion: "European Union",
+
+    // Cook Islands / Niue if included
+    cookislands: "Cook Islands",
+    niue: "Niue",
+
+    // West Bank style user guesses
+    westbank: "State of Palestine",
+    gaza: "State of Palestine",
+    westbankandgaza: "State of Palestine",
+
+    // Misc punctuation/wording variants
+    thegambia: "Gambia",
+    gambia: "Gambia",
+    bahamas: "Bahamas",
+    thebahamas: "Bahamas",
+    maldives: "Maldives",
+    themaldives: "Maldives",
+    philippines: "Philippines",
+    thephilippines: "Philippines",
+    comoros: "Comoros",
+    thecomoros: "Comoros"
+  };
 
     const dateChip = document.getElementById("dateChip");
     const guessInput = document.getElementById("guessInput");
