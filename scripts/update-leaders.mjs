@@ -355,9 +355,43 @@ async function imageUrlWorks(url) {
 
 async function ensureWorkingImage(leader) {
   const ok = await imageUrlWorks(leader.image);
-  if (ok) return leader;
-  console.warn(`Dropping ${leader.leader} (${leader.country}, ${leader.role}) because the image is unavailable.`);
-  return null;
+
+  if (ok) {
+    return {
+      ...leader,
+      imageVerified: true,
+      imageIssue: null
+    };
+  }
+
+  console.warn(
+    `Image unavailable for ${leader.leader} (${leader.country}, ${leader.role})`
+  );
+
+  return {
+    ...leader,
+    imageVerified: false,
+    imageIssue: "unavailable"
+  };
+}
+
+async function writeMissingImages(leaders) {
+  const missing = leaders
+    .filter((leader) => !leader.imageVerified)
+    .map((leader) => ({
+      country: leader.country,
+      role: leader.role,
+      leader: leader.leader,
+      articleTitle: leader.articleTitle,
+      currentImage: leader.image || "",
+      imageIssue: leader.imageIssue || "unavailable"
+    }));
+
+  await fs.writeFile(
+    path.join(outputDir, "missing-images.json"),
+    `${JSON.stringify({ count: missing.length, leaders: missing }, null, 2)}\n`,
+    "utf8"
+  );
 }
 
 function addCorruptionScores(leaders, corruptionMap) {
@@ -375,9 +409,9 @@ function validateLeaders(leaders) {
     if (!leader.id || !leader.country || !leader.leader || !leader.role) {
       throw new Error(`Invalid leader entry: ${JSON.stringify(leader)}`);
     }
-    if (!leader.image) {
-      throw new Error(`Leader is missing image after filtering: ${leader.leader} (${leader.country}, ${leader.role})`);
-    }
+  if (!leader.image) {
+    console.warn(`Leader has no image URL: ${leader.leader} (${leader.country}, ${leader.role})`);
+  }
   }
 }
 
@@ -424,15 +458,26 @@ async function main() {
   );
 
   console.log("Verifying leader images...");
-  const leadersWithWorkingImages = (await mapWithConcurrency(
+  const verifiedLeaders = await mapWithConcurrency(
     enrichedLeaders,
     IMAGE_CHECK_CONCURRENCY,
     ensureWorkingImage
-  )).filter(Boolean);
+  );
 
-  validateLeaders(leadersWithWorkingImages);
-  await writeOutput(leadersWithWorkingImages, source);
-  console.log(`Wrote ${leadersWithWorkingImages.length} leaders to ${outputPath}`);
+  const missingImages = verifiedLeaders.filter((leader) => !leader.imageVerified);
+
+  if (missingImages.length > 0) {
+    console.warn(`Leaders with missing/unverified images: ${missingImages.length}`);
+    for (const leader of missingImages) {
+      console.warn(`- ${leader.country} | ${leader.role} | ${leader.leader}`);
+    }
+  }
+
+  validateLeaders(verifiedLeaders);
+  await writeOutput(verifiedLeaders, source);
+  console.log(`Wrote ${verifiedLeaders.length} leaders to ${outputPath}`);
+
+  await writeMissingImages(verifiedLeaders);
 }
 
 main().catch((error) => {
