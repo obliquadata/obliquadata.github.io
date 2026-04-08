@@ -176,27 +176,36 @@ async function fetchWithRetry(url, options = {}, label = "request") {
   throw lastError;
 }
 
-function buildOfficeQuery(property, officeLabel) {
+function buildOfficeQuery(property, officeLabel, extraCountryFilter = "") {
   return `
     SELECT DISTINCT ?country ?countryLabel ?leader ?leaderLabel ?article ?continentLabel ?iso2 ?image ?coord ?start WHERE {
+      ?country wdt:${property} ?leader .
       ?country p:${property} ?stmt .
       ?stmt ps:${property} ?leader .
+
       FILTER NOT EXISTS { ?stmt wikibase:rank wikibase:DeprecatedRank }
       FILTER NOT EXISTS { ?stmt pq:P582 ?end }
+      FILTER NOT EXISTS { ?leader wdt:P570 ?dateOfDeath }
+
       OPTIONAL { ?stmt pq:P580 ?start . }
-      ?country wdt:P31/wdt:P279* wd:Q3624078 .
+
+      ${extraCountryFilter || "?country wdt:P31/wdt:P279* wd:Q3624078 ."}
+
       OPTIONAL { ?country wdt:P30 ?continent . }
       OPTIONAL { ?country wdt:P297 ?iso2 . }
       OPTIONAL { ?country wdt:P625 ?coord . }
       OPTIONAL { ?leader wdt:P18 ?image . }
-      ?article schema:about ?leader ; schema:isPartOf <https://en.wikipedia.org/> .
+
+      ?article schema:about ?leader ;
+               schema:isPartOf <https://en.wikipedia.org/> .
+
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
     }
   `.trim();
 }
 
-async function fetchWikidataOffice(property, officeLabel) {
-  const query = buildOfficeQuery(property, officeLabel);
+async function fetchWikidataOffice(property, officeLabel, extraCountryFilter = "") {
+  const query = buildOfficeQuery(property, officeLabel, extraCountryFilter);
   const url = `${WIKIDATA_ENDPOINT}?format=json&query=${encodeURIComponent(query)}`;
   const json = await fetchJsonWithRetry(
     url,
@@ -226,9 +235,17 @@ async function fetchWikidataOffice(property, officeLabel) {
 }
 
 async function fetchLeaderPool() {
+  const sovereignStateFilter = "?country wdt:P31/wdt:P279* wd:Q3624078 .";
+  const kosovoFilter = "VALUES ?country { wd:Q1246 }";
+  const euFilter = "VALUES ?country { wd:Q458 }";
+
   const results = await Promise.allSettled([
-    fetchWikidataOffice("P35", "Head of state"),
-    fetchWikidataOffice("P6", "Head of government")
+    fetchWikidataOffice("P35", "Head of state", sovereignStateFilter),
+    fetchWikidataOffice("P6", "Head of government", sovereignStateFilter),
+
+    // Kosovo as extra entity
+    fetchWikidataOffice("P35", "Head of state", kosovoFilter),
+    fetchWikidataOffice("P6", "Head of government", kosovoFilter)
   ]);
 
   const successful = results
@@ -246,7 +263,26 @@ async function fetchLeaderPool() {
     return true;
   });
 
-  leaders.sort((a, b) => `${a.country}-${a.leader}-${a.role}`.localeCompare(`${b.country}-${b.leader}-${b.role}`));
+  // Manual EU entry
+  leaders.push({
+    id: "european-union-von-der-leyen-head-of-government",
+    leader: "Ursula von der Leyen",
+    startDate: "2019-12-01",
+    country: "European Union",
+    continent: "Europe",
+    iso2: "EU",
+    role: "Head of government",
+    articleTitle: "Ursula von der Leyen",
+    image: "",
+    corruptionScore: null,
+    coords: { lat: 50.8503, lon: 4.3517 },
+    summary: ""
+  });
+
+  leaders.sort((a, b) =>
+    `${a.country}-${a.leader}-${a.role}`.localeCompare(`${b.country}-${b.leader}-${b.role}`)
+  );
+
   return leaders;
 }
 
