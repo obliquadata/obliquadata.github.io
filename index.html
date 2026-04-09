@@ -1334,6 +1334,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       applyLeaderToUI();
       renderAttempts();
       setRevealVisible(false);
+      setStatus("", "info");
     }
 
     function chooseLeaderData(useRandom) { return useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool); }
@@ -1357,6 +1358,11 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       const result = guesses.some((g) => g.correct) ? guesses.length : "X";
       const rows = guesses.map((g) => g.proximityBar).join("\n");
       const shareUrl = window.location.href;
+
+      if (currentMode === "random") {
+        return `World Leaderle Random - ${mysteryLeader.leader} (${mysteryLeader.country}) - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
+      }
+
       return `World Leaderle ${getTodayKey()} - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
     }
     async function copyShare() {
