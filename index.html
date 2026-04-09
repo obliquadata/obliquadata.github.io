@@ -293,7 +293,6 @@
     const DAILY_SCHEDULE_JSON_URL = "./data/daily-schedule.json";
     const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
     const DAILY_COOKIE_KEY = "worldleaderle_daily_state_v1";
-    const RANDOM_COOKIE_KEY = "worldleaderle_random_state_v1";
 
     const FALLBACK_LEADERS = [
       {
@@ -741,32 +740,25 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
     function loadDailyState() {
       try { return JSON.parse(getCookie(DAILY_COOKIE_KEY) || "null"); } catch { return null; }
     }
-    function saveRandomState(state) {
-      setCookie(RANDOM_COOKIE_KEY, JSON.stringify(state));
-    }
-    function loadRandomState() {
-      try { return JSON.parse(getCookie(RANDOM_COOKIE_KEY) || "null"); } catch { return null; }
-    }
     function saveCurrentModeState() {
       if (!mysteryLeader) return;
-      const state = {
-        leaderId: mysteryLeader.id,
-        guesses,
-        gameOver,
-        mode: currentMode,
-        date: currentMode === "daily" ? getTodayKey() : null
-      };
+
       if (currentMode === "daily") {
+        const state = {
+          leaderId: mysteryLeader.id,
+          guesses,
+          gameOver,
+          mode: "daily",
+          date: getTodayKey()
+        };
         saveDailyState(state);
-      } else {
-        saveRandomState(state);
       }
     }
     function saveState() {
       saveCurrentModeState();
     }
     function loadState() {
-      return currentMode === "daily" ? loadDailyState() : loadRandomState();
+      return currentMode === "daily" ? loadDailyState() : null;
     }
     function clearTodayState() {
       deleteCookie(DAILY_COOKIE_KEY);
@@ -1303,7 +1295,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
     }
 
     
-async function loadOrRestoreDailyPuzzle() {
+    async function loadOrRestoreDailyPuzzle() {
       const dailyLeader = chooseDailyLeader(leaderPool);
       const saved = loadDailyState();
 
@@ -1330,29 +1322,18 @@ async function loadOrRestoreDailyPuzzle() {
     }
 
     async function loadOrCreateRandomPuzzle() {
-      const saved = loadRandomState();
-
-      if (saved?.leaderId) {
-        const existing = leaderPool.find((entry) => entry.id === saved.leaderId);
-        if (existing) {
-          mysteryLeader = { ...existing, tenureText: existing.tenureText || formatTenure(existing.startDate) };
-          guesses = Array.isArray(saved.guesses) ? saved.guesses : [];
-          gameOver = Boolean(saved.gameOver);
-          currentMode = "random";
-          randomPreviewMode = true;
-          guessButton.disabled = gameOver;
-          guessInput.disabled = gameOver;
-          shareButton.disabled = !gameOver;
-          shareButton.style.display = gameOver ? "inline-flex" : "none";
-          applyLeaderToUI();
-          renderAttempts();
-          setStatus(gameOver ? (guesses.some((g) => g.correct) ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`) : "Random puzzle loaded.", gameOver ? (guesses.some((g) => g.correct) ? "good" : "bad") : "info");
-          setRevealVisible(gameOver);
-          return;
-        }
-      }
-
-      await selectLeader(true);
+      const leader = chooseRandomLeader(leaderPool);
+      mysteryLeader = { ...leader, tenureText: leader.tenureText || formatTenure(leader.startDate) };
+      guesses = [];
+      gameOver = false;
+      currentMode = "random";
+      guessButton.disabled = false;
+      guessInput.disabled = false;
+      shareButton.disabled = true;
+      shareButton.style.display = "none";
+      applyLeaderToUI();
+      renderAttempts();
+      setRevealVisible(false);
     }
 
     function chooseLeaderData(useRandom) { return useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool); }
@@ -1433,22 +1414,19 @@ async function init() {
     guessInput.addEventListener("keydown", (event) => { if (event.key === "Enter") submitGuess(); });
     shareButton.addEventListener("click", copyShare);
     resetButton.addEventListener("click", async () => {
-      const leavingRandomInProgress = currentMode === "random" && guesses.length > 0 && !gameOver;
-      if (leavingRandomInProgress) {
-        const ok = window.confirm("Leave this random puzzle and return to today's puzzle?");
+      const leavingRandomWithProgress =
+        currentMode === "random" && guesses.length > 0;
+
+      if (leavingRandomWithProgress) {
+        const ok = window.confirm(
+          "Your progress on this random puzzle will be lost. Return to today's puzzle?"
+        );
         if (!ok) return;
       }
-      saveCurrentModeState();
-      await loadLeaderDatabase();
-      await loadDailySchedule();
-      buildCountryOptions();
+
       await loadOrRestoreDailyPuzzle();
     });
     randomButton.addEventListener("click", async () => {
-      saveCurrentModeState();
-      await loadLeaderDatabase();
-      await loadDailySchedule();
-      buildCountryOptions();
       await loadOrCreateRandomPuzzle();
     });
     init().catch((error) => {
