@@ -185,7 +185,7 @@
       <div class="topbar">
         <div>
           <div class="eyebrow">Daily leader guessing game</div>
-          <h1>World Leaderle</h1>
+          <h1 id="gameTitle">Daily World Leaderle</h1>
           <div class="subtitle">Guess the country of today’s mystery world leader!</div>
         </div>
         <div class="topbar-right">
@@ -641,6 +641,7 @@
     thecomoros: "Comoros"
   };
 
+    const gameTitle = document.getElementById("gameTitle");
     const dateChip = document.getElementById("dateChip");
     const guessInput = document.getElementById("guessInput");
     const guessButton = document.getElementById("guessButton");
@@ -800,6 +801,11 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         console.warn("Failed to load local leaders database, using fallback leaders.", error);
         leaderPool = [...FALLBACK_LEADERS];
       }
+    }
+
+    function updateGameTitle() {
+      gameTitle.textContent =
+      currentMode === "random" ? "Random World Leaderle" : "Daily World Leaderle";
     }
 
     function buildCountryOptions() {
@@ -1309,6 +1315,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       }
 
       currentMode = "daily";
+      updateGameTitle();
       randomPreviewMode = false;
       guessButton.disabled = gameOver;
       guessInput.disabled = gameOver;
@@ -1327,6 +1334,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       guesses = [];
       gameOver = false;
       currentMode = "random";
+      updateGameTitle();
       guessButton.disabled = false;
       guessInput.disabled = false;
       shareButton.disabled = true;
@@ -1360,10 +1368,10 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       const shareUrl = window.location.href;
 
       if (currentMode === "random") {
-        return `World Leaderle Random - ${mysteryLeader.leader} (${mysteryLeader.country}) - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
+        return `Random World Leaderle - ${mysteryLeader.leader} (${mysteryLeader.country}) - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
       }
 
-      return `World Leaderle ${getTodayKey()} - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
+      return `Daily World Leaderle ${getTodayKey()} - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
     }
     async function copyShare() {
       try {
