@@ -36,47 +36,47 @@
     html[data-theme="dark"] { color-scheme: dark; }
     html[data-theme="light"] {
       color-scheme: light;
-      --bg: #eff6ff;
-      --bg-top: #ffffff;
-      --card: rgba(255, 255, 255, 0.88);
-      --text: #10213a;
-      --muted: #516179;
-      --good: #15803d;
-      --bad: #dc2626;
-      --warn: #b45309;
-      --neutral: #64748b;
-      --border: rgba(16, 33, 58, 0.12);
-      --shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
-      --chip-bg: rgba(16, 33, 58, 0.04);
-      --chip-border: rgba(16, 33, 58, 0.08);
+      --bg: #F1EAD7;
+      --bg-top: #fbf7ee;
+      --card: rgba(252, 248, 239, 0.94);
+      --text: #2b4f22;
+      --muted: #5d7254;
+      --good: #2f6f34;
+      --bad: #a83d58;
+      --warn: #9a6a0d;
+      --neutral: #66735f;
+      --border: rgba(50, 95, 34, 0.14);
+      --shadow: 0 20px 60px rgba(76, 92, 48, 0.12);
+      --chip-bg: rgba(167, 182, 146, 0.16);
+      --chip-border: rgba(50, 95, 34, 0.14);
     }
     html[data-theme="light"] body {
       background:
-        radial-gradient(circle at top left, rgba(14, 165, 233, 0.14), transparent 24%),
-        radial-gradient(circle at top right, rgba(99, 102, 241, 0.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(167, 182, 146, 0.22), transparent 24%),
+        radial-gradient(circle at top right, rgba(133, 179, 128, 0.18), transparent 28%),
         linear-gradient(180deg, var(--bg-top), var(--bg));
     }
     @media (prefers-color-scheme: light) {
       html[data-theme="system"] {
         color-scheme: light;
-        --bg: #eff6ff;
-        --bg-top: #ffffff;
-        --card: rgba(255, 255, 255, 0.88);
-        --text: #10213a;
-        --muted: #516179;
-        --good: #15803d;
-        --bad: #dc2626;
-        --warn: #b45309;
-        --neutral: #64748b;
-        --border: rgba(16, 33, 58, 0.12);
-        --shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
-        --chip-bg: rgba(16, 33, 58, 0.04);
-        --chip-border: rgba(16, 33, 58, 0.08);
+        --bg: #F1EAD7;
+        --bg-top: #fbf7ee;
+        --card: rgba(252, 248, 239, 0.94);
+        --text: #2b4f22;
+        --muted: #5d7254;
+        --good: #2f6f34;
+        --bad: #a83d58;
+        --warn: #9a6a0d;
+        --neutral: #66735f;
+        --border: rgba(50, 95, 34, 0.14);
+        --shadow: 0 20px 60px rgba(76, 92, 48, 0.12);
+        --chip-bg: rgba(167, 182, 146, 0.16);
+        --chip-border: rgba(50, 95, 34, 0.14);
       }
       html[data-theme="system"] body {
         background:
-          radial-gradient(circle at top left, rgba(14, 165, 233, 0.14), transparent 24%),
-          radial-gradient(circle at top right, rgba(99, 102, 241, 0.12), transparent 28%),
+          radial-gradient(circle at top left, rgba(167, 182, 146, 0.22), transparent 24%),
+          radial-gradient(circle at top right, rgba(133, 179, 128, 0.18), transparent 28%),
           linear-gradient(180deg, var(--bg-top), var(--bg));
       }
     }
@@ -249,6 +249,182 @@
     .pill.corruption-equal { background: rgba(34,197,94,0.14); color: #b7f7c8; }
     .pill.corruption-less { background: rgba(245,158,11,0.16); color: #ffd88a; }
     .pill.corruption-neutral { background: rgba(148,163,184,0.14); color: #d7e0eb; }
+    html[data-theme="light"] .eyebrow,
+    html[data-theme="light"] .date-chip,
+    html[data-theme="light"] .badge,
+    html[data-theme="light"] button.secondary,
+    html[data-theme="light"] button.ghost,
+    html[data-theme="light"] .settings-option,
+    html[data-theme="light"] .settings-summary,
+    html[data-theme="light"] .hint-box,
+    html[data-theme="light"] .mini,
+    html[data-theme="light"] .panel,
+    html[data-theme="light"] .code-block,
+    html[data-theme="light"] .reveal-card,
+    html[data-theme="light"] .attempt,
+    html[data-theme="light"] .settings-section,
+    html[data-theme="light"] input,
+    html[data-theme="light"] .portrait-panel,
+    html[data-theme="light"] .modal,
+    html[data-theme="light"] .modal-overlay.open .modal {
+      background: rgba(252, 248, 239, 0.95);
+      border-color: rgba(50, 95, 34, 0.14);
+      color: var(--text);
+    }
+    html[data-theme="light"] .eyebrow,
+    html[data-theme="light"] .date-chip,
+    html[data-theme="light"] .badge,
+    html[data-theme="light"] button.secondary,
+    html[data-theme="light"] button.ghost {
+      background: rgba(255, 251, 243, 0.82);
+      border-color: rgba(50, 95, 34, 0.16);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .portrait-panel,
+    html[data-theme="light"] .attempt,
+    html[data-theme="light"] .reveal-card,
+    html[data-theme="light"] .settings-section,
+    html[data-theme="light"] .settings-summary,
+    html[data-theme="light"] .modal {
+      background: rgba(252, 248, 239, 0.94);
+      border-color: rgba(50, 95, 34, 0.14);
+    }
+    html[data-theme="light"] .hint-box,
+    html[data-theme="light"] .mini,
+    html[data-theme="light"] .panel,
+    html[data-theme="light"] .code-block,
+    html[data-theme="light"] .settings-option,
+    html[data-theme="light"] input {
+      background: rgba(255, 251, 243, 0.82);
+      border-color: rgba(50, 95, 34, 0.14);
+      color: var(--text);
+    }
+    html[data-theme="light"] .portrait-wrap {
+      background: linear-gradient(180deg, #f7f2e6, #e8e1cc);
+      border-color: rgba(50, 95, 34, 0.16);
+    }
+    html[data-theme="light"] .status.bad { color: #b2465d; }
+    html[data-theme="light"] .dot.used { background: #ef6a84; border-color: rgba(178, 70, 93, 0.32); }
+    html[data-theme="light"] .dot.win { background: #3f8e45; border-color: rgba(47, 111, 52, 0.32); }
+    html[data-theme="light"] .pill.bad {
+      background: rgba(231, 170, 180, 0.34);
+      border-color: rgba(168, 61, 88, 0.24);
+      color: #96374f;
+    }
+    html[data-theme="light"] .pill.good {
+      background: rgba(183, 216, 181, 0.54);
+      border-color: rgba(47, 111, 52, 0.18);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .pill.corruption-more {
+      background: rgba(231, 170, 180, 0.34);
+      border-color: rgba(168, 61, 88, 0.24);
+      color: #96374f;
+    }
+    html[data-theme="light"] .pill.corruption-equal {
+      background: rgba(183, 216, 181, 0.54);
+      border-color: rgba(47, 111, 52, 0.18);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .pill.corruption-less {
+      background: rgba(245, 222, 178, 0.58);
+      border-color: rgba(154, 106, 13, 0.18);
+      color: #8c6110;
+    }
+    html[data-theme="light"] .pill.corruption-neutral {
+      background: rgba(218, 223, 208, 0.88);
+      border-color: rgba(102, 115, 95, 0.14);
+      color: #66735f;
+    }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .eyebrow,
+      html[data-theme="system"] .date-chip,
+      html[data-theme="system"] .badge,
+      html[data-theme="system"] button.secondary,
+      html[data-theme="system"] button.ghost,
+      html[data-theme="system"] .settings-option,
+      html[data-theme="system"] .settings-summary,
+      html[data-theme="system"] .hint-box,
+      html[data-theme="system"] .mini,
+      html[data-theme="system"] .panel,
+      html[data-theme="system"] .code-block,
+      html[data-theme="system"] .reveal-card,
+      html[data-theme="system"] .attempt,
+      html[data-theme="system"] .settings-section,
+      html[data-theme="system"] input,
+      html[data-theme="system"] .portrait-panel,
+      html[data-theme="system"] .modal,
+      html[data-theme="system"] .modal-overlay.open .modal {
+        background: rgba(252, 248, 239, 0.95);
+        border-color: rgba(50, 95, 34, 0.14);
+        color: var(--text);
+      }
+      html[data-theme="system"] .eyebrow,
+      html[data-theme="system"] .date-chip,
+      html[data-theme="system"] .badge,
+      html[data-theme="system"] button.secondary,
+      html[data-theme="system"] button.ghost {
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.16);
+        color: #2f6f34;
+      }
+      html[data-theme="system"] .portrait-panel,
+      html[data-theme="system"] .attempt,
+      html[data-theme="system"] .reveal-card,
+      html[data-theme="system"] .settings-section,
+      html[data-theme="system"] .settings-summary,
+      html[data-theme="system"] .modal {
+        background: rgba(252, 248, 239, 0.94);
+        border-color: rgba(50, 95, 34, 0.14);
+      }
+      html[data-theme="system"] .hint-box,
+      html[data-theme="system"] .mini,
+      html[data-theme="system"] .panel,
+      html[data-theme="system"] .code-block,
+      html[data-theme="system"] .settings-option,
+      html[data-theme="system"] input {
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.14);
+        color: var(--text);
+      }
+      html[data-theme="system"] .portrait-wrap {
+        background: linear-gradient(180deg, #f7f2e6, #e8e1cc);
+        border-color: rgba(50, 95, 34, 0.16);
+      }
+      html[data-theme="system"] .status.bad { color: #b2465d; }
+      html[data-theme="system"] .dot.used { background: #ef6a84; border-color: rgba(178, 70, 93, 0.32); }
+      html[data-theme="system"] .dot.win { background: #3f8e45; border-color: rgba(47, 111, 52, 0.32); }
+      html[data-theme="system"] .pill.bad {
+        background: rgba(231, 170, 180, 0.34);
+        border-color: rgba(168, 61, 88, 0.24);
+        color: #96374f;
+      }
+      html[data-theme="system"] .pill.good {
+        background: rgba(183, 216, 181, 0.54);
+        border-color: rgba(47, 111, 52, 0.18);
+        color: #2f6f34;
+      }
+      html[data-theme="system"] .pill.corruption-more {
+        background: rgba(231, 170, 180, 0.34);
+        border-color: rgba(168, 61, 88, 0.24);
+        color: #96374f;
+      }
+      html[data-theme="system"] .pill.corruption-equal {
+        background: rgba(183, 216, 181, 0.54);
+        border-color: rgba(47, 111, 52, 0.18);
+        color: #2f6f34;
+      }
+      html[data-theme="system"] .pill.corruption-less {
+        background: rgba(245, 222, 178, 0.58);
+        border-color: rgba(154, 106, 13, 0.18);
+        color: #8c6110;
+      }
+      html[data-theme="system"] .pill.corruption-neutral {
+        background: rgba(218, 223, 208, 0.88);
+        border-color: rgba(102, 115, 95, 0.14);
+        color: #66735f;
+      }
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
     @media (max-width: 980px) {
       .topbar-right { width: 100%; align-items: flex-start; }
@@ -271,7 +447,6 @@
           <div class="date-chip" id="dateChip">Daily puzzle</div>
           <div class="topbar-actions">
             <button class="ghost" id="howToPlayButton" type="button">How to play</button>
-            <button class="ghost" id="implementationNotesButton" type="button">Implementation notes</button>
             <button class="ghost" id="settingsButton" type="button">Settings</button>
           </div>
         </div>
@@ -325,43 +500,7 @@
         <div class="mini"><strong>Continent hint</strong><span>You are also told whether the guessed country is on the correct continent.</span></div>
         <div class="mini"><strong>Distance hint</strong><span>Each guess gets a 5-square emoji bar that becomes greener as the guess gets geographically closer.</span></div>
         <div class="mini"><strong>Serving hint</strong><span>The top right of the portrait indicates how long the leader has served in their current position.</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="implementationNotesModal" aria-hidden="true">
-    <div class="modal">
-      <div class="modal-head">
-        <h2>Implementation notes</h2>
-        <button class="ghost modal-close" id="closeImplementationNotesButton" type="button">✕</button>
-      </div>
-      <div class="modal-grid">
-        <div class="panel">
-          <h2>Summary strategy</h2>
-          <p>This version keeps <code>data/leaders.json</code> lightweight and only fetches a Wikipedia summary when a leader is revealed. That avoids mass rate limits during scheduled database generation.</p>
-        </div>
-        <div class="panel">
-          <h2>Expected JSON shape</h2>
-          <div class="code-block">{
-  "generatedAt": "...",
-  "count": 198,
-  "leaders": [
-    {
-      "id": "...",
-      "leader": "...",
-      "country": "...",
-      "role": "Head of state",
-      "articleTitle": "...",
-      "image": "...",
-      "continent": "...",
-      "startDate": "YYYY-MM-DD",
-      "coords": { "lat": 0, "lon": 0 },
-      "corruptionScore": 0.0,
-      "summary": ""
-    }
-  ]
-}</div>
-        </div>
+        <div class="mini"><strong>Head of role hint</strong><span>The top left badge shows whether the leader is a head of state, a head of government, or both in one merged entry.</span></div>
       </div>
     </div>
   </div>
@@ -780,17 +919,14 @@
     const sourceBadge = document.getElementById("sourceBadge");
     const leaderMetaBadge = document.getElementById("leaderMetaBadge");
     const howToPlayButton = document.getElementById("howToPlayButton");
-    const implementationNotesButton = document.getElementById("implementationNotesButton");
     const settingsButton = document.getElementById("settingsButton");
     const revealCard = document.getElementById("revealCard");
     const revealTitle = document.getElementById("revealTitle");
     const revealMeta = document.getElementById("revealMeta");
     const revealText = document.getElementById("revealText");
     const howToPlayModal = document.getElementById("howToPlayModal");
-    const implementationNotesModal = document.getElementById("implementationNotesModal");
     const settingsModal = document.getElementById("settingsModal");
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
-    const closeImplementationNotesButton = document.getElementById("closeImplementationNotesButton");
     const closeSettingsButton = document.getElementById("closeSettingsButton");
     const settingsSummary = document.getElementById("settingsSummary");
 
@@ -1879,16 +2015,14 @@
 
     function bindModalEvents() {
       howToPlayButton.addEventListener("click", () => openModal(howToPlayModal));
-      implementationNotesButton.addEventListener("click", () => openModal(implementationNotesModal));
       settingsButton.addEventListener("click", () => {
         syncSettingsUI();
         openModal(settingsModal);
       });
       closeHowToPlayButton.addEventListener("click", () => closeModal(howToPlayModal));
-      closeImplementationNotesButton.addEventListener("click", () => closeModal(implementationNotesModal));
       closeSettingsButton.addEventListener("click", () => closeModal(settingsModal));
 
-      [howToPlayModal, implementationNotesModal, settingsModal].forEach((modal) => {
+      [howToPlayModal, settingsModal].forEach((modal) => {
         modal.addEventListener("click", (event) => {
           if (event.target === modal) closeModal(modal);
         });
@@ -1897,7 +2031,6 @@
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           closeModal(howToPlayModal);
-          closeModal(implementationNotesModal);
           closeModal(settingsModal);
         }
       });
