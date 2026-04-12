@@ -99,6 +99,45 @@
       html[data-theme="system"] { color-scheme: dark; }
     }
     @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .status.good { color: #245f2a; }
+      html[data-theme="system"] .status.bad { color: #8e3342; }
+      html[data-theme="system"] .status.info { color: #355f5c; }
+
+      html[data-theme="system"] .pill {
+        border-color: rgba(50, 95, 34, 0.18);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+      }
+      html[data-theme="system"] .pill.good {
+        background: rgba(133, 179, 128, 0.28);
+        color: #245f2a;
+        border-color: rgba(50, 95, 34, 0.22);
+      }
+      html[data-theme="system"] .pill.bad {
+        background: rgba(190, 109, 117, 0.22);
+        color: #8e3342;
+        border-color: rgba(142, 51, 66, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-more {
+        background: rgba(190, 109, 117, 0.22);
+        color: #8e3342;
+        border-color: rgba(142, 51, 66, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-equal {
+        background: rgba(133, 179, 128, 0.30);
+        color: #245f2a;
+        border-color: rgba(50, 95, 34, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-less {
+        background: rgba(214, 176, 96, 0.28);
+        color: #7a5712;
+        border-color: rgba(122, 87, 18, 0.22);
+      }
+      html[data-theme="system"] .pill.corruption-neutral {
+        background: rgba(125, 143, 166, 0.22);
+        color: #35505e;
+        border-color: rgba(53, 80, 94, 0.20);
+      }
+
       html[data-theme="system"] .eyebrow,
       html[data-theme="system"] .date-chip,
       html[data-theme="system"] .badge,
@@ -294,50 +333,40 @@
     .pill.corruption-less { background: rgba(245,158,11,0.24); color: #ffd27a; border-color: rgba(245,158,11,0.34); }
     .pill.corruption-neutral { background: rgba(148,163,184,0.20); color: #dde6f2; border-color: rgba(148,163,184,0.30); }
 
-    html[data-theme="light"] .status.good,
-    html[data-theme="system"] .status.good { color: #245f2a; }
-    html[data-theme="light"] .status.bad,
-    html[data-theme="system"] .status.bad { color: #8e3342; }
-    html[data-theme="light"] .status.info,
-    html[data-theme="system"] .status.info { color: #355f5c; }
+    html[data-theme="light"] .status.good { color: #245f2a; }
+    html[data-theme="light"] .status.bad { color: #8e3342; }
+    html[data-theme="light"] .status.info { color: #355f5c; }
 
-    html[data-theme="light"] .pill,
-    html[data-theme="system"] .pill {
+    html[data-theme="light"] .pill {
       border-color: rgba(50, 95, 34, 0.18);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
     }
-    html[data-theme="light"] .pill.good,
-    html[data-theme="system"] .pill.good {
+    html[data-theme="light"] .pill.good {
       background: rgba(133, 179, 128, 0.28);
       color: #245f2a;
       border-color: rgba(50, 95, 34, 0.22);
     }
-    html[data-theme="light"] .pill.bad,
-    html[data-theme="system"] .pill.bad {
+    html[data-theme="light"] .pill.bad {
       background: rgba(190, 109, 117, 0.22);
       color: #8e3342;
       border-color: rgba(142, 51, 66, 0.24);
     }
-    html[data-theme="light"] .pill.corruption-more,
-    html[data-theme="system"] .pill.corruption-more {
+    html[data-theme="light"] .pill.corruption-more {
       background: rgba(190, 109, 117, 0.22);
       color: #8e3342;
       border-color: rgba(142, 51, 66, 0.24);
     }
-    html[data-theme="light"] .pill.corruption-equal,
-    html[data-theme="system"] .pill.corruption-equal {
+    html[data-theme="light"] .pill.corruption-equal {
       background: rgba(133, 179, 128, 0.30);
       color: #245f2a;
       border-color: rgba(50, 95, 34, 0.24);
     }
-    html[data-theme="light"] .pill.corruption-less,
-    html[data-theme="system"] .pill.corruption-less {
+    html[data-theme="light"] .pill.corruption-less {
       background: rgba(214, 176, 96, 0.28);
       color: #7a5712;
       border-color: rgba(122, 87, 18, 0.22);
     }
-    html[data-theme="light"] .pill.corruption-neutral,
-    html[data-theme="system"] .pill.corruption-neutral {
+    html[data-theme="light"] .pill.corruption-neutral {
       background: rgba(117, 136, 96, 0.22);
       color: #405233;
       border-color: rgba(64, 82, 51, 0.20);
@@ -420,6 +449,45 @@
       border-color: rgba(50, 95, 34, 0.16);
     }
     @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .status.good { color: #245f2a; }
+      html[data-theme="system"] .status.bad { color: #8e3342; }
+      html[data-theme="system"] .status.info { color: #355f5c; }
+
+      html[data-theme="system"] .pill {
+        border-color: rgba(50, 95, 34, 0.18);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+      }
+      html[data-theme="system"] .pill.good {
+        background: rgba(133, 179, 128, 0.28);
+        color: #245f2a;
+        border-color: rgba(50, 95, 34, 0.22);
+      }
+      html[data-theme="system"] .pill.bad {
+        background: rgba(190, 109, 117, 0.22);
+        color: #8e3342;
+        border-color: rgba(142, 51, 66, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-more {
+        background: rgba(190, 109, 117, 0.22);
+        color: #8e3342;
+        border-color: rgba(142, 51, 66, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-equal {
+        background: rgba(133, 179, 128, 0.30);
+        color: #245f2a;
+        border-color: rgba(50, 95, 34, 0.24);
+      }
+      html[data-theme="system"] .pill.corruption-less {
+        background: rgba(214, 176, 96, 0.28);
+        color: #7a5712;
+        border-color: rgba(122, 87, 18, 0.22);
+      }
+      html[data-theme="system"] .pill.corruption-neutral {
+        background: rgba(125, 143, 166, 0.22);
+        color: #35505e;
+        border-color: rgba(53, 80, 94, 0.20);
+      }
+
       html[data-theme="system"] .eyebrow,
       html[data-theme="system"] .date-chip,
       html[data-theme="system"] .badge,
