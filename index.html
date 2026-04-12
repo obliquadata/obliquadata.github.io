@@ -293,6 +293,55 @@
     .pill.corruption-less { background: rgba(245,158,11,0.16); color: #ffd88a; }
     .pill.corruption-neutral { background: rgba(148,163,184,0.14); color: #d7e0eb; }
 
+    html[data-theme="light"] .status.good,
+    html[data-theme="system"] .status.good { color: #245f2a; }
+    html[data-theme="light"] .status.bad,
+    html[data-theme="system"] .status.bad { color: #8e3342; }
+    html[data-theme="light"] .status.info,
+    html[data-theme="system"] .status.info { color: #355f5c; }
+
+    html[data-theme="light"] .pill,
+    html[data-theme="system"] .pill {
+      border-color: rgba(50, 95, 34, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+    }
+    html[data-theme="light"] .pill.good,
+    html[data-theme="system"] .pill.good {
+      background: rgba(133, 179, 128, 0.28);
+      color: #245f2a;
+      border-color: rgba(50, 95, 34, 0.22);
+    }
+    html[data-theme="light"] .pill.bad,
+    html[data-theme="system"] .pill.bad {
+      background: rgba(190, 109, 117, 0.22);
+      color: #8e3342;
+      border-color: rgba(142, 51, 66, 0.24);
+    }
+    html[data-theme="light"] .pill.corruption-more,
+    html[data-theme="system"] .pill.corruption-more {
+      background: rgba(190, 109, 117, 0.22);
+      color: #8e3342;
+      border-color: rgba(142, 51, 66, 0.24);
+    }
+    html[data-theme="light"] .pill.corruption-equal,
+    html[data-theme="system"] .pill.corruption-equal {
+      background: rgba(133, 179, 128, 0.30);
+      color: #245f2a;
+      border-color: rgba(50, 95, 34, 0.24);
+    }
+    html[data-theme="light"] .pill.corruption-less,
+    html[data-theme="system"] .pill.corruption-less {
+      background: rgba(214, 176, 96, 0.28);
+      color: #7a5712;
+      border-color: rgba(122, 87, 18, 0.22);
+    }
+    html[data-theme="light"] .pill.corruption-neutral,
+    html[data-theme="system"] .pill.corruption-neutral {
+      background: rgba(117, 136, 96, 0.22);
+      color: #405233;
+      border-color: rgba(64, 82, 51, 0.20);
+    }
+
     html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .date-chip,
     html[data-theme="light"] .badge,
