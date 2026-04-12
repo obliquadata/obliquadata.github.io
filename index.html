@@ -7,13 +7,23 @@
   <style>
     :root {
       --bg: #07111f;
+      --bg-top: #020814;
       --card: rgba(10, 17, 32, 0.82);
       --text: #eef4ff;
       --muted: #9fb0ca;
       --good: #22c55e;
       --bad: #f43f5e;
+      --warn: #f59e0b;
+      --neutral: #94a3b8;
       --border: rgba(255, 255, 255, 0.12);
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --chip-bg: rgba(255,255,255,0.05);
+      --chip-border: rgba(255,255,255,0.1);
+      --field-bg: rgba(255,255,255,0.045);
+      --ghost-border: rgba(255,255,255,0.12);
+      --primary-start: #0ea5e9;
+      --primary-end: #2563eb;
+      --primary-text: #ffffff;
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
@@ -27,6 +37,94 @@
         radial-gradient(circle at top right, rgba(124, 58, 237, 0.16), transparent 28%),
         linear-gradient(180deg, #020814, var(--bg));
       padding: 28px 16px 40px;
+    }
+    html[data-theme="dark"] { color-scheme: dark; }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #d2dcbf;
+      --bg-top: #f1ead7;
+      --card: rgba(241, 234, 215, 0.9);
+      --text: #325f22;
+      --muted: #5d6f4f;
+      --good: #3d7a33;
+      --bad: #a14545;
+      --warn: #8a6b1f;
+      --neutral: #7a8965;
+      --border: rgba(50, 95, 34, 0.14);
+      --shadow: 0 20px 60px rgba(50, 95, 34, 0.12);
+      --chip-bg: rgba(167, 182, 146, 0.2);
+      --chip-border: rgba(50, 95, 34, 0.12);
+      --field-bg: rgba(241, 234, 215, 0.9);
+      --ghost-border: rgba(50, 95, 34, 0.16);
+      --primary-start: #85b380;
+      --primary-end: #325f22;
+      --primary-text: #f7f3e8;
+    }
+    html[data-theme="light"] body {
+      background:
+        radial-gradient(circle at top left, rgba(167, 182, 146, 0.35), transparent 24%),
+        radial-gradient(circle at top right, rgba(133, 179, 128, 0.26), transparent 28%),
+        linear-gradient(180deg, var(--bg-top), var(--bg));
+    }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] {
+        color-scheme: light;
+        --bg: #d2dcbf;
+        --bg-top: #f1ead7;
+        --card: rgba(241, 234, 215, 0.9);
+        --text: #325f22;
+        --muted: #5d6f4f;
+        --good: #3d7a33;
+        --bad: #a14545;
+        --warn: #8a6b1f;
+        --neutral: #7a8965;
+        --border: rgba(50, 95, 34, 0.14);
+        --shadow: 0 20px 60px rgba(50, 95, 34, 0.12);
+        --chip-bg: rgba(167, 182, 146, 0.2);
+        --chip-border: rgba(50, 95, 34, 0.12);
+        --field-bg: rgba(241, 234, 215, 0.9);
+        --ghost-border: rgba(50, 95, 34, 0.16);
+        --primary-start: #85b380;
+        --primary-end: #325f22;
+        --primary-text: #f7f3e8;
+      }
+      html[data-theme="system"] body {
+        background:
+          radial-gradient(circle at top left, rgba(167, 182, 146, 0.35), transparent 24%),
+          radial-gradient(circle at top right, rgba(133, 179, 128, 0.26), transparent 28%),
+          linear-gradient(180deg, var(--bg-top), var(--bg));
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="system"] { color-scheme: dark; }
+    }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .eyebrow,
+      html[data-theme="system"] .date-chip,
+      html[data-theme="system"] .badge,
+      html[data-theme="system"] .hint-box,
+      html[data-theme="system"] .mini,
+      html[data-theme="system"] .panel,
+      html[data-theme="system"] .code-block,
+      html[data-theme="system"] .attempt,
+      html[data-theme="system"] .reveal-card,
+      html[data-theme="system"] .portrait-panel,
+      html[data-theme="system"] .portrait-wrap {
+        background-color: rgba(241, 234, 215, 0.7);
+      }
+    }
+    html[data-theme="light"] .eyebrow,
+    html[data-theme="light"] .date-chip,
+    html[data-theme="light"] .badge,
+    html[data-theme="light"] .hint-box,
+    html[data-theme="light"] .mini,
+    html[data-theme="light"] .panel,
+    html[data-theme="light"] .code-block,
+    html[data-theme="light"] .attempt,
+    html[data-theme="light"] .reveal-card,
+    html[data-theme="light"] .portrait-panel,
+    html[data-theme="light"] .portrait-wrap {
+      background-color: rgba(241, 234, 215, 0.7);
     }
     #shareButton {
       display: none;
@@ -42,8 +140,8 @@
     .main { padding: 24px; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
-      border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05); color: #d5e7ff; font-size: 0.86rem;
+      border-radius: 999px; border: 1px solid var(--chip-border);
+      background: var(--chip-bg); color: #d5e7ff; font-size: 0.86rem;
       font-weight: 700; margin-bottom: 12px;
     }
     h1 { margin: 0; font-size: clamp(2.4rem, 4.4vw, 4rem); letter-spacing: -0.04em; line-height: 0.96; }
@@ -78,7 +176,7 @@
     .meta-badge { bottom: 12px; }
     .badge {
       padding: 7px 10px; border-radius: 999px; background: rgba(2, 8, 20, 0.72);
-      border: 1px solid rgba(255,255,255,0.1); font-size: 0.82rem; color: #edf5ff; backdrop-filter: blur(12px);
+      border: 1px solid var(--chip-border); font-size: 0.82rem; color: #edf5ff; backdrop-filter: blur(12px);
     }
     .guess-dots { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .reveal-card {
@@ -99,15 +197,15 @@
     .controls, .footer-actions { display: flex; flex-wrap: wrap; gap: 10px; }
     input, button { border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); font-size: 1rem; }
     input {
-      flex: 1; min-width: 240px; padding: 15px 16px; background: rgba(255,255,255,0.045);
+      flex: 1; min-width: 240px; padding: 15px 16px; background: var(--field-bg);
       color: var(--text); outline: none;
     }
     button {
-      padding: 14px 16px; cursor: pointer; color: white; font-weight: 700;
-      background: linear-gradient(135deg, #0ea5e9, #2563eb); transition: transform 120ms ease, opacity 120ms ease;
+      padding: 14px 16px; cursor: pointer; color: var(--primary-text); font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-start), var(--primary-end)); transition: transform 120ms ease, opacity 120ms ease;
     }
-    button.secondary { background: rgba(255,255,255,0.05); color: var(--text); }
-    button.ghost { background: transparent; border-color: rgba(255,255,255,0.12); color: var(--muted); }
+    button.secondary { background: var(--chip-bg); color: var(--text); }
+    button.ghost { background: transparent; border-color: var(--ghost-border); color: var(--muted); }
     button:hover { transform: translateY(-1px); }
     button:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
     .status { min-height: 24px; color: var(--muted); font-size: 0.96rem; }
@@ -170,6 +268,30 @@
     .modal-head h2 { margin: 0; font-size: 1.35rem; }
     .modal-close { min-width: 44px; padding: 10px 12px; line-height: 1; }
     .modal-grid { display: grid; gap: 12px; margin-top: 12px; }
+
+    .settings-layout { display: grid; gap: 16px; margin-top: 12px; }
+    .settings-section {
+      padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .settings-section h3 { margin: 0 0 6px; font-size: 1rem; }
+    .settings-section p { margin: 0 0 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+    .settings-options { display: grid; gap: 8px; }
+    .settings-option {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .settings-option input { min-width: auto; flex: 0 0 auto; padding: 0; }
+    .settings-summary {
+      margin-top: 14px; color: var(--muted); font-size: 0.92rem; line-height: 1.5;
+      padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .pill.corruption-pill { border-width: 1px; }
+    .pill.corruption-more { background: rgba(244,63,94,0.14); color: #ffc0cb; }
+    .pill.corruption-equal { background: rgba(34,197,94,0.14); color: #b7f7c8; }
+    .pill.corruption-less { background: rgba(245,158,11,0.16); color: #ffd88a; }
+    .pill.corruption-neutral { background: rgba(148,163,184,0.14); color: #d7e0eb; }
     @keyframes spin { to { transform: rotate(360deg); } }
     @media (max-width: 980px) {
       .topbar-right { width: 100%; align-items: flex-start; }
@@ -193,6 +315,7 @@
           <div class="topbar-actions">
             <button class="ghost" id="howToPlayButton" type="button">How to play</button>
             <button class="ghost" id="implementationNotesButton" type="button">Implementation notes</button>
+            <button class="ghost" id="settingsButton" type="button">Settings</button>
           </div>
         </div>
       </div>
@@ -241,7 +364,7 @@
         <button class="ghost modal-close" id="closeHowToPlayButton" type="button">✕</button>
       </div>
       <div class="modal-grid">
-        <div class="mini"><strong>Corruption hint</strong><span>After a wrong guess, you are told whether the country you guessed has a higher, lower, or similar corruption-control score.</span></div>
+        <div class="mini"><strong>Corruption hint</strong><span>After a wrong guess, you are told whether your guessed country is more corrupt, similarly corrupt, or less corrupt than the mystery country.</span></div>
         <div class="mini"><strong>Continent hint</strong><span>You are also told whether the guessed country is on the correct continent.</span></div>
         <div class="mini"><strong>Distance hint</strong><span>Each guess gets a 5-square emoji bar that becomes greener as the guess gets geographically closer.</span></div>
         <div class="mini"><strong>Serving hint</strong><span>The top right of the portrait indicates how long the leader has served in their current position.</span></div>
@@ -286,13 +409,53 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="settingsModal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <h2>Settings</h2>
+        <button class="ghost modal-close" id="closeSettingsButton" type="button">✕</button>
+      </div>
+      <div class="settings-layout">
+        <section class="settings-section">
+          <h3>Theme</h3>
+          <p>Choose between the original dark look, a light mode, or a system-following theme.</p>
+          <div class="settings-options">
+            <label class="settings-option"><input type="radio" name="themeSetting" value="dark"> <span>Dark</span></label>
+            <label class="settings-option"><input type="radio" name="themeSetting" value="light"> <span>Light</span></label>
+            <label class="settings-option"><input type="radio" name="themeSetting" value="system"> <span>System</span></label>
+          </div>
+        </section>
+        <section class="settings-section">
+          <h3>Guess order</h3>
+          <p>Keep the newest guess first, or sort the board by the closest guess.</p>
+          <div class="settings-options">
+            <label class="settings-option"><input type="radio" name="guessSortSetting" value="recent"> <span>Most recent first</span></label>
+            <label class="settings-option"><input type="radio" name="guessSortSetting" value="closest"> <span>Closest first</span></label>
+          </div>
+        </section>
+        <section class="settings-section">
+          <h3>Random leader pool</h3>
+          <p>Filter random mode to heads of state, heads of government, or the full combined pool.</p>
+          <div class="settings-options">
+            <label class="settings-option"><input type="radio" name="randomLeaderPoolSetting" value="state"> <span>Heads of state</span></label>
+            <label class="settings-option"><input type="radio" name="randomLeaderPoolSetting" value="government"> <span>Heads of government</span></label>
+            <label class="settings-option"><input type="radio" name="randomLeaderPoolSetting" value="all"> <span>All leaders</span></label>
+          </div>
+        </section>
+      </div>
+      <div class="settings-summary" id="settingsSummary"></div>
+    </div>
+  </div>
+
   <script>
     const MAX_GUESSES = 6;
-    const STORAGE_PREFIX = "leaderle-state-json-v3";
     const LEADERS_JSON_URL = "./data/leaders.json";
     const DAILY_SCHEDULE_JSON_URL = "./data/daily-schedule.json";
     const WIKIPEDIA_SUMMARY_BASE = "https://en.wikipedia.org/api/rest_v1/page/summary/";
     const DAILY_COOKIE_KEY = "worldleaderle_daily_state_v1";
+    const SETTINGS_STORAGE_KEY = "worldleaderle_settings_v1";
+    const RANDOM_QUEUE_STORAGE_KEY = "worldleaderle_random_queue_v1";
+    const CORRUPTION_EQUAL_THRESHOLD = 0.35;
 
     const FALLBACK_LEADERS = [
       {
@@ -339,7 +502,7 @@
       }
     ];
 
-  const aliases = {
+    const aliases = {
     // United States
     us: "United States",
     usa: "United States",
@@ -660,14 +823,24 @@
     const leaderMetaBadge = document.getElementById("leaderMetaBadge");
     const howToPlayButton = document.getElementById("howToPlayButton");
     const implementationNotesButton = document.getElementById("implementationNotesButton");
+    const settingsButton = document.getElementById("settingsButton");
     const revealCard = document.getElementById("revealCard");
     const revealTitle = document.getElementById("revealTitle");
     const revealMeta = document.getElementById("revealMeta");
     const revealText = document.getElementById("revealText");
     const howToPlayModal = document.getElementById("howToPlayModal");
     const implementationNotesModal = document.getElementById("implementationNotesModal");
+    const settingsModal = document.getElementById("settingsModal");
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
     const closeImplementationNotesButton = document.getElementById("closeImplementationNotesButton");
+    const closeSettingsButton = document.getElementById("closeSettingsButton");
+    const settingsSummary = document.getElementById("settingsSummary");
+
+    const defaultSettings = {
+      theme: "dark",
+      guessSort: "recent",
+      randomLeaderPool: "all"
+    };
 
     const memoryStorage = (() => {
       const store = new Map();
@@ -699,18 +872,25 @@
     let mysteryLeader = null;
     let guesses = [];
     let gameOver = false;
-    let randomPreviewMode = false;
     let currentMode = "daily";
     let dailySchedule = null;
+    let settings = loadSettings();
 
     function getTodayKey() {
       const d = new Date();
       return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
     }
-    function getStorageKey() { return `${STORAGE_PREFIX}:${getTodayKey()}`; }
+
     function formatToday() {
-      return new Intl.DateTimeFormat("en-GB", { weekday: "short", year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(new Date());
+      return new Intl.DateTimeFormat("en-GB", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC"
+      }).format(new Date());
     }
+
     function hashString(str) {
       let hash = 0;
       for (let i = 0; i < str.length; i += 1) {
@@ -719,50 +899,199 @@
       }
       return Math.abs(hash);
     }
+
     function normalize(text) {
-      return (text || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[’'`]/g, "").replace(/&/g, "and").replace(/[^a-zA-Z0-9]+/g, " ").trim().toLowerCase();
+      return (text || "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[’'`]/g, "")
+        .replace(/&/g, "and")
+        .replace(/[^a-zA-Z0-9]+/g, " ")
+        .trim()
+        .toLowerCase();
     }
-    function slugifyForLookup(text) { return normalize(text).replace(/\s+/g, ""); }
-    
-function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
+
+    function slugifyForLookup(text) {
+      return normalize(text).replace(/\s+/g, "");
+    }
+
+    function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
     }
+
     function getCookie(name) {
       const prefix = `${name}=`;
       const match = document.cookie.split("; ").find((row) => row.startsWith(prefix));
       return match ? decodeURIComponent(match.slice(prefix.length)) : null;
     }
+
     function deleteCookie(name) {
       document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
     }
+
     function saveDailyState(state) {
       setCookie(DAILY_COOKIE_KEY, JSON.stringify(state));
     }
-    function loadDailyState() {
-      try { return JSON.parse(getCookie(DAILY_COOKIE_KEY) || "null"); } catch { return null; }
-    }
-    function saveCurrentModeState() {
-      if (!mysteryLeader) return;
 
-      if (currentMode === "daily") {
-        const state = {
-          leaderId: mysteryLeader.id,
-          guesses,
-          gameOver,
-          mode: "daily",
-          date: getTodayKey()
-        };
-        saveDailyState(state);
+    function loadDailyState() {
+      try {
+        return JSON.parse(getCookie(DAILY_COOKIE_KEY) || "null");
+      } catch {
+        return null;
       }
     }
-    function saveState() {
-      saveCurrentModeState();
+
+    function loadSettings() {
+      try {
+        const parsed = JSON.parse(safeStorage.getItem(SETTINGS_STORAGE_KEY) || "null") || {};
+        return {
+          theme: ["dark", "light", "system"].includes(parsed.theme) ? parsed.theme : defaultSettings.theme,
+          guessSort: ["recent", "closest"].includes(parsed.guessSort) ? parsed.guessSort : defaultSettings.guessSort,
+          randomLeaderPool: ["state", "government", "all"].includes(parsed.randomLeaderPool) ? parsed.randomLeaderPool : defaultSettings.randomLeaderPool
+        };
+      } catch {
+        return { ...defaultSettings };
+      }
     }
-    function loadState() {
-      return currentMode === "daily" ? loadDailyState() : null;
+
+    function saveSettings() {
+      safeStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
     }
-    function clearTodayState() {
-      deleteCookie(DAILY_COOKIE_KEY);
+
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", settings.theme);
+    }
+
+    function syncSettingsUI() {
+      document.querySelectorAll('input[name="themeSetting"]').forEach((input) => {
+        input.checked = input.value === settings.theme;
+      });
+      document.querySelectorAll('input[name="guessSortSetting"]').forEach((input) => {
+        input.checked = input.value === settings.guessSort;
+      });
+      document.querySelectorAll('input[name="randomLeaderPoolSetting"]').forEach((input) => {
+        input.checked = input.value === settings.randomLeaderPool;
+      });
+      settingsSummary.textContent = `Theme: ${capitalize(settings.theme)} • Guess order: ${settings.guessSort === "recent" ? "Most recent first" : "Closest first"} • Random pool: ${describeRandomPool(settings.randomLeaderPool)}`;
+    }
+
+    function capitalize(value) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
+    function describeRandomPool(value) {
+      if (value === "state") return "Heads of state";
+      if (value === "government") return "Heads of government";
+      return "All leaders";
+    }
+
+    function getLeaderRoleFlags(leader) {
+      const role = normalize(leader?.role || "");
+      return {
+        state: role.includes("head of state"),
+        government: role.includes("head of government")
+      };
+    }
+
+    function matchesLeaderPoolSetting(leader, poolSetting) {
+      const flags = getLeaderRoleFlags(leader);
+      if (poolSetting === "state") return flags.state;
+      if (poolSetting === "government") return flags.government;
+      return flags.state || flags.government;
+    }
+
+    function shuffleArray(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getEligibleRandomLeaders() {
+      return leaderPool.filter((leader) => matchesLeaderPoolSetting(leader, settings.randomLeaderPool));
+    }
+
+    function loadRandomQueueState() {
+      try {
+        return JSON.parse(safeStorage.getItem(RANDOM_QUEUE_STORAGE_KEY) || "null");
+      } catch {
+        return null;
+      }
+    }
+
+    function saveRandomQueueState(state) {
+      safeStorage.setItem(RANDOM_QUEUE_STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function ensureRandomQueue(forceRegenerate = false) {
+      const eligibleLeaders = getEligibleRandomLeaders();
+      const eligibleIds = eligibleLeaders.map((leader) => leader.id);
+      if (!eligibleIds.length) {
+        throw new Error("No eligible leaders available for the selected random pool.");
+      }
+
+      let state = forceRegenerate ? null : loadRandomQueueState();
+
+      if (!state || state.rolePool !== settings.randomLeaderPool || !Array.isArray(state.queue)) {
+        state = {
+          rolePool: settings.randomLeaderPool,
+          queue: shuffleArray(eligibleIds)
+        };
+        saveRandomQueueState(state);
+        return state;
+      }
+
+      let queue = state.queue.filter((id) => eligibleIds.includes(id));
+      const missing = eligibleIds.filter((id) => !queue.includes(id));
+
+      if (!queue.length) {
+        queue = shuffleArray(eligibleIds);
+      } else if (missing.length) {
+        queue = queue.concat(shuffleArray(missing));
+      }
+
+      state = {
+        rolePool: settings.randomLeaderPool,
+        queue
+      };
+      saveRandomQueueState(state);
+      return state;
+    }
+
+    function peekRandomLeader() {
+      let state = ensureRandomQueue(false);
+      if (!state.queue.length) {
+        state = ensureRandomQueue(true);
+      }
+      return leaderPool.find((leader) => leader.id === state.queue[0]) || chooseRandomLeader(getEligibleRandomLeaders());
+    }
+
+    function skipCurrentRandomLeader() {
+      const state = ensureRandomQueue(false);
+      if (!state.queue.length) return;
+      const currentId = state.queue.shift();
+      if (currentId) state.queue.push(currentId);
+      saveRandomQueueState(state);
+    }
+
+    function popSolvedRandomLeader() {
+      const state = ensureRandomQueue(false);
+      if (!state.queue.length) return;
+      if (state.queue[0] === mysteryLeader?.id) {
+        state.queue.shift();
+      } else {
+        state.queue = state.queue.filter((id) => id !== mysteryLeader?.id);
+      }
+      saveRandomQueueState(state);
+    }
+
+    function findTodaysLeaderId() {
+      if (!dailySchedule?.entries) return null;
+      const today = getTodayKey();
+      const entry = dailySchedule.entries.find((item) => item.date === today);
+      return entry ? entry.leaderId : null;
     }
 
     async function loadDailySchedule() {
@@ -776,13 +1105,6 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       }
     }
 
-    function findTodaysLeaderId() {
-      if (!dailySchedule?.entries) return null;
-      const today = getTodayKey();
-      const entry = dailySchedule.entries.find((e) => e.date === today);
-      return entry ? entry.leaderId : null;
-    }
-
     function setStatus(message, type = "info", loading = false) {
       statusMessage.className = `status ${type}`;
       statusMessage.innerHTML = `${loading ? '<span class="loader"></span>' : ''}${message}`;
@@ -794,18 +1116,30 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         if (!res.ok) throw new Error(`leaders.json request failed: ${res.status}`);
         const json = await res.json();
         const items = Array.isArray(json) ? json : json.leaders;
-        if (!Array.isArray(items) || items.length === 0) throw new Error("leaders.json did not contain a usable leader array");
+        if (!Array.isArray(items) || items.length === 0) {
+          throw new Error("leaders.json did not contain a usable leader array");
+        }
         leaderPool = items.filter((entry) => entry && entry.id && entry.country && entry.leader);
-        if (!leaderPool.length) throw new Error("leaders.json contained no valid leaders");
+        if (!leaderPool.length) {
+          throw new Error("leaders.json contained no valid leaders");
+        }
       } catch (error) {
         console.warn("Failed to load local leaders database, using fallback leaders.", error);
         leaderPool = [...FALLBACK_LEADERS];
       }
     }
 
-    function updateGameTitle() {
-      gameTitle.textContent =
-      currentMode === "random" ? "Random World Leaderle" : "Daily World Leaderle";
+    function updateGameChrome() {
+      gameTitle.textContent = currentMode === "random" ? "Random World Leaderle" : "Daily World Leaderle";
+      if (currentMode === "random") {
+        dateChip.textContent = `Random queue • ${describeRandomPool(settings.randomLeaderPool)}`;
+        randomButton.textContent = "Next random leader";
+        leaderMetaBadge.textContent = "Random queue";
+      } else {
+        dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
+        randomButton.textContent = "Random mode";
+        leaderMetaBadge.textContent = "Daily puzzle";
+      }
     }
 
     function buildCountryOptions() {
@@ -822,7 +1156,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         }
       }
 
-    const extraGuessCountries = [
+      const extraGuessCountries = [
       { name: "Afghanistan", continent: "Asia", coords: { lat: 33.9391, lon: 67.71 } },
       { name: "Albania", continent: "Europe", coords: { lat: 41.1533, lon: 20.1683 } },
       { name: "Algeria", continent: "Africa", coords: { lat: 28.0339, lon: 1.6596 } },
@@ -1044,16 +1378,16 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       { name: "New Caledonia", continent: "Oceania", coords: { lat: -20.9043, lon: 165.618 } }
     ];
 
-    for (const country of extraGuessCountries) {
-      if (!uniqueCountryMap.has(country.name)) {
-        uniqueCountryMap.set(country.name, {
-          continent: country.continent,
-          corruptionScore: null,
-          coords: country.coords,
-          iso2: null
-        });
+      for (const country of extraGuessCountries) {
+        if (!uniqueCountryMap.has(country.name)) {
+          uniqueCountryMap.set(country.name, {
+            continent: country.continent,
+            corruptionScore: null,
+            coords: country.coords,
+            iso2: null
+          });
+        }
       }
-    }
 
       playableCountries = uniqueCountryMap;
       countryOptions.innerHTML = [...playableCountries.keys()]
@@ -1070,8 +1404,15 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       }
       return pool[hashString(getTodayKey()) % pool.length];
     }
-    function chooseRandomLeader(pool) { return pool[Math.floor(Math.random() * pool.length)]; }
-    function getCountryMeta(countryName) { return playableCountries.get(countryName) || null; }
+
+    function chooseRandomLeader(pool) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function getCountryMeta(countryName) {
+      return playableCountries.get(countryName) || null;
+    }
+
     function canonicalCountry(input) {
       const cleaned = normalize(input);
       const aliasHit = aliases[slugifyForLookup(input)];
@@ -1087,6 +1428,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       if (wrongCount === 1) return { blur: 10, scale: 1.02 };
       return { blur: 0, scale: 1 };
     }
+
     function formatTenure(startDate) {
       if (!startDate) return "Tenure unknown";
       const start = new Date(startDate);
@@ -1095,33 +1437,71 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       let years = now.getUTCFullYear() - start.getUTCFullYear();
       let months = now.getUTCMonth() - start.getUTCMonth();
       if (now.getUTCDate() < start.getUTCDate()) months -= 1;
-      if (months < 0) { years -= 1; months += 12; }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
       if (years <= 0) return `Serving ${Math.max(months, 0)} mo`;
       if (months <= 0) return `Serving ${years}y`;
       return `Serving ${years}y ${months}mo`;
     }
+
     function renderDots() {
-      const won = guesses.some((g) => g.correct);
-      guessDots.innerHTML = Array.from({ length: MAX_GUESSES }, (_, i) => {
-        const used = i < guesses.length;
-        const cls = won && i === guesses.length - 1 ? "dot win" : used ? "dot used" : "dot";
+      const won = guesses.some((guess) => guess.correct);
+      guessDots.innerHTML = Array.from({ length: MAX_GUESSES }, (_, index) => {
+        const used = index < guesses.length;
+        const cls = won && index === guesses.length - 1 ? "dot win" : used ? "dot used" : "dot";
         return `<div class="${cls}"></div>`;
       }).join("");
     }
+
     function updateBlur() {
-      const wrong = guesses.filter((g) => !g.correct).length;
-      const state = gameOver && guesses.some((g) => g.correct) ? { blur: 0, scale: 1 } : blurForWrongGuessCount(wrong);
+      const wrong = guesses.filter((guess) => !guess.correct).length;
+      const state = gameOver && guesses.some((guess) => guess.correct)
+        ? { blur: 0, scale: 1 }
+        : blurForWrongGuessCount(wrong);
       leaderImage.style.filter = `blur(${state.blur}px)`;
       leaderImage.style.transform = `scale(${state.scale})`;
     }
-    function corruptionHint(guessMeta) {
-      const targetScore = mysteryLeader.corruptionScore;
-      const guessScore = guessMeta?.corruptionScore;
-      if (targetScore == null || guessScore == null) return "Corruption comparison unavailable for one of these countries.";
-      if (targetScore > guessScore) return `${guessMeta.country} has a higher corruption-control score.`;
-      if (targetScore < guessScore) return `${guessMeta.country} has a lower corruption-control score.`;
-      return `${guessMeta.country} has about the same corruption-control score.`;
+
+    function compareCorruption(targetScore, guessScore) {
+      if (targetScore == null || guessScore == null) {
+        return {
+          label: "No corruption data",
+          shortLabel: "No data",
+          pillClass: "corruption-neutral",
+          detail: "Corruption comparison is unavailable for one of these countries."
+        };
+      }
+
+      const difference = guessScore - targetScore;
+
+      if (Math.abs(difference) <= CORRUPTION_EQUAL_THRESHOLD) {
+        return {
+          label: "≈ Similar corruption",
+          shortLabel: "Similar corruption",
+          pillClass: "corruption-equal",
+          detail: "Your guess is in about the same corruption range as the mystery country."
+        };
+      }
+
+      if (difference > 0) {
+        return {
+          label: "↓ Less corrupt",
+          shortLabel: "Less corrupt",
+          pillClass: "corruption-less",
+          detail: "Your guess is less corrupt than the mystery country."
+        };
+      }
+
+      return {
+        label: "↑ More corrupt",
+        shortLabel: "More corrupt",
+        pillClass: "corruption-more",
+        detail: "Your guess is more corrupt than the mystery country."
+      };
     }
+
     function haversineKm(a, b) {
       if (!a || !b) return null;
       const R = 6371;
@@ -1133,6 +1513,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       const x = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
       return Math.round(R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x)));
     }
+
     function distanceEmojiBar(distanceKm, correct) {
       if (correct) return "🟩🟩🟩🟩🟩";
       if (distanceKm == null) return "⬜⬜⬜⬜⬜";
@@ -1145,18 +1526,43 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       return "⬜⬜⬜⬜⬜";
     }
 
+    function getRenderedGuesses() {
+      const items = [...guesses];
+      if (settings.guessSort === "closest") {
+        items.sort((a, b) => {
+          if (a.correct !== b.correct) return a.correct ? -1 : 1;
+          const aDistance = a.distanceKm == null ? Number.POSITIVE_INFINITY : a.distanceKm;
+          const bDistance = b.distanceKm == null ? Number.POSITIVE_INFINITY : b.distanceKm;
+          if (aDistance !== bDistance) return aDistance - bDistance;
+          return a.order - b.order;
+        });
+        return items;
+      }
+      return items.sort((a, b) => b.order - a.order);
+    }
+
     function buildAttemptCard(guess) {
-      const resultPill = guess.correct ? `<span class="pill good">Correct</span>` : `<span class="pill bad">Incorrect</span>`;
-      const continentPill = guess.correct ? `<span class="pill good">Correct country</span>` : guess.sameContinent ? `<span class="pill good">Correct continent</span>` : `<span class="pill bad">Wrong continent</span>`;
+      const resultPill = guess.correct
+        ? `<span class="pill good">Correct</span>`
+        : `<span class="pill bad">Incorrect</span>`;
+      const continentPill = guess.correct
+        ? `<span class="pill good">Correct country</span>`
+        : guess.sameContinent
+          ? `<span class="pill good">Correct continent</span>`
+          : `<span class="pill bad">Wrong continent</span>`;
+      const corruptionPill = guess.correct
+        ? `<span class="pill good">Match</span>`
+        : `<span class="pill corruption-pill ${guess.corruptionComparison.pillClass}">${guess.corruptionComparison.label}</span>`;
       const distanceText = guess.distanceKm == null ? "Distance unavailable" : `${guess.distanceKm.toLocaleString()} km away`;
+
       return `
         <div class="attempt">
           <div class="attempt-head">
             <div class="attempt-title">${guess.country}</div>
-            <div class="pill-group">${resultPill}${continentPill}</div>
+            <div class="pill-group">${resultPill}${continentPill}${corruptionPill}</div>
           </div>
           <div class="attempt-grid">
-            <div class="hint-box"><b>Corruption hint:</b><br>${guess.correct ? `The mystery country is <b>${mysteryLeader.country}</b>.` : guess.corruptionHint}</div>
+            <div class="hint-box"><b>Corruption hint:</b><br>${guess.correct ? `The mystery country is <b>${mysteryLeader.country}</b>.` : guess.corruptionComparison.detail}</div>
             <div class="hint-box"><b>Continent hint:</b><br>${guess.correct ? `${mysteryLeader.country} is in <b>${mysteryLeader.continent}</b>.` : (guess.sameContinent ? `Yes, ${guess.country} is on the correct continent.` : `No, ${guess.country} is not on the correct continent.`)}</div>
           </div>
           <div class="distance-line">
@@ -1167,7 +1573,8 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
     }
 
     function renderAttempts() {
-      attemptsEl.innerHTML = [...guesses].reverse().map(buildAttemptCard).join("");
+      const items = getRenderedGuesses();
+      attemptsEl.innerHTML = items.map(buildAttemptCard).join("");
       renderDots();
       updateBlur();
     }
@@ -1222,7 +1629,6 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
     function applyLeaderToUI() {
       roleBadge.textContent = mysteryLeader.role;
       blurBadge.textContent = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
-      leaderMetaBadge.textContent = randomPreviewMode ? "Random preview" : "Daily puzzle";
       sourceBadge.textContent = "Source: Wikimedia";
       leaderImage.src = mysteryLeader.image || "";
       leaderImage.alt = "Mystery leader portrait";
@@ -1232,8 +1638,24 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         portraitWrap.classList.remove("ready");
         sourceBadge.textContent = "Image unavailable";
       };
+      updateGameChrome();
       setRevealVisible(false);
       updateBlur();
+    }
+
+    function saveCurrentModeState() {
+      if (!mysteryLeader || currentMode !== "daily") return;
+      saveDailyState({
+        leaderId: mysteryLeader.id,
+        guesses,
+        gameOver,
+        mode: "daily",
+        date: getTodayKey()
+      });
+    }
+
+    function saveState() {
+      saveCurrentModeState();
     }
 
     function finishGame(won) {
@@ -1244,7 +1666,17 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       shareButton.style.display = "inline-flex";
       leaderImage.style.filter = "blur(0px)";
       leaderImage.style.transform = "scale(1)";
-      setStatus(won ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`, won ? "good" : "bad");
+
+      if (currentMode === "random" && won) {
+        popSolvedRandomLeader();
+      }
+
+      setStatus(
+        won
+          ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.`
+          : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`,
+        won ? "good" : "bad"
+      );
       setRevealVisible(true);
       saveState();
     }
@@ -1256,85 +1688,90 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         setStatus("That country is not in the current playable pool. Try a country from the suggestions.", "bad");
         return;
       }
-      if (guesses.some((g) => g.country === country)) {
+      if (guesses.some((guess) => guess.country === country)) {
         setStatus("You already guessed that country.", "bad");
         return;
       }
+
       const guessMeta = getCountryMeta(country);
       const correct = country === mysteryLeader.country;
       const sameContinent = correct ? true : guessMeta?.continent === mysteryLeader.continent;
       const distanceKm = correct ? 0 : haversineKm(guessMeta?.coords, mysteryLeader.coords);
+      const corruptionComparison = compareCorruption(mysteryLeader.corruptionScore, guessMeta?.corruptionScore);
+
       guesses.push({
         country,
         correct,
         sameContinent,
         distanceKm,
+        order: guesses.length,
         proximityBar: distanceEmojiBar(distanceKm, correct),
-        corruptionHint: correct ? "" : corruptionHint({ ...guessMeta, country })
+        corruptionComparison
       });
+
       guessInput.value = "";
       renderAttempts();
+
       if (correct) return finishGame(true);
+
       const remaining = MAX_GUESSES - guesses.length;
       if (remaining <= 0) return finishGame(false);
+
       setStatus(`Not quite. ${remaining} guess${remaining === 1 ? "" : "es"} left.`, "info");
       saveState();
     }
 
-    function restoreFromSavedState(saved) {
-      if (!saved) return false;
-      const found = leaderPool.find((entry) => entry.id === saved.mysteryLeaderId);
-      if (!found) return false;
-      mysteryLeader = found;
-      guesses = Array.isArray(saved.guesses) ? saved.guesses : [];
-      gameOver = Boolean(saved.gameOver);
-      randomPreviewMode = Boolean(saved.randomPreviewMode);
-      applyLeaderToUI();
-      renderAttempts();
-      guessButton.disabled = gameOver;
-      guessInput.disabled = gameOver;
-      shareButton.disabled = !gameOver;
-      shareButton.style.display = gameOver ? "inline-flex" : "none";
-      setStatus(gameOver ? (guesses.some((g) => g.correct) ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`) : "Daily puzzle loaded. Start guessing.", gameOver ? (guesses.some((g) => g.correct) ? "good" : "bad") : "info");
-      setRevealVisible(gameOver);
-      return true;
-    }
-
-    
     async function loadOrRestoreDailyPuzzle() {
       const dailyLeader = chooseDailyLeader(leaderPool);
       const saved = loadDailyState();
 
-      mysteryLeader = { ...dailyLeader, tenureText: dailyLeader.tenureText || formatTenure(dailyLeader.startDate) };
+      mysteryLeader = {
+        ...dailyLeader,
+        tenureText: dailyLeader.tenureText || formatTenure(dailyLeader.startDate)
+      };
       guesses = [];
       gameOver = false;
+      currentMode = "daily";
 
       if (saved && saved.date === getTodayKey() && saved.leaderId === mysteryLeader.id) {
-        guesses = Array.isArray(saved.guesses) ? saved.guesses : [];
+        guesses = Array.isArray(saved.guesses) ? saved.guesses.map((guess, index) => ({
+          ...guess,
+          order: typeof guess.order === "number" ? guess.order : index,
+          corruptionComparison: guess.corruptionComparison || compareCorruption(mysteryLeader.corruptionScore, getCountryMeta(guess.country)?.corruptionScore)
+        })) : [];
         gameOver = Boolean(saved.gameOver);
       }
 
-      currentMode = "daily";
-      updateGameTitle();
-      randomPreviewMode = false;
       guessButton.disabled = gameOver;
       guessInput.disabled = gameOver;
       shareButton.disabled = !gameOver;
       shareButton.style.display = gameOver ? "inline-flex" : "none";
       applyLeaderToUI();
       renderAttempts();
-      setStatus(gameOver ? (guesses.some((g) => g.correct) ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.` : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`) : "Daily puzzle loaded. Start guessing.", gameOver ? (guesses.some((g) => g.correct) ? "good" : "bad") : "info");
+      setStatus(
+        gameOver
+          ? (guesses.some((guess) => guess.correct)
+            ? `Correct. The leader is ${mysteryLeader.leader} of ${mysteryLeader.country}.`
+            : `Out of guesses. The leader was ${mysteryLeader.leader} of ${mysteryLeader.country}.`)
+          : "Daily puzzle loaded. Start guessing.",
+        gameOver ? (guesses.some((guess) => guess.correct) ? "good" : "bad") : "info"
+      );
       setRevealVisible(gameOver);
       saveCurrentModeState();
     }
 
-    async function loadOrCreateRandomPuzzle() {
-      const leader = chooseRandomLeader(leaderPool);
-      mysteryLeader = { ...leader, tenureText: leader.tenureText || formatTenure(leader.startDate) };
+    async function loadOrCreateRandomPuzzle(options = { skipCurrent: false }) {
+      if (options.skipCurrent) {
+        skipCurrentRandomLeader();
+      }
+      const leader = peekRandomLeader();
+      mysteryLeader = {
+        ...leader,
+        tenureText: leader.tenureText || formatTenure(leader.startDate)
+      };
       guesses = [];
       gameOver = false;
       currentMode = "random";
-      updateGameTitle();
       guessButton.disabled = false;
       guessInput.disabled = false;
       shareButton.disabled = true;
@@ -1342,29 +1779,12 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
       applyLeaderToUI();
       renderAttempts();
       setRevealVisible(false);
-      setStatus("", "info");
+      setStatus("Random leader loaded.", "info");
     }
 
-    function chooseLeaderData(useRandom) { return useRandom ? chooseRandomLeader(leaderPool) : chooseDailyLeader(leaderPool); }
-    async function selectLeader(useRandom = false) {
-      currentMode = useRandom ? "random" : "daily";
-      randomPreviewMode = useRandom;
-      const base = chooseLeaderData(useRandom);
-      mysteryLeader = { ...base, tenureText: base.tenureText || formatTenure(base.startDate) };
-      guesses = [];
-      gameOver = false;
-      guessButton.disabled = false;
-      guessInput.disabled = false;
-      shareButton.disabled = true;
-      shareButton.style.display = "none";
-      applyLeaderToUI();
-      renderAttempts();
-      setStatus(useRandom ? "Random preview loaded." : "Daily puzzle loaded. Start guessing.", "info");
-      saveState();
-    }
     function buildShareText() {
-      const result = guesses.some((g) => g.correct) ? guesses.length : "X";
-      const rows = guesses.map((g) => g.proximityBar).join("\n");
+      const result = guesses.some((guess) => guess.correct) ? guesses.length : "X";
+      const rows = guesses.map((guess) => guess.proximityBar).join("\n");
       const shareUrl = window.location.href;
 
       if (currentMode === "random") {
@@ -1373,6 +1793,7 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
 
       return `Daily World Leaderle ${getTodayKey()} - ${result}/${MAX_GUESSES}\n${rows}\n${shareUrl}`;
     }
+
     async function copyShare() {
       try {
         await navigator.clipboard.writeText(buildShareText());
@@ -1381,71 +1802,161 @@ function setCookie(name, value, maxAgeSeconds = 60 * 60 * 24 * 30) {
         setStatus("Could not copy automatically. Clipboard permissions may be blocked.", "bad");
       }
     }
-    function openModal(modal) { modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); }
-    function closeModal(modal) { modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); }
+
+    function openModal(modal) {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    async function handleSettingsChange(name, value) {
+      if (name === "theme") {
+        settings.theme = value;
+        applyTheme();
+        saveSettings();
+        syncSettingsUI();
+        return;
+      }
+
+      if (name === "guessSort") {
+        settings.guessSort = value;
+        saveSettings();
+        renderAttempts();
+        syncSettingsUI();
+        return;
+      }
+
+      if (name === "randomLeaderPool") {
+        if (settings.randomLeaderPool === value) return;
+        const randomProgressWillBeLost = currentMode === "random" && guesses.length > 0;
+        if (randomProgressWillBeLost) {
+          const ok = window.confirm("Changing the random leader pool will reset this random round. Continue?");
+          if (!ok) {
+            syncSettingsUI();
+            return;
+          }
+        }
+
+        settings.randomLeaderPool = value;
+        saveSettings();
+        ensureRandomQueue(true);
+        syncSettingsUI();
+
+        if (currentMode === "random") {
+          await loadOrCreateRandomPuzzle();
+        } else {
+          updateGameChrome();
+          setStatus(`Random pool updated to ${describeRandomPool(settings.randomLeaderPool)}.`, "info");
+        }
+      }
+    }
+
     function bindModalEvents() {
       howToPlayButton.addEventListener("click", () => openModal(howToPlayModal));
       implementationNotesButton.addEventListener("click", () => openModal(implementationNotesModal));
+      settingsButton.addEventListener("click", () => {
+        syncSettingsUI();
+        openModal(settingsModal);
+      });
       closeHowToPlayButton.addEventListener("click", () => closeModal(howToPlayModal));
       closeImplementationNotesButton.addEventListener("click", () => closeModal(implementationNotesModal));
-      [howToPlayModal, implementationNotesModal].forEach((modal) => {
+      closeSettingsButton.addEventListener("click", () => closeModal(settingsModal));
+
+      [howToPlayModal, implementationNotesModal, settingsModal].forEach((modal) => {
         modal.addEventListener("click", (event) => {
           if (event.target === modal) closeModal(modal);
         });
       });
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           closeModal(howToPlayModal);
           closeModal(implementationNotesModal);
+          closeModal(settingsModal);
         }
       });
+
+      document.querySelectorAll('input[name="themeSetting"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) handleSettingsChange("theme", input.value);
+        });
+      });
+
+      document.querySelectorAll('input[name="guessSortSetting"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) handleSettingsChange("guessSort", input.value);
+        });
+      });
+
+      document.querySelectorAll('input[name="randomLeaderPoolSetting"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) handleSettingsChange("randomLeaderPool", input.value);
+        });
+      });
     }
+
     function assert(condition, message) {
       if (!condition) throw new Error(`Self-test failed: ${message}`);
     }
+
     function runSelfTests() {
       assert(distanceEmojiBar(0, true) === "🟩🟩🟩🟩🟩", "correct distance bar should be all green");
       assert(distanceEmojiBar(500, false) === "🟩🟩🟩🟩🟨", "nearby distance bar threshold should work");
       assert(formatTenure(null) === "Tenure unknown", "missing tenure should be handled");
+      assert(compareCorruption(0, 0.1).shortLabel === "Similar corruption", "similar corruption threshold should work");
       safeStorage.setItem("__leaderle_test__", "ok");
       assert(safeStorage.getItem("__leaderle_test__") === "ok", "safe storage set/get should work");
       safeStorage.removeItem("__leaderle_test__");
-      assert(buildShareText().includes(window.location.href), "share text should include page URL");
     }
-    
-async function init() {
-      dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
+
+    async function init() {
+      applyTheme();
       bindModalEvents();
+      syncSettingsUI();
       runSelfTests();
       setStatus("Loading local leaders database…", "info", true);
       await loadLeaderDatabase();
       await loadDailySchedule();
       buildCountryOptions();
+      ensureRandomQueue(false);
       resetButton.textContent = "Today's puzzle";
       await loadOrRestoreDailyPuzzle();
     }
-    guessButton.addEventListener("click", submitGuess);
-    guessInput.addEventListener("keydown", (event) => { if (event.key === "Enter") submitGuess(); });
-    shareButton.addEventListener("click", copyShare);
-    resetButton.addEventListener("click", async () => {
-      const leavingRandomWithProgress =
-        currentMode === "random" && guesses.length > 0;
 
+    guessButton.addEventListener("click", submitGuess);
+    guessInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") submitGuess();
+    });
+    shareButton.addEventListener("click", copyShare);
+
+    resetButton.addEventListener("click", async () => {
+      const leavingRandomWithProgress = currentMode === "random" && guesses.length > 0;
       if (leavingRandomWithProgress) {
-        const ok = window.confirm(
-          "Your progress on this random puzzle will be lost. Return to today's puzzle?"
-        );
+        const ok = window.confirm("Your progress on this random puzzle will be lost. Return to today's puzzle?");
+        if (!ok) return;
+        if (!gameOver) skipCurrentRandomLeader();
+      }
+      await loadOrRestoreDailyPuzzle();
+    });
+
+    randomButton.addEventListener("click", async () => {
+      const alreadyInRandom = currentMode === "random";
+      const hasRandomProgress = alreadyInRandom && guesses.length > 0;
+
+      if (hasRandomProgress) {
+        const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
         if (!ok) return;
       }
 
-      await loadOrRestoreDailyPuzzle();
+      await loadOrCreateRandomPuzzle({ skipCurrent: alreadyInRandom && !gameOver });
     });
-    randomButton.addEventListener("click", async () => {
-      await loadOrCreateRandomPuzzle();
-    });
+
     init().catch((error) => {
       console.error(error);
-      dateChip.textContent = `Puzzle date: ${formatToday()} (UTC)`;
       setStatus("Something went wrong while loading the puzzle. See the console for details.", "bad");
     });
   </script>
