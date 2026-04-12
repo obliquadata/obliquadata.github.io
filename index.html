@@ -19,11 +19,6 @@
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
       --chip-bg: rgba(255,255,255,0.05);
       --chip-border: rgba(255,255,255,0.1);
-      --field-bg: rgba(255,255,255,0.045);
-      --ghost-border: rgba(255,255,255,0.12);
-      --primary-start: #0ea5e9;
-      --primary-end: #2563eb;
-      --primary-text: #ffffff;
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
@@ -41,90 +36,52 @@
     html[data-theme="dark"] { color-scheme: dark; }
     html[data-theme="light"] {
       color-scheme: light;
-      --bg: #d2dcbf;
-      --bg-top: #f1ead7;
-      --card: rgba(241, 234, 215, 0.9);
-      --text: #325f22;
-      --muted: #5d6f4f;
-      --good: #3d7a33;
-      --bad: #a14545;
-      --warn: #8a6b1f;
-      --neutral: #7a8965;
+      --bg: #F1EAD7;
+      --bg-top: #fbf7ee;
+      --card: rgba(252, 248, 239, 0.94);
+      --text: #2b4f22;
+      --muted: #5d7254;
+      --good: #2f6f34;
+      --bad: #a83d58;
+      --warn: #9a6a0d;
+      --neutral: #66735f;
       --border: rgba(50, 95, 34, 0.14);
-      --shadow: 0 20px 60px rgba(50, 95, 34, 0.12);
-      --chip-bg: rgba(167, 182, 146, 0.2);
-      --chip-border: rgba(50, 95, 34, 0.12);
-      --field-bg: rgba(241, 234, 215, 0.9);
-      --ghost-border: rgba(50, 95, 34, 0.16);
-      --primary-start: #85b380;
-      --primary-end: #325f22;
-      --primary-text: #f7f3e8;
+      --shadow: 0 20px 60px rgba(76, 92, 48, 0.12);
+      --chip-bg: rgba(167, 182, 146, 0.16);
+      --chip-border: rgba(50, 95, 34, 0.14);
     }
     html[data-theme="light"] body {
       background:
-        radial-gradient(circle at top left, rgba(167, 182, 146, 0.35), transparent 24%),
-        radial-gradient(circle at top right, rgba(133, 179, 128, 0.26), transparent 28%),
+        radial-gradient(circle at top left, rgba(167, 182, 146, 0.22), transparent 24%),
+        radial-gradient(circle at top right, rgba(133, 179, 128, 0.18), transparent 28%),
         linear-gradient(180deg, var(--bg-top), var(--bg));
     }
     @media (prefers-color-scheme: light) {
       html[data-theme="system"] {
         color-scheme: light;
-        --bg: #d2dcbf;
-        --bg-top: #f1ead7;
-        --card: rgba(241, 234, 215, 0.9);
-        --text: #325f22;
-        --muted: #5d6f4f;
-        --good: #3d7a33;
-        --bad: #a14545;
-        --warn: #8a6b1f;
-        --neutral: #7a8965;
+        --bg: #F1EAD7;
+        --bg-top: #fbf7ee;
+        --card: rgba(252, 248, 239, 0.94);
+        --text: #2b4f22;
+        --muted: #5d7254;
+        --good: #2f6f34;
+        --bad: #a83d58;
+        --warn: #9a6a0d;
+        --neutral: #66735f;
         --border: rgba(50, 95, 34, 0.14);
-        --shadow: 0 20px 60px rgba(50, 95, 34, 0.12);
-        --chip-bg: rgba(167, 182, 146, 0.2);
-        --chip-border: rgba(50, 95, 34, 0.12);
-        --field-bg: rgba(241, 234, 215, 0.9);
-        --ghost-border: rgba(50, 95, 34, 0.16);
-        --primary-start: #85b380;
-        --primary-end: #325f22;
-        --primary-text: #f7f3e8;
+        --shadow: 0 20px 60px rgba(76, 92, 48, 0.12);
+        --chip-bg: rgba(167, 182, 146, 0.16);
+        --chip-border: rgba(50, 95, 34, 0.14);
       }
       html[data-theme="system"] body {
         background:
-          radial-gradient(circle at top left, rgba(167, 182, 146, 0.35), transparent 24%),
-          radial-gradient(circle at top right, rgba(133, 179, 128, 0.26), transparent 28%),
+          radial-gradient(circle at top left, rgba(167, 182, 146, 0.22), transparent 24%),
+          radial-gradient(circle at top right, rgba(133, 179, 128, 0.18), transparent 28%),
           linear-gradient(180deg, var(--bg-top), var(--bg));
       }
     }
     @media (prefers-color-scheme: dark) {
       html[data-theme="system"] { color-scheme: dark; }
-    }
-    @media (prefers-color-scheme: light) {
-      html[data-theme="system"] .eyebrow,
-      html[data-theme="system"] .date-chip,
-      html[data-theme="system"] .badge,
-      html[data-theme="system"] .hint-box,
-      html[data-theme="system"] .mini,
-      html[data-theme="system"] .panel,
-      html[data-theme="system"] .code-block,
-      html[data-theme="system"] .attempt,
-      html[data-theme="system"] .reveal-card,
-      html[data-theme="system"] .portrait-panel,
-      html[data-theme="system"] .portrait-wrap {
-        background-color: rgba(241, 234, 215, 0.7);
-      }
-    }
-    html[data-theme="light"] .eyebrow,
-    html[data-theme="light"] .date-chip,
-    html[data-theme="light"] .badge,
-    html[data-theme="light"] .hint-box,
-    html[data-theme="light"] .mini,
-    html[data-theme="light"] .panel,
-    html[data-theme="light"] .code-block,
-    html[data-theme="light"] .attempt,
-    html[data-theme="light"] .reveal-card,
-    html[data-theme="light"] .portrait-panel,
-    html[data-theme="light"] .portrait-wrap {
-      background-color: rgba(241, 234, 215, 0.7);
     }
     #shareButton {
       display: none;
@@ -197,35 +154,21 @@
     .controls, .footer-actions { display: flex; flex-wrap: wrap; gap: 10px; }
     input, button { border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); font-size: 1rem; }
     input {
-      flex: 1; min-width: 240px; padding: 15px 16px; background: var(--field-bg);
+      flex: 1; min-width: 240px; padding: 15px 16px; background: rgba(255,255,255,0.045);
       color: var(--text); outline: none;
     }
     button {
-      padding: 14px 16px; cursor: pointer; color: var(--primary-text); font-weight: 700;
-      background: linear-gradient(135deg, var(--primary-start), var(--primary-end)); transition: transform 120ms ease, opacity 120ms ease;
+      padding: 14px 16px; cursor: pointer; color: white; font-weight: 700;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb); transition: transform 120ms ease, opacity 120ms ease;
     }
     button.secondary { background: var(--chip-bg); color: var(--text); }
-    button.ghost { background: transparent; border-color: var(--ghost-border); color: var(--muted); }
+    button.ghost { background: transparent; border-color: rgba(255,255,255,0.12); color: var(--muted); }
     button:hover { transform: translateY(-1px); }
     button:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
     .status { min-height: 24px; color: var(--muted); font-size: 0.96rem; }
     .status.good { color: #8af0a8; }
     .status.bad { color: #ffb0bd; }
     .status.info { color: #9fdfff; }
-    html[data-theme="light"] button:not(.secondary):not(.ghost) {
-      background: linear-gradient(135deg, #5f9342, #3f7d2f);
-      border-color: rgba(50, 95, 34, 0.22);
-      color: #f8f5eb;
-    }
-    html[data-theme="light"] .status.info { color: #7da96f; }
-    @media (prefers-color-scheme: light) {
-      html[data-theme="system"] button:not(.secondary):not(.ghost) {
-        background: linear-gradient(135deg, #5f9342, #3f7d2f);
-        border-color: rgba(50, 95, 34, 0.22);
-        color: #f8f5eb;
-      }
-      html[data-theme="system"] .status.info { color: #7da96f; }
-    }
     .attempts { display: grid; gap: 12px; }
     .attempt {
       padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.035);
@@ -306,162 +249,182 @@
     .pill.corruption-equal { background: rgba(34,197,94,0.14); color: #b7f7c8; }
     .pill.corruption-less { background: rgba(245,158,11,0.16); color: #ffd88a; }
     .pill.corruption-neutral { background: rgba(148,163,184,0.14); color: #d7e0eb; }
-
     html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .date-chip,
     html[data-theme="light"] .badge,
+    html[data-theme="light"] button.secondary,
+    html[data-theme="light"] button.ghost,
+    html[data-theme="light"] .settings-option,
+    html[data-theme="light"] .settings-summary,
     html[data-theme="light"] .hint-box,
     html[data-theme="light"] .mini,
     html[data-theme="light"] .panel,
+    html[data-theme="light"] .code-block,
     html[data-theme="light"] .reveal-card,
     html[data-theme="light"] .attempt,
     html[data-theme="light"] .settings-section,
-    html[data-theme="light"] .settings-option,
+    html[data-theme="light"] input,
+    html[data-theme="light"] .portrait-panel,
     html[data-theme="light"] .modal,
-    html[data-theme="light"] .portrait-panel {
+    html[data-theme="light"] .modal-overlay.open .modal {
+      background: rgba(252, 248, 239, 0.95);
+      border-color: rgba(50, 95, 34, 0.14);
       color: var(--text);
     }
-    html[data-theme="light"] .eyebrow {
-      background: rgba(167, 182, 146, 0.32);
-      color: #27411b;
-    }
+    html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .date-chip,
-    html[data-theme="light"] .hint-box,
-    html[data-theme="light"] .mini,
-    html[data-theme="light"] .panel,
-    html[data-theme="light"] .reveal-card,
-    html[data-theme="light"] .attempt,
-    html[data-theme="light"] .settings-section,
-    html[data-theme="light"] .settings-option {
-      background: rgba(255, 252, 245, 0.88);
-      border-color: rgba(50, 95, 34, 0.16);
-    }
-    html[data-theme="light"] .portrait-panel {
-      background: linear-gradient(180deg, rgba(255, 251, 243, 0.96), rgba(241, 234, 215, 0.84));
-      border-color: rgba(50, 95, 34, 0.18);
-    }
-    html[data-theme="light"] .portrait-wrap {
-      background: linear-gradient(180deg, #a7b692, #6c8a57);
-      border-color: rgba(50, 95, 34, 0.24);
-    }
-    html[data-theme="light"] .badge {
-      background: rgba(250, 246, 236, 0.92);
-      border-color: rgba(50, 95, 34, 0.20);
-      color: #27411b;
-    }
-    html[data-theme="light"] .dot {
-      background: rgba(50, 95, 34, 0.14);
-      border-color: rgba(50, 95, 34, 0.18);
-    }
-    html[data-theme="light"] input,
+    html[data-theme="light"] .badge,
     html[data-theme="light"] button.secondary,
     html[data-theme="light"] button.ghost {
-      border-color: rgba(50, 95, 34, 0.22);
-    }
-    html[data-theme="light"] input {
-      background: rgba(255, 252, 245, 0.98);
-      color: var(--text);
-    }
-    html[data-theme="light"] button {
-      color: #f8f6ef;
-      background: linear-gradient(135deg, #5f8a49, #325f22);
-    }
-    html[data-theme="light"] button.secondary {
-      background: rgba(167, 182, 146, 0.30);
-      color: var(--text);
-    }
-    html[data-theme="light"] button.ghost {
-      background: rgba(255, 252, 245, 0.72);
-      color: var(--text);
-    }
-    html[data-theme="light"] .modal {
-      background: rgba(249, 245, 236, 0.98);
-      border-color: rgba(50, 95, 34, 0.18);
-    }
-    html[data-theme="light"] .code-block {
-      color: #27411b;
-      background: rgba(255, 252, 245, 0.88);
+      background: rgba(255, 251, 243, 0.82);
       border-color: rgba(50, 95, 34, 0.16);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .portrait-panel,
+    html[data-theme="light"] .attempt,
+    html[data-theme="light"] .reveal-card,
+    html[data-theme="light"] .settings-section,
+    html[data-theme="light"] .settings-summary,
+    html[data-theme="light"] .modal {
+      background: rgba(252, 248, 239, 0.94);
+      border-color: rgba(50, 95, 34, 0.14);
+    }
+    html[data-theme="light"] .hint-box,
+    html[data-theme="light"] .mini,
+    html[data-theme="light"] .panel,
+    html[data-theme="light"] .code-block,
+    html[data-theme="light"] .settings-option,
+    html[data-theme="light"] input {
+      background: rgba(255, 251, 243, 0.82);
+      border-color: rgba(50, 95, 34, 0.14);
+      color: var(--text);
+    }
+    html[data-theme="light"] .portrait-wrap {
+      background: linear-gradient(180deg, #f7f2e6, #e8e1cc);
+      border-color: rgba(50, 95, 34, 0.16);
+    }
+    html[data-theme="light"] .status.bad { color: #b2465d; }
+    html[data-theme="light"] .dot.used { background: #ef6a84; border-color: rgba(178, 70, 93, 0.32); }
+    html[data-theme="light"] .dot.win { background: #3f8e45; border-color: rgba(47, 111, 52, 0.32); }
+    html[data-theme="light"] .pill.bad {
+      background: rgba(231, 170, 180, 0.34);
+      border-color: rgba(168, 61, 88, 0.24);
+      color: #96374f;
+    }
+    html[data-theme="light"] .pill.good {
+      background: rgba(183, 216, 181, 0.54);
+      border-color: rgba(47, 111, 52, 0.18);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .pill.corruption-more {
+      background: rgba(231, 170, 180, 0.34);
+      border-color: rgba(168, 61, 88, 0.24);
+      color: #96374f;
+    }
+    html[data-theme="light"] .pill.corruption-equal {
+      background: rgba(183, 216, 181, 0.54);
+      border-color: rgba(47, 111, 52, 0.18);
+      color: #2f6f34;
+    }
+    html[data-theme="light"] .pill.corruption-less {
+      background: rgba(245, 222, 178, 0.58);
+      border-color: rgba(154, 106, 13, 0.18);
+      color: #8c6110;
+    }
+    html[data-theme="light"] .pill.corruption-neutral {
+      background: rgba(218, 223, 208, 0.88);
+      border-color: rgba(102, 115, 95, 0.14);
+      color: #66735f;
     }
     @media (prefers-color-scheme: light) {
       html[data-theme="system"] .eyebrow,
       html[data-theme="system"] .date-chip,
       html[data-theme="system"] .badge,
+      html[data-theme="system"] button.secondary,
+      html[data-theme="system"] button.ghost,
+      html[data-theme="system"] .settings-option,
+      html[data-theme="system"] .settings-summary,
       html[data-theme="system"] .hint-box,
       html[data-theme="system"] .mini,
       html[data-theme="system"] .panel,
+      html[data-theme="system"] .code-block,
       html[data-theme="system"] .reveal-card,
       html[data-theme="system"] .attempt,
       html[data-theme="system"] .settings-section,
-      html[data-theme="system"] .settings-option,
+      html[data-theme="system"] input,
+      html[data-theme="system"] .portrait-panel,
       html[data-theme="system"] .modal,
-      html[data-theme="system"] .portrait-panel {
+      html[data-theme="system"] .modal-overlay.open .modal {
+        background: rgba(252, 248, 239, 0.95);
+        border-color: rgba(50, 95, 34, 0.14);
         color: var(--text);
       }
-      html[data-theme="system"] .eyebrow {
-        background: rgba(167, 182, 146, 0.32);
-        color: #27411b;
-      }
+      html[data-theme="system"] .eyebrow,
       html[data-theme="system"] .date-chip,
-      html[data-theme="system"] .hint-box,
-      html[data-theme="system"] .mini,
-      html[data-theme="system"] .panel,
-      html[data-theme="system"] .reveal-card,
-      html[data-theme="system"] .attempt,
-      html[data-theme="system"] .settings-section,
-      html[data-theme="system"] .settings-option {
-        background: rgba(255, 252, 245, 0.88);
-        border-color: rgba(50, 95, 34, 0.16);
-      }
-      html[data-theme="system"] .portrait-panel {
-        background: linear-gradient(180deg, rgba(255, 251, 243, 0.96), rgba(241, 234, 215, 0.84));
-        border-color: rgba(50, 95, 34, 0.18);
-      }
-      html[data-theme="system"] .portrait-wrap {
-        background: linear-gradient(180deg, #a7b692, #6c8a57);
-        border-color: rgba(50, 95, 34, 0.24);
-      }
-      html[data-theme="system"] .badge {
-        background: rgba(250, 246, 236, 0.92);
-        border-color: rgba(50, 95, 34, 0.20);
-        color: #27411b;
-      }
-      html[data-theme="system"] .dot {
-        background: rgba(50, 95, 34, 0.14);
-        border-color: rgba(50, 95, 34, 0.18);
-      }
-      html[data-theme="system"] input,
+      html[data-theme="system"] .badge,
       html[data-theme="system"] button.secondary,
       html[data-theme="system"] button.ghost {
-        border-color: rgba(50, 95, 34, 0.22);
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.16);
+        color: #2f6f34;
       }
-      html[data-theme="system"] input {
-        background: rgba(255, 252, 245, 0.98);
-        color: var(--text);
-      }
-      html[data-theme="system"] button {
-        color: #f8f6ef;
-        background: linear-gradient(135deg, #5f8a49, #325f22);
-      }
-      html[data-theme="system"] button.secondary {
-        background: rgba(167, 182, 146, 0.30);
-        color: var(--text);
-      }
-      html[data-theme="system"] button.ghost {
-        background: rgba(255, 252, 245, 0.72);
-        color: var(--text);
-      }
+      html[data-theme="system"] .portrait-panel,
+      html[data-theme="system"] .attempt,
+      html[data-theme="system"] .reveal-card,
+      html[data-theme="system"] .settings-section,
+      html[data-theme="system"] .settings-summary,
       html[data-theme="system"] .modal {
-        background: rgba(249, 245, 236, 0.98);
-        border-color: rgba(50, 95, 34, 0.18);
+        background: rgba(252, 248, 239, 0.94);
+        border-color: rgba(50, 95, 34, 0.14);
       }
-      html[data-theme="system"] .code-block {
-        color: #27411b;
-        background: rgba(255, 252, 245, 0.88);
+      html[data-theme="system"] .hint-box,
+      html[data-theme="system"] .mini,
+      html[data-theme="system"] .panel,
+      html[data-theme="system"] .code-block,
+      html[data-theme="system"] .settings-option,
+      html[data-theme="system"] input {
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.14);
+        color: var(--text);
+      }
+      html[data-theme="system"] .portrait-wrap {
+        background: linear-gradient(180deg, #f7f2e6, #e8e1cc);
         border-color: rgba(50, 95, 34, 0.16);
       }
+      html[data-theme="system"] .status.bad { color: #b2465d; }
+      html[data-theme="system"] .dot.used { background: #ef6a84; border-color: rgba(178, 70, 93, 0.32); }
+      html[data-theme="system"] .dot.win { background: #3f8e45; border-color: rgba(47, 111, 52, 0.32); }
+      html[data-theme="system"] .pill.bad {
+        background: rgba(231, 170, 180, 0.34);
+        border-color: rgba(168, 61, 88, 0.24);
+        color: #96374f;
+      }
+      html[data-theme="system"] .pill.good {
+        background: rgba(183, 216, 181, 0.54);
+        border-color: rgba(47, 111, 52, 0.18);
+        color: #2f6f34;
+      }
+      html[data-theme="system"] .pill.corruption-more {
+        background: rgba(231, 170, 180, 0.34);
+        border-color: rgba(168, 61, 88, 0.24);
+        color: #96374f;
+      }
+      html[data-theme="system"] .pill.corruption-equal {
+        background: rgba(183, 216, 181, 0.54);
+        border-color: rgba(47, 111, 52, 0.18);
+        color: #2f6f34;
+      }
+      html[data-theme="system"] .pill.corruption-less {
+        background: rgba(245, 222, 178, 0.58);
+        border-color: rgba(154, 106, 13, 0.18);
+        color: #8c6110;
+      }
+      html[data-theme="system"] .pill.corruption-neutral {
+        background: rgba(218, 223, 208, 0.88);
+        border-color: rgba(102, 115, 95, 0.14);
+        color: #66735f;
+      }
     }
-
     @keyframes spin { to { transform: rotate(360deg); } }
     @media (max-width: 980px) {
       .topbar-right { width: 100%; align-items: flex-start; }
@@ -537,11 +500,10 @@
         <div class="mini"><strong>Continent hint</strong><span>You are also told whether the guessed country is on the correct continent.</span></div>
         <div class="mini"><strong>Distance hint</strong><span>Each guess gets a 5-square emoji bar that becomes greener as the guess gets geographically closer.</span></div>
         <div class="mini"><strong>Serving hint</strong><span>The top right of the portrait indicates how long the leader has served in their current position.</span></div>
-        <div class="mini"><strong>Head of both</strong><span>This means the same person is serving as both the head of state and the head of government. In random mode, these leaders are included in the state-only pool, the government-only pool, and the all-leaders pool.</span></div>
+        <div class="mini"><strong>Head of role hint</strong><span>The top left badge shows whether the leader is a head of state, a head of government, or both in one merged entry.</span></div>
       </div>
     </div>
   </div>
-
 
   <div class="modal-overlay" id="settingsModal" aria-hidden="true">
     <div class="modal">
@@ -589,6 +551,7 @@
     const DAILY_COOKIE_KEY = "worldleaderle_daily_state_v1";
     const SETTINGS_STORAGE_KEY = "worldleaderle_settings_v1";
     const RANDOM_QUEUE_STORAGE_KEY = "worldleaderle_random_queue_v1";
+    const RANDOM_STATS_STORAGE_KEY = "worldleaderle_random_stats_v1";
     const CORRUPTION_EQUAL_THRESHOLD = 0.35;
 
     const FALLBACK_LEADERS = [
@@ -968,7 +931,7 @@
     const settingsSummary = document.getElementById("settingsSummary");
 
     const defaultSettings = {
-      theme: "dark",
+      theme: "system",
       guessSort: "recent",
       randomLeaderPool: "all"
     };
@@ -1103,7 +1066,13 @@
       document.querySelectorAll('input[name="randomLeaderPoolSetting"]').forEach((input) => {
         input.checked = input.value === settings.randomLeaderPool;
       });
-      settingsSummary.textContent = `Theme: ${capitalize(settings.theme)} • Guess order: ${settings.guessSort === "recent" ? "Most recent first" : "Closest first"} • Random pool: ${describeRandomPool(settings.randomLeaderPool)}`;
+      const stats = getRandomStatsForPool(settings.randomLeaderPool);
+      const total = getEligibleRandomLeaders(settings.randomLeaderPool).length;
+      const remaining = Math.max(total - stats.currentCycleSolved, 0);
+      settingsSummary.innerHTML = `
+        <strong>Current settings:</strong> Theme: ${capitalize(settings.theme)} • Guess order: ${settings.guessSort === "recent" ? "Most recent first" : "Closest first"} • Random pool: ${describeRandomPool(settings.randomLeaderPool)}<br>
+        <strong>Role legend:</strong> Head of state = ceremonial or constitutional national leader • Head of government = prime minister or equivalent executive leader • Head of both = one person holds both roles<br>
+        <strong>Random stats for this pool:</strong> ${stats.currentCycleSolved}/${total} solved this cycle • ${remaining} left • ${stats.lifetimeSolved} lifetime solves • ${stats.cyclesCompleted} cycles completed`;
     }
 
     function capitalize(value) {
@@ -1140,15 +1109,12 @@
       return copy;
     }
 
-    function getEligibleRandomLeaders() {
-      return leaderPool.filter((leader) => matchesLeaderPoolSetting(leader, settings.randomLeaderPool));
-    }
-
     function loadRandomQueueState() {
       try {
-        return JSON.parse(safeStorage.getItem(RANDOM_QUEUE_STORAGE_KEY) || "null");
+        const parsed = JSON.parse(safeStorage.getItem(RANDOM_QUEUE_STORAGE_KEY) || "null");
+        return parsed && typeof parsed === "object" ? parsed : {};
       } catch {
-        return null;
+        return {};
       }
     }
 
@@ -1156,66 +1122,119 @@
       safeStorage.setItem(RANDOM_QUEUE_STORAGE_KEY, JSON.stringify(state));
     }
 
-    function ensureRandomQueue(forceRegenerate = false) {
-      const eligibleLeaders = getEligibleRandomLeaders();
+    function loadRandomStats() {
+      try {
+        const parsed = JSON.parse(safeStorage.getItem(RANDOM_STATS_STORAGE_KEY) || "null");
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveRandomStats(state) {
+      safeStorage.setItem(RANDOM_STATS_STORAGE_KEY, JSON.stringify(state));
+    }
+
+    let randomStats = loadRandomStats();
+
+    function getRandomStatsForPool(pool = settings.randomLeaderPool) {
+      if (!randomStats[pool]) {
+        randomStats[pool] = {
+          currentCycleSolved: 0,
+          lifetimeSolved: 0,
+          cyclesCompleted: 0
+        };
+        saveRandomStats(randomStats);
+      }
+      return randomStats[pool];
+    }
+
+    function getEligibleRandomLeaders(pool = settings.randomLeaderPool) {
+      return leaderPool.filter((leader) => matchesLeaderPoolSetting(leader, pool));
+    }
+
+    function ensureRandomQueue(forceRegenerate = false, pool = settings.randomLeaderPool) {
+      const eligibleLeaders = getEligibleRandomLeaders(pool);
       const eligibleIds = eligibleLeaders.map((leader) => leader.id);
       if (!eligibleIds.length) {
         throw new Error("No eligible leaders available for the selected random pool.");
       }
 
-      let state = forceRegenerate ? null : loadRandomQueueState();
+      const allState = loadRandomQueueState();
+      let state = forceRegenerate ? null : allState[pool];
+      const stats = getRandomStatsForPool(pool);
 
-      if (!state || state.rolePool !== settings.randomLeaderPool || !Array.isArray(state.queue)) {
-        state = {
-          rolePool: settings.randomLeaderPool,
-          queue: shuffleArray(eligibleIds)
-        };
-        saveRandomQueueState(state);
+      if (!state || !Array.isArray(state.queue) || !state.queue.length) {
+        state = { queue: shuffleArray(eligibleIds) };
+        if (forceRegenerate || stats.currentCycleSolved >= eligibleIds.length) {
+          stats.currentCycleSolved = 0;
+          saveRandomStats(randomStats);
+        }
+        allState[pool] = state;
+        saveRandomQueueState(allState);
         return state;
       }
 
       let queue = state.queue.filter((id) => eligibleIds.includes(id));
       const missing = eligibleIds.filter((id) => !queue.includes(id));
-
-      if (!queue.length) {
-        queue = shuffleArray(eligibleIds);
-      } else if (missing.length) {
+      if (missing.length) {
         queue = queue.concat(shuffleArray(missing));
       }
 
-      state = {
-        rolePool: settings.randomLeaderPool,
-        queue
-      };
-      saveRandomQueueState(state);
+      state = { queue };
+      allState[pool] = state;
+      saveRandomQueueState(allState);
       return state;
     }
 
-    function peekRandomLeader() {
-      let state = ensureRandomQueue(false);
+    function peekRandomLeader(pool = settings.randomLeaderPool) {
+      let state = ensureRandomQueue(false, pool);
       if (!state.queue.length) {
-        state = ensureRandomQueue(true);
+        state = ensureRandomQueue(true, pool);
       }
-      return leaderPool.find((leader) => leader.id === state.queue[0]) || chooseRandomLeader(getEligibleRandomLeaders());
+      return leaderPool.find((leader) => leader.id === state.queue[0]) || chooseRandomLeader(getEligibleRandomLeaders(pool));
     }
 
-    function skipCurrentRandomLeader() {
-      const state = ensureRandomQueue(false);
+    function skipCurrentRandomLeader(pool = settings.randomLeaderPool) {
+      const allState = loadRandomQueueState();
+      const state = ensureRandomQueue(false, pool);
       if (!state.queue.length) return;
-      const currentId = state.queue.shift();
+      const currentId = mysteryLeader?.id && state.queue.includes(mysteryLeader.id) ? mysteryLeader.id : state.queue[0];
+      state.queue = state.queue.filter((id) => id !== currentId);
       if (currentId) state.queue.push(currentId);
-      saveRandomQueueState(state);
+      allState[pool] = state;
+      saveRandomQueueState(allState);
     }
 
-    function popSolvedRandomLeader() {
-      const state = ensureRandomQueue(false);
+    function popSolvedRandomLeader(pool = settings.randomLeaderPool) {
+      const allState = loadRandomQueueState();
+      const state = ensureRandomQueue(false, pool);
       if (!state.queue.length) return;
+      const stats = getRandomStatsForPool(pool);
       if (state.queue[0] === mysteryLeader?.id) {
         state.queue.shift();
       } else {
         state.queue = state.queue.filter((id) => id !== mysteryLeader?.id);
       }
-      saveRandomQueueState(state);
+      stats.currentCycleSolved += 1;
+      stats.lifetimeSolved += 1;
+      if (!state.queue.length) {
+        stats.cyclesCompleted += 1;
+      }
+      allState[pool] = state;
+      saveRandomQueueState(allState);
+      saveRandomStats(randomStats);
+    }
+
+    function buildRandomQueueChipText(pool = settings.randomLeaderPool) {
+      const total = getEligibleRandomLeaders(pool).length;
+      const stats = getRandomStatsForPool(pool);
+      const remaining = Math.max(total - stats.currentCycleSolved, 0);
+      let text = `Random queue • ${describeRandomPool(pool)} • ${stats.currentCycleSolved}/${total} solved`;
+      if (remaining <= 3) {
+        text += ` • ${remaining} left`;
+      }
+      return text;
     }
 
     function findTodaysLeaderId() {
@@ -1263,7 +1282,7 @@
     function updateGameChrome() {
       gameTitle.textContent = currentMode === "random" ? "Random World Leaderle" : "Daily World Leaderle";
       if (currentMode === "random") {
-        dateChip.textContent = `Random queue • ${describeRandomPool(settings.randomLeaderPool)}`;
+        dateChip.textContent = buildRandomQueueChipText(settings.randomLeaderPool);
         randomButton.textContent = "Next random leader";
         leaderMetaBadge.textContent = "Random queue";
       } else {
@@ -1577,13 +1596,6 @@
       return `Serving ${years}y ${months}mo`;
     }
 
-
-    function getDisplayRole(role) {
-      const normalizedRole = normalize(role || "");
-      const isBoth = normalizedRole.includes("head of state") && normalizedRole.includes("head of government");
-      return isBoth ? "Head of both" : (role || "Mystery leader");
-    }
-
     function renderDots() {
       const won = guesses.some((guess) => guess.correct);
       guessDots.innerHTML = Array.from({ length: MAX_GUESSES }, (_, index) => {
@@ -1749,7 +1761,7 @@
 
     async function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
-      revealMeta.textContent = `${getDisplayRole(mysteryLeader.role)} • ${mysteryLeader.country}`;
+      revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
       revealText.textContent = mysteryLeader.summary || "Loading summary…";
       const summary = await fetchRevealSummary(mysteryLeader);
       if (mysteryLeader && revealCard.classList.contains("open")) {
@@ -1765,7 +1777,7 @@
     }
 
     function applyLeaderToUI() {
-      roleBadge.textContent = getDisplayRole(mysteryLeader.role);
+      roleBadge.textContent = mysteryLeader.role;
       blurBadge.textContent = mysteryLeader.tenureText || formatTenure(mysteryLeader.startDate);
       sourceBadge.textContent = "Source: Wikimedia";
       leaderImage.src = mysteryLeader.image || "";
@@ -1806,7 +1818,9 @@
       leaderImage.style.transform = "scale(1)";
 
       if (currentMode === "random" && won) {
-        popSolvedRandomLeader();
+        popSolvedRandomLeader(settings.randomLeaderPool);
+        updateGameChrome();
+        syncSettingsUI();
       }
 
       setStatus(
@@ -1886,6 +1900,8 @@
       shareButton.style.display = gameOver ? "inline-flex" : "none";
       applyLeaderToUI();
       renderAttempts();
+      updateGameChrome();
+      syncSettingsUI();
       setStatus(
         gameOver
           ? (guesses.some((guess) => guess.correct)
@@ -1902,7 +1918,7 @@
       if (options.skipCurrent) {
         skipCurrentRandomLeader();
       }
-      const leader = peekRandomLeader();
+      const leader = peekRandomLeader(settings.randomLeaderPool);
       mysteryLeader = {
         ...leader,
         tenureText: leader.tenureText || formatTenure(leader.startDate)
@@ -1916,6 +1932,8 @@
       shareButton.style.display = "none";
       applyLeaderToUI();
       renderAttempts();
+      updateGameChrome();
+      syncSettingsUI();
       setRevealVisible(false);
       setStatus("Random leader loaded.", "info");
     }
@@ -1970,18 +1988,20 @@
 
       if (name === "randomLeaderPool") {
         if (settings.randomLeaderPool === value) return;
-        const randomProgressWillBeLost = currentMode === "random" && guesses.length > 0;
-        if (randomProgressWillBeLost) {
-          const ok = window.confirm("Changing the random leader pool will reset this random round. Continue?");
+        const previousPool = settings.randomLeaderPool;
+        const unfinishedRandomRound = currentMode === "random" && !gameOver && guesses.length > 0;
+        if (unfinishedRandomRound) {
+          const ok = window.confirm("Changing the random leader pool will leave this unfinished random round. Continue?");
           if (!ok) {
             syncSettingsUI();
             return;
           }
+          skipCurrentRandomLeader(previousPool);
         }
 
         settings.randomLeaderPool = value;
         saveSettings();
-        ensureRandomQueue(true);
+        ensureRandomQueue(false, value);
         syncSettingsUI();
 
         if (currentMode === "random") {
@@ -2069,7 +2089,7 @@
     shareButton.addEventListener("click", copyShare);
 
     resetButton.addEventListener("click", async () => {
-      const leavingRandomWithProgress = currentMode === "random" && guesses.length > 0;
+      const leavingRandomWithProgress = currentMode === "random" && !gameOver && guesses.length > 0;
       if (leavingRandomWithProgress) {
         const ok = window.confirm("Your progress on this random puzzle will be lost. Return to today's puzzle?");
         if (!ok) return;
@@ -2080,14 +2100,14 @@
 
     randomButton.addEventListener("click", async () => {
       const alreadyInRandom = currentMode === "random";
-      const hasRandomProgress = alreadyInRandom && guesses.length > 0;
+      const unfinishedRandomRound = alreadyInRandom && !gameOver && guesses.length > 0;
 
-      if (hasRandomProgress) {
+      if (unfinishedRandomRound) {
         const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
         if (!ok) return;
       }
 
-      await loadOrCreateRandomPuzzle({ skipCurrent: alreadyInRandom && !gameOver });
+      await loadOrCreateRandomPuzzle({ skipCurrent: unfinishedRandomRound });
     });
 
     init().catch((error) => {
