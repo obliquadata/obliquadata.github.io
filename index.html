@@ -224,12 +224,11 @@
     .attempt-title { font-size: 1rem; font-weight: 800; }
     .pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
     .pill {
-      padding: 7px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14);
+      padding: 7px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08);
       font-size: 0.84rem; font-weight: 800;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
     }
-    .pill.good { background: rgba(34,197,94,0.24); color: #8ff0ad; border-color: rgba(34,197,94,0.34); }
-    .pill.bad { background: rgba(244,63,94,0.22); color: #ff9fb1; border-color: rgba(244,63,94,0.32); }
+    .pill.good { background: rgba(34,197,94,0.13); color: #99f6b3; }
+    .pill.bad { background: rgba(244,63,94,0.13); color: #ffb3c0; }
     .attempt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .hint-box, .mini, .panel, .code-block {
       padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.035);
@@ -289,59 +288,10 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
     .pill.corruption-pill { border-width: 1px; }
-    .pill.corruption-more { background: rgba(244,63,94,0.22); color: #ff9fb1; border-color: rgba(244,63,94,0.32); }
-    .pill.corruption-equal { background: rgba(34,197,94,0.22); color: #95f0b2; border-color: rgba(34,197,94,0.32); }
-    .pill.corruption-less { background: rgba(245,158,11,0.24); color: #ffd27a; border-color: rgba(245,158,11,0.34); }
-    .pill.corruption-neutral { background: rgba(148,163,184,0.20); color: #dde6f2; border-color: rgba(148,163,184,0.30); }
-
-    html[data-theme="light"] .status.good,
-    html[data-theme="system"] .status.good { color: #245f2a; }
-    html[data-theme="light"] .status.bad,
-    html[data-theme="system"] .status.bad { color: #8e3342; }
-    html[data-theme="light"] .status.info,
-    html[data-theme="system"] .status.info { color: #355f5c; }
-
-    html[data-theme="light"] .pill,
-    html[data-theme="system"] .pill {
-      border-color: rgba(50, 95, 34, 0.18);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
-    }
-    html[data-theme="light"] .pill.good,
-    html[data-theme="system"] .pill.good {
-      background: rgba(133, 179, 128, 0.28);
-      color: #245f2a;
-      border-color: rgba(50, 95, 34, 0.22);
-    }
-    html[data-theme="light"] .pill.bad,
-    html[data-theme="system"] .pill.bad {
-      background: rgba(190, 109, 117, 0.22);
-      color: #8e3342;
-      border-color: rgba(142, 51, 66, 0.24);
-    }
-    html[data-theme="light"] .pill.corruption-more,
-    html[data-theme="system"] .pill.corruption-more {
-      background: rgba(190, 109, 117, 0.22);
-      color: #8e3342;
-      border-color: rgba(142, 51, 66, 0.24);
-    }
-    html[data-theme="light"] .pill.corruption-equal,
-    html[data-theme="system"] .pill.corruption-equal {
-      background: rgba(133, 179, 128, 0.30);
-      color: #245f2a;
-      border-color: rgba(50, 95, 34, 0.24);
-    }
-    html[data-theme="light"] .pill.corruption-less,
-    html[data-theme="system"] .pill.corruption-less {
-      background: rgba(214, 176, 96, 0.28);
-      color: #7a5712;
-      border-color: rgba(122, 87, 18, 0.22);
-    }
-    html[data-theme="light"] .pill.corruption-neutral,
-    html[data-theme="system"] .pill.corruption-neutral {
-      background: rgba(117, 136, 96, 0.22);
-      color: #405233;
-      border-color: rgba(64, 82, 51, 0.20);
-    }
+    .pill.corruption-more { background: rgba(244,63,94,0.14); color: #ffc0cb; }
+    .pill.corruption-equal { background: rgba(34,197,94,0.14); color: #b7f7c8; }
+    .pill.corruption-less { background: rgba(245,158,11,0.16); color: #ffd88a; }
+    .pill.corruption-neutral { background: rgba(148,163,184,0.14); color: #d7e0eb; }
 
     html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .date-chip,
@@ -573,7 +523,7 @@
         <div class="mini"><strong>Continent hint</strong><span>You are also told whether the guessed country is on the correct continent.</span></div>
         <div class="mini"><strong>Distance hint</strong><span>Each guess gets a 5-square emoji bar that becomes greener as the guess gets geographically closer.</span></div>
         <div class="mini"><strong>Serving hint</strong><span>The top right of the portrait indicates how long the leader has served in their current position.</span></div>
-        <div class="mini"><strong>Head of role hint</strong><span>The role badge shows whether the leader is a head of state, a head of government, or a head of both. “Head of both” means the same person holds both roles at once. In random mode, those leaders are included in the heads-of-state pool, the heads-of-government pool, and the all-leaders pool.</span></div>
+        <div class="mini"><strong>Head of both</strong><span>This means the same person is serving as both the head of state and the head of government. In random mode, these leaders are included in the state-only pool, the government-only pool, and the all-leaders pool.</span></div>
       </div>
     </div>
   </div>
@@ -1004,7 +954,7 @@
     const settingsSummary = document.getElementById("settingsSummary");
 
     const defaultSettings = {
-      theme: "system",
+      theme: "dark",
       guessSort: "recent",
       randomLeaderPool: "all"
     };
