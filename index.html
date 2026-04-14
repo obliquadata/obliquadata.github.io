@@ -1614,21 +1614,14 @@
         { name: "French Polynesia", continent: "Oceania", coords: { lat: -17.6797, lon: -149.4068 } },
         { name: "New Caledonia", continent: "Oceania", coords: { lat: -20.9043, lon: 165.618 } },
 
-        // --- U.S. territories ---
         { name: "Guam", continent: "Oceania", coords: { lat: 13.4443, lon: 144.7937 } },
         { name: "American Samoa", continent: "Oceania", coords: { lat: -14.271, lon: -170.1322 } },
         { name: "Northern Mariana Islands", continent: "Oceania", coords: { lat: 15.0979, lon: 145.6739 } },
         { name: "U.S. Virgin Islands", continent: "North America", coords: { lat: 18.3358, lon: -64.8963 } },
-
-        // --- New Zealand-associated / dependent ---
         { name: "Tokelau", continent: "Oceania", coords: { lat: -9.167, lon: -171.833 } },
-
-        // --- Caribbean Netherlands ---
         { name: "Bonaire", continent: "North America", coords: { lat: 12.1784, lon: -68.2385 } },
         { name: "Sint Eustatius", continent: "North America", coords: { lat: 17.489, lon: -62.9736 } },
         { name: "Saba", continent: "North America", coords: { lat: 17.6355, lon: -63.2327 } },
-
-        // --- Additional British Overseas Territories ---
         { name: "Anguilla", continent: "North America", coords: { lat: 18.2206, lon: -63.0686 } },
         { name: "British Virgin Islands", continent: "North America", coords: { lat: 18.4207, lon: -64.64 } },
         { name: "Cayman Islands", continent: "North America", coords: { lat: 19.3133, lon: -81.2546 } },
@@ -1640,8 +1633,6 @@
         { name: "Tristan da Cunha", continent: "Africa", coords: { lat: -37.1052, lon: -12.2777 } },
         { name: "Pitcairn Islands", continent: "Oceania", coords: { lat: -25.066, lon: -130.1 } },
         { name: "Akrotiri and Dhekelia", continent: "Asia", coords: { lat: 34.5833, lon: 32.9833 } },
-
-        // --- French overseas entities ---
         { name: "French Guiana", continent: "South America", coords: { lat: 3.9339, lon: -53.1258 } },
         { name: "Guadeloupe", continent: "North America", coords: { lat: 16.265, lon: -61.551 } },
         { name: "Martinique", continent: "North America", coords: { lat: 14.6415, lon: -61.0242 } },
@@ -1651,9 +1642,7 @@
         { name: "Saint Martin", continent: "North America", coords: { lat: 18.0708, lon: -63.0501 } },
         { name: "Saint Pierre and Miquelon", continent: "North America", coords: { lat: 46.8852, lon: -56.3159 } },
         { name: "Wallis and Futuna", continent: "Oceania", coords: { lat: -13.7688, lon: -177.1561 } },
-
-        // --- Nordic / European autonomous regions ---
-        { name: "Åland", continent: "Europe", coords: { lat: 60.1785, lon: 19.9156 } },
+        { name: "Åland", continent: "Europe", coords: { lat: 60.1785, lon: 19.9156 } }
       ];
 
       const corruptionFallbacks = {
@@ -1712,18 +1701,19 @@
         "Tokelau": { scoreFrom: "New Zealand", method: "dependent_territory" },
 
         "Macau": { scoreFrom: "China", method: "special_admin_region" },
-
         "Åland": { scoreFrom: "Finland", method: "autonomous_region" }
       };
 
       function resolveCorruptionScore(name) {
-        if (corruptionScores[name] != null) {
-          return corruptionScores[name];
+        const scores = (typeof corruptionScores !== "undefined" && corruptionScores) ? corruptionScores : {};
+
+        if (scores[name] != null) {
+          return scores[name];
         }
 
         const fallback = corruptionFallbacks[name];
-        if (fallback && corruptionScores[fallback.scoreFrom] != null) {
-          return corruptionScores[fallback.scoreFrom];
+        if (fallback && scores[fallback.scoreFrom] != null) {
+          return scores[fallback.scoreFrom];
         }
 
         return null;
@@ -1741,6 +1731,12 @@
       }
 
       playableCountries = uniqueCountryMap;
+
+      if (!countryOptions) {
+        console.error("countryOptions element not found");
+        return;
+      }
+
       countryOptions.innerHTML = [...playableCountries.keys()]
         .sort((a, b) => a.localeCompare(b))
         .map((country) => `<option value="${country}"></option>`)
