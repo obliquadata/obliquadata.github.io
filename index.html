@@ -2187,12 +2187,18 @@
 
     randomButton.addEventListener("click", async () => {
       const alreadyInRandom = currentMode === "random";
-      const unfinishedRandomRound = alreadyInRandom && !gameOver && guesses.length > 0;
+      const unfinishedRandomRound = alreadyInRandom && !gameOver;
 
-      if (unfinishedRandomRound) {
+      if (unfinishedRandomRound && guesses.length > 0) {
         const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
         if (!ok) return;
+      } else {
+        if (unfinishedRandomRound) {
+          const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
+          if (!ok) return;
       }
+      }
+
 
       await loadOrCreateRandomPuzzle({ skipCurrent: unfinishedRandomRound });
     });
