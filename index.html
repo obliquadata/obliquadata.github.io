@@ -1720,10 +1720,21 @@
       }
 
       for (const country of extraGuessCountries) {
-        if (!uniqueCountryMap.has(country.name)) {
+        const existing = uniqueCountryMap.get(country.name);
+        const resolvedScore = resolveCorruptionScore(country.name);
+
+        if (existing) {
+          uniqueCountryMap.set(country.name, {
+            ...existing,
+            continent: existing.continent || country.continent || null,
+            coords: existing.coords || country.coords || null,
+            iso2: existing.iso2 || null,
+            corruptionScore: existing.corruptionScore ?? resolvedScore
+          });
+        } else {
           uniqueCountryMap.set(country.name, {
             continent: country.continent,
-            corruptionScore: resolveCorruptionScore(country.name),
+            corruptionScore: resolvedScore,
             coords: country.coords,
             iso2: null
           });
