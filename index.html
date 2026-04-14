@@ -19,6 +19,19 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Tag Manager -->
+  <div class="modal-overlay" id="countryPickerModal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <h2>Select a country</h2>
+        <button class="ghost modal-close" id="closeCountryPickerButton" type="button">✕</button>
+      </div>
+      <div class="controls">
+        <input id="countryFilterInput" type="text" placeholder="Search countries" autocomplete="off" />
+      </div>
+      <div class="country-picker-list" id="countryPickerList"></div>
+    </div>
+  </div>
+
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -203,39 +216,69 @@
       flex: 1;
       min-width: 240px;
       display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+    .guess-input-wrap input {
+      width: 100%;
+      min-width: 0;
+      padding-right: 50px;
+    }
+    .country-picker-button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid transparent;
+      z-index: 2;
+      touch-action: manipulation;
+    }
+    .country-picker-button:hover,
+    .country-picker-button:focus-visible,
+    .guess-input-wrap:focus-within .country-picker-button {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.08);
+      outline: none;
+    }
+    .country-picker-list {
+      margin-top: 12px;
+      max-height: min(50vh, 420px);
+      overflow: auto;
+      display: grid;
+      gap: 8px;
+    }
+    .country-picker-option {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .country-picker-option:hover {
+      background: rgba(255,255,255,0.06);
+    }
+    .country-picker-empty {
+      color: var(--muted);
+      padding: 12px 4px 4px;
     }
     input, button { border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); font-size: 1rem; }
     input {
       flex: 1; min-width: 240px; padding: 15px 16px; background: rgba(255,255,255,0.045);
       color: var(--text); outline: none;
-    }
-    .guess-input-wrap input {
-      width: 100%;
-      min-width: 0;
-      padding-right: 42px;
-    }
-    .guess-input-arrow {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-52%);
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1;
-      pointer-events: none;
-      opacity: 0.95;
-    }
-    .guess-input-wrap:focus-within .guess-input-arrow {
-      color: var(--text);
-    }
-    html[data-theme="light"] .guess-input-arrow,
-    html[data-theme="dark"] .guess-input-arrow {
-      color: var(--muted);
-    }
-    @media (prefers-color-scheme: light) {
-      html[data-theme="system"] .guess-input-arrow {
-        color: var(--muted);
-      }
     }
     button {
       padding: 14px 16px; cursor: pointer; color: white; font-weight: 700;
@@ -538,6 +581,33 @@
     .site-footer a:hover { border-bottom-color: currentColor; }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    html[data-theme="light"] .country-picker-button:hover,
+    html[data-theme="light"] .country-picker-button:focus-visible,
+    html[data-theme="light"] .guess-input-wrap:focus-within .country-picker-button,
+    html[data-theme="light"] .country-picker-option:hover {
+      background: rgba(167, 182, 146, 0.16);
+      border-color: rgba(50, 95, 34, 0.14);
+    }
+    html[data-theme="light"] .country-picker-option {
+      background: rgba(255, 251, 243, 0.82);
+      border-color: rgba(50, 95, 34, 0.14);
+      color: var(--text);
+    }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .country-picker-button:hover,
+      html[data-theme="system"] .country-picker-button:focus-visible,
+      html[data-theme="system"] .guess-input-wrap:focus-within .country-picker-button,
+      html[data-theme="system"] .country-picker-option:hover {
+        background: rgba(167, 182, 146, 0.16);
+        border-color: rgba(50, 95, 34, 0.14);
+      }
+      html[data-theme="system"] .country-picker-option {
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.14);
+        color: var(--text);
+      }
+    }
     @media (max-width: 980px) {
       .topbar-right { width: 100%; align-items: flex-start; }
       .topbar-actions { justify-content: flex-start; }
@@ -592,7 +662,7 @@
           <div class="controls">
             <div class="guess-input-wrap">
               <input id="guessInput" list="countryOptions" placeholder="Enter a country" autocomplete="off" />
-              <span class="guess-input-arrow" aria-hidden="true">⌄</span>
+              <button class="country-picker-button" id="countryPickerButton" type="button" aria-label="Open country list">▾</button>
             </div>
             <datalist id="countryOptions"></datalist>
             <button id="guessButton">Submit guess</button>
@@ -1053,6 +1123,11 @@
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
     const closeSettingsButton = document.getElementById("closeSettingsButton");
     const settingsSummary = document.getElementById("settingsSummary");
+    const countryPickerButton = document.getElementById("countryPickerButton");
+    const countryPickerModal = document.getElementById("countryPickerModal");
+    const closeCountryPickerButton = document.getElementById("closeCountryPickerButton");
+    const countryFilterInput = document.getElementById("countryFilterInput");
+    const countryPickerList = document.getElementById("countryPickerList");
 
     const defaultSettings = {
       theme: "system",
@@ -1416,6 +1491,47 @@
       }
     }
 
+    function openCountryPicker() {
+      if (!countryPickerModal) return;
+      renderCountryPickerList(countryFilterInput?.value || "");
+      countryPickerModal.classList.add("open");
+      countryPickerModal.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => {
+        if (countryFilterInput) {
+          countryFilterInput.focus();
+          countryFilterInput.select();
+        }
+      });
+    }
+
+    function closeCountryPicker() {
+      if (!countryPickerModal) return;
+      countryPickerModal.classList.remove("open");
+      countryPickerModal.setAttribute("aria-hidden", "true");
+      if (countryFilterInput) {
+        countryFilterInput.value = "";
+      }
+      guessInput?.focus();
+    }
+
+    function renderCountryPickerList(filterText = "") {
+      if (!countryPickerList || !playableCountries) return;
+
+      const q = normalize(filterText);
+      const countries = [...playableCountries.keys()]
+        .sort((a, b) => a.localeCompare(b))
+        .filter((country) => !q || normalize(country).includes(q));
+
+      if (!countries.length) {
+        countryPickerList.innerHTML = '<div class="country-picker-empty">No matching countries.</div>';
+        return;
+      }
+
+      countryPickerList.innerHTML = countries
+        .map((country) => `<button class="country-picker-option" type="button" data-country="${country.replace(/"/g, '&quot;')}">${country}</button>`)
+        .join("");
+    }
+
     function buildCountryOptions() {
       const uniqueCountryMap = new Map();
 
@@ -1716,6 +1832,8 @@
         .sort((a, b) => a.localeCompare(b))
         .map((country) => `<option value="${country}"></option>`)
         .join("");
+
+      renderCountryPickerList();
     }
 
 
