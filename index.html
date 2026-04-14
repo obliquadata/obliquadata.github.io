@@ -2194,9 +2194,8 @@
         if (!ok) return;
       } else {
         if (unfinishedRandomRound) {
-          const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
-          if (!ok) return;
-      }
+          return;
+        }
       }
 
 
