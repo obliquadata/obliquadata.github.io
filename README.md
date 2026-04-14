@@ -1,156 +1,132 @@
-# \# 🌍 World Leaderle
+# World Leaderle
 
-# 
+A daily geography game where you guess the country of world leaders.
 
-# A daily geography game where you guess the country of world leaders.
+**Play here:** https://obliquadata.github.io/
 
-# 
+## How it works
 
-# Play here: https://obliquadata.github.io/
+Each day, a mystery world leader is selected.
 
-# 
+Your goal is to guess the **country** they lead in **6 attempts**.
 
-# \---
+After each guess, the game gives you hints:
 
-# 
+- **Continent hint** tells you whether your guess is on the correct continent.
+- **Corruption hint** tells you whether your guessed country is more corrupt, similarly corrupt, or less corrupt than the mystery country.
+- **Distance hint** shows how geographically close your guess is.
+- **Role hint** shows whether the leader is a **head of state**, **head of government**, or **head of both**.
 
-# \## 🎯 How it works
+## Features
 
-# 
+- Daily puzzle
+- Random mode with non-repeating leader queues
+- Progress tracking by random leader pool
+- Light, dark, and system themes
+- Shareable results
+- Country alias matching
+- Responsive layout
 
-# Each day, a mystery world leader is selected.
+## Privacy
 
-# 
+- No login required
+- No personal data required to play
+- Game progress and preferences are stored locally in the browser
+- Optional analytics are used only with consent
 
-# Your goal:
+See [privacy.html](privacy.html) for more information.
 
-# \- Guess the \*\*country\*\* they lead
+## Project structure
 
-# \- You have \*\*6 attempts\*\*
+```
+.
+├── index.html
+├── about.html
+├── privacy.html
+├── site.webmanifest
+├── sitemap.xml
+├── data/
+│   ├── leaders.json
+│   └── daily-schedule.json
+├── scripts/
+│   ├── update-leaders.mjs
+│   └── generate-daily-schedule.mjs
+└── .github/workflows/
+    ├── update_leaders.yml
+    └── generate_daily_schedule.yml
+```
 
-# 
+## Data sources
 
-# After each guess, you receive hints:
+This project uses public data from:
 
-# \- 🌍 \*\*Continent\*\* – whether you're on the right continent
+- Wikidata
+- Wikipedia
+- World Bank governance indicators
 
-# \- 📉 \*\*Corruption\*\* – whether your guess is more or less corrupt
+## Data pipeline
 
-# \- 📏 \*\*Distance\*\* – how geographically close you are
+Leader data and the daily puzzle schedule are generated with Node.js scripts.
 
-# \- 🏛️ \*\*Role\*\* – head of state, head of government, or both
+- `scripts/update-leaders.mjs` builds the leader dataset.
+- `scripts/generate-daily-schedule.mjs` creates the daily schedule.
 
-# 
+These scripts can be run manually or through GitHub Actions workflows.
 
-# \---
+## Run locally
 
-# 
+Clone the repository:
 
-# \## 🎮 Features
+```bash
+git clone https://github.com/obliquadata/obliquadata.github.io.git
+cd obliquadata.github.io
+```
 
-# 
+Because this is a static site, you can open `index.html` directly in a browser.
 
-# \- Daily puzzle
+For best results, serve the project locally with a simple static server.
 
-# \- Random mode with non-repeating queue
+Example with Python:
 
-# \- Progress tracking per leader pool
+```bash
+python -m http.server 8000
+```
 
-# \- Light / Dark / System themes
+Then open:
 
-# \- Shareable results
+```
+http://localhost:8000
+```
 
-# \- Smart country alias system
+## GitHub Actions
 
-# \- Responsive design
+This project includes workflows to update the data files:
 
-# 
+- `update_leaders.yml` updates the leaders database and regenerates the schedule.
+- `generate_daily_schedule.yml` regenerates the daily schedule only.
 
-# \---
+## Roadmap
 
-# 
+Possible future improvements:
 
-# \## 🔒 Privacy
+- Directional distance hints
+- Streak tracking
+- Difficulty settings
+- Progressive Web App support
+- Self-hosted leader images
 
-# 
+## Contributing
 
-# \- No login required  
+Suggestions and improvements are welcome.
 
-# \- No personal data collected  
+If you would like to contribute, feel free to open an issue or submit a pull request.
 
-# \- Game progress stored locally in your browser  
+## License
 
-# \- Optional anonymous analytics (with user consent)  
+Add your preferred license here.
 
-# 
+## Author
 
-# See `privacy.html` for details.
+Built by **Obliqua Data**.
 
-# 
-
-# \---
-
-# 
-
-# \## ⚙️ Tech Stack
-
-# 
-
-# \- Static site (HTML, CSS, JavaScript)
-
-# \- Hosted on GitHub Pages
-
-# \- Data sourced from:
-
-# &#x20; - Wikidata
-
-# &#x20; - Wikipedia
-
-# &#x20; - World Bank (corruption index)
-
-# 
-
-# \---
-
-# 
-
-# \## 🔄 Data Pipeline
-
-# 
-
-# Leaders and daily puzzles are generated using Node.js scripts:
-
-# 
-
-# \- `update-leaders.mjs` → fetches and builds leader dataset :contentReference\[oaicite:0]{index=0}  
-
-# \- `generate-daily-schedule.mjs` → creates daily puzzle schedule :contentReference\[oaicite:1]{index=1}  
-
-# 
-
-# Automated via GitHub Actions:
-
-# \- `update\_leaders.yml` :contentReference\[oaicite:2]{index=2}  
-
-# \- `generate\_daily\_schedule.yml` :contentReference\[oaicite:3]{index=3}  
-
-# 
-
-# \---
-
-# 
-
-# \## 🚀 Running locally
-
-# 
-
-# Clone the repo and open `index.html` in your browser:
-
-# 
-
-# ```bash
-
-# git clone https://github.com/obliquadata/obliquadata.github.io.git
-
-# cd obliquadata.github.io
-
+Website: https://obliquadata.github.io/
