@@ -1705,14 +1705,21 @@
       };
 
       function resolveCorruptionScore(name) {
-        const scores = (typeof corruptionScores !== "undefined" && corruptionScores) ? corruptionScores : {};
+        const scores =
+          typeof corruptionScores !== "undefined" && corruptionScores
+            ? corruptionScores
+            : {};
 
         if (scores[name] != null) {
           return scores[name];
         }
 
         const fallback = corruptionFallbacks[name];
-        if (fallback && scores[fallback.scoreFrom] != null) {
+        if (!fallback) {
+          return null;
+        }
+
+        if (scores[fallback.scoreFrom] != null) {
           return scores[fallback.scoreFrom];
         }
 
@@ -1721,22 +1728,20 @@
 
       for (const country of extraGuessCountries) {
         const existing = uniqueCountryMap.get(country.name);
-        const resolvedScore = resolveCorruptionScore(country.name);
 
-        if (existing) {
-          uniqueCountryMap.set(country.name, {
-            ...existing,
-            continent: existing.continent || country.continent || null,
-            coords: existing.coords || country.coords || null,
-            iso2: existing.iso2 || null,
-            corruptionScore: existing.corruptionScore ?? resolvedScore
-          });
-        } else {
-          uniqueCountryMap.set(country.name, {
-            continent: country.continent,
-            corruptionScore: resolvedScore,
-            coords: country.coords,
-            iso2: null
+        uniqueCountryMap.set(country.name, {
+          continent: existing?.continent || country.continent || null,
+          coords: existing?.coords || country.coords || null,
+          iso2: existing?.iso2 || null,
+          corruptionScore: existing?.corruptionScore ?? null
+        });
+      }
+
+      for (const [name, data] of uniqueCountryMap.entries()) {
+        if (data.corruptionScore == null) {
+          uniqueCountryMap.set(name, {
+            ...data,
+            corruptionScore: resolveCorruptionScore(name)
           });
         }
       }
