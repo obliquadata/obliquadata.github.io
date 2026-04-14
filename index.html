@@ -2190,14 +2190,11 @@
       const unfinishedRandomRound = alreadyInRandom && !gameOver;
 
       if (unfinishedRandomRound && guesses.length > 0) {
-        const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
+        const ok = window.confirm(
+          "Your progress on this random puzzle will be lost. Load a different random leader?"
+        );
         if (!ok) return;
-      } else {
-        if (unfinishedRandomRound) {
-          return;
-        }
       }
-
 
       await loadOrCreateRandomPuzzle({ skipCurrent: unfinishedRandomRound });
     });
