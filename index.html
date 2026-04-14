@@ -1380,15 +1380,111 @@
     }
 
     function buildCountryOptions() {
+
       const uniqueCountryMap = new Map();
 
+      const corruptionFallbacks = {
+        "England": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Scotland": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Wales": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Northern Ireland": { scoreFrom: "United Kingdom", method: "parent_state" },
+
+        "Greenland": { scoreFrom: "Kingdom of Denmark", method: "parent_state" },
+        "Faroe Islands": { scoreFrom: "Kingdom of Denmark", method: "parent_state" },
+
+        "Aruba": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+        "Curaçao": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+        "Sint Maarten": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+        "Bonaire": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+        "Sint Eustatius": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+        "Saba": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
+
+        "Puerto Rico": { scoreFrom: "United States", method: "parent_state" },
+        "Guam": { scoreFrom: "United States", method: "parent_state" },
+        "American Samoa": { scoreFrom: "United States", method: "parent_state" },
+        "Northern Mariana Islands": { scoreFrom: "United States", method: "parent_state" },
+        "U.S. Virgin Islands": { scoreFrom: "United States", method: "parent_state" },
+
+        "Bermuda": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Gibraltar": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Guernsey": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Jersey": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Isle of Man": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Anguilla": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "British Virgin Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Cayman Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Montserrat": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Turks and Caicos Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Falkland Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Saint Helena": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Ascension Island": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Tristan da Cunha": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Pitcairn Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
+        "Akrotiri and Dhekelia": { scoreFrom: "United Kingdom", method: "parent_state" },
+
+        "French Polynesia": { scoreFrom: "France", method: "parent_state" },
+        "New Caledonia": { scoreFrom: "France", method: "parent_state" },
+        "French Guiana": { scoreFrom: "France", method: "parent_state" },
+        "Guadeloupe": { scoreFrom: "France", method: "parent_state" },
+        "Martinique": { scoreFrom: "France", method: "parent_state" },
+        "Mayotte": { scoreFrom: "France", method: "parent_state" },
+        "Réunion": { scoreFrom: "France", method: "parent_state" },
+        "Saint Barthélemy": { scoreFrom: "France", method: "parent_state" },
+        "Saint Martin": { scoreFrom: "France", method: "parent_state" },
+        "Saint Pierre and Miquelon": { scoreFrom: "France", method: "parent_state" },
+        "Wallis and Futuna": { scoreFrom: "France", method: "parent_state" },
+
+        "Cook Islands": { scoreFrom: "New Zealand", method: "associated_state" },
+        "Niue": { scoreFrom: "New Zealand", method: "associated_state" },
+        "Tokelau": { scoreFrom: "New Zealand", method: "dependent_territory" },
+
+        "Macau": { scoreFrom: "China", method: "special_admin_region" },
+        "Åland": { scoreFrom: "Finland", method: "autonomous_region" }
+      };
+
+      function resolveCorruptionScore(name) {
+        const scores =
+          typeof corruptionScores !== "undefined" && corruptionScores
+            ? corruptionScores
+            : {};
+
+        if (scores[name] != null) {
+          return scores[name];
+        }
+
+        const fallback = corruptionFallbacks[name];
+        if (!fallback) {
+          return null;
+        }
+
+        if (scores[fallback.scoreFrom] != null) {
+          return scores[fallback.scoreFrom];
+        }
+
+        return null;
+      }
+
       for (const entry of leaderPool) {
+        const resolvedScore =
+          entry.corruptionScore != null
+            ? entry.corruptionScore
+            : resolveCorruptionScore(entry.country);
+
         if (!uniqueCountryMap.has(entry.country)) {
           uniqueCountryMap.set(entry.country, {
             continent: entry.continent || null,
-            corruptionScore: entry.corruptionScore ?? null,
+            corruptionScore: resolvedScore,
             coords: entry.coords || null,
             iso2: entry.iso2 || null
+          });
+        } else {
+          const existing = uniqueCountryMap.get(entry.country);
+          uniqueCountryMap.set(entry.country, {
+            continent: existing.continent || entry.continent || null,
+            corruptionScore:
+              existing.corruptionScore != null ? existing.corruptionScore : resolvedScore,
+            coords: existing.coords || entry.coords || null,
+            iso2: existing.iso2 || entry.iso2 || null
           });
         }
       }
@@ -1645,105 +1741,17 @@
         { name: "Åland", continent: "Europe", coords: { lat: 60.1785, lon: 19.9156 } }
       ];
 
-      const corruptionFallbacks = {
-        "England": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Scotland": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Wales": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Northern Ireland": { scoreFrom: "United Kingdom", method: "parent_state" },
-
-        "Greenland": { scoreFrom: "Kingdom of Denmark", method: "parent_state" },
-        "Faroe Islands": { scoreFrom: "Kingdom of Denmark", method: "parent_state" },
-
-        "Aruba": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-        "Curaçao": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-        "Sint Maarten": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-        "Bonaire": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-        "Sint Eustatius": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-        "Saba": { scoreFrom: "Kingdom of the Netherlands", method: "parent_state" },
-
-        "Puerto Rico": { scoreFrom: "United States", method: "parent_state" },
-        "Guam": { scoreFrom: "United States", method: "parent_state" },
-        "American Samoa": { scoreFrom: "United States", method: "parent_state" },
-        "Northern Mariana Islands": { scoreFrom: "United States", method: "parent_state" },
-        "U.S. Virgin Islands": { scoreFrom: "United States", method: "parent_state" },
-
-        "Bermuda": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Gibraltar": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Guernsey": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Jersey": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Isle of Man": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Anguilla": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "British Virgin Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Cayman Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Montserrat": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Turks and Caicos Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Falkland Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Saint Helena": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Ascension Island": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Tristan da Cunha": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Pitcairn Islands": { scoreFrom: "United Kingdom", method: "parent_state" },
-        "Akrotiri and Dhekelia": { scoreFrom: "United Kingdom", method: "parent_state" },
-
-        "French Polynesia": { scoreFrom: "France", method: "parent_state" },
-        "New Caledonia": { scoreFrom: "France", method: "parent_state" },
-        "French Guiana": { scoreFrom: "France", method: "parent_state" },
-        "Guadeloupe": { scoreFrom: "France", method: "parent_state" },
-        "Martinique": { scoreFrom: "France", method: "parent_state" },
-        "Mayotte": { scoreFrom: "France", method: "parent_state" },
-        "Réunion": { scoreFrom: "France", method: "parent_state" },
-        "Saint Barthélemy": { scoreFrom: "France", method: "parent_state" },
-        "Saint Martin": { scoreFrom: "France", method: "parent_state" },
-        "Saint Pierre and Miquelon": { scoreFrom: "France", method: "parent_state" },
-        "Wallis and Futuna": { scoreFrom: "France", method: "parent_state" },
-
-        "Cook Islands": { scoreFrom: "New Zealand", method: "associated_state" },
-        "Niue": { scoreFrom: "New Zealand", method: "associated_state" },
-        "Tokelau": { scoreFrom: "New Zealand", method: "dependent_territory" },
-
-        "Macau": { scoreFrom: "China", method: "special_admin_region" },
-        "Åland": { scoreFrom: "Finland", method: "autonomous_region" }
-      };
-
-      function resolveCorruptionScore(name) {
-        const scores =
-          typeof corruptionScores !== "undefined" && corruptionScores
-            ? corruptionScores
-            : {};
-
-        if (scores[name] != null) {
-          return scores[name];
-        }
-
-        const fallback = corruptionFallbacks[name];
-        if (!fallback) {
-          return null;
-        }
-
-        if (scores[fallback.scoreFrom] != null) {
-          return scores[fallback.scoreFrom];
-        }
-
-        return null;
-      }
-
       for (const country of extraGuessCountries) {
         const existing = uniqueCountryMap.get(country.name);
+        const resolvedScore = resolveCorruptionScore(country.name);
 
         uniqueCountryMap.set(country.name, {
           continent: existing?.continent || country.continent || null,
+          corruptionScore:
+            existing?.corruptionScore != null ? existing.corruptionScore : resolvedScore,
           coords: existing?.coords || country.coords || null,
-          iso2: existing?.iso2 || null,
-          corruptionScore: existing?.corruptionScore ?? null
+          iso2: existing?.iso2 || null
         });
-      }
-
-      for (const [name, data] of uniqueCountryMap.entries()) {
-        if (data.corruptionScore == null) {
-          uniqueCountryMap.set(name, {
-            ...data,
-            corruptionScore: resolveCorruptionScore(name)
-          });
-        }
       }
 
       playableCountries = uniqueCountryMap;
