@@ -1405,28 +1405,6 @@
         leaderMetaBadge.textContent = "Daily puzzle";
       }
     }
-      });
-    }
-      guessInput?.focus();
-    }
-
-    function renderCountryPickerList(filterText = "") {
-      if (!countryPickerList || !playableCountries) return;
-
-      const q = normalize(filterText);
-      const countries = [...playableCountries.keys()]
-        .sort((a, b) => a.localeCompare(b))
-        .filter((country) => !q || normalize(country).includes(q));
-
-      if (!countries.length) {
-        countryPickerList.innerHTML = '<div class="country-picker-empty">No matching countries.</div>';
-        return;
-      }
-
-      countryPickerList.innerHTML = countries
-        .map((country) => `<button class="country-picker-option" type="button" data-country="${country.replace(/"/g, '&quot;')}">${country}</button>`)
-        .join("");
-    }
 
     function buildCountryOptions() {
       const uniqueCountryMap = new Map();
@@ -1728,8 +1706,6 @@
         .sort((a, b) => a.localeCompare(b))
         .map((country) => `<option value="${country}"></option>`)
         .join("");
-
-      renderCountryPickerList();
     }
 
     function chooseDailyLeader(pool) {
