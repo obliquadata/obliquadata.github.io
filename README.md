@@ -123,7 +123,10 @@ If you would like to contribute, feel free to open an issue or submit a pull req
 
 ## License
 
-Add your preferred license here.
+This project is licensed under the MIT License.
+
+Note: This project uses data from Wikidata, Wikipedia, and the World Bank.  
+These sources may have their own licenses and terms of use.
 
 ## Author
 
