@@ -2187,7 +2187,7 @@
 
     randomButton.addEventListener("click", async () => {
       const alreadyInRandom = currentMode === "random";
-      const unfinishedRandomRound = alreadyInRandom && !gameOver;
+      const unfinishedRandomRound = alreadyInRandom && !gameOver && guesses.length > 0;
 
       if (unfinishedRandomRound) {
         const ok = window.confirm("Your progress on this random puzzle will be lost. Load a different random leader?");
