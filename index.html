@@ -198,10 +198,44 @@
     .dot.win { background: rgba(34, 197, 94, 0.9); }
     .game-panel { display: flex; flex-direction: column; gap: 14px; }
     .controls, .footer-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .guess-input-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+    }
     input, button { border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); font-size: 1rem; }
     input {
       flex: 1; min-width: 240px; padding: 15px 16px; background: rgba(255,255,255,0.045);
       color: var(--text); outline: none;
+    }
+    .guess-input-wrap input {
+      width: 100%;
+      min-width: 0;
+      padding-right: 42px;
+    }
+    .guess-input-arrow {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-52%);
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+    .guess-input-wrap:focus-within .guess-input-arrow {
+      color: var(--text);
+    }
+    html[data-theme="light"] .guess-input-arrow,
+    html[data-theme="dark"] .guess-input-arrow {
+      color: var(--muted);
+    }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .guess-input-arrow {
+        color: var(--muted);
+      }
     }
     button {
       padding: 14px 16px; cursor: pointer; color: white; font-weight: 700;
@@ -556,7 +590,10 @@
         </section>
         <section class="game-panel">
           <div class="controls">
-            <input id="guessInput" list="countryOptions" placeholder="Enter a country" autocomplete="off" />
+            <div class="guess-input-wrap">
+              <input id="guessInput" list="countryOptions" placeholder="Enter a country" autocomplete="off" />
+              <span class="guess-input-arrow" aria-hidden="true">⌄</span>
+            </div>
             <datalist id="countryOptions"></datalist>
             <button id="guessButton">Submit guess</button>
           </div>
