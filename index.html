@@ -192,6 +192,17 @@
     .reveal-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
     .reveal-meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 10px; }
     .reveal-text { color: var(--text); line-height: 1.55; font-size: 0.95rem; }
+    .reveal-flag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+    .reveal-card.has-flag .reveal-title-wrap,
+    .reveal-card.has-flag .reveal-meta {
+      padding-right: 48px;
+    }
     .dot {
       width: 14px; height: 14px; border-radius: 999px; background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.08);
@@ -575,7 +586,10 @@
           </div>
           <div class="guess-dots" id="guessDots"></div>
           <div class="reveal-card" id="revealCard">
-            <h3 id="revealTitle"></h3>
+            <div class="reveal-flag" id="revealFlag" aria-hidden="true"></div>
+            <div class="reveal-title-wrap">
+              <h3 id="revealTitle"></h3>
+            </div>
             <div class="reveal-meta" id="revealMeta"></div>
             <div class="reveal-text" id="revealText"></div>
           </div>
@@ -1034,6 +1048,7 @@
     const howToPlayButton = document.getElementById("howToPlayButton");
     const settingsButton = document.getElementById("settingsButton");
     const revealCard = document.getElementById("revealCard");
+    const revealFlag = document.getElementById("revealFlag");
     const revealTitle = document.getElementById("revealTitle");
     const revealMeta = document.getElementById("revealMeta");
     const revealText = document.getElementById("revealText");
@@ -1921,10 +1936,22 @@
       }
     }
 
+    function iso2ToFlagEmoji(iso2) {
+      if (!iso2 || typeof iso2 !== "string") return "";
+      const code = iso2.trim().toUpperCase();
+      if (!/^[A-Z]{2}$/.test(code)) return "";
+      return String.fromCodePoint(...[...code].map((char) => 127397 + char.charCodeAt(0)));
+    }
+
     async function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
       revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
       revealText.textContent = mysteryLeader.summary || "Loading summary…";
+
+      const flagEmoji = iso2ToFlagEmoji(mysteryLeader.iso2);
+      revealFlag.textContent = flagEmoji;
+      revealCard.classList.toggle("has-flag", Boolean(flagEmoji));
+
       const summary = await fetchRevealSummary(mysteryLeader);
       if (mysteryLeader && revealCard.classList.contains("open")) {
         revealText.textContent = summary;
