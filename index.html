@@ -625,6 +625,192 @@
         filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
       }
     }
+
+        /* CookieYes preference center: match World Leaderle theme */
+    .cky-modal,
+    .cky-modal * {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    }
+
+    .cky-modal .cky-preference-center {
+      background: var(--card) !important;
+      color: var(--text) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 24px !important;
+      box-shadow: var(--shadow) !important;
+      backdrop-filter: blur(22px) !important;
+    }
+
+    .cky-modal .cky-preference-title,
+    .cky-modal .cky-preference-content-wrapper,
+    .cky-modal .cky-dma-content-wrapper,
+    .cky-modal .cky-accordion-btn,
+    .cky-modal .cky-accordion-header-des,
+    .cky-modal .cky-audit-table,
+    .cky-modal .cky-empty-cookies-text,
+    .cky-modal [data-cky-tag="detail-powered-by"] {
+      color: var(--text) !important;
+    }
+
+    .cky-modal .cky-preference-content-wrapper p,
+    .cky-modal .cky-dma-content-wrapper p,
+    .cky-modal .cky-accordion-header-des p,
+    .cky-modal .cky-cookie-des-table,
+    .cky-modal .cky-cookie-des-table p,
+    .cky-modal [data-cky-tag="detail-powered-by"] {
+      color: var(--muted) !important;
+    }
+
+    .cky-modal .cky-policy,
+    .cky-modal .cky-show-desc-btn {
+      color: #7dd3fc !important;
+      background: transparent !important;
+      border-color: transparent !important;
+    }
+
+    .cky-modal .cky-horizontal-separator {
+      border-color: var(--border) !important;
+    }
+
+    .cky-modal .cky-accordion {
+      background: rgba(255,255,255,0.035) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+      border-radius: 18px !important;
+      margin-bottom: 10px !important;
+      overflow: hidden !important;
+    }
+
+    .cky-modal .cky-accordion-item {
+      background: transparent !important;
+    }
+
+    .cky-modal .cky-audit-table {
+      background: rgba(255,255,255,0.035) !important;
+      border-color: var(--border) !important;
+      border-radius: 16px !important;
+    }
+
+    .cky-modal .cky-cookie-des-table {
+      border-color: var(--border) !important;
+    }
+
+    .cky-modal .cky-cookie-des-table li {
+      border-color: var(--border) !important;
+    }
+
+    .cky-modal .cky-always-active {
+      color: var(--good) !important;
+    }
+
+    .cky-modal .cky-btn {
+      border-radius: 16px !important;
+      font-weight: 700 !important;
+      padding: 12px 16px !important;
+    }
+
+    .cky-modal .cky-btn-accept,
+    .cky-modal .cky-btn-preferences {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb) !important;
+      border-color: transparent !important;
+      color: white !important;
+    }
+
+    .cky-modal .cky-btn-close {
+      background: var(--chip-bg) !important;
+      border: 1px solid var(--chip-border) !important;
+      border-radius: 999px !important;
+    }
+
+    .cky-modal .cky-btn-close img {
+      filter: invert(1) brightness(1.5) !important;
+    }
+
+    .cky-modal .cky-footer-wrapper {
+      background: var(--card) !important;
+      border-top: 1px solid var(--border) !important;
+    }
+
+    .cky-modal .cky-footer-shadow {
+      background: linear-gradient(180deg, rgba(10, 17, 32, 0), var(--card) 100%) !important;
+    }
+
+    .cky-modal .cky-chevron-right {
+      border-color: var(--muted) !important;
+    }
+
+    .cky-modal .cky-switch input {
+      background-color: rgba(148,163,184,0.5) !important;
+    }
+
+    .cky-modal .cky-switch input:checked {
+      background-color: var(--good) !important;
+    }
+
+    /* Light theme */
+    html[data-theme="light"] .cky-modal .cky-preference-center,
+    html[data-theme="light"] .cky-modal .cky-footer-wrapper {
+      background: rgba(252, 248, 239, 0.97) !important;
+      border-color: rgba(50, 95, 34, 0.14) !important;
+    }
+
+    html[data-theme="light"] .cky-modal .cky-accordion,
+    html[data-theme="light"] .cky-modal .cky-audit-table {
+      background: rgba(255, 251, 243, 0.82) !important;
+      border-color: rgba(50, 95, 34, 0.14) !important;
+    }
+
+    html[data-theme="light"] .cky-modal .cky-btn-accept,
+    html[data-theme="light"] .cky-modal .cky-btn-preferences {
+      background: linear-gradient(135deg, #5b9440, #3f7d2f) !important;
+      color: #f8fbf3 !important;
+    }
+
+    html[data-theme="light"] .cky-modal .cky-policy,
+    html[data-theme="light"] .cky-modal .cky-show-desc-btn {
+      color: #3f7d2f !important;
+    }
+
+    html[data-theme="light"] .cky-modal .cky-btn-close img {
+      filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
+    }
+
+    html[data-theme="light"] .cky-modal .cky-footer-shadow {
+      background: linear-gradient(180deg, rgba(252, 248, 239, 0), rgba(252, 248, 239, 0.97) 100%) !important;
+    }
+
+    /* System theme when device is light */
+    @media (prefers-color-scheme: light) {
+      html[data-theme="system"] .cky-modal .cky-preference-center,
+      html[data-theme="system"] .cky-modal .cky-footer-wrapper {
+        background: rgba(252, 248, 239, 0.97) !important;
+        border-color: rgba(50, 95, 34, 0.14) !important;
+      }
+
+      html[data-theme="system"] .cky-modal .cky-accordion,
+      html[data-theme="system"] .cky-modal .cky-audit-table {
+        background: rgba(255, 251, 243, 0.82) !important;
+        border-color: rgba(50, 95, 34, 0.14) !important;
+      }
+
+      html[data-theme="system"] .cky-modal .cky-btn-accept,
+      html[data-theme="system"] .cky-modal .cky-btn-preferences {
+        background: linear-gradient(135deg, #5b9440, #3f7d2f) !important;
+        color: #f8fbf3 !important;
+      }
+
+      html[data-theme="system"] .cky-modal .cky-policy,
+      html[data-theme="system"] .cky-modal .cky-show-desc-btn {
+        color: #3f7d2f !important;
+      }
+
+      html[data-theme="system"] .cky-modal .cky-btn-close img {
+        filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
+      }
+
+      html[data-theme="system"] .cky-modal .cky-footer-shadow {
+        background: linear-gradient(180deg, rgba(252, 248, 239, 0), rgba(252, 248, 239, 0.97) 100%) !important;
+      }
+    }
   </style>
 </head>
 
