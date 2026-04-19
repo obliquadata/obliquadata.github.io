@@ -193,6 +193,26 @@
     .reveal-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
     .reveal-meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 10px; }
     .reveal-text { color: var(--text); line-height: 1.55; font-size: 0.95rem; }
+    .reveal-actions {
+      margin-top: 14px;
+    }
+    .reveal-link-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--chip-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 120ms ease, opacity 120ms ease;
+    }
+    .reveal-link-button:hover {
+      transform: translateY(-1px);
+    }
+
     .reveal-flag {
       position: absolute;
       top: 14px;
@@ -373,6 +393,11 @@
       background: rgba(252, 248, 239, 0.94);
       border-color: rgba(50, 95, 34, 0.14);
     }
+    html[data-theme="light"] .reveal-link-button {
+      background: rgba(255, 251, 243, 0.82);
+      border-color: rgba(50, 95, 34, 0.16);
+      color: #2f6f34;
+    }
     html[data-theme="light"] .hint-box,
     html[data-theme="light"] .mini,
     html[data-theme="light"] .panel,
@@ -467,6 +492,11 @@
       html[data-theme="system"] .modal {
         background: rgba(252, 248, 239, 0.94);
         border-color: rgba(50, 95, 34, 0.14);
+      }
+      html[data-theme="system"] .reveal-link-button {
+        background: rgba(255, 251, 243, 0.82);
+        border-color: rgba(50, 95, 34, 0.16);
+        color: #2f6f34;
       }
       html[data-theme="system"] .hint-box,
       html[data-theme="system"] .mini,
@@ -865,6 +895,18 @@
             </div>
             <div class="reveal-meta" id="revealMeta"></div>
             <div class="reveal-text" id="revealText"></div>
+            <div class="reveal-actions">
+              <a
+                id="revealWikiLink"
+                class="reveal-link-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                hidden
+              >
+                Keep reading on Wikipedia
+              </a>
+            </div>
           </div>
         </section>
         <section class="game-panel">
@@ -1325,6 +1367,7 @@
     const revealTitle = document.getElementById("revealTitle");
     const revealMeta = document.getElementById("revealMeta");
     const revealText = document.getElementById("revealText");
+    const revealWikiLink = document.getElementById("revealWikiLink");
     const howToPlayModal = document.getElementById("howToPlayModal");
     const settingsModal = document.getElementById("settingsModal");
     const closeHowToPlayButton = document.getElementById("closeHowToPlayButton");
@@ -2216,10 +2259,24 @@
       return String.fromCodePoint(...[...code].map((char) => 127397 + char.charCodeAt(0)));
     }
 
+    function getWikipediaUrl(leader) {
+      if (!leader?.articleTitle) return "";
+      return `https://en.wikipedia.org/wiki/${encodeURIComponent(leader.articleTitle.replace(/ /g, "_"))}`;
+    }
+
     async function setRevealContent() {
       revealTitle.textContent = mysteryLeader.leader;
       revealMeta.textContent = `${mysteryLeader.role} • ${mysteryLeader.country}`;
       revealText.textContent = mysteryLeader.summary || "Loading summary…";
+
+      const wikiUrl = getWikipediaUrl(mysteryLeader);
+      if (wikiUrl) {
+        revealWikiLink.href = wikiUrl;
+        revealWikiLink.hidden = false;
+      } else {
+        revealWikiLink.hidden = true;
+        revealWikiLink.removeAttribute("href");
+      }
 
       const flagEmoji = iso2ToFlagEmoji(mysteryLeader.iso2);
       revealFlag.textContent = flagEmoji;
