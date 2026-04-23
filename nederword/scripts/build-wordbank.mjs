@@ -3,9 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const OPEN_TAAL_URL =
-  "https://raw.githubusercontent.com/OpenTaal/opentaal-wordlist/master/elements/basiswoorden-gekeurd.txt";
-const OPEN_TAAL_FALLBACK_URL =
-  "https://raw.githubusercontent.com/OpenTaal/opentaal-wordlist/master/elements/wordlist-ascii.txt";
+  "https://raw.githubusercontent.com/OpenTaal/opentaal-wordlist/master/elements/base-only.txt";
 
 const root = process.cwd();
 const dataDir = path.join(root, "data");
@@ -115,23 +113,12 @@ function clueFor(word) {
   };
 }
 
-async function fetchText(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-  return response.text();
-}
-
 async function fetchOpenTaalList() {
-  let text;
-  try {
-    text = await fetchText(OPEN_TAAL_URL);
-  } catch (primaryError) {
-    console.warn(`Primary source failed, trying fallback: ${primaryError.message}`);
-    text = await fetchText(OPEN_TAAL_FALLBACK_URL);
+  const response = await fetch(OPEN_TAAL_URL);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch OpenTaal list: ${response.status} ${response.statusText}`);
   }
-
+  const text = await response.text();
   return text
     .split(/\r?\n/)
     .map(normalizeWord)
