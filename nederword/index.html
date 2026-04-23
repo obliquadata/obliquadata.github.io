@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NederWord — dagelijks Nederlands woordspel</title>
+  <meta name="description" content="Een moderne, Dutch-themed woordspel om Nederlandse woordenschat te oefenen met definities, een dagelijks woord en onbeperkte modus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero__badge">🇳🇱 Woord van de dag + onbeperkt</div>
+      <h1>NederWord</h1>
+      <p class="hero__subtitle">
+        Raad het Nederlandse woord op basis van een definitie in het Nederlands.
+        De woordlengte verandert per ronde, zodat het meer voelt als echte woordenschattraining dan als standaard Wordle.
+      </p>
+
+      <div class="top-controls">
+        <div class="mode-switch" role="tablist" aria-label="Spelmodus">
+          <button id="dailyModeBtn" class="mode-btn active" type="button" aria-pressed="true">Dagelijks</button>
+          <button id="unlimitedModeBtn" class="mode-btn" type="button" aria-pressed="false">Onbeperkt</button>
+        </div>
+        <button id="newUnlimitedBtn" class="secondary-btn" type="button" hidden>Nieuw woord</button>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <section class="card clue-card">
+        <div class="card__label">Definitie</div>
+        <h2 id="modeTitle">Woord van vandaag</h2>
+        <p id="definitionNl" class="definition"></p>
+        <p id="exampleNl" class="example"></p>
+        <div class="meta-row">
+          <span id="lengthPill" class="pill"></span>
+          <span id="attemptsPill" class="pill">6 pogingen</span>
+        </div>
+      </section>
+
+      <section class="card board-card">
+        <div id="board" class="board" aria-live="polite"></div>
+
+        <form id="guessForm" class="guess-form" autocomplete="off">
+          <label for="guessInput" class="sr-only">Jouw gok</label>
+          <input id="guessInput" type="text" inputmode="text" autocapitalize="none" spellcheck="false" maxlength="20" placeholder="Typ je gok..." />
+          <button type="submit" class="primary-btn">Controleer</button>
+        </form>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+
+        <div class="keyboard-hint">
+          Tip: letters op de juiste plek zijn <span class="hint correct">groen</span>,
+          letters in het woord maar op de verkeerde plek zijn <span class="hint present">oranje</span>,
+          en letters die niet voorkomen zijn <span class="hint absent">blauwgrijs</span>.
+        </div>
+      </section>
+
+      <aside class="card sidebar-card">
+        <div class="card__label">Na een goed antwoord</div>
+        <div id="resultPanel" class="result-panel empty">
+          <p>Raad het woord om de Engelse vertaling en extra uitleg te zien.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat__value" id="statPlayed">0</span>
+            <span class="stat__label">gespeeld</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" id="statWon">0</span>
+            <span class="stat__label">gewonnen</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" id="statStreak">0</span>
+            <span class="stat__label">streak</span>
+          </div>
+        </div>
+
+        <details class="howto">
+          <summary>Hoe werkt het?</summary>
+          <p>Je krijgt eerst een definitie in het Nederlands. Daarna probeer je het juiste woord te raden.</p>
+          <p>De lengte van het woord verandert per ronde. Dat maakt het spel flexibeler en bruikbaarder voor taalverwerving.</p>
+          <p>In de dagelijkse modus krijgt iedereen op dezelfde dag hetzelfde woord. In onbeperkte modus krijg je steeds een nieuw woord uit de woordbank.</p>
+          <p>Na een goed antwoord verschijnt de Engelse vertaling, plus de Nederlandse definitie en een voorbeeldzin.</p>
+        </details>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Gebouwd als statische site — handig voor GitHub Pages.</span>
+      <span>Pas de woorden eenvoudig aan in <code>data/words.json</code>.</span>
+    </footer>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>
