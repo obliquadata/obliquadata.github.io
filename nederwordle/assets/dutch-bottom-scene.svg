@@ -1,0 +1,59 @@
+<svg width="1600" height="320" viewBox="0 0 1600 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dutch-inspired decorative skyline with canal, bridge, houses, and tulips">
+  <defs>
+    <linearGradient id="skyGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF4EA"/>
+      <stop offset="1" stop-color="#FCE5D6"/>
+    </linearGradient>
+    <linearGradient id="orangeWave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F47C20"/>
+      <stop offset="1" stop-color="#FF8F3D"/>
+    </linearGradient>
+    <linearGradient id="blueWave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0B3B75"/>
+      <stop offset="1" stop-color="#0D5EA6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="320" fill="url(#skyGlow)" opacity="0.001"/>
+
+  <!-- distant shapes -->
+  <circle cx="210" cy="160" r="44" fill="#F6D7C1" opacity="0.7"/>
+  <circle cx="1360" cy="145" r="52" fill="#F6D7C1" opacity="0.65"/>
+  <circle cx="1210" cy="110" r="24" fill="#FFF0E0" opacity="0.85"/>
+
+  <!-- left house cluster -->
+  <g opacity="0.95">
+    <path d="M88 206V134H116V86H184V134H214V206H88Z" fill="#0B3B75"/>
+    <rect x="134" y="98" width="14" height="20" rx="3" fill="#F5F7FA"/>
+    <rect x="110" y="148" width="18" height="32" fill="#F7F3EE"/>
+    <rect x="136" y="148" width="18" height="32" fill="#F7F3EE"/>
+    <rect x="164" y="148" width="18" height="32" fill="#F7F3EE"/>
+    <rect x="110" y="190" width="18" height="16" fill="#F0D8C8"/>
+    <rect x="136" y="190" width="18" height="16" fill="#F0D8C8"/>
+    <rect x="164" y="190" width="18" height="16" fill="#F0D8C8"/>
+  </g>
+
+  <!-- bridge -->
+  <g transform="translate(10 0)">
+    <path d="M0 252C52 228 143 224 214 226C300 229 364 244 420 252V286H0V252Z" fill="#0A3468"/>
+    <path d="M102 285C109 242 127 220 159 220C192 220 209 242 216 285H102Z" fill="#F5E6D9"/>
+    <path d="M287 285C294 252 309 235 334 235C357 235 371 252 378 285H287Z" fill="#1B4E8D" opacity="0.78"/>
+  </g>
+
+  <!-- tulip right -->
+  <g transform="translate(1240 72)">
+    <path d="M88 170L91 266" stroke="#0B3B75" stroke-width="14" stroke-linecap="round"/>
+    <path d="M78 179C58 196 46 217 43 250" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
+    <path d="M102 180C123 198 138 220 145 252" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
+    <path d="M91 52C112 31 126 51 131 84C136 115 118 137 91 147C65 137 46 115 51 84C56 51 71 31 91 52Z" fill="#E94F0F"/>
+    <path d="M73 64C90 38 114 33 128 62C139 85 126 118 102 138C81 124 64 103 60 83C57 70 61 55 73 64Z" fill="#F47C20"/>
+    <path d="M91 40C103 16 124 20 138 46C151 72 147 109 125 136C104 123 89 100 85 76C83 64 83 49 91 40Z" fill="#FF6A00"/>
+    <path d="M42 250C60 223 70 206 79 181C57 187 38 202 22 228C12 245 7 261 3 274C18 269 29 262 42 250Z" fill="#0B3B75"/>
+    <path d="M145 252C129 224 118 205 105 182C127 188 149 205 166 230C176 245 181 260 185 274C169 268 157 262 145 252Z" fill="#123F79"/>
+  </g>
+
+  <!-- waves -->
+  <path d="M0 236C106 292 236 290 384 252C532 214 692 200 856 228C1010 254 1154 254 1293 221C1406 194 1495 194 1600 230V320H0V236Z" fill="url(#orangeWave)"/>
+  <path d="M0 267C117 302 228 305 373 276C487 253 644 229 820 238C1009 248 1178 288 1355 284C1452 281 1534 269 1600 252V320H0V267Z" fill="#F6F7F8"/>
+  <path d="M0 283C103 314 240 315 410 287C560 263 696 258 843 272C997 287 1124 316 1277 315C1399 314 1508 297 1600 275V320H0V283Z" fill="url(#blueWave)"/>
+</svg>
