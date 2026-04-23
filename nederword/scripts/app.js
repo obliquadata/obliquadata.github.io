@@ -331,7 +331,7 @@ function submitGuess(rawGuess) {
   }
 
   if (state.guesses.length >= MAX_ATTEMPTS) {
-    setMessage(`Helaas. Het woord was "${state.current.word}".`);
+    setMessage(`Helaas, "${state.current.word}" kaas. Het woord was "${state.current.word}".`);
     applyEndState(false);
     return;
   }
@@ -351,7 +351,7 @@ function buildShareText() {
 
   const score = state.won ? `${state.guesses.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   const modeLabel = state.mode === "daily" ? `Dagelijks ${state.dailyKey}` : "Onbeperkt";
-  return `NederWord ${modeLabel} ${score}\n${rows.join("\n")}\n\nhttps://your-site-here.example`;
+  return `NederWord ${modeLabel} ${score}\n${rows.join("\n")}\n\nobliquadata.github.io/nederword`;
 }
 
 function updateShareButton() {
