@@ -142,6 +142,10 @@ function renderClue() {
   els.lengthPill.textContent = `${state.current.word.length} letters`;
 }
 
+function getRevealedExampleSentence() {
+  return (state.current.example_nl || "").replaceAll("BLANK", state.current.word);
+}
+
 function renderResultPanel() {
   if (state.won) {
     els.resultPanel.classList.remove("empty");
@@ -149,7 +153,7 @@ function renderResultPanel() {
       <p class="result-word">${escapeHtml(state.current.word)}</p>
       <p class="translation">Engels: ${escapeHtml(state.current.definition_en)}</p>
       <p><strong>Nederlandse definitie:</strong> ${escapeHtml(state.current.definition_nl)}</p>
-      <p><strong>Voorbeeldzin:</strong> ${escapeHtml(state.current.example_nl)}</p>
+      <p><strong>Voorbeeldzin:</strong> ${escapeHtml(getRevealedExampleSentence())}</p>
     `;
     return;
   }
@@ -161,7 +165,7 @@ function renderResultPanel() {
       <p class="translation">Engels: ${escapeHtml(state.current.definition_en)}</p>
       <p>Niet geraden deze ronde, maar je kunt het woord nu alsnog bestuderen.</p>
       <p><strong>Nederlandse definitie:</strong> ${escapeHtml(state.current.definition_nl)}</p>
-      <p><strong>Voorbeeldzin:</strong> ${escapeHtml(state.current.example_nl)}</p>
+      <p><strong>Voorbeeldzin:</strong> ${escapeHtml(getRevealedExampleSentence())}</p>
     `;
     return;
   }
