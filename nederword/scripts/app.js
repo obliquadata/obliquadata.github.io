@@ -23,6 +23,7 @@ const els = {
   resultPanel: document.getElementById("resultPanel"),
   lengthPill: document.getElementById("lengthPill"),
   attemptsPill: document.getElementById("attemptsPill"),
+  shareBtn: document.getElementById("shareBtn"),
   dailyModeBtn: document.getElementById("dailyModeBtn"),
   unlimitedModeBtn: document.getElementById("unlimitedModeBtn"),
   newUnlimitedBtn: document.getElementById("newUnlimitedBtn"),
@@ -257,6 +258,7 @@ function startRound({ preserveDaily = true } = {}) {
   buildBoard();
   renderResultPanel();
   renderStats();
+  updateShareButton();
   saveState();
 
   if (state.gameOver) {
@@ -291,6 +293,7 @@ function applyEndState(won) {
   setStats(stats);
   renderStats();
   renderResultPanel();
+  updateShareButton();
   saveState();
 }
 
@@ -308,17 +311,13 @@ function submitGuess(rawGuess) {
     return;
   }
 
-  const knownWords = new Set(state.words.map((w) => normalizeDutch(w.word)));
-  if (!knownWords.has(guess)) {
-    setMessage("Dat woord staat nog niet in de woordbank. Voeg het later gerust toe aan words.json.", true);
-    return;
-  }
 
   const evaluation = evaluateGuess(guess, answer);
   state.guesses.push(guess);
   state.evaluations.push(evaluation);
 
   buildBoard();
+  updateShareButton();
   saveState();
 
   if (guess === answer) {
@@ -334,6 +333,46 @@ function submitGuess(rawGuess) {
   }
 
   setMessage(`Nog ${MAX_ATTEMPTS - state.guesses.length} poging(en).`);
+}
+
+
+function buildShareText() {
+  const rows = state.evaluations.map((evaluation) =>
+    evaluation.map((value) => {
+      if (value === "correct") return "🟩";
+      if (value === "present") return "🟧";
+      return "⬜";
+    }).join("")
+  );
+
+  const score = state.won ? `${state.guesses.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
+  const modeLabel = state.mode === "daily" ? `Dagelijks ${state.dailyKey}` : "Onbeperkt";
+  return `NederWord ${modeLabel} ${score}\n${rows.join("\n")}\n\nhttps://your-site-here.example`;
+}
+
+function updateShareButton() {
+  if (!els.shareBtn) return;
+  els.shareBtn.hidden = !(state.gameOver || state.guesses.length > 0);
+}
+
+async function shareResults() {
+  const text = buildShareText();
+  try {
+    if (navigator.share) {
+      await navigator.share({ text });
+      setMessage("Resultaat gedeeld.");
+      return;
+    }
+  } catch (error) {
+    // Fall through to clipboard on cancel/error
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    setMessage("Resultaat gekopieerd naar je klembord.");
+  } catch (error) {
+    setMessage("Delen lukte niet automatisch.", true);
+  }
 }
 
 async function init() {
@@ -376,6 +415,12 @@ async function init() {
       startRound({ preserveDaily: false });
     }
   });
+
+  if (els.shareBtn) {
+    els.shareBtn.addEventListener("click", () => {
+      shareResults();
+    });
+  }
 }
 
 init().catch((error) => {
