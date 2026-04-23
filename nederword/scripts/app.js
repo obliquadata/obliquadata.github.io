@@ -1,6 +1,6 @@
 const MAX_ATTEMPTS = 6;
-const STORAGE_KEY = "nederword-state-v1";
-const STATS_KEY = "nederword-stats-v1";
+const STORAGE_KEY = "NederWordle-state-v1";
+const STATS_KEY = "NederWordle-stats-v1";
 
 const state = {
   words: [],
@@ -58,7 +58,7 @@ function hashString(str) {
 }
 
 function getDailyWord(words, dateKey) {
-  const idx = hashString(`nederword-${dateKey}`) % words.length;
+  const idx = hashString(`NederWordle-${dateKey}`) % words.length;
   return words[idx];
 }
 
@@ -351,7 +351,7 @@ function buildShareText() {
 
   const score = state.won ? `${state.guesses.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   const modeLabel = state.mode === "daily" ? `Dagelijks ${state.dailyKey}` : "Onbeperkt";
-  return `NederWord ${modeLabel} ${score}\n${rows.join("\n")}\n\nobliquadata.github.io/nederword`;
+  return `NederWordle ${modeLabel} ${score}\n${rows.join("\n")}\n\nobliquadata.github.io/NederWordle`;
 }
 
 function updateShareButton() {
