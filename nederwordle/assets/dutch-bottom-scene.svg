@@ -1,59 +1,123 @@
-<svg width="1600" height="320" viewBox="0 0 1600 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dutch-inspired decorative skyline with canal, bridge, houses, and tulips">
+<svg width="1600" height="320" viewBox="0 0 1600 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dutch decorative background with canal houses, bridge, tulips, and canal waves">
   <defs>
-    <linearGradient id="skyGlow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFF4EA"/>
-      <stop offset="1" stop-color="#FCE5D6"/>
-    </linearGradient>
     <linearGradient id="orangeWave" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#F47C20"/>
-      <stop offset="1" stop-color="#FF8F3D"/>
+      <stop offset="1" stop-color="#FF9545"/>
     </linearGradient>
     <linearGradient id="blueWave" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#0B3B75"/>
       <stop offset="1" stop-color="#0D5EA6"/>
     </linearGradient>
+    <linearGradient id="houseBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#104888"/>
+      <stop offset="1" stop-color="#0B3B75"/>
+    </linearGradient>
+    <linearGradient id="windowGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF9F1"/>
+      <stop offset="1" stop-color="#F0DDD0"/>
+    </linearGradient>
+    <linearGradient id="tulipOrange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF8B2C"/>
+      <stop offset="1" stop-color="#E95C0C"/>
+    </linearGradient>
   </defs>
 
-  <rect width="1600" height="320" fill="url(#skyGlow)" opacity="0.001"/>
+  <!-- subtle sky accents -->
+  <circle cx="220" cy="146" r="42" fill="#F8DECC" opacity="0.65"/>
+  <circle cx="1288" cy="116" r="26" fill="#FFF1E3" opacity="0.9"/>
+  <circle cx="1362" cy="147" r="50" fill="#F7DCC9" opacity="0.55"/>
+  <path d="M1170 92C1182 78 1201 76 1216 88C1226 81 1240 82 1249 92C1264 91 1277 100 1280 113H1158C1161 101 1169 93 1170 92Z" fill="#FFF8F0" opacity="0.82"/>
 
-  <!-- distant shapes -->
-  <circle cx="210" cy="160" r="44" fill="#F6D7C1" opacity="0.7"/>
-  <circle cx="1360" cy="145" r="52" fill="#F6D7C1" opacity="0.65"/>
-  <circle cx="1210" cy="110" r="24" fill="#FFF0E0" opacity="0.85"/>
+  <!-- canal houses -->
+  <g transform="translate(54 24)">
+    <!-- house 1 -->
+    <g transform="translate(0 0)">
+      <path d="M0 214V120H18V88L48 64L78 88V120H96V214H0Z" fill="url(#houseBlue)"/>
+      <rect x="42" y="79" width="12" height="18" rx="3" fill="#F4F7FA"/>
+      <rect x="15" y="136" width="16" height="28" fill="url(#windowGlow)"/>
+      <rect x="40" y="136" width="16" height="28" fill="url(#windowGlow)"/>
+      <rect x="65" y="136" width="16" height="28" fill="url(#windowGlow)"/>
+      <rect x="15" y="176" width="16" height="28" fill="#F1DDCE"/>
+      <rect x="40" y="176" width="16" height="28" fill="#F1DDCE"/>
+      <rect x="65" y="176" width="16" height="28" fill="#F1DDCE"/>
+    </g>
 
-  <!-- left house cluster -->
-  <g opacity="0.95">
-    <path d="M88 206V134H116V86H184V134H214V206H88Z" fill="#0B3B75"/>
-    <rect x="134" y="98" width="14" height="20" rx="3" fill="#F5F7FA"/>
-    <rect x="110" y="148" width="18" height="32" fill="#F7F3EE"/>
-    <rect x="136" y="148" width="18" height="32" fill="#F7F3EE"/>
-    <rect x="164" y="148" width="18" height="32" fill="#F7F3EE"/>
-    <rect x="110" y="190" width="18" height="16" fill="#F0D8C8"/>
-    <rect x="136" y="190" width="18" height="16" fill="#F0D8C8"/>
-    <rect x="164" y="190" width="18" height="16" fill="#F0D8C8"/>
+    <!-- house 2 -->
+    <g transform="translate(88 6)">
+      <path d="M0 208V118H16V84H38V58H66V84H82V118H98V208H0Z" fill="#0D5EA6"/>
+      <rect x="44" y="69" width="16" height="22" rx="3" fill="#F4F7FA"/>
+      <rect x="16" y="134" width="18" height="28" fill="url(#windowGlow)"/>
+      <rect x="41" y="134" width="18" height="28" fill="url(#windowGlow)"/>
+      <rect x="66" y="134" width="18" height="28" fill="url(#windowGlow)"/>
+      <rect x="16" y="174" width="18" height="28" fill="#F1DDCE"/>
+      <rect x="41" y="174" width="18" height="28" fill="#F1DDCE"/>
+      <rect x="66" y="174" width="18" height="28" fill="#F1DDCE"/>
+    </g>
+
+    <!-- house 3 -->
+    <g transform="translate(182 20)">
+      <path d="M0 194V118H18V84L48 54L78 84V118H96V194H0Z" fill="#0B3B75"/>
+      <rect x="42" y="71" width="12" height="18" rx="3" fill="#F4F7FA"/>
+      <rect x="16" y="132" width="16" height="25" fill="url(#windowGlow)"/>
+      <rect x="40" y="132" width="16" height="25" fill="url(#windowGlow)"/>
+      <rect x="64" y="132" width="16" height="25" fill="url(#windowGlow)"/>
+      <rect x="16" y="167" width="16" height="23" fill="#F1DDCE"/>
+      <rect x="40" y="167" width="16" height="23" fill="#F1DDCE"/>
+      <rect x="64" y="167" width="16" height="23" fill="#F1DDCE"/>
+    </g>
+
+    <!-- narrow house 4 -->
+    <g transform="translate(274 32)">
+      <path d="M0 182V126H14V98H24V72H48V98H60V126H74V182H0Z" fill="#165797"/>
+      <rect x="28" y="82" width="10" height="14" rx="2" fill="#F4F7FA"/>
+      <rect x="14" y="138" width="13" height="20" fill="url(#windowGlow)"/>
+      <rect x="31" y="138" width="13" height="20" fill="url(#windowGlow)"/>
+      <rect x="48" y="138" width="13" height="20" fill="url(#windowGlow)"/>
+      <rect x="14" y="164" width="13" height="14" fill="#F1DDCE"/>
+      <rect x="31" y="164" width="13" height="14" fill="#F1DDCE"/>
+      <rect x="48" y="164" width="13" height="14" fill="#F1DDCE"/>
+    </g>
   </g>
 
-  <!-- bridge -->
-  <g transform="translate(10 0)">
-    <path d="M0 252C52 228 143 224 214 226C300 229 364 244 420 252V286H0V252Z" fill="#0A3468"/>
-    <path d="M102 285C109 242 127 220 159 220C192 220 209 242 216 285H102Z" fill="#F5E6D9"/>
-    <path d="M287 285C294 252 309 235 334 235C357 235 371 252 378 285H287Z" fill="#1B4E8D" opacity="0.78"/>
+  <!-- bridge and canal -->
+  <g transform="translate(0 0)">
+    <path d="M0 252C48 232 125 226 208 227C310 229 391 242 458 255V289H0V252Z" fill="#082E5D"/>
+    <path d="M116 289C123 246 145 222 179 222C214 222 236 246 244 289H116Z" fill="#FAEFE4"/>
+    <path d="M28 274H82" stroke="#4976AA" stroke-width="7" stroke-linecap="round" opacity="0.65"/>
+    <path d="M54 290H137" stroke="#4976AA" stroke-width="7" stroke-linecap="round" opacity="0.45"/>
+    <path d="M168 276H221" stroke="#4976AA" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
   </g>
 
-  <!-- tulip right -->
-  <g transform="translate(1240 72)">
-    <path d="M88 170L91 266" stroke="#0B3B75" stroke-width="14" stroke-linecap="round"/>
-    <path d="M78 179C58 196 46 217 43 250" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
-    <path d="M102 180C123 198 138 220 145 252" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
-    <path d="M91 52C112 31 126 51 131 84C136 115 118 137 91 147C65 137 46 115 51 84C56 51 71 31 91 52Z" fill="#E94F0F"/>
-    <path d="M73 64C90 38 114 33 128 62C139 85 126 118 102 138C81 124 64 103 60 83C57 70 61 55 73 64Z" fill="#F47C20"/>
-    <path d="M91 40C103 16 124 20 138 46C151 72 147 109 125 136C104 123 89 100 85 76C83 64 83 49 91 40Z" fill="#FF6A00"/>
-    <path d="M42 250C60 223 70 206 79 181C57 187 38 202 22 228C12 245 7 261 3 274C18 269 29 262 42 250Z" fill="#0B3B75"/>
-    <path d="M145 252C129 224 118 205 105 182C127 188 149 205 166 230C176 245 181 260 185 274C169 268 157 262 145 252Z" fill="#123F79"/>
+  <!-- tiny distant canal houses silhouette -->
+  <g opacity="0.32" transform="translate(520 144)">
+    <path d="M0 56V30H10V12H28V30H40V56H0Z" fill="#D0C0B9"/>
+    <path d="M46 56V34H58V18H76V34H88V56H46Z" fill="#D0C0B9"/>
+    <path d="M96 56V28H108V6H130V28H142V56H96Z" fill="#D0C0B9"/>
+    <path d="M150 56V34H160V16H180V34H192V56H150Z" fill="#D0C0B9"/>
   </g>
 
-  <!-- waves -->
-  <path d="M0 236C106 292 236 290 384 252C532 214 692 200 856 228C1010 254 1154 254 1293 221C1406 194 1495 194 1600 230V320H0V236Z" fill="url(#orangeWave)"/>
-  <path d="M0 267C117 302 228 305 373 276C487 253 644 229 820 238C1009 248 1178 288 1355 284C1452 281 1534 269 1600 252V320H0V267Z" fill="#F6F7F8"/>
-  <path d="M0 283C103 314 240 315 410 287C560 263 696 258 843 272C997 287 1124 316 1277 315C1399 314 1508 297 1600 275V320H0V283Z" fill="url(#blueWave)"/>
+  <!-- tulips on right -->
+  <g transform="translate(1260 52)">
+    <!-- back tulip -->
+    <path d="M122 112L124 230" stroke="#0B3B75" stroke-width="13" stroke-linecap="round"/>
+    <path d="M111 126C92 145 80 169 76 205" stroke="#0B3B75" stroke-width="9" stroke-linecap="round"/>
+    <path d="M132 126C151 145 164 170 170 205" stroke="#0B3B75" stroke-width="9" stroke-linecap="round"/>
+    <path d="M122 38C142 18 160 35 165 63C171 95 151 118 122 130C94 118 73 95 79 63C85 35 102 18 122 38Z" fill="#DA4A0A"/>
+    <path d="M101 50C117 25 145 22 162 50C173 70 165 102 142 122C119 110 103 88 97 68C95 61 95 55 101 50Z" fill="#F47C20"/>
+
+    <!-- front tulip -->
+    <path d="M48 124L50 248" stroke="#0B3B75" stroke-width="14" stroke-linecap="round"/>
+    <path d="M38 135C20 154 7 180 2 221" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
+    <path d="M60 136C82 156 96 182 102 221" stroke="#0B3B75" stroke-width="10" stroke-linecap="round"/>
+    <path d="M49 46C71 24 89 41 95 73C101 108 80 135 49 149C18 135 -3 108 4 73C10 41 28 24 49 46Z" fill="url(#tulipOrange)"/>
+    <path d="M26 57C43 31 72 27 90 57C103 79 94 114 69 137C45 123 29 100 23 77C20 69 20 61 26 57Z" fill="#FF8A20"/>
+    <path d="M49 33C60 14 79 18 93 40C107 61 105 94 88 119C70 108 56 87 52 66C50 55 50 42 49 33Z" fill="#FF5F00"/>
+    <path d="M0 222C18 197 31 177 41 136C22 144 6 160 -10 185C-20 202 -27 216 -32 229C-17 227 -9 227 0 222Z" fill="#0B3B75"/>
+    <path d="M103 221C86 196 74 176 59 136C79 144 98 160 114 186C124 202 131 217 136 229C122 227 113 226 103 221Z" fill="#123F79"/>
+  </g>
+
+  <!-- tricolour canal waves -->
+  <path d="M0 236C98 290 240 289 391 250C525 216 676 202 853 228C1001 250 1136 254 1278 223C1414 194 1509 196 1600 230V320H0V236Z" fill="url(#orangeWave)"/>
+  <path d="M0 266C120 302 236 304 385 276C528 249 676 231 844 241C1018 251 1176 287 1346 285C1449 283 1537 270 1600 253V320H0V266Z" fill="#F8F7F5"/>
+  <path d="M0 282C111 313 233 315 406 287C558 263 694 259 843 272C998 286 1147 317 1286 316C1395 315 1501 299 1600 275V320H0V282Z" fill="url(#blueWave)"/>
 </svg>
