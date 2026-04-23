@@ -351,7 +351,7 @@ function buildShareText() {
 
   const score = state.won ? `${state.guesses.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   const modeLabel = state.mode === "daily" ? `Dagelijks ${state.dailyKey}` : "Onbeperkt";
-  return `NederWordle ${modeLabel} ${score}\n${rows.join("\n")}\n\nobliquadata.github.io/nederwordle`;
+  return `NederWordle ${modeLabel} ${score}\n${rows.join("\n")}\n\nhttps://obliquadata.github.io/nederwordle`;
 }
 
 function updateShareButton() {
