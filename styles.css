@@ -633,3 +633,22 @@ img {
     height: clamp(76px, 22vw, 98px);
   }
 }
+
+#focus {
+  display: flex;
+  flex-direction: column;
+}
+
+#focus .feature-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#focus .feature-list li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
