@@ -796,8 +796,8 @@ body {
 }
 
 .footer-logo {
-  width: 42px;
-  height: 42px;
+  width: 100px;
+  height: auto;
   object-fit: contain;
   flex: 0 0 auto;
 }
