@@ -804,8 +804,8 @@ body {
 
 @media (max-width: 640px) {
   .footer-logo {
-    width: 36px;
-    height: 36px;
+    width: 100px;
+    height: auto;
   }
 }
 
