@@ -784,6 +784,6 @@ body {
   background: transparent !important;
 }
 
-.cky-switch input#ckySwitchfunctional {
+.cky-switch input[type="checkbox"]:checked {
     background-color: #47634d !important;
 }
