@@ -658,7 +658,9 @@ html {
 }
 
 body {
+  width: 100%;
   max-width: 100%;
+  overflow-x: clip;
 }
 
 /* CookieYes banner: match theme */
