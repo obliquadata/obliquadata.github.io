@@ -808,3 +808,7 @@ body {
     height: 36px;
   }
 }
+
+body {
+  cursor: url("./assets/cursor.png") 8 8, auto;
+}
