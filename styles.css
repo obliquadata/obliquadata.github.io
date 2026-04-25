@@ -69,11 +69,12 @@ img {
 }
 
 .brand-mark {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  object-fit: cover;
-  box-shadow: 0 8px 22px rgba(18, 63, 26, 0.16);
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 .brand-name,
@@ -448,8 +449,8 @@ img {
   }
 
   .brand-mark {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
   }
 }
 
