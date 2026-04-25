@@ -788,3 +788,23 @@ body {
 .cky-switch input[type="checkbox"]:checked {
     background-color: #47634d !important;
 }
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.footer-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .footer-logo {
+    width: 36px;
+    height: 36px;
+  }
+}
