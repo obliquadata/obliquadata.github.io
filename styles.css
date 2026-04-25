@@ -817,5 +817,5 @@ a,
 button,
 [role="button"],
 .landsat-letter {
-  cursor: url("./assets/click.png") 4 4, pointer;
+  cursor: url("./assets/click.png") 8 8, pointer;
 }
