@@ -809,11 +809,13 @@ body {
   }
 }
 
-
+body {
+  cursor: url("./assets/cursor.png") 8 8, auto;
+}
 
 a,
 button,
 [role="button"],
 .landsat-letter {
-  cursor: url("./assets/cursor.png") 4 4, pointer;
+  cursor: url("./assets/click.png") 4 4, pointer;
 }
