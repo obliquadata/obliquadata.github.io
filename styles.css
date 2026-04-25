@@ -783,3 +783,7 @@ body {
 .cky-modal {
   background: transparent !important;
 }
+
+.cky-switch input#ckySwitchfunctional {
+    background-color: #47634d !important;
+}
