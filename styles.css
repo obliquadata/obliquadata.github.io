@@ -196,10 +196,10 @@ img {
 }
 
 .interactive-logo__veins {
-  left: 3.6963%;
+  left: 0.2275%;
   top: 8.7043%;
-  width: 87.5462%;
-  height: 83.0366%;
+  width: 94.5124%;
+  height: 89.1197%;
   z-index: 2;
 }
 
@@ -210,10 +210,10 @@ img {
 }
 
 .interactive-logo__nodes {
-  left: 2.8433%;
+  left: 8.7575%;
   top: 6.2315%;
-  width: 90.1336%;
-  height: 87.2898%;
+  width: 84.2195%;
+  height: 86.3501%;
   z-index: 4;
 }
 
@@ -226,6 +226,26 @@ img {
 .hero-copy:hover .interactive-logo__veins,
 .hero-copy:hover .interactive-logo__nodes {
   filter: drop-shadow(0 22px 34px rgba(18, 63, 26, 0.14));
+}
+
+.graph-edge {
+  fill: none;
+  stroke: rgba(2, 160, 52, 0.92);
+  stroke-width: 34;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.16s ease, stroke-width 0.16s ease, filter 0.16s ease;
+  filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.16));
+}
+
+.graph-edge.is-interrupted {
+  opacity: 0;
+}
+
+.graph-edge-dynamic {
+  stroke-width: 36;
+  filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.28));
+  animation: connectionGlow 2.8s ease-in-out infinite;
 }
 
 #interactiveConnections path {
