@@ -159,8 +159,9 @@ img {
 
 .hero-logo-area {
   position: absolute;
-  top: 58px;
+  top: 50%;
   right: 28px;
+  transform: translateY(-50%);
   width: min(42%, 360px);
   aspect-ratio: 3517 / 2022;
   z-index: 1;
@@ -204,14 +205,8 @@ img {
   animation: connectionGlow 2.8s ease-in-out infinite;
 }
 
-#interactiveNodeHighlights circle {
-  fill: none;
-  stroke: rgba(9, 165, 60, 0.52);
-  stroke-width: 16;
-  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.16));
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: nodePulse 2.8s ease-in-out infinite;
+#interactiveNodeHighlights {
+  display: none;
 }
 
 #interactiveCursorNode {
@@ -234,19 +229,6 @@ img {
   50% {
     stroke: rgba(9, 165, 60, 0.98);
     filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.28));
-  }
-}
-
-@keyframes nodePulse {
-  0%, 100% {
-    opacity: 0.72;
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.12));
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.035);
-    filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.22));
   }
 }
 
@@ -541,6 +523,7 @@ img {
     position: relative;
     top: auto;
     right: auto;
+    transform: none;
     width: min(340px, 72%);
     margin: 26px auto 0;
   }
