@@ -198,16 +198,20 @@ img {
 
 #interactiveConnections path {
   fill: none;
-  stroke: rgba(9, 165, 60, 0.9);
+  stroke: rgba(9, 165, 60, 0.88);
   stroke-linecap: round;
-  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.22));
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.2));
+  animation: connectionGlow 2.8s ease-in-out infinite;
 }
 
 #interactiveNodeHighlights circle {
   fill: none;
-  stroke: rgba(9, 165, 60, 0.55);
+  stroke: rgba(9, 165, 60, 0.52);
   stroke-width: 16;
   filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.16));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 2.8s ease-in-out infinite;
 }
 
 #interactiveCursorNode {
@@ -216,7 +220,45 @@ img {
   stroke-width: 16;
   filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.25));
   transition: opacity 0.18s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cursorPulse 2.2s ease-in-out infinite;
   opacity: 0;
+}
+
+@keyframes connectionGlow {
+  0%, 100% {
+    stroke: rgba(9, 165, 60, 0.82);
+    filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.14));
+  }
+  50% {
+    stroke: rgba(9, 165, 60, 0.98);
+    filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.28));
+  }
+}
+
+@keyframes nodePulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.12));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.035);
+    filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.22));
+  }
+}
+
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.18));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(9, 165, 60, 0.3));
+  }
 }
 
 .eyebrow,
