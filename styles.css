@@ -171,30 +171,50 @@ img {
   position: relative;
   width: 100%;
   height: 100%;
+  transition: transform 0.24s ease, filter 0.24s ease;
 }
 
-.interactive-logo__image,
-.interactive-logo__overlay {
+.interactive-logo__layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  pointer-events: none;
 }
 
-.interactive-logo__image {
-  object-fit: contain;
+.interactive-logo__outline,
+.interactive-logo__veins,
+.interactive-logo__nodes {
   opacity: 0.96;
   filter: drop-shadow(0 18px 26px rgba(18, 63, 26, 0.12));
-  transition: transform 0.24s ease, filter 0.24s ease;
 }
 
-.hero-copy:hover .interactive-logo__image {
-  transform: translateY(-1px) scale(1.01);
-  filter: drop-shadow(0 22px 34px rgba(18, 63, 26, 0.14));
+.interactive-logo__outline {
+  z-index: 1;
+}
+
+.interactive-logo__veins {
+  z-index: 2;
 }
 
 .interactive-logo__overlay {
+  z-index: 3;
   overflow: visible;
+}
+
+.interactive-logo__nodes {
+  z-index: 4;
+}
+
+.hero-copy:hover .interactive-logo {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.hero-copy:hover .interactive-logo__outline,
+.hero-copy:hover .interactive-logo__veins,
+.hero-copy:hover .interactive-logo__nodes {
+  filter: drop-shadow(0 22px 34px rgba(18, 63, 26, 0.14));
 }
 
 #interactiveConnections path {

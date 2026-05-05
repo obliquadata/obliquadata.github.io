@@ -79,11 +79,13 @@
 
           <div class="hero-logo-area" aria-hidden="true">
             <div class="interactive-logo" id="interactiveLogo">
-              <img src="assets/logoNoText.png" alt="" class="interactive-logo__image" />
-              <svg class="interactive-logo__overlay" viewBox="0 0 3517 2022" preserveAspectRatio="xMidYMid meet">
+              <img src="assets/leaf-outline.svg" alt="" class="interactive-logo__layer interactive-logo__outline" />
+              <img src="assets/leaf-veins.svg" alt="" class="interactive-logo__layer interactive-logo__veins" />
+              <svg class="interactive-logo__overlay interactive-logo__layer" viewBox="0 0 3517 2022" preserveAspectRatio="xMidYMid meet">
                 <g id="interactiveConnections"></g>
                 <circle id="interactiveCursorNode" cx="0" cy="0" r="38"></circle>
               </svg>
+              <img src="assets/leaf-nodes.svg" alt="" class="interactive-logo__layer interactive-logo__nodes" />
             </div>
           </div>
         </div>
@@ -301,7 +303,7 @@
       const viewBoxWidth = 3517;
       const viewBoxHeight = 2022;
       const nearThresholdPx = 320;
-      const maxConnectionDistance = 1280;
+      const maxConnectionDistance = 3000;
       const maxConnections = 5;
       const nodes = [
         { x: 1322.8, y: 195.2, r: 69 },
