@@ -301,7 +301,7 @@
       const viewBoxWidth = 3517;
       const viewBoxHeight = 2022;
       const nearThresholdPx = 320;
-      const maxConnectionDistance = 3000;
+      const maxConnectionDistance = 1280;
       const maxConnections = 5;
       const nodes = [
         { x: 1322.8, y: 195.2, r: 69 },
@@ -331,6 +331,7 @@
       function clearConnections() {
         connectionsGroup.innerHTML = '';
         cursorNode.style.opacity = '0';
+        heroCopy.classList.remove('is-logo-active');
       }
 
       function buildConnectionPath(fromX, fromY, toX, toY, bendDirection) {
@@ -365,6 +366,7 @@
           return;
         }
 
+        heroCopy.classList.add('is-logo-active');
         cursorNode.setAttribute('cx', localX.toFixed(1));
         cursorNode.setAttribute('cy', localY.toFixed(1));
         cursorNode.style.opacity = '1';
