@@ -195,13 +195,11 @@ img {
   z-index: 1;
 }
 
-/* The exported SVG layers have different viewBoxes, so the veins and dots
-   need their original crop offsets restored to line up with the leaf. */
 .interactive-logo__veins {
-  left: 4.09%;
-  top: 6.23%;
-  width: 87.55%;
-  height: 83.04%;
+  left: 3.6963%;
+  top: 8.7043%;
+  width: 87.5462%;
+  height: 83.0366%;
   z-index: 2;
 }
 
@@ -212,12 +210,13 @@ img {
 }
 
 .interactive-logo__nodes {
-  left: 2.86%;
-  top: 6.25%;
-  width: 90.13%;
-  height: 87.29%;
+  left: 2.8433%;
+  top: 6.2315%;
+  width: 90.1336%;
+  height: 87.2898%;
   z-index: 4;
 }
+
 
 .hero-copy:hover .interactive-logo {
   transform: translateY(-1px) scale(1.01);
