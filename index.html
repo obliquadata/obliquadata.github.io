@@ -76,6 +76,17 @@
             <a class="button button-primary" href="#projects">See current work</a>
             <a class="button button-secondary" href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
+
+          <div class="hero-logo-area" aria-hidden="true">
+            <div class="interactive-logo" id="interactiveLogo">
+              <img src="assets/logoNoText.png" alt="" class="interactive-logo__image" />
+              <svg class="interactive-logo__overlay" viewBox="0 0 3517 2022" preserveAspectRatio="xMidYMid meet">
+                <g id="interactiveConnections"></g>
+                <g id="interactiveNodeHighlights"></g>
+                <circle id="interactiveCursorNode" cx="0" cy="0" r="38"></circle>
+              </svg>
+            </div>
+          </div>
         </div>
 
         <aside class="hero-card">
@@ -281,6 +292,114 @@
         });
       }
     });
+
+    const interactiveLogo = document.getElementById('interactiveLogo');
+    const heroCopy = document.querySelector('.hero-copy');
+    const connectionsGroup = document.getElementById('interactiveConnections');
+    const nodeHighlightsGroup = document.getElementById('interactiveNodeHighlights');
+    const cursorNode = document.getElementById('interactiveCursorNode');
+
+    if (interactiveLogo && heroCopy && connectionsGroup && nodeHighlightsGroup && cursorNode) {
+      const viewBoxWidth = 3517;
+      const viewBoxHeight = 2022;
+      const nearThresholdPx = 110;
+      const maxConnectionDistance = 820;
+      const maxConnections = 4;
+      const nodes = [
+        { x: 1322.8, y: 195.2, r: 69 },
+        { x: 2438.6, y: 213.3, r: 69 },
+        { x: 3200.1, y: 360.5, r: 69 },
+        { x: 1139.4, y: 638.4, r: 51 },
+        { x: 2571.7, y: 550.9, r: 51 },
+        { x: 2066.3, y: 785.7, r: 69 },
+        { x: 1564.6, y: 969.1, r: 51 },
+        { x: 2680.4, y: 1081.7, r: 69 },
+        { x: 1074.3, y: 1181.7, r: 69 },
+        { x: 1493.7, y: 1334.6, r: 51 },
+        { x: 1941.7, y: 1437.4, r: 51 },
+        { x: 430.7, y: 896.6, r: 51 },
+        { x: 639.2, y: 1406.3, r: 51 },
+        { x: 359.9, y: 1589.3, r: 51 },
+        { x: 1640.0, y: 1737.9, r: 51 },
+        { x: 950.4, y: 1819.5, r: 51 }
+      ];
+
+      function distanceToRect(x, y, rect) {
+        const dx = Math.max(rect.left - x, 0, x - rect.right);
+        const dy = Math.max(rect.top - y, 0, y - rect.bottom);
+        return Math.hypot(dx, dy);
+      }
+
+      function clearConnections() {
+        connectionsGroup.innerHTML = '';
+        nodeHighlightsGroup.innerHTML = '';
+        cursorNode.style.opacity = '0';
+      }
+
+      function buildConnectionPath(fromX, fromY, toX, toY, bendDirection) {
+        const dx = toX - fromX;
+        const dy = toY - fromY;
+        const length = Math.hypot(dx, dy) || 1;
+        const normalX = -dy / length;
+        const normalY = dx / length;
+        const curve = Math.min(150, length * 0.14) * bendDirection;
+        const controlX = (fromX + toX) / 2 + normalX * curve;
+        const controlY = (fromY + toY) / 2 + normalY * curve;
+        return `M ${fromX.toFixed(1)} ${fromY.toFixed(1)} Q ${controlX.toFixed(1)} ${controlY.toFixed(1)} ${toX.toFixed(1)} ${toY.toFixed(1)}`;
+      }
+
+      function renderConnections(clientX, clientY) {
+        const rect = interactiveLogo.getBoundingClientRect();
+        if (distanceToRect(clientX, clientY, rect) > nearThresholdPx) {
+          clearConnections();
+          return;
+        }
+
+        const localX = ((clientX - rect.left) / rect.width) * viewBoxWidth;
+        const localY = ((clientY - rect.top) / rect.height) * viewBoxHeight;
+        const ranked = nodes
+          .map((node) => ({ node, distance: Math.hypot(node.x - localX, node.y - localY) }))
+          .filter((item) => item.distance <= maxConnectionDistance)
+          .sort((a, b) => a.distance - b.distance)
+          .slice(0, maxConnections);
+
+        if (!ranked.length) {
+          clearConnections();
+          return;
+        }
+
+        cursorNode.setAttribute('cx', localX.toFixed(1));
+        cursorNode.setAttribute('cy', localY.toFixed(1));
+        cursorNode.style.opacity = '1';
+
+        connectionsGroup.innerHTML = ranked
+          .map((item, index) => {
+            const opacity = Math.max(0.28, 1 - item.distance / (maxConnectionDistance * 1.15));
+            const width = index === 0 ? 34 : 26;
+            const bendDirection = index % 2 === 0 ? 1 : -1;
+            return `<path d="${buildConnectionPath(localX, localY, item.node.x, item.node.y, bendDirection)}" style="opacity:${opacity.toFixed(3)}; stroke-width:${width};"></path>`;
+          })
+          .join('');
+
+        nodeHighlightsGroup.innerHTML = ranked
+          .map((item) => {
+            const ringRadius = item.node.r + 20;
+            const opacity = Math.max(0.2, 1 - item.distance / (maxConnectionDistance * 1.1));
+            return `<circle cx="${item.node.x.toFixed(1)}" cy="${item.node.y.toFixed(1)}" r="${ringRadius}" style="opacity:${opacity.toFixed(3)}"></circle>`;
+          })
+          .join('');
+      }
+
+      heroCopy.addEventListener('mousemove', (event) => {
+        renderConnections(event.clientX, event.clientY);
+      });
+
+      heroCopy.addEventListener('mouseleave', () => {
+        clearConnections();
+      });
+
+      clearConnections();
+    }
   </script>
 </body>
 </html>
