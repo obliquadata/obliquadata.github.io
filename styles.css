@@ -926,6 +926,17 @@ body {
   }
 }
 
+
+
+/* Hide the real cursor only while the logo is acting as the cursor node. */
+.hero-copy.is-logo-active,
+.hero-copy.is-logo-active *,
+.hero-copy.is-logo-active a,
+.hero-copy.is-logo-active button,
+.hero-copy.is-logo-active [role="button"] {
+  cursor: none !important;
+}
+
 body {
   cursor: url("./assets/cursor.png") 0 0, auto;
 }
