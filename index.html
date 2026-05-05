@@ -297,15 +297,50 @@
 
     const interactiveLogo = document.getElementById('interactiveLogo');
     const heroCopy = document.querySelector('.hero-copy');
+    const staticGraphGroup = document.getElementById('staticGraphVeins');
     const connectionsGroup = document.getElementById('interactiveConnections');
     const cursorNode = document.getElementById('interactiveCursorNode');
 
-    if (interactiveLogo && heroCopy && connectionsGroup && cursorNode) {
+    if (interactiveLogo && heroCopy && staticGraphGroup && connectionsGroup && cursorNode) {
       const viewBoxWidth = 3517;
       const viewBoxHeight = 2022;
-      const nearThresholdPx = 320;
-      const maxConnectionDistance = 3000;
-      const maxConnections = 5;
+      const nearThresholdPx = 3000;
+      const edgeActivationDistance = 400;
+      const nodeConnectionDistance = 3000;
+      const maxNodeConnections = 5;
+      const sampleCount = 120;
+      const gapRadius = 250;
+      const tangentSample = 120;
+      const staticVeinPaths = [
+      {
+            "id": "vein-1",
+            "d": "M 144.1,1841.1 C 156.5,1825.3 168.1,1810.2 179.5,1795.8 C 303.8,1639.3 367.1,1550.0 621.8,1414.9 C 769.3,1336.6 909.8,1249.4 1075.5,1181.7 C 1299.2,1100.9 1412.4,1043.3 1624.4,942.9 C 1813.0,853.5 1846.8,840.7 2019.8,810.2 C 2216.2,733.4 2229.1,728.5 2354.5,647.3 C 2474.5,569.7 2890.3,440.0 3195.8,354.9"
+      },
+      {
+            "id": "vein-2",
+            "d": "M 2019.8,810.2 C 2170.4,836.0 2178.3,852.3 2274.5,945.4 C 2366.2,1034.1 2478.8,1109.4 2676.1,1063.5"
+      },
+      {
+            "id": "vein-3",
+            "d": "M 1075.5,1181.7 C 1218.2,1145.0 1257.2,1196.8 1518.6,1347.0 C 1665.6,1431.5 1719.6,1463.3 1920.2,1447.1"
+      },
+      {
+            "id": "vein-4",
+            "d": "M 313.9,1630.5 C 455.9,1563.4 584.3,1726.9 951.7,1819.4 C 1155.4,1870.8 1456.0,1825.0 1642.3,1743.0"
+      },
+      {
+            "id": "vein-5",
+            "d": "M 356.9,1583.2 C 402.8,1438.9 344.0,1419.9 337.5,1299.8 C 331.8,1193.9 323.2,1065.2 432.0,896.6"
+      },
+      {
+            "id": "vein-6",
+            "d": "M 1075.5,1181.7 C 1160.7,1009.4 1162.3,864.9 1140.7,638.4 C 1129.4,519.7 1176.6,305.0 1324.1,195.1"
+      },
+      {
+            "id": "vein-7",
+            "d": "M 2022.7,811.7 C 2159.6,717.1 2226.2,744.4 2298.2,496.6 C 2332.5,378.4 2349.1,302.7 2463.5,189.5"
+      }
+];
       const nodes = [
         { x: 1322.8, y: 195.2, r: 69 },
         { x: 2438.6, y: 213.3, r: 69 },
@@ -331,19 +366,87 @@
         return Math.hypot(dx, dy);
       }
 
+      function renderStaticGraph() {
+        staticGraphGroup.innerHTML = staticVeinPaths
+          .map((pathObj) => `<path id="${pathObj.id}" class="graph-edge" d="${pathObj.d}"></path>`)
+          .join('');
+      }
+
       function clearConnections() {
         connectionsGroup.innerHTML = '';
         cursorNode.style.opacity = '0';
+        cursorNode.setAttribute('r', '38');
         heroCopy.classList.remove('is-logo-active');
+        staticGraphGroup.querySelectorAll('.graph-edge').forEach((path) => {
+          path.classList.remove('is-interrupted');
+          path.style.strokeDasharray = '';
+          path.style.strokeDashoffset = '';
+        });
       }
 
-      function buildConnectionPath(fromX, fromY, toX, toY, bendDirection) {
+      function getPointAndTangent(path, lengthAt) {
+        const totalLength = path.getTotalLength();
+        const clamped = Math.max(0, Math.min(totalLength, lengthAt));
+        const point = path.getPointAtLength(clamped);
+        const before = path.getPointAtLength(Math.max(0, clamped - tangentSample));
+        const after = path.getPointAtLength(Math.min(totalLength, clamped + tangentSample));
+        const dx = after.x - before.x;
+        const dy = after.y - before.y;
+        const mag = Math.hypot(dx, dy) || 1;
+        return {
+          point: { x: point.x, y: point.y },
+          tangent: { x: dx / mag, y: dy / mag },
+          totalLength,
+          clampedLength: clamped
+        };
+      }
+
+      function findNearestVein(localX, localY) {
+        let nearest = null;
+        staticVeinPaths.forEach((pathObj) => {
+          const path = document.getElementById(pathObj.id);
+          if (!path) return;
+          const totalLength = path.getTotalLength();
+          for (let i = 0; i <= sampleCount; i += 1) {
+            const len = (totalLength * i) / sampleCount;
+            const point = path.getPointAtLength(len);
+            const distance = Math.hypot(point.x - localX, point.y - localY);
+            if (!nearest || distance < nearest.distance) {
+              nearest = { path, pathObj, distance, lengthAt: len, totalLength, point };
+            }
+          }
+        });
+        return nearest;
+      }
+
+      function buildJoinPath(from, to, fromTangent, endBias = 0.18, drama = 1) {
+        const dx = to.x - from.x;
+        const dy = to.y - from.y;
+        const distance = Math.hypot(dx, dy) || 1;
+        const normalX = -dy / distance;
+        const normalY = dx / distance;
+        const cross = fromTangent.x * dy - fromTangent.y * dx;
+        const bulgeSign = cross >= 0 ? 1 : -1;
+        const tangentReach = Math.min(120, distance * 0.34) * drama;
+        const bulge = Math.min(84, distance * 0.16) * drama;
+        const controlA = {
+          x: from.x + fromTangent.x * tangentReach + normalX * bulge * bulgeSign,
+          y: from.y + fromTangent.y * tangentReach + normalY * bulge * bulgeSign
+        };
+        const controlB = {
+          x: to.x - dx * endBias - normalX * bulge * 0.76 * bulgeSign,
+          y: to.y - dy * endBias - normalY * bulge * 0.76 * bulgeSign
+        };
+        return `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} C ${controlA.x.toFixed(1)} ${controlA.y.toFixed(1)} ${controlB.x.toFixed(1)} ${controlB.y.toFixed(1)} ${to.x.toFixed(1)} ${to.y.toFixed(1)}`;
+      }
+
+      function buildNodeConnectionPath(fromX, fromY, toX, toY, bendDirection) {
         const dx = toX - fromX;
         const dy = toY - fromY;
         const length = Math.hypot(dx, dy) || 1;
         const normalX = -dy / length;
         const normalY = dx / length;
-        const curve = Math.min(150, length * 0.14) * bendDirection;
+        const curve = Math.min(132, length * 0.12) * bendDirection;
         const controlX = (fromX + toX) / 2 + normalX * curve;
         const controlY = (fromY + toY) / 2 + normalY * curve;
         return `M ${fromX.toFixed(1)} ${fromY.toFixed(1)} Q ${controlX.toFixed(1)} ${controlY.toFixed(1)} ${toX.toFixed(1)} ${toY.toFixed(1)}`;
@@ -358,13 +461,16 @@
 
         const localX = ((clientX - rect.left) / rect.width) * viewBoxWidth;
         const localY = ((clientY - rect.top) / rect.height) * viewBoxHeight;
-        const ranked = nodes
+        const cursor = { x: localX, y: localY };
+        const nearestVein = findNearestVein(localX, localY);
+        const edgeIsActive = !!(nearestVein && nearestVein.distance <= edgeActivationDistance);
+        const nearbyNodes = nodes
           .map((node) => ({ node, distance: Math.hypot(node.x - localX, node.y - localY) }))
-          .filter((item) => item.distance <= maxConnectionDistance)
+          .filter((item) => item.distance <= nodeConnectionDistance)
           .sort((a, b) => a.distance - b.distance)
-          .slice(0, maxConnections);
+          .slice(0, edgeIsActive ? 2 : maxNodeConnections);
 
-        if (!ranked.length) {
+        if ((!nearestVein || nearestVein.distance > edgeActivationDistance) && !nearbyNodes.length) {
           clearConnections();
           return;
         }
@@ -373,17 +479,52 @@
         cursorNode.setAttribute('cx', localX.toFixed(1));
         cursorNode.setAttribute('cy', localY.toFixed(1));
         cursorNode.style.opacity = '1';
+        cursorNode.setAttribute('r', edgeIsActive ? '56' : '44');
 
-        connectionsGroup.innerHTML = ranked
-          .map((item, index) => {
-            const opacity = Math.max(0.28, 1 - item.distance / (maxConnectionDistance * 1.15));
-            const width = index === 0 ? 34 : 26;
-            const bendDirection = index % 2 === 0 ? 1 : -1;
-            return `<path d="${buildConnectionPath(localX, localY, item.node.x, item.node.y, bendDirection)}" style="opacity:${opacity.toFixed(3)}; stroke-width:${width};"></path>`;
-          })
-          .join('');
+        staticGraphGroup.querySelectorAll('.graph-edge').forEach((path) => {
+          path.classList.remove('is-interrupted');
+          path.style.strokeDasharray = '';
+          path.style.strokeDashoffset = '';
+        });
+
+        const dynamicSegments = [];
+
+        if (edgeIsActive) {
+          const gapStart = Math.max(0, nearestVein.lengthAt - gapRadius);
+          const gapEnd = Math.min(nearestVein.totalLength, nearestVein.lengthAt + gapRadius);
+          const before = getPointAndTangent(nearestVein.path, gapStart);
+          const after = getPointAndTangent(nearestVein.path, gapEnd);
+          const gapLength = Math.max(10, gapEnd - gapStart);
+          const dashBefore = gapStart;
+          const dashAfter = Math.max(0, nearestVein.totalLength - gapEnd);
+          nearestVein.path.classList.add('is-interrupted');
+          nearestVein.path.style.strokeDasharray = `${dashBefore.toFixed(1)} ${gapLength.toFixed(1)} ${dashAfter.toFixed(1)}`;
+          nearestVein.path.style.strokeDashoffset = '0';
+
+          const joinOpacity = Math.max(0.82, 1 - nearestVein.distance / (edgeActivationDistance * 1.65));
+          const leftJoin = buildJoinPath(before.point, cursor, before.tangent, 0.18, 1.2);
+          const rightJoin = buildJoinPath(cursor, after.point, { x: after.tangent.x * -1, y: after.tangent.y * -1 }, 0.18, 1.2);
+          dynamicSegments.push(`
+            <path class="graph-edge graph-edge-dynamic graph-edge-join-aura" d="${leftJoin}" style="opacity:${Math.min(1, joinOpacity * 0.26).toFixed(3)}"></path>
+            <path class="graph-edge graph-edge-dynamic graph-edge-join-aura" d="${rightJoin}" style="opacity:${Math.min(1, joinOpacity * 0.26).toFixed(3)}"></path>
+            <path class="graph-edge graph-edge-dynamic graph-edge-join" d="${leftJoin}" style="opacity:${joinOpacity.toFixed(3)}"></path>
+            <path class="graph-edge graph-edge-dynamic graph-edge-join" d="${rightJoin}" style="opacity:${joinOpacity.toFixed(3)}"></path>
+          `);
+        }
+
+        nearbyNodes.forEach((item, index) => {
+          const opacity = edgeIsActive
+            ? Math.max(0.18, 0.34 - index * 0.06 - item.distance / (nodeConnectionDistance * 2.6))
+            : Math.max(0.24, 0.72 - index * 0.14 - item.distance / (nodeConnectionDistance * 1.8));
+          const width = edgeIsActive ? (index === 0 ? 18 : 14) : (index === 0 ? 22 : 16);
+          const bendDirection = index % 2 === 0 ? 1 : -1;
+          dynamicSegments.push(`<path class="graph-edge graph-edge-dynamic graph-edge-node" d="${buildNodeConnectionPath(localX, localY, item.node.x, item.node.y, bendDirection)}" style="opacity:${opacity.toFixed(3)}; stroke-width:${width}"></path>`);
+        });
+
+        connectionsGroup.innerHTML = dynamicSegments.join('');
       }
 
+      renderStaticGraph();
       clearConnections();
 
       heroCopy.addEventListener('mousemove', (event) => {

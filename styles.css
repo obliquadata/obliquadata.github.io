@@ -201,6 +201,7 @@ img {
   width: 94.5124%;
   height: 89.1197%;
   z-index: 2;
+  display: none;
 }
 
 .interactive-logo__overlay {
@@ -228,30 +229,52 @@ img {
   filter: drop-shadow(0 22px 34px rgba(18, 63, 26, 0.14));
 }
 
-.graph-edge {
+ .graph-edge {
   fill: none;
-  stroke: rgba(2, 160, 52, 0.92);
-  stroke-width: 34;
+  stroke: rgba(2, 160, 52, 0.96);
+  stroke-width: 30;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: opacity 0.16s ease, stroke-width 0.16s ease, filter 0.16s ease;
-  filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.16));
+  transition: opacity 0.16s ease, stroke-width 0.16s ease, filter 0.16s ease, stroke-dasharray 0.16s ease;
+  filter: drop-shadow(0 0 5px rgba(9, 165, 60, 0.15));
 }
 
 .graph-edge.is-interrupted {
-  opacity: 0;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.16));
 }
 
 .graph-edge-dynamic {
-  stroke-width: 36;
-  filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.28));
   animation: connectionGlow 2.8s ease-in-out infinite;
+}
+
+.graph-edge-join-aura {
+  stroke-width: 42;
+  stroke: rgba(9, 165, 60, 0.14);
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.12));
+}
+
+.graph-edge-join {
+  stroke-width: 30;
+  stroke: rgba(7, 172, 58, 0.98);
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.2));
+}
+
+.graph-edge-node {
+  stroke-linecap: round;
+  stroke: rgba(9, 165, 60, 0.78);
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.14));
+}
+
+#staticGraphVeins .graph-edge {
+  animation: none;
 }
 
 #interactiveConnections path {
   fill: none;
   stroke: rgba(9, 165, 60, 0.88);
   stroke-linecap: round;
+  stroke-linejoin: round;
   filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.2));
   animation: connectionGlow 2.8s ease-in-out infinite;
 }
@@ -262,9 +285,9 @@ img {
 
 #interactiveCursorNode {
   fill: #225312;
-  stroke: #225312;
-  stroke-width: 16;
-  filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.25));
+  stroke: rgba(34, 83, 18, 0.92);
+  stroke-width: 18;
+  filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.22));
   transition: opacity 0.18s ease;
   transform-box: fill-box;
   transform-origin: center;
