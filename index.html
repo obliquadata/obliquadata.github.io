@@ -82,7 +82,6 @@
               <img src="assets/logoNoText.png" alt="" class="interactive-logo__image" />
               <svg class="interactive-logo__overlay" viewBox="0 0 3517 2022" preserveAspectRatio="xMidYMid meet">
                 <g id="interactiveConnections"></g>
-                <g id="interactiveNodeHighlights"></g>
                 <circle id="interactiveCursorNode" cx="0" cy="0" r="38"></circle>
               </svg>
             </div>
@@ -296,14 +295,13 @@
     const interactiveLogo = document.getElementById('interactiveLogo');
     const heroCopy = document.querySelector('.hero-copy');
     const connectionsGroup = document.getElementById('interactiveConnections');
-    const nodeHighlightsGroup = document.getElementById('interactiveNodeHighlights');
     const cursorNode = document.getElementById('interactiveCursorNode');
 
-    if (interactiveLogo && heroCopy && connectionsGroup && nodeHighlightsGroup && cursorNode) {
+    if (interactiveLogo && heroCopy && connectionsGroup && cursorNode) {
       const viewBoxWidth = 3517;
       const viewBoxHeight = 2022;
       const nearThresholdPx = 320;
-      const maxConnectionDistance = 1280;
+      const maxConnectionDistance = 3000;
       const maxConnections = 5;
       const nodes = [
         { x: 1322.8, y: 195.2, r: 69 },
@@ -332,7 +330,6 @@
 
       function clearConnections() {
         connectionsGroup.innerHTML = '';
-        nodeHighlightsGroup.innerHTML = '';
         cursorNode.style.opacity = '0';
       }
 
@@ -381,13 +378,6 @@
           })
           .join('');
 
-        nodeHighlightsGroup.innerHTML = ranked
-          .map((item) => {
-            const ringRadius = item.node.r + 20;
-            const opacity = Math.max(0.2, 1 - item.distance / (maxConnectionDistance * 1.1));
-            return `<circle cx="${item.node.x.toFixed(1)}" cy="${item.node.y.toFixed(1)}" r="${ringRadius}" style="opacity:${opacity.toFixed(3)}"></circle>`;
-          })
-          .join('');
       }
 
       heroCopy.addEventListener('mousemove', (event) => {
