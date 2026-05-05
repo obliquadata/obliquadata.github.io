@@ -191,19 +191,31 @@ img {
 }
 
 .interactive-logo__outline {
+  inset: 0;
   z-index: 1;
 }
 
+/* The exported SVG layers have different viewBoxes, so the veins and dots
+   need their original crop offsets restored to line up with the leaf. */
 .interactive-logo__veins {
+  left: 4.09%;
+  top: 6.23%;
+  width: 87.55%;
+  height: 83.04%;
   z-index: 2;
 }
 
 .interactive-logo__overlay {
+  inset: 0;
   z-index: 3;
   overflow: visible;
 }
 
 .interactive-logo__nodes {
+  left: 2.86%;
+  top: 6.25%;
+  width: 90.13%;
+  height: 87.29%;
   z-index: 4;
 }
 
