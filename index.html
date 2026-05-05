@@ -82,6 +82,7 @@
               <img src="assets/Leaf.svg" alt="" class="interactive-logo__layer interactive-logo__outline" />
               <img src="assets/Veins.svg" alt="" class="interactive-logo__layer interactive-logo__veins" />
               <svg class="interactive-logo__overlay interactive-logo__layer" viewBox="0 0 3517 2022" preserveAspectRatio="xMidYMid meet">
+                <g id="staticGraphVeins"></g>
                 <g id="interactiveConnections"></g>
                 <circle id="interactiveCursorNode" cx="0" cy="0" r="38"></circle>
               </svg>
@@ -381,8 +382,9 @@
             return `<path d="${buildConnectionPath(localX, localY, item.node.x, item.node.y, bendDirection)}" style="opacity:${opacity.toFixed(3)}; stroke-width:${width};"></path>`;
           })
           .join('');
-
       }
+
+      clearConnections();
 
       heroCopy.addEventListener('mousemove', (event) => {
         renderConnections(event.clientX, event.clientY);
@@ -391,8 +393,6 @@
       heroCopy.addEventListener('mouseleave', () => {
         clearConnections();
       });
-
-      clearConnections();
     }
   </script>
 </body>
