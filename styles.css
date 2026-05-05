@@ -159,8 +159,8 @@ img {
 
 .hero-logo-area {
   position: absolute;
-  top: 50%;
-  right: 28px;
+  top: 40%;
+  right: 10%;
   transform: translateY(-50%);
   width: min(42%, 360px);
   aspect-ratio: 3517 / 2022;
@@ -210,8 +210,8 @@ img {
 }
 
 #interactiveCursorNode {
-  fill: rgba(9, 165, 60, 0.95);
-  stroke: rgba(255, 255, 255, 0.92);
+  fill: #225312;
+  stroke: #225312;
   stroke-width: 16;
   filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.25));
   transition: opacity 0.18s ease;
@@ -223,11 +223,11 @@ img {
 
 @keyframes connectionGlow {
   0%, 100% {
-    stroke: rgba(9, 165, 60, 0.82);
+    stroke: rgba(2, 160, 52, 0.82);
     filter: drop-shadow(0 0 6px rgba(9, 165, 60, 0.14));
   }
   50% {
-    stroke: rgba(9, 165, 60, 0.98);
+    stroke: rgba(2, 160, 52, 0.98);
     filter: drop-shadow(0 0 12px rgba(9, 165, 60, 0.28));
   }
 }
