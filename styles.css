@@ -131,6 +131,7 @@ img {
 }
 
 .hero-copy {
+  --hero-logo-space: clamp(250px, 34%, 390px);
   padding: 56px;
   position: relative;
   overflow: hidden;
@@ -144,6 +145,78 @@ img {
   height: 320px;
   background: radial-gradient(circle, rgba(9, 165, 60, 0.18), transparent 70%);
   pointer-events: none;
+}
+
+.hero-copy > :not(.hero-logo-area) {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text,
+.hero-actions {
+  max-width: min(58ch, calc(100% - var(--hero-logo-space) - 26px));
+}
+
+.hero-logo-area {
+  position: absolute;
+  top: 58px;
+  right: 28px;
+  width: min(42%, 360px);
+  aspect-ratio: 3517 / 2022;
+  z-index: 1;
+}
+
+.interactive-logo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.interactive-logo__image,
+.interactive-logo__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.interactive-logo__image {
+  object-fit: contain;
+  opacity: 0.96;
+  filter: drop-shadow(0 18px 26px rgba(18, 63, 26, 0.12));
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
+
+.hero-copy:hover .interactive-logo__image {
+  transform: translateY(-1px) scale(1.01);
+  filter: drop-shadow(0 22px 34px rgba(18, 63, 26, 0.14));
+}
+
+.interactive-logo__overlay {
+  overflow: visible;
+}
+
+#interactiveConnections path {
+  fill: none;
+  stroke: rgba(9, 165, 60, 0.9);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.22));
+}
+
+#interactiveNodeHighlights circle {
+  fill: none;
+  stroke: rgba(9, 165, 60, 0.55);
+  stroke-width: 16;
+  filter: drop-shadow(0 0 8px rgba(9, 165, 60, 0.16));
+}
+
+#interactiveCursorNode {
+  fill: rgba(9, 165, 60, 0.95);
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 16;
+  filter: drop-shadow(0 0 10px rgba(9, 165, 60, 0.25));
+  transition: opacity 0.18s ease;
+  opacity: 0;
 }
 
 .eyebrow,
@@ -413,7 +486,21 @@ img {
   }
 
   .hero-copy {
+    --hero-logo-space: 0px;
     padding: 34px;
+  }
+
+  .hero-text,
+  .hero-actions {
+    max-width: 58ch;
+  }
+
+  .hero-logo-area {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(340px, 72%);
+    margin: 26px auto 0;
   }
 
   .signal-list {
@@ -442,6 +529,11 @@ img {
   .project-card,
   .contact-panel {
     padding: 22px;
+  }
+
+  .hero-logo-area {
+    width: min(300px, 86%);
+    margin-top: 22px;
   }
 
   .signal-list {
