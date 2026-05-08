@@ -17,27 +17,19 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQd6khEx8JNZw7nMQw/D8M0FzQ6tqg=" crossorigin="" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="rail-network.css" />
+  <script src="../assets/site-components.js" data-base="../" defer></script>
   <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <div class="page-shell rail-shell">
-    <header class="site-header">
-      <a class="brand" href="../" aria-label="Obliqua Data home">
-        <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="brand-mark" />
-        <div>
-          <span class="brand-name">Obliqua Data</span>
-          <span class="brand-tag">Research studio</span>
-        </div>
-      </a>
-      <nav class="site-nav" aria-label="Project navigation">
-        <a href="../">Home</a>
+    <div data-site-header></div>
+
+    <main id="top">
+      <nav class="project-subnav" aria-label="Rail project page navigation">
         <a href="#framework">Framework</a>
         <a href="#map-section">Map</a>
         <a href="#next">Next steps</a>
       </nav>
-    </header>
-
-    <main id="top">
       <section class="rail-hero">
         <div class="rail-hero__copy">
           <span class="eyebrow">Preliminary research note</span>
@@ -175,22 +167,7 @@
         <a class="button button-primary" href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">Contact via LinkedIn</a>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="footer-brand">
-        <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="footer-logo" />
-        <div>
-          <strong>Obliqua Data</strong>
-          <p>Independent research studio focused on social, spatial, and green policy challenges.</p>
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="../">Home</a>
-        <a href="https://obliquadata.github.io/leadle/" target="_blank" rel="noopener noreferrer">Leadle</a>
-        <a href="https://obliquadata.github.io/nederwordle/" target="_blank" rel="noopener noreferrer">NederWordle</a>
-        <a href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-    </footer>
+    <div data-site-footer></div>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="rail-network.js"></script>

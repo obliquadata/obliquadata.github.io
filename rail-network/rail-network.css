@@ -384,3 +384,190 @@
     flex-direction: column;
   }
 }
+
+/* Page-specific navigation kept outside the shared site header. */
+.project-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -12px 0 24px;
+}
+
+.project-subnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(18, 63, 26, 0.10);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-subnav a:hover {
+  text-decoration: underline;
+}
+
+/* Leaflet fallback styles.
+   These make the map render correctly even if the external Leaflet CSS is blocked,
+   slow to load, or previewed in an environment that strips CDN styles. */
+.rail-map.leaflet-container {
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #e8eadf;
+}
+
+.rail-map .leaflet-pane,
+.rail-map .leaflet-map-pane,
+.rail-map .leaflet-tile-pane,
+.rail-map .leaflet-overlay-pane,
+.rail-map .leaflet-shadow-pane,
+.rail-map .leaflet-marker-pane,
+.rail-map .leaflet-tooltip-pane,
+.rail-map .leaflet-popup-pane {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.rail-map .leaflet-map-pane,
+.rail-map .leaflet-tile,
+.rail-map .leaflet-marker-icon,
+.rail-map .leaflet-marker-shadow,
+.rail-map .leaflet-tile-container,
+.rail-map .leaflet-pane > svg,
+.rail-map .leaflet-pane > canvas,
+.rail-map .leaflet-zoom-box,
+.rail-map .leaflet-image-layer,
+.rail-map .leaflet-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.rail-map .leaflet-tile,
+.rail-map .leaflet-image-layer {
+  border: 0;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.rail-map .leaflet-tile {
+  width: 256px;
+  height: 256px;
+  user-select: none;
+}
+
+.rail-map .leaflet-tile-container {
+  pointer-events: none;
+}
+
+.rail-map .leaflet-control-container .leaflet-top,
+.rail-map .leaflet-control-container .leaflet-bottom {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.rail-map .leaflet-top { top: 0; }
+.rail-map .leaflet-right { right: 0; }
+.rail-map .leaflet-bottom { bottom: 0; }
+.rail-map .leaflet-left { left: 0; }
+
+.rail-map .leaflet-control {
+  position: relative;
+  z-index: 1000;
+  pointer-events: auto;
+  float: left;
+  clear: both;
+  margin: 10px;
+}
+
+.rail-map .leaflet-right .leaflet-control { float: right; }
+.rail-map .leaflet-top .leaflet-control { margin-top: 10px; }
+.rail-map .leaflet-bottom .leaflet-control { margin-bottom: 10px; }
+.rail-map .leaflet-left .leaflet-control { margin-left: 10px; }
+.rail-map .leaflet-right .leaflet-control { margin-right: 10px; }
+
+.rail-map .leaflet-control-layers,
+.rail-map .leaflet-bar {
+  border: 1px solid rgba(18, 63, 26, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 24px rgba(18, 63, 26, 0.16);
+}
+
+.rail-map .leaflet-bar a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.rail-map .leaflet-control-layers {
+  padding: 10px 12px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.rail-map .leaflet-control-layers label {
+  display: block;
+  margin: 3px 0;
+}
+
+.rail-map .leaflet-popup {
+  position: absolute;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rail-map .leaflet-popup-content-wrapper {
+  padding: 1px;
+  text-align: left;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(18, 63, 26, 0.18);
+}
+
+.rail-map .leaflet-popup-content {
+  margin: 13px 18px;
+  line-height: 1.45;
+}
+
+.rail-map .leaflet-popup-tip-container {
+  width: 40px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rail-map .leaflet-popup-tip {
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  transform: rotate(45deg);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(18, 63, 26, 0.18);
+}
+
+.rail-map .leaflet-interactive {
+  cursor: pointer;
+}
+
+.rail-map .leaflet-control-attribution {
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.82);
+  font-size: 11px;
+}

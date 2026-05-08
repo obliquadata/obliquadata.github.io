@@ -15,6 +15,15 @@ const map = L.map("railMap", {
   worldCopyJump: true
 }).setView([39.5, -98.35], 4);
 
+function refreshMapSize() {
+  requestAnimationFrame(() => map.invalidateSize({ animate: false }));
+}
+
+window.addEventListener("load", () => {
+  refreshMapSize();
+  setTimeout(refreshMapSize, 250);
+});
+
 const positron = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   subdomains: "abcd",
@@ -164,7 +173,12 @@ async function init() {
 
   const bounds = backboneLayer.getBounds();
   if (bounds.isValid()) {
+    refreshMapSize();
     map.fitBounds(bounds.pad(0.12));
+    setTimeout(() => {
+      refreshMapSize();
+      map.fitBounds(bounds.pad(0.12));
+    }, 250);
   }
 }
 

@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="./assets/site-components.js" data-base="./" defer></script>
 
   <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -47,21 +48,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Obliqua Data home">
-        <img src="assets/logoNoText.png" alt="Obliqua Data logo" class="brand-mark" />
-        <div>
-          <span class="brand-name">Obliqua Data</span>
-          <span class="brand-tag">Research studio</span>
-        </div>
-      </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#focus">Focus</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div data-site-header></div>
 
     <main id="top">
       <section class="hero">
@@ -248,24 +235,7 @@
         <a class="button button-primary" href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">Visit LinkedIn</a>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="footer-brand">
-        <img src="./assets/logoNoText.png" alt="Obliqua Data logo" class="footer-logo" />
-        <div>
-          <strong>Obliqua Data</strong>
-          <p>Independent research studio focused on social, spatial, and green policy challenges.</p>
-          <p class="footer-credit">Landsat letter imagery: USGS/NASA <a href="https://science.nasa.gov/specials/your-name-in-landsat/" target="_blank" rel="noopener noreferrer">Landsat</a>. Use does not imply endorsement.</p>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <a href="https://obliquadata.github.io/leadle/" target="_blank" rel="noopener noreferrer">Leadle</a>
-        <a href="https://obliquadata.github.io/nederwordle/" target="_blank" rel="noopener noreferrer">NederWordle</a>
-        <a href="rail-network/">Rail project</a>
-        <a href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-    </footer>
+    <div data-site-footer></div>
   </div>
   <script>
     document.querySelectorAll('.landsat-letter').forEach((letter) => {
