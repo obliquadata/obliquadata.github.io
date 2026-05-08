@@ -65,11 +65,13 @@ const augmentLayer = L.geoJSON(null, { style: railStyleDefault, interactive: fal
 const hubLayer = L.geoJSON(null, {
   pane: "hubPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-    radius: 7,
+    pane: "hubPane",
+    radius: 8,
     color: "#123f1a",
-    weight: 2,
+    weight: 2.4,
     fillColor: "#f5f1e4",
-    fillOpacity: 0.96
+    fillOpacity: 0.98,
+    opacity: 1
   }),
   onEachFeature: (feature, layer) => {
     layer.bindPopup(`<strong class="map-popup-title">${feature.properties.name}</strong>Fixed hub in the prototype network.`);
@@ -77,7 +79,10 @@ const hubLayer = L.geoJSON(null, {
 });
 const junctionLayer = L.geoJSON(null, {
   pane: "junctionPane",
-  pointToLayer: (feature, latlng) => L.circleMarker(latlng, styles.junction),
+  pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+    ...styles.junction,
+    pane: "junctionPane"
+  }),
   onEachFeature: (feature, layer) => {
     layer.bindPopup(`<strong class="map-popup-title">Sampled junction</strong>Degree: ${feature.properties.degree}`);
   }
@@ -130,16 +135,26 @@ railColorToggle?.addEventListener("change", (event) => {
   applyRailColorMode(event.target.checked);
 });
 applyRailColorMode(true);
+function bringGroupToFront(layer) {
+  if (!map.hasLayer(layer)) return;
+  if (typeof layer.bringToFront === "function") {
+    layer.bringToFront();
+  }
+  if (typeof layer.eachLayer === "function") {
+    layer.eachLayer((childLayer) => childLayer.bringToFront?.());
+  }
+}
+
 function enforceOverlayOrder() {
   // Draw lower-priority lines first, then put the backbone above the rest
   // of the rail network, sampled junctions above the backbone, and fixed
-  // hubs above every other project layer.
-  [spokeLayer, augmentLayer, flightLayer, backboneLayer, junctionLayer, hubLayer].forEach((layer) => {
-    if (map.hasLayer(layer)) layer.bringToFront?.();
-  });
+  // hubs above every other project layer. The point layers also specify
+  // their panes inside pointToLayer; without that, Leaflet can leave the
+  // actual circle markers in the default overlay pane.
+  [spokeLayer, augmentLayer, flightLayer, backboneLayer, junctionLayer, hubLayer].forEach(bringGroupToFront);
 }
 
-map.on("baselayerchange overlayadd overlayremove", enforceOverlayOrder);
+map.on("baselayerchange overlayadd overlayremove zoomend moveend", enforceOverlayOrder);
 
 backboneLayer.addTo(map);
 spokeLayer.addTo(map);
