@@ -998,3 +998,9 @@ button,
 .landsat-letter {
   cursor: url("./assets/click.png") 0 0, pointer;
 }
+
+
+/* Project cards can now hold research case studies as well as web projects. */
+.project-cards {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}

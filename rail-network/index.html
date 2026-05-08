@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rail Network from Scratch | Obliqua Data</title>
+  <meta name="description" content="Preliminary results from Obliqua Data's experimental framework for constructing and evaluating a passenger rail network from first principles." />
+  <meta property="og:title" content="Rail Network from Scratch | Obliqua Data" />
+  <meta property="og:description" content="A preliminary interactive map and framework for constructing passenger rail networks from first principles." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://obliquadata.github.io/rail-network/" />
+  <meta property="og:image" content="https://obliquadata.github.io/assets/logo.png" />
+  <meta name="theme-color" content="#123f1a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQd6khEx8JNZw7nMQw/D8M0FzQ6tqg=" crossorigin="" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="rail-network.css" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div class="page-shell rail-shell">
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Obliqua Data home">
+        <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="brand-mark" />
+        <div>
+          <span class="brand-name">Obliqua Data</span>
+          <span class="brand-tag">Research studio</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Project navigation">
+        <a href="../">Home</a>
+        <a href="#framework">Framework</a>
+        <a href="#map-section">Map</a>
+        <a href="#next">Next steps</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="rail-hero">
+        <div class="rail-hero__copy">
+          <span class="eyebrow">Preliminary research note</span>
+          <h1>Building a passenger rail network from first principles.</h1>
+          <p class="hero-text">
+            This project tests a generalizable framework for designing and evaluating a national passenger rail network when the goal is not simply to map what already exists, but to ask what a coherent rail system could look like if planned around hubs, corridors, geographic constraints, and travel demand.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#map-section">Explore the map</a>
+            <a class="button button-secondary" href="#framework">See the framework</a>
+          </div>
+        </div>
+        <aside class="rail-hero__card">
+          <span class="section-label">Current prototype</span>
+          <div class="metric-grid" aria-label="Prototype summary metrics">
+            <div><strong id="metric-nodes">52,043</strong><span>graph nodes</span></div>
+            <div><strong id="metric-edges">52,081</strong><span>graph edges</span></div>
+            <div><strong id="metric-hubs">13</strong><span>fixed hubs</span></div>
+            <div><strong id="metric-corridors">25</strong><span>air corridors tested</span></div>
+          </div>
+          <p>
+            The present version focuses on the contiguous United States as a test case. It combines a hub backbone, spoke connections, and augmenting links to produce a preliminary network for comparison against major domestic air corridors.
+          </p>
+        </aside>
+      </section>
+
+      <section class="content-grid rail-intro" id="about-project">
+        <article class="panel panel-large">
+          <span class="section-label">Project idea</span>
+          <h2>From network sketch to decision-support workflow.</h2>
+          <p>
+            The aim is to develop a repeatable method for rail-network design that can be adapted to other countries. Instead of treating rail planning as only a route-drawing exercise, the framework links spatial data preparation, hub selection, network construction, and corridor evaluation into one transparent workflow.
+          </p>
+        </article>
+        <article class="panel">
+          <span class="section-label">Why it matters</span>
+          <p>
+            Rail debates often jump straight to preferred lines. A structured framework makes it easier to ask which connections are strategic, which corridors are plausible substitutes for short-haul flights, and where the network still needs refinement.
+          </p>
+        </article>
+        <article class="panel">
+          <span class="section-label">Status</span>
+          <p>
+            These are preliminary outputs. The map is not a final investment proposal, engineering alignment, or costed plan. It is an exploratory model to support comparison, critique, and further development.
+          </p>
+        </article>
+      </section>
+
+      <section class="panel framework-panel" id="framework">
+        <div class="section-heading compact-heading">
+          <span class="section-label">Framework under development</span>
+          <h2>A general workflow for constructing rail networks from scratch.</h2>
+        </div>
+        <div class="step-grid">
+          <article><span>01</span><h3>Frame the planning question</h3><p>Define the territorial scope, policy objective, and evaluation criteria before drawing routes.</p></article>
+          <article><span>02</span><h3>Assemble spatial evidence</h3><p>Prepare hubs, boundaries, settlement patterns, existing corridors, constraints, and candidate alignments.</p></article>
+          <article><span>03</span><h3>Select strategic hubs</h3><p>Identify a manageable set of national or regional anchors to structure the high-level network.</p></article>
+          <article><span>04</span><h3>Construct the backbone</h3><p>Connect core hubs through manually reviewed and algorithmically supported trunk corridors.</p></article>
+          <article><span>05</span><h3>Add spokes and augmenting links</h3><p>Extend coverage to important intermediate areas and add links to reduce network detours.</p></article>
+          <article><span>06</span><h3>Evaluate against demand proxies</h3><p>Compare rail distances with straight-line distances and high-frequency flight corridors to assess substitution potential.</p></article>
+        </div>
+      </section>
+
+      <section class="map-section" id="map-section">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-label">Interactive preliminary results</span>
+            <h2>Prototype rail network and air-corridor evaluation.</h2>
+          </div>
+          <p>
+            Toggle layers to compare the constructed rail network, fixed hubs, sampled junctions, and evaluated air corridors. Corridor colors reflect the current rail detour classification: good, okay, or poor.
+          </p>
+        </div>
+        <div class="map-card">
+          <div id="railMap" class="rail-map" role="application" aria-label="Interactive map of the preliminary passenger rail network"></div>
+          <div class="map-legend" aria-label="Map legend">
+            <span><i class="legend-line backbone"></i>Hub backbone</span>
+            <span><i class="legend-line spoke"></i>Spokes</span>
+            <span><i class="legend-line augment"></i>Augmenting links</span>
+            <span><i class="legend-dot hub"></i>Fixed hubs</span>
+            <span><i class="legend-line flight-good"></i>Good flight corridor fit</span>
+            <span><i class="legend-line flight-okay"></i>Okay</span>
+            <span><i class="legend-line flight-poor"></i>Poor</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-grid">
+        <article class="panel result-summary">
+          <span class="section-label">Preliminary findings</span>
+          <h2>Most tested corridors are promising, but gaps remain.</h2>
+          <p>
+            In the first evaluation of 25 high-frequency flight corridors, 19 are classified as good, 5 as okay, and 1 as poor. The weighted average rail detour ratio is approximately 1.25, which suggests that many major air markets are at least geometrically compatible with the prototype network, while several western and mountain-region connections still need better routing logic.
+          </p>
+        </article>
+        <article class="panel corridor-panel">
+          <div class="corridor-panel__top">
+            <span class="section-label">Flight corridor check</span>
+            <select id="corridorFilter" aria-label="Filter corridor table by result class">
+              <option value="All">All classes</option>
+              <option value="Good">Good</option>
+              <option value="Okay">Okay</option>
+              <option value="Poor">Poor</option>
+            </select>
+          </div>
+          <div class="corridor-table-wrap">
+            <table class="corridor-table">
+              <thead>
+                <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
+              </thead>
+              <tbody id="corridorRows"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel next-panel" id="next">
+        <div>
+          <span class="section-label">Next steps</span>
+          <h2>What we want to do next.</h2>
+        </div>
+        <div class="next-grid">
+          <article><h3>Improve the framework</h3><p>Make the design rules more explicit so the workflow can be transferred to other national contexts.</p></article>
+          <article><h3>Add stronger demand data</h3><p>Incorporate population, travel demand, current rail ridership, airport flows, and regional development priorities.</p></article>
+          <article><h3>Model constraints and costs</h3><p>Introduce terrain, protected areas, urban constraints, construction cost proxies, and capacity assumptions.</p></article>
+          <article><h3>Compare alternatives</h3><p>Generate multiple networks under different objectives, such as coverage, emissions reduction, travel time, or equity.</p></article>
+        </div>
+      </section>
+
+      <section class="contact-panel rail-contact">
+        <div>
+          <span class="section-label">Ongoing work</span>
+          <h2>Interested in the rail-network project?</h2>
+        </div>
+        <a class="button button-primary" href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">Contact via LinkedIn</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="footer-logo" />
+        <div>
+          <strong>Obliqua Data</strong>
+          <p>Independent research studio focused on social, spatial, and green policy challenges.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="https://obliquadata.github.io/leadle/" target="_blank" rel="noopener noreferrer">Leadle</a>
+        <a href="https://obliquadata.github.io/nederwordle/" target="_blank" rel="noopener noreferrer">NederWordle</a>
+        <a href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="rail-network.js"></script>
+</body>
+</html>

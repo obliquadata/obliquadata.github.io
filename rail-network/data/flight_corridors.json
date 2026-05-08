@@ -1,0 +1,252 @@
+[
+  {
+    "airport_a": "LAX",
+    "airport_b": "SFO",
+    "flights_per_day": 84.0,
+    "straight_km": 671.1834410847191,
+    "rail_km": 798.1655929794331,
+    "detour_ratio": 1.1891914253568212,
+    "class": "Good",
+    "excess_km": 126.98215189471398
+  },
+  {
+    "airport_a": "DEN",
+    "airport_b": "PHX",
+    "flights_per_day": 69.0,
+    "straight_km": 1209.4886465112097,
+    "rail_km": 2110.2242477262453,
+    "detour_ratio": 1.7447243128848071,
+    "class": "Poor",
+    "excess_km": 900.735601215036
+  },
+  {
+    "airport_a": "JFK",
+    "airport_b": "LAX",
+    "flights_per_day": 66.0,
+    "straight_km": 5056.118924296384,
+    "rail_km": 6034.4689565459375,
+    "detour_ratio": 1.1934982240129377,
+    "class": "Good",
+    "excess_km": 978.350032249554
+  },
+  {
+    "airport_a": "LAS",
+    "airport_b": "LAX",
+    "flights_per_day": 64.0,
+    "straight_km": 464.8531289485706,
+    "rail_km": 530.0911379073121,
+    "detour_ratio": 1.14034112044443,
+    "class": "Good",
+    "excess_km": 65.23800895874156
+  },
+  {
+    "airport_a": "BOS",
+    "airport_b": "DCA",
+    "flights_per_day": 61.0,
+    "straight_km": 846.5950889397794,
+    "rail_km": 913.579718130174,
+    "detour_ratio": 1.0791223928245106,
+    "class": "Good",
+    "excess_km": 66.98462919039466
+  },
+  {
+    "airport_a": "ATL",
+    "airport_b": "FLL",
+    "flights_per_day": 60.0,
+    "straight_km": 1082.7692211215008,
+    "rail_km": 1211.609557159857,
+    "detour_ratio": 1.1189915020902677,
+    "class": "Good",
+    "excess_km": 128.84033603835664
+  },
+  {
+    "airport_a": "LGA",
+    "airport_b": "ORD",
+    "flights_per_day": 59.0,
+    "straight_km": 1572.2457186277632,
+    "rail_km": 1930.5150655740547,
+    "detour_ratio": 1.227871090823503,
+    "class": "Good",
+    "excess_km": 358.2693469462914
+  },
+  {
+    "airport_a": "ATL",
+    "airport_b": "MCO",
+    "flights_per_day": 58.0,
+    "straight_km": 761.0597862878592,
+    "rail_km": 848.5277320756505,
+    "detour_ratio": 1.114929138766383,
+    "class": "Good",
+    "excess_km": 87.46794578779128
+  },
+  {
+    "airport_a": "PHX",
+    "airport_b": "SEA",
+    "flights_per_day": 57.0,
+    "straight_km": 2359.885825870458,
+    "rail_km": 3165.083342746788,
+    "detour_ratio": 1.341201895468535,
+    "class": "Good",
+    "excess_km": 805.1975168763292
+  },
+  {
+    "airport_a": "LAX",
+    "airport_b": "PHX",
+    "flights_per_day": 54.0,
+    "straight_km": 715.3279482093083,
+    "rail_km": 743.2783788664592,
+    "detour_ratio": 1.0390735895712166,
+    "class": "Good",
+    "excess_km": 27.95043065715104
+  },
+  {
+    "airport_a": "DEN",
+    "airport_b": "LAS",
+    "flights_per_day": 51.0,
+    "straight_km": 1282.563473253592,
+    "rail_km": 1868.8443921979888,
+    "detour_ratio": 1.457116494560013,
+    "class": "Okay",
+    "excess_km": 586.2809189443971
+  },
+  {
+    "airport_a": "MCO",
+    "airport_b": "ORD",
+    "flights_per_day": 49.0,
+    "straight_km": 1993.928242392352,
+    "rail_km": 2231.36646247562,
+    "detour_ratio": 1.1190806243851512,
+    "class": "Good",
+    "excess_km": 237.4382200832684
+  },
+  {
+    "airport_a": "EWR",
+    "airport_b": "MCO",
+    "flights_per_day": 49.0,
+    "straight_km": 1843.0548390216643,
+    "rail_km": 2474.418273486631,
+    "detour_ratio": 1.342563564088038,
+    "class": "Good",
+    "excess_km": 631.3634344649664
+  },
+  {
+    "airport_a": "DEN",
+    "airport_b": "SLC",
+    "flights_per_day": 48.0,
+    "straight_km": 824.5843640050401,
+    "rail_km": 1022.202420204152,
+    "detour_ratio": 1.239657777694538,
+    "class": "Good",
+    "excess_km": 197.618056199112
+  },
+  {
+    "airport_a": "BOS",
+    "airport_b": "ORD",
+    "flights_per_day": 47.0,
+    "straight_km": 1882.451328418777,
+    "rail_km": 2357.7005252558206,
+    "detour_ratio": 1.2524629400305634,
+    "class": "Good",
+    "excess_km": 475.2491968370439
+  },
+  {
+    "airport_a": "LAX",
+    "airport_b": "SEA",
+    "flights_per_day": 47.0,
+    "straight_km": 2041.6088517799503,
+    "rail_km": 2458.056700661498,
+    "detour_ratio": 1.2039802328043752,
+    "class": "Good",
+    "excess_km": 416.4478488815473
+  },
+  {
+    "airport_a": "DEN",
+    "airport_b": "LAX",
+    "flights_per_day": 47.0,
+    "straight_km": 1736.898224442362,
+    "rail_km": 2398.935530105297,
+    "detour_ratio": 1.3811606784706596,
+    "class": "Okay",
+    "excess_km": 662.037305662935
+  },
+  {
+    "airport_a": "ATL",
+    "airport_b": "DFW",
+    "flights_per_day": 45.0,
+    "straight_km": 1407.4893849077614,
+    "rail_km": 1965.8976398420464,
+    "detour_ratio": 1.396740651064221,
+    "class": "Okay",
+    "excess_km": 558.4082549342853
+  },
+  {
+    "airport_a": "DCA",
+    "airport_b": "ORD",
+    "flights_per_day": 44.0,
+    "straight_km": 1293.330454060497,
+    "rail_km": 1475.1699957385867,
+    "detour_ratio": 1.1405978967766457,
+    "class": "Good",
+    "excess_km": 181.8395416780897
+  },
+  {
+    "airport_a": "PHX",
+    "airport_b": "SLC",
+    "flights_per_day": 24.0,
+    "straight_km": 1028.3279549419044,
+    "rail_km": 1704.2437270696942,
+    "detour_ratio": 1.6572959228420234,
+    "class": "Okay",
+    "excess_km": 675.9157721277896
+  },
+  {
+    "airport_a": "ATL",
+    "airport_b": "LGA",
+    "flights_per_day": 23.0,
+    "straight_km": 1542.0428643866392,
+    "rail_km": 1699.0974501852545,
+    "detour_ratio": 1.1018483917832498,
+    "class": "Good",
+    "excess_km": 157.05458579861514
+  },
+  {
+    "airport_a": "MSP",
+    "airport_b": "ORD",
+    "flights_per_day": 23.0,
+    "straight_km": 741.0617997491211,
+    "rail_km": 839.0606281183237,
+    "detour_ratio": 1.1322411010827695,
+    "class": "Good",
+    "excess_km": 97.99882836920268
+  },
+  {
+    "airport_a": "ATL",
+    "airport_b": "MIA",
+    "flights_per_day": 22.0,
+    "straight_km": 1107.1638705615992,
+    "rail_km": 1239.7642033083748,
+    "detour_ratio": 1.1197657693431733,
+    "class": "Good",
+    "excess_km": 132.6003327467756
+  },
+  {
+    "airport_a": "DFW",
+    "airport_b": "LAX",
+    "flights_per_day": 22.0,
+    "straight_km": 2382.752104104863,
+    "rail_km": 3047.70027613216,
+    "detour_ratio": 1.27906728982917,
+    "class": "Good",
+    "excess_km": 664.9481720272964
+  },
+  {
+    "airport_a": "ORD",
+    "airport_b": "PHX",
+    "flights_per_day": 22.0,
+    "straight_km": 2941.0347646675323,
+    "rail_km": 4181.142518984002,
+    "detour_ratio": 1.4216569519050404,
+    "class": "Okay",
+    "excess_km": 1240.1077543164697
+  }
+]
