@@ -1223,9 +1223,12 @@ button,
   background: var(--green);
 }
 
-.legend-line.backbone { background: #123f1a; }
-.legend-line.spoke { background: #5b9440; }
-.legend-line.augment { background: #c99534; }
+.legend-line.backbone,
+.legend-line.spoke,
+.legend-line.augment { background: #123f1a; }
+.map-legend.rail-colors-enabled .legend-line.backbone { background: #123f1a; }
+.map-legend.rail-colors-enabled .legend-line.spoke { background: #5b9440; }
+.map-legend.rail-colors-enabled .legend-line.augment { background: #c99534; }
 .legend-line.flight-good { background: #246b45; }
 .legend-line.flight-okay { background: #b57422; }
 .legend-line.flight-poor { background: #9d3f36; }
@@ -1529,6 +1532,25 @@ button,
 .rail-map .leaflet-control-layers label {
   display: block;
   margin: 3px 0;
+}
+
+.rail-map .rail-color-toggle {
+  padding: 8px 12px;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.rail-map .rail-color-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.rail-map .rail-color-toggle input {
+  accent-color: #8a7a55;
 }
 
 .rail-map .leaflet-popup {

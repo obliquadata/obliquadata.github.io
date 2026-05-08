@@ -1,14 +1,22 @@
 const DATA_PATH = "data/";
 
-const styles = {
+const railStyleDefault = { color: "#123f1a", weight: 3.1, opacity: 0.82, pane: "railPane" };
+
+const railStylesByType = {
   hub_backbone: { color: "#123f1a", weight: 4.2, opacity: 0.95, pane: "railPane" },
   spoke: { color: "#5b9440", weight: 2.4, opacity: 0.72, pane: "railPane" },
-  augment: { color: "#c99534", weight: 3.2, opacity: 0.9, pane: "railPane" },
+  augment: { color: "#c99534", weight: 3.2, opacity: 0.9, pane: "railPane" }
+};
+
+const styles = {
+  ...railStylesByType,
   junction: { radius: 2.5, color: "#47634d", fillColor: "#47634d", fillOpacity: 0.55, opacity: 0.65, weight: 1 },
   Good: { color: "#246b45", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
   Okay: { color: "#b57422", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
   Poor: { color: "#9d3f36", weight: 4, opacity: 0.86, dashArray: "8 8", pane: "corridorPane" }
 };
+
+let colorRailByType = false;
 
 const map = L.map("railMap", {
   scrollWheelZoom: false,
@@ -38,17 +46,17 @@ const positron = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   subdomains: "abcd",
   maxZoom: 19
-}).addTo(map);
+});
 
 const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   subdomains: "abcd",
   maxZoom: 19
-});
+}).addTo(map);
 
-const backboneLayer = L.geoJSON(null, { style: styles.hub_backbone, interactive: false });
-const spokeLayer = L.geoJSON(null, { style: styles.spoke, interactive: false });
-const augmentLayer = L.geoJSON(null, { style: styles.augment, interactive: false });
+const backboneLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
+const spokeLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
+const augmentLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
 const hubLayer = L.geoJSON(null, {
   pane: "pointPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
@@ -86,6 +94,37 @@ const overlays = {
 };
 
 L.control.layers(baseMaps, overlays, { collapsed: false }).addTo(map);
+
+const railColorControl = L.control({ position: "topright" });
+railColorControl.onAdd = () => {
+  const container = L.DomUtil.create("div", "leaflet-control-layers rail-color-toggle");
+  container.innerHTML = `
+    <label>
+      <input type="checkbox" id="railColorToggle" />
+      <span>Color rail by edge type</span>
+    </label>
+  `;
+  L.DomEvent.disableClickPropagation(container);
+  L.DomEvent.disableScrollPropagation(container);
+  return container;
+};
+railColorControl.addTo(map);
+
+function applyRailColorMode(enabled) {
+  colorRailByType = enabled;
+  const legend = document.querySelector(".map-legend");
+  legend?.classList.toggle("rail-colors-enabled", enabled);
+
+  backboneLayer.setStyle(enabled ? railStylesByType.hub_backbone : railStyleDefault);
+  spokeLayer.setStyle(enabled ? railStylesByType.spoke : railStyleDefault);
+  augmentLayer.setStyle(enabled ? railStylesByType.augment : railStyleDefault);
+}
+
+const railColorToggle = document.getElementById("railColorToggle");
+railColorToggle?.addEventListener("change", (event) => {
+  applyRailColorMode(event.target.checked);
+});
+applyRailColorMode(false);
 map.on("baselayerchange", () => {
   [backboneLayer, spokeLayer, augmentLayer, flightLayer, hubLayer, junctionLayer].forEach((layer) => {
     if (map.hasLayer(layer)) layer.bringToFront?.();
@@ -96,7 +135,7 @@ backboneLayer.addTo(map);
 spokeLayer.addTo(map);
 augmentLayer.addTo(map);
 hubLayer.addTo(map);
-flightLayer.addTo(map);
+junctionLayer.addTo(map);
 
 function formatNumber(value, digits = 0) {
   return Number(value).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
@@ -181,6 +220,7 @@ async function init() {
   document.getElementById("metric-corridors").textContent = formatNumber(corridors.length);
 
   splitEdgesByType(edges);
+  applyRailColorMode(colorRailByType);
   hubLayer.addData(hubs);
   junctionLayer.addData(junctions);
   addFlightCorridors(corridors);
