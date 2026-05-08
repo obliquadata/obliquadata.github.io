@@ -1,30 +1,36 @@
-# Obliqua Data rail project page
+# Obliqua Data rail-network project page
 
-Upload these files to the root of the Obliqua Data GitHub Pages repository.
+This package contains an updated Obliqua Data homepage and a new project page at `rail-network/`.
 
-## What changed in this version
+## What changed in v3
 
-- The shared header and footer now live in `partials/site-header.html` and `partials/site-footer.html`.
-- Pages load those shared components through `assets/site-components.js`.
-- The rail page keeps its page-specific links in a small secondary navigation bar below the shared header.
-- The map CSS now includes Leaflet fallback styles, so the map should render correctly even if the external Leaflet CSS is blocked or slow to load.
-- The rail map script now calls `map.invalidateSize()` after load and after data has been added, which helps Leaflet calculate the correct map dimensions.
+- The header and footer are inline again on each page. This avoids the client-side partial-loading approach and keeps the homepage self-contained.
+- All site styling now comes from the single shared `styles.css` file. The rail project no longer has a separate page-specific CSS file.
+- The map has been fixed so the rail network vectors use explicit Leaflet panes above the basemap tiles.
+- The rail lines have been made slightly stronger to improve visibility on light basemaps.
 
-## File structure
+## Upload
 
-- `index.html` — updated homepage with a rail project card and shared header/footer placeholders.
-- `styles.css` — updated homepage/shared styling.
-- `assets/site-components.js` — injects the shared header and footer.
-- `partials/site-header.html` — single source for the site header.
-- `partials/site-footer.html` — single source for the site footer.
-- `rail-network/index.html` — project page.
-- `rail-network/rail-network.css` — page and map styling.
-- `rail-network/rail-network.js` — interactive map logic.
-- `rail-network/data/` — web-ready project data.
+Upload the full contents of this folder to the GitHub Pages repository root. Keep the `rail-network/data/` folder in place.
 
-## Note for local preview
+## Preview locally
 
-Because the shared header/footer are loaded with `fetch()`, previewing by double-clicking `index.html` may not work in all browsers. Use a local server instead, for example:
+Use a local server rather than opening the HTML files directly:
+
+```bash
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000/`.
+
+
+## Shared footer setup
+
+The header remains inline in each page so the main navigation is always available even if a shared component fails to load.
+
+The footer is shared from `site-footer.html` and loaded by `assets/site-footer.js`. To update the footer across the site, edit `site-footer.html` once.
+
+Do not preview by double-clicking the HTML files, because browser file security can block `fetch()`. Use a local server instead:
 
 ```bash
 python -m http.server 8000

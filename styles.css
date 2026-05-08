@@ -1004,3 +1004,589 @@ button,
 .project-cards {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
+
+/* Rail network project page styles */
+:root {
+  --rail-blue: #335c67;
+  --rail-gold: #c99534;
+  --rail-red: #9d3f36;
+  --rail-ink: #17361d;
+}
+
+.rail-shell .site-header {
+  margin-bottom: 26px;
+}
+
+.rail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 26px;
+  margin-bottom: 28px;
+}
+
+.rail-hero__copy,
+.rail-hero__card,
+.map-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.rail-hero__copy {
+  min-height: 520px;
+  padding: 56px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.76), rgba(255,255,255,0.44)),
+    radial-gradient(circle at 78% 18%, rgba(9, 165, 60, 0.16), transparent 28%),
+    linear-gradient(160deg, rgba(18,63,26,0.08), rgba(201,149,52,0.10));
+  overflow: hidden;
+  position: relative;
+}
+
+.rail-hero__copy::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  bottom: -120px;
+  width: 420px;
+  height: 420px;
+  border: 2px solid rgba(18, 63, 26, 0.12);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 30px rgba(18, 63, 26, 0.035);
+}
+
+.rail-hero__copy > * {
+  position: relative;
+  z-index: 1;
+}
+
+.rail-hero h1,
+.framework-panel h2,
+.map-heading h2,
+.result-summary h2,
+.next-panel h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.rail-hero h1 {
+  max-width: 11ch;
+  margin: 18px 0 0;
+  font-size: clamp(3.1rem, 7vw, 5.8rem);
+}
+
+.rail-hero__card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.68)),
+    linear-gradient(135deg, rgba(169, 207, 170, 0.42), rgba(201,149,52,0.14));
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.metric-grid div {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(18,63,26,0.06);
+  border: 1px solid rgba(18,63,26,0.08);
+}
+
+.metric-grid strong {
+  display: block;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  letter-spacing: -0.04em;
+  color: var(--green);
+}
+
+.metric-grid span,
+.rail-hero__card p,
+.step-grid p,
+.map-heading p,
+.result-summary p,
+.next-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.rail-intro {
+  margin-bottom: 28px;
+}
+
+.framework-panel,
+.map-section,
+.results-grid,
+.next-panel {
+  margin-bottom: 28px;
+}
+
+.framework-panel,
+.next-panel {
+  padding: 30px;
+  background: var(--panel-strong);
+}
+
+.compact-heading h2,
+.map-heading h2,
+.next-panel h2,
+.result-summary h2 {
+  margin: 16px 0 0;
+  font-size: clamp(2.25rem, 4.8vw, 4rem);
+}
+
+.step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.step-grid article,
+.next-grid article {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(18,63,26,0.055);
+  border: 1px solid rgba(18,63,26,0.08);
+}
+
+.step-grid span {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 800;
+}
+
+.step-grid h3,
+.next-grid h3 {
+  margin: 16px 0 8px;
+  font-size: 1.08rem;
+}
+
+.map-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.45fr);
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.map-card {
+  overflow: hidden;
+  background: rgba(255,255,255,0.78);
+}
+
+.rail-map {
+  width: 100%;
+  height: min(76vh, 720px);
+  min-height: 520px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: #e8eadf;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  padding: 16px 18px;
+  border-top: 1px solid rgba(18,63,26,0.10);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 34px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.legend-line.backbone { background: #123f1a; }
+.legend-line.spoke { background: #5b9440; }
+.legend-line.augment { background: #c99534; }
+.legend-line.flight-good { background: #246b45; }
+.legend-line.flight-okay { background: #b57422; }
+.legend-line.flight-poor { background: #9d3f36; }
+.legend-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #123f1a;
+  box-shadow: 0 0 0 5px rgba(18,63,26,0.15);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1fr);
+  gap: 22px;
+}
+
+.result-summary,
+.corridor-panel {
+  background: var(--panel-strong);
+}
+
+.corridor-panel__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+#corridorFilter {
+  min-height: 42px;
+  border: 1px solid rgba(18,63,26,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.78);
+  color: var(--text);
+  padding: 0 12px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.corridor-table-wrap {
+  max-height: 430px;
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(18,63,26,0.10);
+}
+
+.corridor-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+.corridor-table th,
+.corridor-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(18,63,26,0.08);
+}
+
+.corridor-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f5f1e4;
+  color: var(--green);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-width: 62px;
+  justify-content: center;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.badge.good { background: rgba(36,107,69,0.13); color: #246b45; }
+.badge.okay { background: rgba(181,116,34,0.15); color: #8a5617; }
+.badge.poor { background: rgba(157,63,54,0.14); color: #8d3029; }
+
+.next-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.next-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rail-contact h2 {
+  max-width: 16ch;
+}
+
+.leaflet-control-layers,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.leaflet-control-layers {
+  border: 0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 16px 34px rgba(18,63,26,0.16) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 18px;
+}
+
+.map-popup-title {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--green);
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  .rail-hero,
+  .map-heading,
+  .results-grid,
+  .next-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .step-grid,
+  .next-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rail-hero__copy {
+    min-height: auto;
+    padding: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rail-hero__copy,
+  .rail-hero__card,
+  .framework-panel,
+  .next-panel {
+    padding: 22px;
+  }
+
+  .metric-grid,
+  .step-grid,
+  .next-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rail-map {
+    min-height: 480px;
+  }
+
+  .corridor-panel__top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Page-specific navigation kept outside the shared site header. */
+.project-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -12px 0 24px;
+}
+
+.project-subnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(18, 63, 26, 0.10);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-subnav a:hover {
+  text-decoration: underline;
+}
+
+/* Leaflet fallback styles.
+   These make the map render correctly even if the external Leaflet CSS is blocked,
+   slow to load, or previewed in an environment that strips CDN styles. */
+.rail-map.leaflet-container {
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #e8eadf;
+}
+
+.rail-map .leaflet-pane,
+.rail-map .leaflet-map-pane,
+.rail-map .leaflet-tile-pane,
+.rail-map .leaflet-overlay-pane,
+.rail-map .leaflet-shadow-pane,
+.rail-map .leaflet-marker-pane,
+.rail-map .leaflet-tooltip-pane,
+.rail-map .leaflet-popup-pane {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.rail-map .leaflet-map-pane,
+.rail-map .leaflet-tile,
+.rail-map .leaflet-marker-icon,
+.rail-map .leaflet-marker-shadow,
+.rail-map .leaflet-tile-container,
+.rail-map .leaflet-pane > svg,
+.rail-map .leaflet-pane > canvas,
+.rail-map .leaflet-zoom-box,
+.rail-map .leaflet-image-layer,
+.rail-map .leaflet-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.rail-map .leaflet-tile,
+.rail-map .leaflet-image-layer {
+  border: 0;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.rail-map .leaflet-tile {
+  width: 256px;
+  height: 256px;
+  user-select: none;
+}
+
+.rail-map .leaflet-tile-container {
+  pointer-events: none;
+}
+
+.rail-map .leaflet-control-container .leaflet-top,
+.rail-map .leaflet-control-container .leaflet-bottom {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.rail-map .leaflet-top { top: 0; }
+.rail-map .leaflet-right { right: 0; }
+.rail-map .leaflet-bottom { bottom: 0; }
+.rail-map .leaflet-left { left: 0; }
+
+.rail-map .leaflet-control {
+  position: relative;
+  z-index: 1000;
+  pointer-events: auto;
+  float: left;
+  clear: both;
+  margin: 10px;
+}
+
+.rail-map .leaflet-right .leaflet-control { float: right; }
+.rail-map .leaflet-top .leaflet-control { margin-top: 10px; }
+.rail-map .leaflet-bottom .leaflet-control { margin-bottom: 10px; }
+.rail-map .leaflet-left .leaflet-control { margin-left: 10px; }
+.rail-map .leaflet-right .leaflet-control { margin-right: 10px; }
+
+.rail-map .leaflet-control-layers,
+.rail-map .leaflet-bar {
+  border: 1px solid rgba(18, 63, 26, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 24px rgba(18, 63, 26, 0.16);
+}
+
+.rail-map .leaflet-bar a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.rail-map .leaflet-control-layers {
+  padding: 10px 12px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.rail-map .leaflet-control-layers label {
+  display: block;
+  margin: 3px 0;
+}
+
+.rail-map .leaflet-popup {
+  position: absolute;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rail-map .leaflet-popup-content-wrapper {
+  padding: 1px;
+  text-align: left;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(18, 63, 26, 0.18);
+}
+
+.rail-map .leaflet-popup-content {
+  margin: 13px 18px;
+  line-height: 1.45;
+}
+
+.rail-map .leaflet-popup-tip-container {
+  width: 40px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rail-map .leaflet-popup-tip {
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  transform: rotate(45deg);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(18, 63, 26, 0.18);
+}
+
+.rail-map .leaflet-interactive {
+  cursor: pointer;
+}
+
+.rail-map .leaflet-control-attribution {
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.82);
+  font-size: 11px;
+}
+
+/* Leaflet pane stacking fix. Required when the local fallback styles are used,
+   otherwise basemap tiles can sit above vector rail layers. */
+.rail-map .leaflet-tile-pane { z-index: 200; }
+.rail-map .leaflet-overlay-pane { z-index: 400; }
+.rail-map .leaflet-shadow-pane { z-index: 500; }
+.rail-map .leaflet-marker-pane { z-index: 600; }
+.rail-map .leaflet-tooltip-pane { z-index: 650; }
+.rail-map .leaflet-popup-pane { z-index: 700; }
+.rail-map .leaflet-control-container { position: absolute; inset: 0; z-index: 1000; pointer-events: none; }
+.rail-map .leaflet-control { pointer-events: auto; }

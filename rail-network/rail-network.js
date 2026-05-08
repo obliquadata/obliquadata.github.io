@@ -1,19 +1,29 @@
 const DATA_PATH = "data/";
 
 const styles = {
-  hub_backbone: { color: "#123f1a", weight: 3.2, opacity: 0.9 },
-  spoke: { color: "#5b9440", weight: 1.8, opacity: 0.55 },
-  augment: { color: "#c99534", weight: 2.4, opacity: 0.78 },
+  hub_backbone: { color: "#123f1a", weight: 4.2, opacity: 0.95, pane: "railPane" },
+  spoke: { color: "#5b9440", weight: 2.4, opacity: 0.72, pane: "railPane" },
+  augment: { color: "#c99534", weight: 3.2, opacity: 0.9, pane: "railPane" },
   junction: { radius: 2.5, color: "#47634d", fillColor: "#47634d", fillOpacity: 0.55, opacity: 0.65, weight: 1 },
-  Good: { color: "#246b45", weight: 3.5, opacity: 0.78, dashArray: "8 8" },
-  Okay: { color: "#b57422", weight: 3.5, opacity: 0.78, dashArray: "8 8" },
-  Poor: { color: "#9d3f36", weight: 4, opacity: 0.86, dashArray: "8 8" }
+  Good: { color: "#246b45", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
+  Okay: { color: "#b57422", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
+  Poor: { color: "#9d3f36", weight: 4, opacity: 0.86, dashArray: "8 8", pane: "corridorPane" }
 };
 
 const map = L.map("railMap", {
   scrollWheelZoom: false,
   worldCopyJump: true
 }).setView([39.5, -98.35], 4);
+
+// Put rail and corridor vectors in explicit panes above the basemap.
+// This prevents basemap tiles from covering the network in browsers or previews
+// where Leaflet's external CSS loads late or is partially overridden.
+map.createPane("railPane");
+map.getPane("railPane").style.zIndex = 430;
+map.createPane("corridorPane");
+map.getPane("corridorPane").style.zIndex = 460;
+map.createPane("pointPane");
+map.getPane("pointPane").style.zIndex = 620;
 
 function refreshMapSize() {
   requestAnimationFrame(() => map.invalidateSize({ animate: false }));
@@ -40,6 +50,7 @@ const backboneLayer = L.geoJSON(null, { style: styles.hub_backbone, interactive:
 const spokeLayer = L.geoJSON(null, { style: styles.spoke, interactive: false });
 const augmentLayer = L.geoJSON(null, { style: styles.augment, interactive: false });
 const hubLayer = L.geoJSON(null, {
+  pane: "pointPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
     radius: 7,
     color: "#123f1a",
@@ -52,6 +63,7 @@ const hubLayer = L.geoJSON(null, {
   }
 });
 const junctionLayer = L.geoJSON(null, {
+  pane: "pointPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, styles.junction),
   onEachFeature: (feature, layer) => {
     layer.bindPopup(`<strong class="map-popup-title">Sampled junction</strong>Degree: ${feature.properties.degree}`);
@@ -74,6 +86,12 @@ const overlays = {
 };
 
 L.control.layers(baseMaps, overlays, { collapsed: false }).addTo(map);
+map.on("baselayerchange", () => {
+  [backboneLayer, spokeLayer, augmentLayer, flightLayer, hubLayer, junctionLayer].forEach((layer) => {
+    if (map.hasLayer(layer)) layer.bringToFront?.();
+  });
+});
+
 backboneLayer.addTo(map);
 spokeLayer.addTo(map);
 augmentLayer.addTo(map);

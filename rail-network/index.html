@@ -16,13 +16,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQd6khEx8JNZw7nMQw/D8M0FzQ6tqg=" crossorigin="" />
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="rail-network.css" />
-  <script src="../assets/site-components.js" data-base="../" defer></script>
   <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <div class="page-shell rail-shell">
-    <div data-site-header></div>
+<header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="Obliqua Data home">
+        <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="brand-mark" />
+        <div>
+          <span class="brand-name">Obliqua Data</span>
+          <span class="brand-tag">Research studio</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html#top">Home</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#focus">Focus</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </header>
 
     <main id="top">
       <nav class="project-subnav" aria-label="Rail project page navigation">
@@ -167,7 +180,8 @@
         <a class="button button-primary" href="https://www.linkedin.com/company/obliqua-data" target="_blank" rel="noopener noreferrer">Contact via LinkedIn</a>
       </section>
     </main>
-    <div data-site-footer></div>
+<div data-site-footer data-footer-src="../site-footer.html"></div>
+  <script src="../assets/site-footer.js" defer></script>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="rail-network.js"></script>
