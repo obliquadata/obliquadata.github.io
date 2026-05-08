@@ -1,9 +1,10 @@
 const DATA_PATH = "data/";
 
 const railStyleDefault = { color: "#123f1a", weight: 3.1, opacity: 0.82, pane: "railPane" };
+const backboneStyleDefault = { color: "#123f1a", weight: 4.2, opacity: 0.9, pane: "railBackbonePane" };
 
 const railStylesByType = {
-  hub_backbone: { color: "#123f1a", weight: 4.2, opacity: 0.95, pane: "railPane" },
+  hub_backbone: { color: "#123f1a", weight: 4.2, opacity: 0.95, pane: "railBackbonePane" },
   spoke: { color: "#5b9440", weight: 2.4, opacity: 0.72, pane: "railPane" },
   augment: { color: "#c99534", weight: 3.2, opacity: 0.9, pane: "railPane" }
 };
@@ -16,7 +17,7 @@ const styles = {
   Poor: { color: "#9d3f36", weight: 4, opacity: 0.86, dashArray: "8 8", pane: "corridorPane" }
 };
 
-let colorRailByType = false;
+let colorRailByType = true;
 
 const map = L.map("railMap", {
   scrollWheelZoom: false,
@@ -30,8 +31,12 @@ map.createPane("railPane");
 map.getPane("railPane").style.zIndex = 430;
 map.createPane("corridorPane");
 map.getPane("corridorPane").style.zIndex = 460;
-map.createPane("pointPane");
-map.getPane("pointPane").style.zIndex = 620;
+map.createPane("railBackbonePane");
+map.getPane("railBackbonePane").style.zIndex = 500;
+map.createPane("junctionPane");
+map.getPane("junctionPane").style.zIndex = 620;
+map.createPane("hubPane");
+map.getPane("hubPane").style.zIndex = 650;
 
 function refreshMapSize() {
   requestAnimationFrame(() => map.invalidateSize({ animate: false }));
@@ -54,11 +59,11 @@ const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyag
   maxZoom: 19
 }).addTo(map);
 
-const backboneLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
+const backboneLayer = L.geoJSON(null, { style: backboneStyleDefault, interactive: false });
 const spokeLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
 const augmentLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
 const hubLayer = L.geoJSON(null, {
-  pane: "pointPane",
+  pane: "hubPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
     radius: 7,
     color: "#123f1a",
@@ -71,7 +76,7 @@ const hubLayer = L.geoJSON(null, {
   }
 });
 const junctionLayer = L.geoJSON(null, {
-  pane: "pointPane",
+  pane: "junctionPane",
   pointToLayer: (feature, latlng) => L.circleMarker(latlng, styles.junction),
   onEachFeature: (feature, layer) => {
     layer.bindPopup(`<strong class="map-popup-title">Sampled junction</strong>Degree: ${feature.properties.degree}`);
@@ -100,7 +105,7 @@ railColorControl.onAdd = () => {
   const container = L.DomUtil.create("div", "leaflet-control-layers rail-color-toggle");
   container.innerHTML = `
     <label>
-      <input type="checkbox" id="railColorToggle" />
+      <input type="checkbox" id="railColorToggle" checked />
       <span>Color rail by edge type</span>
     </label>
   `;
@@ -115,7 +120,7 @@ function applyRailColorMode(enabled) {
   const legend = document.querySelector(".map-legend");
   legend?.classList.toggle("rail-colors-enabled", enabled);
 
-  backboneLayer.setStyle(enabled ? railStylesByType.hub_backbone : railStyleDefault);
+  backboneLayer.setStyle(enabled ? railStylesByType.hub_backbone : backboneStyleDefault);
   spokeLayer.setStyle(enabled ? railStylesByType.spoke : railStyleDefault);
   augmentLayer.setStyle(enabled ? railStylesByType.augment : railStyleDefault);
 }
@@ -124,12 +129,17 @@ const railColorToggle = document.getElementById("railColorToggle");
 railColorToggle?.addEventListener("change", (event) => {
   applyRailColorMode(event.target.checked);
 });
-applyRailColorMode(false);
-map.on("baselayerchange", () => {
-  [backboneLayer, spokeLayer, augmentLayer, flightLayer, hubLayer, junctionLayer].forEach((layer) => {
+applyRailColorMode(true);
+function enforceOverlayOrder() {
+  // Draw lower-priority lines first, then put the backbone above the rest
+  // of the rail network, sampled junctions above the backbone, and fixed
+  // hubs above every other project layer.
+  [spokeLayer, augmentLayer, flightLayer, backboneLayer, junctionLayer, hubLayer].forEach((layer) => {
     if (map.hasLayer(layer)) layer.bringToFront?.();
   });
-});
+}
+
+map.on("baselayerchange overlayadd overlayremove", enforceOverlayOrder);
 
 backboneLayer.addTo(map);
 spokeLayer.addTo(map);
@@ -224,6 +234,7 @@ async function init() {
   hubLayer.addData(hubs);
   junctionLayer.addData(junctions);
   addFlightCorridors(corridors);
+  enforceOverlayOrder();
   renderCorridorTable(corridors);
 
   const filter = document.getElementById("corridorFilter");
