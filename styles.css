@@ -11,6 +11,13 @@
   --green-soft: #a9cfaa;
   --shadow: 0 24px 60px rgba(18, 63, 26, 0.12);
   --radius: 28px;
+  --header-anchor-offset: 50px;
+}
+
+section[id],
+main[id],
+[id].anchor-target {
+  scroll-margin-top: var(--header-anchor-offset);
 }
 
 * {
@@ -19,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-anchor-offset);
 }
 
 body {
