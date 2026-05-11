@@ -154,18 +154,34 @@
         </div>
       </section>
 
-      <section class="results-grid">
-        <article class="panel result-summary">
+      <section class="method-details-grid">
+        <article class="panel result-summary method-comparison-note">
           <span class="section-label">How to read the comparison</span>
           <h2>The second method changes the spoke logic, not the whole project.</h2>
           <p>
             Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, then restores direct links only where the tree becomes too indirect. The second map also shows the post-evaluation priority link for Denver–Phoenix, which illustrates how the framework can use poor-rated flight corridors to reveal missing strategic rail connections.
           </p>
         </article>
+        <article class="panel result-summary feeder-note">
+          <span class="section-label">Feeder trees vs. fallback spokes</span>
+          <h2>Feeder trees are shared branches; fallback spokes are safety valves.</h2>
+          <p>
+            <strong>Regional feeder trees</strong> are shared local branches that connect nearby terminals through a corridor-like structure before linking them back to the hub. They reduce the unrealistic radial clutter that appears when every terminal receives its own separate spoke.
+          </p>
+          <p>
+            <strong>Fallback spokes</strong> are direct terminal-to-hub links that are restored after the feeder-tree step if the tree would make a terminal travel too far out of the way. They prevent the algorithm from over-cleaning the map at the expense of useful access.
+          </p>
+        </article>
+      </section>
+
+      <section class="corridor-comparison-grid" id="corridor-checks">
         <article class="panel corridor-panel">
           <div class="corridor-panel__top">
-            <span class="section-label">Latest flight corridor check</span>
-            <select id="corridorFilter" aria-label="Filter corridor table by result class">
+            <div>
+              <span class="section-label">Method 1 flight corridor check</span>
+              <p class="corridor-panel__note">Original evaluation of the fixed-hub hub-and-spoke network. In this version, Denver–Phoenix remains a poor rail match because the rail graph forces a relatively indirect route.</p>
+            </div>
+            <select id="corridorFilterMethod1" aria-label="Filter Method 1 corridor table by result class">
               <option value="All">All classes</option>
               <option value="Good">Good</option>
               <option value="Okay">Okay</option>
@@ -177,7 +193,29 @@
               <thead>
                 <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
               </thead>
-              <tbody id="corridorRows"></tbody>
+              <tbody id="corridorRowsMethod1"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel corridor-panel">
+          <div class="corridor-panel__top">
+            <div>
+              <span class="section-label">Method 2 flight corridor check</span>
+              <p class="corridor-panel__note">Updated evaluation after the hierarchical feeder method and flight-corridor priority link. The Denver–Phoenix priority connection is added to test whether a targeted missing link can improve a poor-rated air corridor.</p>
+            </div>
+            <select id="corridorFilterMethod2" aria-label="Filter Method 2 corridor table by result class">
+              <option value="All">All classes</option>
+              <option value="Good">Good</option>
+              <option value="Okay">Okay</option>
+              <option value="Poor">Poor</option>
+            </select>
+          </div>
+          <div class="corridor-table-wrap">
+            <table class="corridor-table">
+              <thead>
+                <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
+              </thead>
+              <tbody id="corridorRowsMethod2"></tbody>
             </table>
           </div>
         </article>

@@ -161,8 +161,8 @@ function addFlightCorridors(layerGroup, corridors) {
   });
 }
 
-function renderCorridorTable(corridors, selected = "All") {
-  const rows = document.getElementById("corridorRows");
+function renderCorridorTable(tableId, corridors, selected = "All") {
+  const rows = document.getElementById(tableId);
   if (!rows) return;
   const filtered = selected === "All" ? corridors : corridors.filter((d) => d.class === selected);
   rows.innerHTML = filtered.map((d) => `
@@ -342,10 +342,20 @@ async function init() {
   }
   document.getElementById("metric-corridors").textContent = formatNumber(latest?.corridors?.length || 0);
 
-  const corridors = latest?.corridors || [];
-  renderCorridorTable(corridors);
-  const filter = document.getElementById("corridorFilter");
-  filter?.addEventListener("change", () => renderCorridorTable(corridors, filter.value));
+  const baselineCorridors = baseline?.corridors || [];
+  const v3Corridors = v3?.corridors || [];
+  renderCorridorTable("corridorRowsMethod1", baselineCorridors);
+  renderCorridorTable("corridorRowsMethod2", v3Corridors);
+
+  const method1Filter = document.getElementById("corridorFilterMethod1");
+  method1Filter?.addEventListener("change", () => {
+    renderCorridorTable("corridorRowsMethod1", baselineCorridors, method1Filter.value);
+  });
+
+  const method2Filter = document.getElementById("corridorFilterMethod2");
+  method2Filter?.addEventListener("change", () => {
+    renderCorridorTable("corridorRowsMethod2", v3Corridors, method2Filter.value);
+  });
 }
 
 init().catch((error) => {
