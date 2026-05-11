@@ -571,3 +571,52 @@
   background: rgba(255,255,255,0.82);
   font-size: 11px;
 }
+
+
+/* Method comparison additions */
+.method-explainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 22px;
+}
+
+.method-explainer article {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(18, 63, 26, 0.09);
+}
+
+.method-explainer h3 {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  color: var(--green);
+}
+
+.method-explainer p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.comparison-map-section {
+  scroll-margin-top: 115px;
+}
+
+.method-card {
+  margin-bottom: 10px;
+}
+
+.legend-line.feeder-tree,
+.legend-line.spoke-fallback,
+.legend-line.forced-flight-corridor {
+  height: 4px;
+}
+
+@media (max-width: 980px) {
+  .method-explainer {
+    grid-template-columns: 1fr;
+  }
+}

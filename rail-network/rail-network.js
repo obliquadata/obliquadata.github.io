@@ -1,175 +1,129 @@
 const DATA_PATH = "data/";
 
-const railStyleDefault = { color: "#123f1a", weight: 3.1, opacity: 0.82, pane: "railPane" };
-const backboneStyleDefault = { color: "#123f1a", weight: 4.2, opacity: 0.9, pane: "railBackbonePane" };
-
-const railStylesByType = {
-  hub_backbone: { color: "#123f1a", weight: 4.2, opacity: 0.95, pane: "railBackbonePane" },
-  spoke: { color: "#5b9440", weight: 2.4, opacity: 0.72, pane: "railPane" },
-  augment: { color: "#c99534", weight: 3.2, opacity: 0.9, pane: "railPane" }
+const BASELINE_CONFIG = {
+  mapId: "railMapBaseline",
+  legendId: "legendBaseline",
+  metadata: "metadata.json",
+  edges: "network_edges_simplified.geojson",
+  hubs: "fixed_hubs.geojson",
+  junctions: "network_junctions_sample.geojson",
+  corridors: "flight_corridors_enriched.json",
+  metricPrefix: "baseline",
+  title: "Method 1"
 };
 
-const styles = {
-  ...railStylesByType,
-  junction: { radius: 2.5, color: "#47634d", fillColor: "#47634d", fillOpacity: 0.55, opacity: 0.65, weight: 1 },
+const V3_CONFIG = {
+  mapId: "railMapV3",
+  legendId: "legendV3",
+  metadata: "metadata_v3.json",
+  edges: "network_edges_v3_simplified.geojson",
+  hubs: "fixed_hubs_v3.geojson",
+  junctions: "network_junctions_v3_sample.geojson",
+  corridors: "flight_corridors_v3_enriched.json",
+  metricPrefix: "v3",
+  title: "Method 2"
+};
+
+const commonRailStyle = { color: "#123f1a", weight: 3.0, opacity: 0.82, pane: "railPane" };
+const backboneDefault = { color: "#123f1a", weight: 4.3, opacity: 0.94, pane: "railBackbonePane" };
+
+const railStylesByType = {
+  hub_backbone: { color: "#123f1a", weight: 4.3, opacity: 0.96, pane: "railBackbonePane" },
+  feeder_tree: { color: "#5f8f4e", weight: 2.55, opacity: 0.78, pane: "railPane" },
+  spoke: { color: "#7ca66a", weight: 2.1, opacity: 0.58, pane: "railPane" },
+  spoke_fallback: { color: "#65735e", weight: 2.55, opacity: 0.82, pane: "railPane" },
+  augment: { color: "#c99534", weight: 3.15, opacity: 0.9, pane: "railPane" },
+  forced_flight_corridor: { color: "#b046a3", weight: 3.65, opacity: 0.9, pane: "priorityPane" }
+};
+
+const corridorStyles = {
   Good: { color: "#246b45", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
   Okay: { color: "#b57422", weight: 3.5, opacity: 0.78, dashArray: "8 8", pane: "corridorPane" },
   Poor: { color: "#9d3f36", weight: 4, opacity: 0.86, dashArray: "8 8", pane: "corridorPane" }
 };
 
-let colorRailByType = true;
-
-const map = L.map("railMap", {
-  scrollWheelZoom: false,
-  worldCopyJump: true
-}).setView([39.5, -98.35], 4);
-
-// Put rail and corridor vectors in explicit panes above the basemap.
-// This prevents basemap tiles from covering the network in browsers or previews
-// where Leaflet's external CSS loads late or is partially overridden.
-map.createPane("railPane");
-map.getPane("railPane").style.zIndex = 430;
-map.createPane("corridorPane");
-map.getPane("corridorPane").style.zIndex = 460;
-map.createPane("railBackbonePane");
-map.getPane("railBackbonePane").style.zIndex = 500;
-map.createPane("junctionPane");
-map.getPane("junctionPane").style.zIndex = 620;
-map.createPane("hubPane");
-map.getPane("hubPane").style.zIndex = 650;
-
-function refreshMapSize() {
-  requestAnimationFrame(() => map.invalidateSize({ animate: false }));
-}
-
-window.addEventListener("load", () => {
-  refreshMapSize();
-  setTimeout(refreshMapSize, 250);
-});
-
-const positron = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: "abcd",
-  maxZoom: 19
-});
-
-const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: "abcd",
-  maxZoom: 19
-}).addTo(map);
-
-const backboneLayer = L.geoJSON(null, { style: backboneStyleDefault, interactive: false });
-const spokeLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
-const augmentLayer = L.geoJSON(null, { style: railStyleDefault, interactive: false });
-const hubLayer = L.geoJSON(null, {
-  pane: "hubPane",
-  pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-    pane: "hubPane",
-    radius: 8,
-    color: "#123f1a",
-    weight: 2.4,
-    fillColor: "#f5f1e4",
-    fillOpacity: 0.98,
-    opacity: 1
-  }),
-  onEachFeature: (feature, layer) => {
-    layer.bindPopup(`<strong class="map-popup-title">${feature.properties.name}</strong>Fixed hub in the prototype network.`);
-  }
-});
-const junctionLayer = L.geoJSON(null, {
-  pane: "junctionPane",
-  pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-    ...styles.junction,
-    pane: "junctionPane"
-  }),
-  onEachFeature: (feature, layer) => {
-    layer.bindPopup(`<strong class="map-popup-title">Sampled junction</strong>Degree: ${feature.properties.degree}`);
-  }
-});
-const flightLayer = L.layerGroup();
-
-const baseMaps = {
-  "Light basemap": positron,
-  "Voyager basemap": voyager
+const displayNames = {
+  hub_backbone: "Hub backbone",
+  feeder_tree: "Regional feeder trees",
+  spoke: "Direct spokes",
+  spoke_fallback: "Fallback spokes",
+  augment: "Gap-fill / augmenting links",
+  forced_flight_corridor: "Flight-corridor priority links"
 };
-
-const overlays = {
-  "Hub backbone": backboneLayer,
-  "Spokes": spokeLayer,
-  "Augmenting links": augmentLayer,
-  "Fixed hubs": hubLayer,
-  "Sampled junctions": junctionLayer,
-  "Evaluated air corridors": flightLayer
-};
-
-L.control.layers(baseMaps, overlays, { collapsed: false }).addTo(map);
-
-const railColorControl = L.control({ position: "topright" });
-railColorControl.onAdd = () => {
-  const container = L.DomUtil.create("div", "leaflet-control-layers rail-color-toggle");
-  container.innerHTML = `
-    <label>
-      <input type="checkbox" id="railColorToggle" checked />
-      <span>Color rail by edge type</span>
-    </label>
-  `;
-  L.DomEvent.disableClickPropagation(container);
-  L.DomEvent.disableScrollPropagation(container);
-  return container;
-};
-railColorControl.addTo(map);
-
-function applyRailColorMode(enabled) {
-  colorRailByType = enabled;
-  const legend = document.querySelector(".map-legend");
-  legend?.classList.toggle("rail-colors-enabled", enabled);
-
-  backboneLayer.setStyle(enabled ? railStylesByType.hub_backbone : backboneStyleDefault);
-  spokeLayer.setStyle(enabled ? railStylesByType.spoke : railStyleDefault);
-  augmentLayer.setStyle(enabled ? railStylesByType.augment : railStyleDefault);
-}
-
-const railColorToggle = document.getElementById("railColorToggle");
-railColorToggle?.addEventListener("change", (event) => {
-  applyRailColorMode(event.target.checked);
-});
-applyRailColorMode(true);
-function bringGroupToFront(layer) {
-  if (!map.hasLayer(layer)) return;
-  if (typeof layer.bringToFront === "function") {
-    layer.bringToFront();
-  }
-  if (typeof layer.eachLayer === "function") {
-    layer.eachLayer((childLayer) => childLayer.bringToFront?.());
-  }
-}
-
-function enforceOverlayOrder() {
-  // Draw lower-priority lines first, then put the backbone above the rest
-  // of the rail network, sampled junctions above the backbone, and fixed
-  // hubs above every other project layer. The point layers also specify
-  // their panes inside pointToLayer; without that, Leaflet can leave the
-  // actual circle markers in the default overlay pane.
-  [spokeLayer, augmentLayer, flightLayer, backboneLayer, junctionLayer, hubLayer].forEach(bringGroupToFront);
-}
-
-map.on("baselayerchange overlayadd overlayremove zoomend moveend", enforceOverlayOrder);
-
-backboneLayer.addTo(map);
-spokeLayer.addTo(map);
-augmentLayer.addTo(map);
-hubLayer.addTo(map);
-junctionLayer.addTo(map);
 
 function formatNumber(value, digits = 0) {
-  return Number(value).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "—";
+  return number.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+}
+
+function featureCollection(features) {
+  return { type: "FeatureCollection", features };
+}
+
+function makeTileLayers() {
+  const positron = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd",
+    maxZoom: 19
+  });
+
+  const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd",
+    maxZoom: 19
+  });
+
+  return { positron, voyager };
+}
+
+function makePanes(map) {
+  map.createPane("railPane");
+  map.getPane("railPane").style.zIndex = 430;
+  map.createPane("corridorPane");
+  map.getPane("corridorPane").style.zIndex = 455;
+  map.createPane("priorityPane");
+  map.getPane("priorityPane").style.zIndex = 485;
+  map.createPane("railBackbonePane");
+  map.getPane("railBackbonePane").style.zIndex = 510;
+  map.createPane("junctionPane");
+  map.getPane("junctionPane").style.zIndex = 620;
+  map.createPane("hubPane");
+  map.getPane("hubPane").style.zIndex = 650;
+}
+
+function styleForType(edgeType, colorByType) {
+  if (!colorByType) {
+    return edgeType === "hub_backbone" ? backboneDefault : commonRailStyle;
+  }
+  return railStylesByType[edgeType] || commonRailStyle;
+}
+
+function createLegend(legendId, edgeTypes, colorByType) {
+  const legend = document.getElementById(legendId);
+  if (!legend) return;
+
+  const railItems = edgeTypes
+    .filter((type) => type !== "unknown")
+    .map((type) => {
+      const style = styleForType(type, colorByType);
+      const cls = type.replaceAll("_", "-");
+      return `<span><i class="legend-line ${cls}" style="background:${style.color}"></i>${displayNames[type] || type}</span>`;
+    })
+    .join("");
+
+  legend.innerHTML = `
+    ${railItems}
+    <span><i class="legend-dot hub"></i>Fixed hubs</span>
+    <span><i class="legend-line flight-good"></i>Good flight corridor fit</span>
+    <span><i class="legend-line flight-okay"></i>Okay</span>
+    <span><i class="legend-line flight-poor"></i>Poor</span>
+  `;
 }
 
 function arcPoints(a, b, bend = 0.18, steps = 48) {
   const lat1 = a.lat, lon1 = a.lon;
   const lat2 = b.lat, lon2 = b.lon;
-  const midLat = (lat1 + lat2) / 2;
   const dx = lon2 - lon1;
   const dy = lat2 - lat1;
   const dist = Math.sqrt(dx * dx + dy * dy) || 1;
@@ -177,7 +131,7 @@ function arcPoints(a, b, bend = 0.18, steps = 48) {
   const ny = dx / dist;
   const curve = Math.min(8, dist * bend);
   const ctrlLon = (lon1 + lon2) / 2 + nx * curve;
-  const ctrlLat = midLat + ny * curve;
+  const ctrlLat = (lat1 + lat2) / 2 + ny * curve;
   const points = [];
   for (let i = 0; i <= steps; i += 1) {
     const t = i / steps;
@@ -188,86 +142,205 @@ function arcPoints(a, b, bend = 0.18, steps = 48) {
   return points;
 }
 
-function addFlightCorridors(corridors) {
-  flightLayer.clearLayers();
+function addFlightCorridors(layerGroup, corridors) {
+  layerGroup.clearLayers();
   corridors.forEach((d, index) => {
-    const a = { lat: d.a_lat, lon: d.a_lon };
-    const b = { lat: d.b_lat, lon: d.b_lon };
-    const line = L.polyline(arcPoints(a, b, index % 2 === 0 ? 0.16 : -0.16), styles[d.class] || styles.Good);
+    if (![d.a_lat, d.a_lon, d.b_lat, d.b_lon].every((x) => Number.isFinite(Number(x)))) return;
+    const a = { lat: Number(d.a_lat), lon: Number(d.a_lon) };
+    const b = { lat: Number(d.b_lat), lon: Number(d.b_lon) };
+    const line = L.polyline(arcPoints(a, b, index % 2 === 0 ? 0.16 : -0.16), corridorStyles[d.class] || corridorStyles.Good);
     line.bindPopup(`
       <strong class="map-popup-title">${d.airport_a}–${d.airport_b}</strong>
-      <div>${d.airport_a_name} ↔ ${d.airport_b_name}</div>
+      <div>${d.airport_a_name || d.airport_a} ↔ ${d.airport_b_name || d.airport_b}</div>
       <div><strong>${formatNumber(d.flights_per_day)}</strong> flights/day</div>
       <div>Rail distance: <strong>${formatNumber(d.rail_km, 0)} km</strong></div>
       <div>Detour ratio: <strong>${formatNumber(d.detour_ratio, 2)}</strong></div>
       <div>Class: <strong>${d.class}</strong></div>
     `);
-    line.addTo(flightLayer);
+    line.addTo(layerGroup);
   });
 }
 
 function renderCorridorTable(corridors, selected = "All") {
   const rows = document.getElementById("corridorRows");
+  if (!rows) return;
   const filtered = selected === "All" ? corridors : corridors.filter((d) => d.class === selected);
   rows.innerHTML = filtered.map((d) => `
     <tr>
-      <td><strong>${d.airport_a}–${d.airport_b}</strong><br><span>${d.airport_a_name} ↔ ${d.airport_b_name}</span></td>
+      <td><strong>${d.airport_a}–${d.airport_b}</strong><br><span>${d.airport_a_name || d.airport_a} ↔ ${d.airport_b_name || d.airport_b}</span></td>
       <td>${formatNumber(d.flights_per_day)}</td>
       <td>${formatNumber(d.detour_ratio, 2)}</td>
-      <td><span class="badge ${d.class.toLowerCase()}">${d.class}</span></td>
+      <td><span class="badge ${(d.class || "").toLowerCase()}">${d.class}</span></td>
     </tr>
   `).join("");
 }
 
-function splitEdgesByType(edges) {
-  const collections = { hub_backbone: [], spoke: [], augment: [] };
-  edges.features.forEach((feature) => {
-    const type = feature.properties.edge_type;
-    if (collections[type]) collections[type].push(feature);
-  });
-  backboneLayer.addData({ type: "FeatureCollection", features: collections.hub_backbone });
-  spokeLayer.addData({ type: "FeatureCollection", features: collections.spoke });
-  augmentLayer.addData({ type: "FeatureCollection", features: collections.augment });
+function bringGroupToFront(map, layer) {
+  if (!map.hasLayer(layer)) return;
+  layer.bringToFront?.();
+  layer.eachLayer?.((childLayer) => childLayer.bringToFront?.());
 }
 
-async function init() {
+async function initRailMap(config) {
+  const mapElement = document.getElementById(config.mapId);
+  if (!mapElement) return null;
+
+  const map = L.map(config.mapId, { scrollWheelZoom: false, worldCopyJump: true }).setView([39.5, -98.35], 4);
+  makePanes(map);
+
+  const { positron, voyager } = makeTileLayers();
+  voyager.addTo(map);
+
+  const layersByType = {};
+  const hubLayer = L.geoJSON(null, {
+    pane: "hubPane",
+    pointToLayer: (_feature, latlng) => L.circleMarker(latlng, {
+      pane: "hubPane", radius: 8, color: "#123f1a", weight: 2.4,
+      fillColor: "#f5f1e4", fillOpacity: 0.98, opacity: 1
+    }),
+    onEachFeature: (feature, layer) => {
+      layer.bindPopup(`<strong class="map-popup-title">${feature.properties.name}</strong>Fixed hub in the prototype network.`);
+    }
+  });
+
+  const junctionLayer = L.geoJSON(null, {
+    pane: "junctionPane",
+    pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+      pane: "junctionPane", radius: 2.5, color: "#47634d", fillColor: "#47634d",
+      fillOpacity: 0.55, opacity: 0.65, weight: 1
+    }),
+    onEachFeature: (feature, layer) => {
+      layer.bindPopup(`<strong class="map-popup-title">Sampled junction</strong>Degree: ${feature.properties.degree ?? "—"}`);
+    }
+  });
+
+  const flightLayer = L.layerGroup();
+
+  let colorByType = true;
+  const overlayOrder = [];
+
+  function ensureLayer(edgeType) {
+    if (layersByType[edgeType]) return layersByType[edgeType];
+    const layer = L.geoJSON(null, {
+      style: () => styleForType(edgeType, colorByType),
+      interactive: false,
+      pane: (railStylesByType[edgeType] || commonRailStyle).pane || "railPane"
+    });
+    layersByType[edgeType] = layer;
+    overlayOrder.push(edgeType);
+    return layer;
+  }
+
+  function applyRailColorMode(enabled) {
+    colorByType = enabled;
+    Object.entries(layersByType).forEach(([type, layer]) => layer.setStyle(styleForType(type, colorByType)));
+    createLegend(config.legendId, overlayOrder, colorByType);
+  }
+
+  function enforceOverlayOrder() {
+    ["spoke", "feeder_tree", "spoke_fallback", "augment", "forced_flight_corridor", "hub_backbone"].forEach((type) => {
+      if (layersByType[type]) bringGroupToFront(map, layersByType[type]);
+    });
+    bringGroupToFront(map, flightLayer);
+    bringGroupToFront(map, junctionLayer);
+    bringGroupToFront(map, hubLayer);
+  }
+
   const [metadata, edges, hubs, junctions, corridors] = await Promise.all([
-    fetch(`${DATA_PATH}metadata.json`).then((r) => r.json()),
-    fetch(`${DATA_PATH}network_edges_simplified.geojson`).then((r) => r.json()),
-    fetch(`${DATA_PATH}fixed_hubs.geojson`).then((r) => r.json()),
-    fetch(`${DATA_PATH}network_junctions_sample.geojson`).then((r) => r.json()),
-    fetch(`${DATA_PATH}flight_corridors_enriched.json`).then((r) => r.json())
+    fetch(`${DATA_PATH}${config.metadata}`).then((r) => r.json()).catch(() => ({})),
+    fetch(`${DATA_PATH}${config.edges}`).then((r) => r.json()),
+    fetch(`${DATA_PATH}${config.hubs}`).then((r) => r.json()),
+    fetch(`${DATA_PATH}${config.junctions}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] })),
+    fetch(`${DATA_PATH}${config.corridors}`).then((r) => r.json()).catch(() => [])
   ]);
 
-  document.getElementById("metric-nodes").textContent = formatNumber(metadata.graph_nodes);
-  document.getElementById("metric-edges").textContent = formatNumber(metadata.graph_edges);
-  document.getElementById("metric-hubs").textContent = formatNumber(metadata.hub_names.length);
-  document.getElementById("metric-corridors").textContent = formatNumber(corridors.length);
+  const grouped = {};
+  edges.features.forEach((feature) => {
+    const type = feature.properties?.edge_type || "unknown";
+    grouped[type] ||= [];
+    grouped[type].push(feature);
+  });
 
-  splitEdgesByType(edges);
-  applyRailColorMode(colorRailByType);
-  hubLayer.addData(hubs);
-  junctionLayer.addData(junctions);
-  addFlightCorridors(corridors);
+  const preferredOrder = ["spoke", "feeder_tree", "spoke_fallback", "augment", "forced_flight_corridor", "hub_backbone"];
+  const edgeTypes = [...preferredOrder.filter((t) => grouped[t]), ...Object.keys(grouped).filter((t) => !preferredOrder.includes(t))];
+
+  edgeTypes.forEach((type) => {
+    const layer = ensureLayer(type);
+    layer.addData(featureCollection(grouped[type]));
+    layer.addTo(map);
+  });
+
+  hubLayer.addData(hubs).addTo(map);
+  junctionLayer.addData(junctions).addTo(map);
+  addFlightCorridors(flightLayer, corridors);
+
+  const overlays = {};
+  edgeTypes.forEach((type) => { overlays[displayNames[type] || type] = layersByType[type]; });
+  overlays["Fixed hubs"] = hubLayer;
+  overlays["Sampled junctions"] = junctionLayer;
+  overlays["Evaluated air corridors"] = flightLayer;
+
+  L.control.layers({ "Light basemap": positron, "Voyager basemap": voyager }, overlays, { collapsed: false }).addTo(map);
+
+  const railColorControl = L.control({ position: "topright" });
+  railColorControl.onAdd = () => {
+    const container = L.DomUtil.create("div", "leaflet-control-layers rail-color-toggle");
+    const id = `railColorToggle-${config.mapId}`;
+    container.innerHTML = `<label><input type="checkbox" id="${id}" checked /><span>Color rail by edge type</span></label>`;
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(container);
+    setTimeout(() => {
+      document.getElementById(id)?.addEventListener("change", (event) => applyRailColorMode(event.target.checked));
+    }, 0);
+    return container;
+  };
+  railColorControl.addTo(map);
+
+  map.on("baselayerchange overlayadd overlayremove zoomend moveend", enforceOverlayOrder);
+
+  applyRailColorMode(true);
   enforceOverlayOrder();
-  renderCorridorTable(corridors);
 
-  const filter = document.getElementById("corridorFilter");
-  filter.addEventListener("change", () => renderCorridorTable(corridors, filter.value));
-
-  const bounds = backboneLayer.getBounds();
-  if (bounds.isValid()) {
-    refreshMapSize();
+  const boundsSource = layersByType.hub_backbone || Object.values(layersByType)[0];
+  const bounds = boundsSource?.getBounds?.();
+  if (bounds && bounds.isValid()) {
+    requestAnimationFrame(() => map.invalidateSize({ animate: false }));
     map.fitBounds(bounds.pad(0.12));
     setTimeout(() => {
-      refreshMapSize();
+      map.invalidateSize({ animate: false });
       map.fitBounds(bounds.pad(0.12));
     }, 250);
   }
+
+  return { map, metadata, corridors, edgeTypes };
+}
+
+async function init() {
+  const [baseline, v3] = await Promise.all([
+    initRailMap(BASELINE_CONFIG),
+    initRailMap(V3_CONFIG)
+  ]);
+
+  const latest = v3 || baseline;
+  if (latest?.metadata) {
+    document.getElementById("metric-nodes").textContent = formatNumber(latest.metadata.graph_nodes);
+    document.getElementById("metric-edges").textContent = formatNumber(latest.metadata.graph_edges);
+    document.getElementById("metric-hubs").textContent = formatNumber(latest.metadata.hub_names?.length || 13);
+  }
+  document.getElementById("metric-corridors").textContent = formatNumber(latest?.corridors?.length || 0);
+
+  const corridors = latest?.corridors || [];
+  renderCorridorTable(corridors);
+  const filter = document.getElementById("corridorFilter");
+  filter?.addEventListener("change", () => renderCorridorTable(corridors, filter.value));
 }
 
 init().catch((error) => {
   console.error("Unable to load rail project data", error);
-  const mapElement = document.getElementById("railMap");
-  mapElement.innerHTML = '<div style="padding: 24px; font-family: Inter, system-ui; color: #17361d;">Unable to load the interactive map data. Please check that the data folder was uploaded with the page.</div>';
+  ["railMapBaseline", "railMapV3"].forEach((id) => {
+    const mapElement = document.getElementById(id);
+    if (mapElement) {
+      mapElement.innerHTML = '<div style="padding: 24px; font-family: Inter, system-ui; color: #17361d;">Unable to load the interactive map data. Please check that the data folder was uploaded with the page.</div>';
+    }
+  });
 });

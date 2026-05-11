@@ -1,0 +1,106 @@
+{
+  "crs_network_edges": "EPSG:3857",
+  "crs_nodes": "EPSG:4326",
+  "graph_nodes": 52043,
+  "graph_edges": 52081,
+  "edge_types_present": [
+    "augment",
+    "hub_backbone",
+    "spoke"
+  ],
+  "manual_links_used": [
+    [
+      "Seattle",
+      "San Francisco"
+    ],
+    [
+      "San Francisco",
+      "Los Angeles"
+    ],
+    [
+      "San Francisco",
+      "Salt Lake City"
+    ],
+    [
+      "Salt Lake City",
+      "Denver"
+    ],
+    [
+      "Los Angeles",
+      "San Antonio"
+    ],
+    [
+      "Houston",
+      "San Antonio"
+    ],
+    [
+      "San Antonio",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Atlanta"
+    ],
+    [
+      "Orlando",
+      "Atlanta"
+    ],
+    [
+      "Dallas",
+      "Chicago"
+    ],
+    [
+      "Denver",
+      "Dallas"
+    ],
+    [
+      "Denver",
+      "Chicago"
+    ],
+    [
+      "Chicago",
+      "Atlanta"
+    ],
+    [
+      "Chicago",
+      "Washington DC"
+    ],
+    [
+      "Atlanta",
+      "Washington DC"
+    ],
+    [
+      "Washington DC",
+      "New York"
+    ]
+  ],
+  "hub_names": [
+    "Chicago",
+    "Atlanta",
+    "Denver",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Los Angeles",
+    "San Francisco",
+    "Seattle",
+    "New York",
+    "Washington DC",
+    "Orlando",
+    "Salt Lake City"
+  ],
+  "files": {
+    "geopackage": "network_exports\\contiguous_us_rail_network.gpkg",
+    "graphml": "network_exports\\contiguous_us_rail_network.graphml",
+    "flight_csv": "network_exports\\flight_corridor_rail_service_evaluation.csv",
+    "edges_geojson": "network_exports\\network_edges.geojson",
+    "nodes_geojson": "network_exports\\network_nodes.geojson",
+    "hubs_geojson": "network_exports\\fixed_hubs.geojson"
+  },
+  "network_version": "v3_hierarchical_backbone_feeder_gapfill_with_forced_flight_corridors",
+  "note": "The HTML is wired for Version 3 edge types. Replace network_edges_v3_simplified.geojson with the latest V3 export if the map still shows only base edge types."
+}
