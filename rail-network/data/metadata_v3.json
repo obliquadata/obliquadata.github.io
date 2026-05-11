@@ -1,12 +1,15 @@
 {
   "crs_network_edges": "EPSG:3857",
   "crs_nodes": "EPSG:4326",
-  "graph_nodes": 52043,
-  "graph_edges": 52081,
+  "graph_nodes": 55976,
+  "graph_edges": 56054,
   "edge_types_present": [
     "augment",
+    "feeder_tree",
+    "forced_flight_corridor",
     "hub_backbone",
-    "spoke"
+    "spoke",
+    "spoke_fallback"
   ],
   "manual_links_used": [
     [
@@ -100,7 +103,5 @@
     "edges_geojson": "network_exports\\network_edges.geojson",
     "nodes_geojson": "network_exports\\network_nodes.geojson",
     "hubs_geojson": "network_exports\\fixed_hubs.geojson"
-  },
-  "network_version": "v3_hierarchical_backbone_feeder_gapfill_with_forced_flight_corridors",
-  "note": "The HTML is wired for Version 3 edge types. Replace network_edges_v3_simplified.geojson with the latest V3 export if the map still shows only base edge types."
+  }
 }

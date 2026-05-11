@@ -108,7 +108,7 @@
           <article>
             <h3>Stress test: flight-corridor priority links</h3>
             <p>
-              After each network is built, high-frequency domestic air corridors are evaluated by comparing straight-line airport distances with shortest-path distances through the rail graph. Corridors rated poor can then be used to identify missing links or priority connections for further testing.
+              After each network is built, high-frequency domestic air corridors are evaluated by comparing straight-line airport distances with shortest-path distances through the rail graph. Corridors rated poor can then be used to identify missing links or priority connections for further testing. In the latest method, the Denver–Phoenix corridor is represented as a flight-corridor priority link after the first evaluation showed that the earlier rail path was too indirect.
             </p>
           </article>
         </div>
@@ -129,7 +129,7 @@
             <h2>Fixed-hub hub-and-spoke with sparse gap fill.</h2>
           </div>
           <p>
-            This initial version connects fixed hubs through a strategic backbone, routes terminals to their nearest hub as direct spokes, and adds augmenting links where the network produces large detours. It is useful as a baseline because it is transparent, but it can produce competing radial spokes in dense regions.
+            This initial version connects fixed hubs through a strategic backbone, routes terminals to their nearest hub as direct spokes, and adds augmenting links where the network produces large detours. It is useful as a transparent baseline, but it can produce competing radial spokes in dense regions and can miss some important city-pair corridors, such as the later Denver–Phoenix priority connection.
           </p>
         </div>
         <div class="map-card method-card">
@@ -145,7 +145,7 @@
             <h2>Hierarchical backbone–feeder construction.</h2>
           </div>
           <p>
-            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. The result should be easier to interpret as a rail system: major corridors remain visible, local access becomes more corridor-like, and fallback spokes only remain where the feeder tree would create excessive detours.
+            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. The result should be easier to interpret as a rail system: major corridors remain visible, local access becomes more corridor-like, and fallback spokes only remain where the feeder tree would create excessive detours. It also includes a Denver–Phoenix flight-corridor priority link, routed through a highway-preferred path, after the corridor evaluation showed that the earlier network served that air market poorly.
           </p>
         </div>
         <div class="map-card method-card">
@@ -159,7 +159,7 @@
           <span class="section-label">How to read the comparison</span>
           <h2>The second method changes the spoke logic, not the whole project.</h2>
           <p>
-            Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, then restores direct links only where the tree becomes too indirect.
+            Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, then restores direct links only where the tree becomes too indirect. The second map also shows the post-evaluation priority link for Denver–Phoenix, which illustrates how the framework can use poor-rated flight corridors to reveal missing strategic rail connections.
           </p>
         </article>
         <article class="panel corridor-panel">

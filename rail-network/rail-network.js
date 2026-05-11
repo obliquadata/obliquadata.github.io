@@ -3,8 +3,8 @@ const DATA_PATH = "data/";
 const BASELINE_CONFIG = {
   mapId: "railMapBaseline",
   legendId: "legendBaseline",
-  metadata: "metadata.json",
-  edges: "network_edges_simplified.geojson",
+  metadata: "metadata_method1.json",
+  edges: "network_edges_method1_simplified.geojson",
   hubs: "fixed_hubs.geojson",
   junctions: "network_junctions_sample.geojson",
   corridors: "flight_corridors_enriched.json",
@@ -15,8 +15,8 @@ const BASELINE_CONFIG = {
 const V3_CONFIG = {
   mapId: "railMapV3",
   legendId: "legendV3",
-  metadata: "metadata_v3.json",
-  edges: "network_edges_v3_simplified.geojson",
+  metadata: "metadata_method2.json",
+  edges: "network_edges_method2_simplified.geojson",
   hubs: "fixed_hubs_v3.geojson",
   junctions: "network_junctions_v3_sample.geojson",
   corridors: "flight_corridors_v3_enriched.json",
@@ -48,7 +48,7 @@ const displayNames = {
   spoke: "Direct spokes",
   spoke_fallback: "Fallback spokes",
   augment: "Gap-fill / augmenting links",
-  forced_flight_corridor: "Flight-corridor priority links"
+  forced_flight_corridor: "Flight-corridor priority links (DEN–PHX)"
 };
 
 function formatNumber(value, digits = 0) {
@@ -221,10 +221,23 @@ async function initRailMap(config) {
 
   function ensureLayer(edgeType) {
     if (layersByType[edgeType]) return layersByType[edgeType];
+    const isPriorityLink = edgeType === "forced_flight_corridor";
     const layer = L.geoJSON(null, {
       style: () => styleForType(edgeType, colorByType),
-      interactive: false,
-      pane: (railStylesByType[edgeType] || commonRailStyle).pane || "railPane"
+      interactive: isPriorityLink,
+      pane: (railStylesByType[edgeType] || commonRailStyle).pane || "railPane",
+      onEachFeature: (feature, featureLayer) => {
+        if (!isPriorityLink) return;
+        const p = feature.properties || {};
+        const pair = [p.airport_a, p.airport_b].filter(Boolean).join("–") || "Priority link";
+        const flights = Number.isFinite(Number(p.flights_per_day)) ? formatNumber(p.flights_per_day) : "—";
+        featureLayer.bindPopup(`
+          <strong class="map-popup-title">Flight-corridor priority link</strong>
+          <div>${pair}</div>
+          <div>Added after the flight-corridor evaluation identified an indirect rail path.</div>
+          <div>Approx. flights/day in evaluated corridor: <strong>${flights}</strong></div>
+        `);
+      }
     });
     layersByType[edgeType] = layer;
     overlayOrder.push(edgeType);
