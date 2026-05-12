@@ -10,7 +10,7 @@ const BASELINE_CONFIG = {
   corridors: "flight_corridors_enriched.json",
   metricPrefix: "baseline",
   title: "Method 1",
-  defaultEdgeTypes: ["hub_backbone", "augment"],
+  defaultEdgeTypes: ["hub_backbone", "spoke", "spoke_fallback", "augment"],
   showJunctionsByDefault: false,
   showCorridorsByDefault: false
 };
@@ -25,7 +25,7 @@ const V3_CONFIG = {
   corridors: "flight_corridors_v3_enriched.json",
   metricPrefix: "v3",
   title: "Method 2",
-  defaultEdgeTypes: ["hub_backbone", "feeder_tree"],
+  defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
   showJunctionsByDefault: false,
   showCorridorsByDefault: false
 };
