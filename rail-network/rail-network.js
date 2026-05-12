@@ -9,7 +9,10 @@ const BASELINE_CONFIG = {
   junctions: "network_junctions_sample.geojson",
   corridors: "flight_corridors_enriched.json",
   metricPrefix: "baseline",
-  title: "Method 1"
+  title: "Method 1",
+  defaultEdgeTypes: ["hub_backbone", "augment"],
+  showJunctionsByDefault: false,
+  showCorridorsByDefault: false
 };
 
 const V3_CONFIG = {
@@ -21,7 +24,10 @@ const V3_CONFIG = {
   junctions: "network_junctions_v3_sample.geojson",
   corridors: "flight_corridors_v3_enriched.json",
   metricPrefix: "v3",
-  title: "Method 2"
+  title: "Method 2",
+  defaultEdgeTypes: ["hub_backbone", "feeder_tree"],
+  showJunctionsByDefault: false,
+  showCorridorsByDefault: false
 };
 
 const commonRailStyle = { color: "#123f1a", weight: 3.0, opacity: 0.82, pane: "railPane" };
@@ -142,21 +148,14 @@ function arcPoints(a, b, bend = 0.18, steps = 48) {
   return points;
 }
 
-function addFlightCorridors(layerGroup, corridors) {
+function addFlightCorridors(layerGroup, corridors, renderer) {
   layerGroup.clearLayers();
   corridors.forEach((d, index) => {
     if (![d.a_lat, d.a_lon, d.b_lat, d.b_lon].every((x) => Number.isFinite(Number(x)))) return;
     const a = { lat: Number(d.a_lat), lon: Number(d.a_lon) };
     const b = { lat: Number(d.b_lat), lon: Number(d.b_lon) };
-    const line = L.polyline(arcPoints(a, b, index % 2 === 0 ? 0.16 : -0.16), corridorStyles[d.class] || corridorStyles.Good);
-    line.bindPopup(`
-      <strong class="map-popup-title">${d.airport_a}–${d.airport_b}</strong>
-      <div>${d.airport_a_name || d.airport_a} ↔ ${d.airport_b_name || d.airport_b}</div>
-      <div><strong>${formatNumber(d.flights_per_day)}</strong> flights/day</div>
-      <div>Rail distance: <strong>${formatNumber(d.rail_km, 0)} km</strong></div>
-      <div>Detour ratio: <strong>${formatNumber(d.detour_ratio, 2)}</strong></div>
-      <div>Class: <strong>${d.class}</strong></div>
-    `);
+    const style = { ...(corridorStyles[d.class] || corridorStyles.Good), renderer, interactive: false };
+    const line = L.polyline(arcPoints(a, b, index % 2 === 0 ? 0.16 : -0.16), style);
     line.addTo(layerGroup);
   });
 }
@@ -185,7 +184,15 @@ async function initRailMap(config) {
   const mapElement = document.getElementById(config.mapId);
   if (!mapElement) return null;
 
-  const map = L.map(config.mapId, { scrollWheelZoom: false, worldCopyJump: true }).setView([39.5, -98.35], 4);
+  const canvasRenderer = L.canvas({ padding: 0.5 });
+  const map = L.map(config.mapId, {
+    scrollWheelZoom: false,
+    worldCopyJump: true,
+    preferCanvas: true,
+    renderer: canvasRenderer,
+    zoomAnimation: false,
+    markerZoomAnimation: false
+  }).setView([39.5, -98.35], 4);
   makePanes(map);
 
   const { positron, voyager } = makeTileLayers();
@@ -193,6 +200,7 @@ async function initRailMap(config) {
 
   const layersByType = {};
   const hubLayer = L.geoJSON(null, {
+    renderer: canvasRenderer,
     pane: "hubPane",
     pointToLayer: (_feature, latlng) => L.circleMarker(latlng, {
       pane: "hubPane", radius: 8, color: "#123f1a", weight: 2.4,
@@ -204,6 +212,8 @@ async function initRailMap(config) {
   });
 
   const junctionLayer = L.geoJSON(null, {
+    renderer: canvasRenderer,
+    interactive: false,
     pane: "junctionPane",
     pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
       pane: "junctionPane", radius: 2.5, color: "#47634d", fillColor: "#47634d",
@@ -223,8 +233,9 @@ async function initRailMap(config) {
     if (layersByType[edgeType]) return layersByType[edgeType];
     const isPriorityLink = edgeType === "forced_flight_corridor";
     const layer = L.geoJSON(null, {
+      renderer: canvasRenderer,
       style: () => styleForType(edgeType, colorByType),
-      interactive: isPriorityLink,
+      interactive: false,
       pane: (railStylesByType[edgeType] || commonRailStyle).pane || "railPane",
       onEachFeature: (feature, featureLayer) => {
         if (!isPriorityLink) return;
@@ -234,7 +245,7 @@ async function initRailMap(config) {
         featureLayer.bindPopup(`
           <strong class="map-popup-title">Flight-corridor priority link</strong>
           <div>${pair}</div>
-          <div>Added only for remaining poor-rated corridors not already addressed by the structural hub refinement.</div>
+          <div>Added after the flight-corridor evaluation identified an indirect rail path.</div>
           <div>Approx. flights/day in evaluated corridor: <strong>${flights}</strong></div>
         `);
       }
@@ -277,15 +288,21 @@ async function initRailMap(config) {
   const preferredOrder = ["spoke", "feeder_tree", "spoke_fallback", "augment", "forced_flight_corridor", "hub_backbone"];
   const edgeTypes = [...preferredOrder.filter((t) => grouped[t]), ...Object.keys(grouped).filter((t) => !preferredOrder.includes(t))];
 
+  const defaultEdgeTypes = new Set(config.defaultEdgeTypes || edgeTypes);
+
   edgeTypes.forEach((type) => {
     const layer = ensureLayer(type);
     layer.addData(featureCollection(grouped[type]));
-    layer.addTo(map);
+    if (defaultEdgeTypes.has(type)) {
+      layer.addTo(map);
+    }
   });
 
   hubLayer.addData(hubs).addTo(map);
-  junctionLayer.addData(junctions).addTo(map);
-  addFlightCorridors(flightLayer, corridors);
+  junctionLayer.addData(junctions);
+  if (config.showJunctionsByDefault) junctionLayer.addTo(map);
+  addFlightCorridors(flightLayer, corridors, canvasRenderer);
+  if (config.showCorridorsByDefault) flightLayer.addTo(map);
 
   const overlays = {};
   edgeTypes.forEach((type) => { overlays[displayNames[type] || type] = layersByType[type]; });
@@ -293,7 +310,7 @@ async function initRailMap(config) {
   overlays["Sampled junctions"] = junctionLayer;
   overlays["Evaluated air corridors"] = flightLayer;
 
-  L.control.layers({ "Light basemap": positron, "Voyager basemap": voyager }, overlays, { collapsed: false }).addTo(map);
+  L.control.layers({ "Light basemap": positron, "Voyager basemap": voyager }, overlays, { collapsed: true }).addTo(map);
 
   const railColorControl = L.control({ position: "topright" });
   railColorControl.onAdd = () => {

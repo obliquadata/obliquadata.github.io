@@ -1,11 +1,16 @@
-# Rail network comparison page
+# Rail network project page
 
-This package updates Map 2 with the latest Phoenix-hub Method 2 export.
+This package contains the updated rail-network page with two interactive maps:
 
-Map 2 now loads:
-- `data/network_edges_method2_simplified.geojson`
+1. Method 1: fixed-hub hub-and-spoke with sparse gap fill.
+2. Method 2: hierarchical backbone–feeder construction.
+
+The Method 2 map reads these files:
+
+- `data/network_edges_v3_simplified.geojson`
+- `data/network_junctions_v3_sample.geojson`
 - `data/fixed_hubs_v3.geojson`
-- `data/metadata_method2.json`
+- `data/metadata_v3.json`
 - `data/flight_corridors_v3_enriched.json`
 
-The latest Method 2 adds Phoenix as a fixed Southwest hub, incorporates Denver–Phoenix into the hub backbone, routes that corridor through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff, and removes Key West from the terminal set.
+If you regenerate the Version 3 network, replace those files and keep the filenames the same.

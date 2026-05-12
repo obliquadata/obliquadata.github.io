@@ -7,30 +7,6 @@
   "crs_nodes_export": "EPSG:4326",
   "graph_nodes": 51948,
   "graph_edges": 52023,
-  "web_simplification": {
-    "enabled": true,
-    "tolerance_m": 15000,
-    "min_line_length_m": 5000,
-    "dissolve_by_edge_type": true,
-    "web_node_min_degree": 3,
-    "full_edge_feature_count": 74237,
-    "web_edge_feature_count": 1821,
-    "note": "Only the web GeoJSON edge export is simplified and dissolved. The GeoPackage full-detail layer and GraphML preserve the full network."
-  },
-  "edge_types_present_full": [
-    "augment",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
-  ],
-  "edge_types_present_web": [
-    "augment",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
-  ],
   "edge_types_present": [
     "augment",
     "feeder_tree",
@@ -143,15 +119,25 @@
     "key_west_removed_from_terminal_set": true
   },
   "files": {
-    "edges_geojson": "network_exports_phoenix_hub_v3\\network_edges_method2.geojson",
-    "edges_geojson_website_alias": "network_exports_phoenix_hub_v3\\network_edges_v3_simplified.geojson",
-    "hubs_geojson": "network_exports_phoenix_hub_v3\\fixed_hubs_method2.geojson",
-    "hubs_geojson_website_alias": "network_exports_phoenix_hub_v3\\fixed_hubs_v3.geojson",
-    "nodes_geojson": "network_exports_phoenix_hub_v3\\network_nodes_method2.geojson",
-    "metadata_json": "network_exports_phoenix_hub_v3\\network_metadata_method2.json",
-    "metadata_json_website_alias": "network_exports_phoenix_hub_v3\\metadata_v3.json",
-    "flight_csv": "network_exports_phoenix_hub_v3\\flight_corridor_rail_service_evaluation_method2.csv",
-    "geopackage": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.gpkg",
-    "graphml": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.graphml"
-  }
+    "edges_geojson_website": "data/network_edges_method2_simplified.geojson",
+    "edges_geojson_v3_alias": "data/network_edges_v3_simplified.geojson",
+    "hubs_geojson_website": "data/fixed_hubs_v3.geojson",
+    "metadata_json_website": "data/metadata_v3.json",
+    "flight_corridors_json": "data/flight_corridors_v3_enriched.json"
+  },
+  "web_simplification": {
+    "enabled": true,
+    "tolerance_m": 15000,
+    "min_line_length_m": 5000,
+    "dissolve_by_edge_type": true,
+    "web_edge_feature_count": 1821,
+    "note": "Website GeoJSON linework was dissolved by edge type and simplified to improve Leaflet performance. Full-detail analysis files remain separate."
+  },
+  "edge_types_present_web": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ]
 }

@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "fixed_hubs_method2",
+"name": "fixed_hubs_v3",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "name": "Chicago", "lon": -87.6298, "lat": 41.8781 }, "geometry": { "type": "Point", "coordinates": [ -87.6298, 41.8781 ] } },
