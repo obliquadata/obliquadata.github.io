@@ -24,5 +24,13 @@
     "Washington DC",
     "Orlando",
     "Salt Lake City"
-  ]
+  ],
+  "web_simplification": {
+    "enabled": true,
+    "approach": "per-feature explode and simplify; no dissolve",
+    "tolerance_m": 10000,
+    "min_line_length_m": 2500,
+    "feature_count_web": 6211,
+    "note": "Balanced version to preserve route continuity while reducing Leaflet load."
+  }
 }

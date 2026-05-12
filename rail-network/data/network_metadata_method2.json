@@ -1,6 +1,6 @@
 {
   "method_label": "Method 2: Hierarchical backbone\u2013feeder construction with Phoenix hub refinement",
-  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set. The web map uses simplified and dissolved linework to improve browser performance while retaining the broad road-following shape of the corridors.",
+  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set.",
   "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
@@ -119,25 +119,23 @@
     "key_west_removed_from_terminal_set": true
   },
   "files": {
-    "edges_geojson_website": "data/network_edges_method2_simplified.geojson",
-    "edges_geojson_v3_alias": "data/network_edges_v3_simplified.geojson",
-    "hubs_geojson_website": "data/fixed_hubs_v3.geojson",
-    "metadata_json_website": "data/metadata_v3.json",
-    "flight_corridors_json": "data/flight_corridors_v3_enriched.json"
+    "edges_geojson": "network_exports_phoenix_hub_v3\\network_edges_method2.geojson",
+    "edges_geojson_website_alias": "network_exports_phoenix_hub_v3\\network_edges_v3_simplified.geojson",
+    "hubs_geojson": "network_exports_phoenix_hub_v3\\fixed_hubs_method2.geojson",
+    "hubs_geojson_website_alias": "network_exports_phoenix_hub_v3\\fixed_hubs_v3.geojson",
+    "nodes_geojson": "network_exports_phoenix_hub_v3\\network_nodes_method2.geojson",
+    "metadata_json": "network_exports_phoenix_hub_v3\\network_metadata_method2.json",
+    "metadata_json_website_alias": "network_exports_phoenix_hub_v3\\metadata_v3.json",
+    "flight_csv": "network_exports_phoenix_hub_v3\\flight_corridor_rail_service_evaluation_method2.csv",
+    "geopackage": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.gpkg",
+    "graphml": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.graphml"
   },
   "web_simplification": {
     "enabled": true,
-    "tolerance_m": 15000,
-    "min_line_length_m": 5000,
-    "dissolve_by_edge_type": true,
-    "web_edge_feature_count": 1821,
-    "note": "Website GeoJSON linework was dissolved by edge type and simplified to improve Leaflet performance. Full-detail analysis files remain separate."
-  },
-  "edge_types_present_web": [
-    "augment",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
-  ]
+    "approach": "per-feature explode and simplify; no dissolve",
+    "tolerance_m": 10000,
+    "min_line_length_m": 2500,
+    "feature_count_web": 7562,
+    "note": "Balanced version to preserve route continuity while reducing Leaflet load. The full GeoPackage/GraphML remain full-detail."
+  }
 }

@@ -190,7 +190,7 @@ async function initRailMap(config) {
     worldCopyJump: true,
     preferCanvas: true,
     renderer: canvasRenderer,
-    zoomAnimation: false,
+    zoomAnimation: true,
     markerZoomAnimation: false
   }).setView([39.5, -98.35], 4);
   makePanes(map);
@@ -326,7 +326,8 @@ async function initRailMap(config) {
   };
   railColorControl.addTo(map);
 
-  map.on("baselayerchange overlayadd overlayremove zoomend moveend", enforceOverlayOrder);
+  map.on("baselayerchange overlayadd overlayremove", enforceOverlayOrder);
+  map.on("zoomend", () => requestAnimationFrame(enforceOverlayOrder));
 
   applyRailColorMode(true);
   enforceOverlayOrder();

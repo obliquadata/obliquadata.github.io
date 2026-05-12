@@ -1,16 +1,9 @@
-# Rail network project page
+# Rail network website package - balanced map data
 
-This package contains the updated rail-network page with two interactive maps:
+This version replaces the overly-dissolved map layers with per-feature simplified GeoJSON.
 
-1. Method 1: fixed-hub hub-and-spoke with sparse gap fill.
-2. Method 2: hierarchical backbone–feeder construction.
+Map 1 simplification: tolerance 10,000 m; minimum line length 2,500 m; web features 6,211; file size 1.49 MB.
 
-The Method 2 map reads these files:
+Map 2 simplification: tolerance 10,000 m; minimum line length 2,500 m; web features 7,562; file size 2.21 MB.
 
-- `data/network_edges_v3_simplified.geojson`
-- `data/network_junctions_v3_sample.geojson`
-- `data/fixed_hubs_v3.geojson`
-- `data/metadata_v3.json`
-- `data/flight_corridors_v3_enriched.json`
-
-If you regenerate the Version 3 network, replace those files and keep the filenames the same.
+Unlike the previous ultra-light export, this version does not dissolve by edge type, so the routes should not visually break into overly coarse pieces. Leaflet Canvas rendering remains enabled, and heavier layers are still off by default.
