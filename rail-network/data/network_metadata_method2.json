@@ -1,0 +1,31 @@
+{
+  "method_label": "Method 2: Hierarchical backbone\u2013feeder construction",
+  "method_description": "Hierarchical backbone\u2013feeder construction with flight-corridor priority links. Direct hub spokes are replaced where suitable by constrained regional feeder trees. Direct fallback spokes and flight-corridor priority links are retained where needed to avoid excessive detours.",
+  "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
+  "crs_network_edges": "EPSG:3857",
+  "graph_nodes": 51948,
+  "graph_edges": 52023,
+  "edge_types_present": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "hub_names": [
+    "Chicago",
+    "Atlanta",
+    "Denver",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Los Angeles",
+    "San Francisco",
+    "Seattle",
+    "New York",
+    "Washington DC",
+    "Orlando",
+    "Salt Lake City",
+    "Phoenix"
+  ]
+}
