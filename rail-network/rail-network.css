@@ -229,6 +229,13 @@
   box-shadow: 0 0 0 5px rgba(18,63,26,0.15);
 }
 
+.legend-dot.access-anchor {
+  border-radius: 4px;
+  background: #fffdf3;
+  border: 2px solid #31572c;
+  box-shadow: 0 0 0 4px rgba(49,87,44,0.12);
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1fr);
@@ -665,7 +672,7 @@
   }
 }
 
-/* Version 4 additions */
+/* Three-map comparison additions */
 .method-explainer {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }

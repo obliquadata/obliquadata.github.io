@@ -1,0 +1,371 @@
+{
+  "method_label": "Method 3: Corridor-aware backbone\u2013feeder construction",
+  "method_description": "Method 3 extends the manually guided backbone\u2013feeder network by treating intermediate waypoint cities along hub-backbone corridors as corridor access anchors. These anchors are not full fixed hubs, but they allow nearby terminals to feed into the nearest trunk corridor instead of being routed all the way to the nearest fixed hub. This is intended to reduce competing radial spokes and to produce a cleaner trunk-and-branch rail network. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio is split through Phoenix, and hub-backbone corridors are manually guided through selected major cities. Key West is removed from the terminal set.",
+  "network_version": "method3_corridor_aware_manual_backbone_phoenix_hub_feeder_gapfill_with_remaining_forced_corridors",
+  "crs_network_edges_source": "EPSG:3857",
+  "crs_network_edges_export": "EPSG:4326",
+  "crs_nodes_export": "EPSG:4326",
+  "graph_nodes": 53341,
+  "graph_edges": 53391,
+  "web_simplification": {
+    "enabled": true,
+    "method": "per-feature geometry simplification only",
+    "tolerance_m": 2500,
+    "min_line_length_m": 0,
+    "dissolve_by_edge_type": false,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 63889,
+    "web_edge_feature_count": 63889,
+    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+  },
+  "edge_types_present_full": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "fixed_hub_names": [
+    "Chicago",
+    "Atlanta",
+    "Denver",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Los Angeles",
+    "San Francisco",
+    "Seattle",
+    "New York",
+    "Washington DC",
+    "Orlando",
+    "Salt Lake City",
+    "Phoenix"
+  ],
+  "build_anchor_names": [
+    "Chicago",
+    "Atlanta",
+    "Denver",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Los Angeles",
+    "San Francisco",
+    "Seattle",
+    "New York",
+    "Washington DC",
+    "Orlando",
+    "Salt Lake City",
+    "Phoenix",
+    "Access: Portland",
+    "Access: Eugene",
+    "Access: Medford",
+    "Access: Redding",
+    "Access: Chico",
+    "Access: Yuba City",
+    "Access: Sacramento",
+    "Access: San Jose",
+    "Access: Gilroy",
+    "Access: Madera",
+    "Access: Fresno",
+    "Access: Kings/Tulare",
+    "Access: Bakersfield",
+    "Access: Reno",
+    "Access: Evanston",
+    "Access: Rock Springs",
+    "Access: Rawlins",
+    "Access: Laramie",
+    "Access: Cheyenne",
+    "Access: Riverside",
+    "Access: Palm Springs",
+    "Access: Tucson",
+    "Access: Las Cruces",
+    "Access: El Paso",
+    "Access: Colorado Springs",
+    "Access: Pueblo",
+    "Access: Trinidad",
+    "Access: Santa Fe",
+    "Access: Albuquerque",
+    "Access: Flagstaff",
+    "Access: Clovis",
+    "Access: Lubbock",
+    "Access: Abilene",
+    "Access: Fort Worth",
+    "Access: Austin",
+    "Access: Waco",
+    "Access: College Station",
+    "Access: Beaumont",
+    "Access: Lafayette",
+    "Access: Baton Rouge",
+    "Access: New Orleans",
+    "Access: Mobile",
+    "Access: Birmingham",
+    "Access: Gainesville",
+    "Access: Valdosta",
+    "Access: Macon",
+    "Access: Charlotte",
+    "Access: Greensboro",
+    "Access: Richmond",
+    "Access: Oklahoma City",
+    "Access: Tulsa",
+    "Access: St. Louis",
+    "Access: Springfield",
+    "Access: Urbana",
+    "Access: Lincoln",
+    "Access: Omaha",
+    "Access: Des Moines",
+    "Access: Davenport",
+    "Access: Indianapolis",
+    "Access: Louisville",
+    "Access: Nashville",
+    "Access: Huntsville",
+    "Access: Fort Wayne",
+    "Access: Columbus",
+    "Access: Parkersburg",
+    "Access: Morgantown",
+    "Access: Cumberland",
+    "Access: Martinsburg",
+    "Access: Baltimore",
+    "Access: Wilmington",
+    "Access: Philadelphia",
+    "Access: Trenton"
+  ],
+  "corridor_access_anchor_names": [
+    "Abilene",
+    "Albuquerque",
+    "Austin",
+    "Bakersfield",
+    "Baltimore",
+    "Baton Rouge",
+    "Beaumont",
+    "Birmingham",
+    "Charlotte",
+    "Cheyenne",
+    "Chico",
+    "Clovis",
+    "College Station",
+    "Colorado Springs",
+    "Columbus",
+    "Cumberland",
+    "Davenport",
+    "Des Moines",
+    "El Paso",
+    "Eugene",
+    "Evanston",
+    "Flagstaff",
+    "Fort Wayne",
+    "Fort Worth",
+    "Fresno",
+    "Gainesville",
+    "Gilroy",
+    "Greensboro",
+    "Huntsville",
+    "Indianapolis",
+    "Kings/Tulare",
+    "Lafayette",
+    "Laramie",
+    "Las Cruces",
+    "Lincoln",
+    "Louisville",
+    "Lubbock",
+    "Macon",
+    "Madera",
+    "Martinsburg",
+    "Medford",
+    "Mobile",
+    "Morgantown",
+    "Nashville",
+    "New Orleans",
+    "Oklahoma City",
+    "Omaha",
+    "Palm Springs",
+    "Parkersburg",
+    "Philadelphia",
+    "Portland",
+    "Pueblo",
+    "Rawlins",
+    "Redding",
+    "Reno",
+    "Richmond",
+    "Riverside",
+    "Rock Springs",
+    "Sacramento",
+    "San Jose",
+    "Santa Fe",
+    "Springfield",
+    "St. Louis",
+    "Trenton",
+    "Trinidad",
+    "Tucson",
+    "Tulsa",
+    "Urbana",
+    "Valdosta",
+    "Waco",
+    "Wilmington",
+    "Yuba City"
+  ],
+  "corridor_access_anchor_count": 72,
+  "manual_links_used": [
+    [
+      "Seattle",
+      "San Francisco"
+    ],
+    [
+      "San Francisco",
+      "Los Angeles"
+    ],
+    [
+      "San Francisco",
+      "Salt Lake City"
+    ],
+    [
+      "Salt Lake City",
+      "Denver"
+    ],
+    [
+      "Houston",
+      "San Antonio"
+    ],
+    [
+      "San Antonio",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Atlanta"
+    ],
+    [
+      "Orlando",
+      "Atlanta"
+    ],
+    [
+      "Dallas",
+      "Chicago"
+    ],
+    [
+      "Denver",
+      "Dallas"
+    ],
+    [
+      "Denver",
+      "Chicago"
+    ],
+    [
+      "Chicago",
+      "Atlanta"
+    ],
+    [
+      "Chicago",
+      "Washington DC"
+    ],
+    [
+      "Atlanta",
+      "Washington DC"
+    ],
+    [
+      "Washington DC",
+      "New York"
+    ],
+    [
+      "Denver",
+      "Phoenix"
+    ],
+    [
+      "Los Angeles",
+      "Phoenix"
+    ],
+    [
+      "Phoenix",
+      "San Antonio"
+    ]
+  ],
+  "method_3_corridor_access": {
+    "enabled": true,
+    "description": "Manual hub-backbone waypoint cities are added to the hub/anchor input during network construction, allowing feeder trees to connect to trunk corridor access points. These anchors are exported separately and are not treated as fixed hubs in the website map.",
+    "anchor_prefix": "Access: ",
+    "minimum_distance_from_fixed_hub_km": 25.0,
+    "anchor_count": 72
+  },
+  "manual_waypoints": {
+    "enabled": true,
+    "directional_entries": 38,
+    "los_angeles_san_antonio_split_via_phoenix": true,
+    "houston_atlanta_route": [
+      "Beaumont",
+      "Lafayette",
+      "Baton Rouge",
+      "New Orleans",
+      "Mobile",
+      "Birmingham"
+    ],
+    "salt_lake_city_denver_route": [
+      "Evanston",
+      "Rock Springs",
+      "Rawlins",
+      "Laramie",
+      "Cheyenne"
+    ],
+    "denver_dallas_route": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Clovis",
+      "Lubbock",
+      "Abilene",
+      "Fort Worth"
+    ],
+    "denver_phoenix_route": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Albuquerque",
+      "Flagstaff"
+    ]
+  },
+  "phoenix_hub_refinement": {
+    "phoenix_added_as_fixed_hub": true,
+    "denver_phoenix_handled_as": "hub_backbone",
+    "denver_phoenix_waypoints": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Albuquerque",
+      "Flagstaff"
+    ],
+    "den_phx_excluded_from_forced_flight_corridor_links": true,
+    "key_west_removed_from_terminal_set": true
+  },
+  "files": {
+    "edges_geojson": "network_exports_method3_corridor_aware\\network_edges_method3.geojson",
+    "edges_geojson_website_alias": "network_exports_method3_corridor_aware\\network_edges_method3_simplified.geojson",
+    "hubs_geojson": "network_exports_method3_corridor_aware\\fixed_hubs_method3.geojson",
+    "hubs_geojson_website_alias": "network_exports_method3_corridor_aware\\fixed_hubs_method3.geojson",
+    "corridor_access_anchors_geojson": "network_exports_method3_corridor_aware\\corridor_access_anchors_method3.geojson",
+    "nodes_geojson": "network_exports_method3_corridor_aware\\network_nodes_method3.geojson",
+    "metadata_json": "network_exports_method3_corridor_aware\\network_metadata_method3.json",
+    "metadata_json_website_alias": "network_exports_method3_corridor_aware\\metadata_method3.json",
+    "flight_csv": "network_exports_method3_corridor_aware\\flight_corridor_rail_service_evaluation_method3.csv",
+    "geopackage": "network_exports_method3_corridor_aware\\contiguous_us_rail_network_method3_corridor_aware.gpkg",
+    "graphml": "network_exports_method3_corridor_aware\\contiguous_us_rail_network_method3_corridor_aware.graphml"
+  }
+}

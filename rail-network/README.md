@@ -1,9 +1,16 @@
-# Rail network website package - balanced map data
+# Rail network website package - Method 3 corridor-aware update
 
-This version replaces the overly-dissolved map layers with per-feature simplified GeoJSON.
+This package replaces the previous Version 4 third map with Method 3.
 
-Map 1 simplification: tolerance 10,000 m; minimum line length 2,500 m; web features 6,211; file size 1.49 MB.
+Method 3 keeps the manually guided hub-backbone corridors, but treats the intermediate waypoint cities along those corridors as corridor access anchors. These anchors are not fixed hubs, but they allow nearby terminals to feed into the nearest trunk corridor before moving through the wider network.
 
-Map 2 simplification: tolerance 10,000 m; minimum line length 2,500 m; web features 7,562; file size 2.21 MB.
+Key data files for the third map:
 
-Unlike the previous ultra-light export, this version does not dissolve by edge type, so the routes should not visually break into overly coarse pieces. Leaflet Canvas rendering remains enabled, and heavier layers are still off by default.
+- `data/network_edges_method3_optimized.geojson`
+- `data/metadata_method3.json`
+- `data/fixed_hubs_method3.geojson`
+- `data/corridor_access_anchors_method3.geojson`
+- `data/network_junctions_method3_sample.geojson`
+- `data/flight_corridors_method3_enriched.json`
+
+The Method 3 web edge file is optimized for Leaflet display by safely merging and simplifying road-derived linework while preserving edge-type styling. Corridor access anchors are available as an optional map layer and are off by default to avoid visual clutter.

@@ -30,18 +30,20 @@ const V3_CONFIG = {
   showCorridorsByDefault: false
 };
 
-const V4_CONFIG = {
+const METHOD3_CONFIG = {
   mapId: "railMapV4",
   legendId: "legendV4",
-  metadata: "metadata_v4.json",
-  edges: "network_edges_v4_optimized.geojson",
-  hubs: "fixed_hubs_v4.geojson",
-  junctions: "network_junctions_v4_sample.geojson",
-  corridors: "flight_corridors_v4_enriched.json",
-  metricPrefix: "v4",
-  title: "Version 4",
+  metadata: "metadata_method3.json",
+  edges: "network_edges_method3_optimized.geojson",
+  hubs: "fixed_hubs_method3.geojson",
+  accessAnchors: "corridor_access_anchors_method3.geojson",
+  junctions: "network_junctions_method3_sample.geojson",
+  corridors: "flight_corridors_method3_enriched.json",
+  metricPrefix: "method3",
+  title: "Method 3",
   defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
   showJunctionsByDefault: false,
+  showAccessAnchorsByDefault: false,
   showCorridorsByDefault: false
 };
 
@@ -109,6 +111,8 @@ function makePanes(map) {
   map.getPane("railBackbonePane").style.zIndex = 510;
   map.createPane("junctionPane");
   map.getPane("junctionPane").style.zIndex = 620;
+  map.createPane("accessPane");
+  map.getPane("accessPane").style.zIndex = 635;
   map.createPane("hubPane");
   map.getPane("hubPane").style.zIndex = 650;
 }
@@ -240,6 +244,20 @@ async function initRailMap(config) {
     }
   });
 
+  const accessAnchorLayer = L.geoJSON(null, {
+    renderer: canvasRenderer,
+    pane: "accessPane",
+    pointToLayer: (_feature, latlng) => L.circleMarker(latlng, {
+      pane: "accessPane", radius: 4.6, color: "#31572c", weight: 1.4,
+      fillColor: "#fffdf3", fillOpacity: 0.92, opacity: 0.9
+    }),
+    onEachFeature: (feature, layer) => {
+      const p = feature.properties || {};
+      const name = p.access_name || String(p.name || "").replace(/^Access:\s*/, "") || "Corridor access anchor";
+      layer.bindPopup(`<strong class="map-popup-title">${name}</strong>Corridor access anchor used by Method 3 feeder-tree assignment, not a fixed hub.`);
+    }
+  });
+
   const flightLayer = L.layerGroup();
 
   let colorByType = true;
@@ -283,13 +301,17 @@ async function initRailMap(config) {
     });
     bringGroupToFront(map, flightLayer);
     bringGroupToFront(map, junctionLayer);
+    bringGroupToFront(map, accessAnchorLayer);
     bringGroupToFront(map, hubLayer);
   }
 
-  const [metadata, edges, hubs, junctions, corridors] = await Promise.all([
+  const [metadata, edges, hubs, accessAnchors, junctions, corridors] = await Promise.all([
     fetch(`${DATA_PATH}${config.metadata}`).then((r) => r.json()).catch(() => ({})),
     fetch(`${DATA_PATH}${config.edges}`).then((r) => r.json()),
     fetch(`${DATA_PATH}${config.hubs}`).then((r) => r.json()),
+    config.accessAnchors
+      ? fetch(`${DATA_PATH}${config.accessAnchors}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] }))
+      : Promise.resolve({ type: "FeatureCollection", features: [] }),
     fetch(`${DATA_PATH}${config.junctions}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] })),
     fetch(`${DATA_PATH}${config.corridors}`).then((r) => r.json()).catch(() => [])
   ]);
@@ -315,6 +337,8 @@ async function initRailMap(config) {
   });
 
   hubLayer.addData(hubs).addTo(map);
+  accessAnchorLayer.addData(accessAnchors);
+  if (config.showAccessAnchorsByDefault) accessAnchorLayer.addTo(map);
   junctionLayer.addData(junctions);
   if (config.showJunctionsByDefault) junctionLayer.addTo(map);
   addFlightCorridors(flightLayer, corridors, canvasRenderer);
@@ -323,6 +347,7 @@ async function initRailMap(config) {
   const overlays = {};
   edgeTypes.forEach((type) => { overlays[displayNames[type] || type] = layersByType[type]; });
   overlays["Fixed hubs"] = hubLayer;
+  if (config.accessAnchors) overlays["Corridor access anchors"] = accessAnchorLayer;
   overlays["Sampled junctions"] = junctionLayer;
   overlays["Evaluated air corridors"] = flightLayer;
 
@@ -362,26 +387,28 @@ async function initRailMap(config) {
 }
 
 async function init() {
-  const [baseline, v3, v4] = await Promise.all([
+  const [baseline, v3, method3] = await Promise.all([
     initRailMap(BASELINE_CONFIG),
     initRailMap(V3_CONFIG),
-    initRailMap(V4_CONFIG)
+    initRailMap(METHOD3_CONFIG)
   ]);
 
-  const latest = v4 || v3 || baseline;
+  const latest = method3 || v3 || baseline;
   if (latest?.metadata) {
     document.getElementById("metric-nodes").textContent = formatNumber(latest.metadata.graph_nodes);
     document.getElementById("metric-edges").textContent = formatNumber(latest.metadata.graph_edges);
-    document.getElementById("metric-hubs").textContent = formatNumber(latest.metadata.hub_names?.length || 14);
+    document.getElementById("metric-hubs").textContent = formatNumber(
+      latest.metadata.fixed_hub_names?.length || latest.metadata.hub_names?.length || 14
+    );
   }
   document.getElementById("metric-corridors").textContent = formatNumber(latest?.corridors?.length || 0);
 
   const baselineCorridors = baseline?.corridors || [];
   const v3Corridors = v3?.corridors || [];
-  const v4Corridors = v4?.corridors || [];
+  const method3Corridors = method3?.corridors || [];
   renderCorridorTable("corridorRowsMethod1", baselineCorridors);
   renderCorridorTable("corridorRowsMethod2", v3Corridors);
-  renderCorridorTable("corridorRowsV4", v4Corridors);
+  renderCorridorTable("corridorRowsV4", method3Corridors);
 
   const method1Filter = document.getElementById("corridorFilterMethod1");
   method1Filter?.addEventListener("change", () => {
@@ -393,9 +420,9 @@ async function init() {
     renderCorridorTable("corridorRowsMethod2", v3Corridors, method2Filter.value);
   });
 
-  const v4Filter = document.getElementById("corridorFilterV4");
-  v4Filter?.addEventListener("change", () => {
-    renderCorridorTable("corridorRowsV4", v4Corridors, v4Filter.value);
+  const method3Filter = document.getElementById("corridorFilterV4");
+  method3Filter?.addEventListener("change", () => {
+    renderCorridorTable("corridorRowsV4", method3Corridors, method3Filter.value);
   });
 }
 
