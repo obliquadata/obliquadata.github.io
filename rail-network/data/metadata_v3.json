@@ -1,6 +1,6 @@
 {
   "method_label": "Method 2: Hierarchical backbone\u2013feeder construction with Phoenix hub refinement",
-  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set. The web map uses simplified linework to improve browser performance while retaining the broad road-following shape of the corridors.",
+  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set. The web map uses simplified and dissolved linework to improve browser performance while retaining the broad road-following shape of the corridors.",
   "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
@@ -9,10 +9,28 @@
   "graph_edges": 52023,
   "web_simplification": {
     "enabled": true,
-    "tolerance_m": 6000,
-    "min_line_length_m": 1000,
-    "note": "Only the web GeoJSON edge export is simplified. The GeoPackage full-detail layer and GraphML preserve the full network."
+    "tolerance_m": 15000,
+    "min_line_length_m": 5000,
+    "dissolve_by_edge_type": true,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 74237,
+    "web_edge_feature_count": 1821,
+    "note": "Only the web GeoJSON edge export is simplified and dissolved. The GeoPackage full-detail layer and GraphML preserve the full network."
   },
+  "edge_types_present_full": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
   "edge_types_present": [
     "augment",
     "feeder_tree",
