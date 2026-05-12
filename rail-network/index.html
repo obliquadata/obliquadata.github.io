@@ -108,7 +108,7 @@
           <article>
             <h3>Stress test: flight-corridor evaluation</h3>
             <p>
-              After each network is built, high-frequency domestic air corridors are evaluated by comparing straight-line airport distances with shortest-path distances through the rail graph. In the latest method, this evaluation motivated a structural refinement: Phoenix is added as a fixed Southwest hub and the Denver–Phoenix backbone is routed via Albuquerque, rather than being treated as a post-hoc priority link. In the latest method, the Denver–Phoenix corridor is represented as a flight-corridor priority link after the first evaluation showed that the earlier rail path was too indirect.
+              After each network is built, high-frequency domestic air corridors are evaluated by comparing straight-line airport distances with shortest-path distances through the rail graph. In the latest method, this evaluation motivated a structural refinement: Phoenix is added as a fixed Southwest hub and the Denver–Phoenix backbone is routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff, rather than being treated as a post-hoc priority link.
             </p>
           </article>
         </div>
@@ -145,7 +145,7 @@
             <h2>Hierarchical backbone–feeder construction.</h2>
           </div>
           <p>
-            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. It also adds Phoenix as a fixed Southwest hub after the flight-corridor evaluation showed that Denver–Phoenix was poorly served by the earlier topology. Denver–Phoenix is now part of the hub backbone and is routed via Albuquerque, while fallback spokes only remain where feeder trees would create excessive detours. It also includes a Denver–Phoenix flight-corridor priority link, routed through a highway-preferred path, after the corridor evaluation showed that the earlier network served that air market poorly.
+            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. It also adds Phoenix as a fixed Southwest hub after the flight-corridor evaluation showed that Denver–Phoenix was poorly served by the earlier topology. Denver–Phoenix is now part of the hub backbone and is routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff, while fallback spokes only remain where feeder trees would create excessive detours.
           </p>
         </div>
         <div class="map-card method-card">
@@ -159,7 +159,7 @@
           <span class="section-label">How to read the comparison</span>
           <h2>The second method changes the spoke logic, not the whole project.</h2>
           <p>
-            Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer and the treatment of Phoenix. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, restores direct links only where the tree becomes too indirect, and adds Phoenix as a fixed hub so the Denver–Phoenix corridor becomes part of the backbone. The second map also shows the post-evaluation priority link for Denver–Phoenix, which illustrates how the framework can use poor-rated flight corridors to reveal missing strategic rail connections.
+            Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer and the treatment of Phoenix. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, restores direct links only where the tree becomes too indirect, and adds Phoenix as a fixed hub so the Denver–Phoenix corridor becomes part of the backbone. The second map also shows how a poor-rated flight corridor can lead to a structural refinement: Phoenix is promoted to a hub and Denver–Phoenix is incorporated into the backbone rather than added as a separate patch.
           </p>
         </article>
         <article class="panel result-summary feeder-note">
@@ -201,7 +201,7 @@
           <div class="corridor-panel__top">
             <div>
               <span class="section-label">Method 2 flight corridor check</span>
-              <p class="corridor-panel__note">Updated evaluation after the hierarchical feeder method and flight-corridor priority link. The Denver–Phoenix priority connection is added to test whether a targeted missing link can improve a poor-rated air corridor.</p>
+              <p class="corridor-panel__note">Updated evaluation after the hierarchical feeder method and Phoenix hub refinement. Denver–Phoenix is handled as part of the hub backbone rather than as a separate forced link.</p>
             </div>
             <select id="corridorFilterMethod2" aria-label="Filter Method 2 corridor table by result class">
               <option value="All">All classes</option>

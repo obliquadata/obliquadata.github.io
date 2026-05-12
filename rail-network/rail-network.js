@@ -48,7 +48,7 @@ const displayNames = {
   spoke: "Direct spokes",
   spoke_fallback: "Fallback spokes",
   augment: "Gap-fill / augmenting links",
-  forced_flight_corridor: "Flight-corridor priority links (DEN–PHX)"
+  forced_flight_corridor: "Remaining flight-corridor priority links"
 };
 
 function formatNumber(value, digits = 0) {
@@ -234,7 +234,7 @@ async function initRailMap(config) {
         featureLayer.bindPopup(`
           <strong class="map-popup-title">Flight-corridor priority link</strong>
           <div>${pair}</div>
-          <div>Added after the flight-corridor evaluation identified an indirect rail path.</div>
+          <div>Added only for remaining poor-rated corridors not already addressed by the structural hub refinement.</div>
           <div>Approx. flights/day in evaluated corridor: <strong>${flights}</strong></div>
         `);
       }
