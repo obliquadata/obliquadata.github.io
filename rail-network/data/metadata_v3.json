@@ -1,12 +1,37 @@
 {
   "method_label": "Method 2: Hierarchical backbone\u2013feeder construction with Phoenix hub refinement",
-  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set.",
+  "method_description": "This method extends the initial fixed-hub network into a hierarchical backbone\u2013feeder structure. Phoenix is added as a fixed Southwest hub after the flight-corridor evaluation identified Denver\u2013Phoenix as poorly served. The Denver\u2013Phoenix corridor is incorporated into the hub backbone and routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set. The web map uses safe line simplification to improve browser performance while preserving all line segments needed for route continuity.",
   "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
   "crs_nodes_export": "EPSG:4326",
   "graph_nodes": 51948,
   "graph_edges": 52023,
+  "web_simplification": {
+    "enabled": true,
+    "method": "per-feature geometry simplification only",
+    "tolerance_m": 2500,
+    "min_line_length_m": 0,
+    "dissolve_by_edge_type": false,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 74237,
+    "web_edge_feature_count": 74237,
+    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+  },
+  "edge_types_present_full": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
   "edge_types_present": [
     "augment",
     "feeder_tree",
@@ -129,13 +154,5 @@
     "flight_csv": "network_exports_phoenix_hub_v3\\flight_corridor_rail_service_evaluation_method2.csv",
     "geopackage": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.gpkg",
     "graphml": "network_exports_phoenix_hub_v3\\contiguous_us_rail_network_method2_phoenix_hub.graphml"
-  },
-  "web_simplification": {
-    "enabled": true,
-    "approach": "per-feature explode and simplify; no dissolve",
-    "tolerance_m": 10000,
-    "min_line_length_m": 2500,
-    "feature_count_web": 7562,
-    "note": "Balanced version to preserve route continuity while reducing Leaflet load. The full GeoPackage/GraphML remain full-detail."
   }
 }
