@@ -1,85 +1,16 @@
 {
+  "method_label": "Method 2: Hierarchical backbone\u2013feeder construction",
+  "method_description": "Hierarchical backbone\u2013feeder construction with an evaluation-informed Phoenix hub refinement. Direct hub spokes are replaced where suitable by constrained regional feeder trees, direct fallback spokes are retained where needed to avoid excessive detours, and Phoenix is added as a fixed Southwest hub with the Denver\u2013Phoenix backbone routed via Albuquerque.",
+  "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
   "crs_network_edges": "EPSG:3857",
-  "crs_nodes": "EPSG:4326",
-  "graph_nodes": 55976,
-  "graph_edges": 56054,
+  "graph_nodes": 51948,
+  "graph_edges": 52023,
   "edge_types_present": [
     "augment",
     "feeder_tree",
-    "forced_flight_corridor",
     "hub_backbone",
     "spoke",
     "spoke_fallback"
-  ],
-  "manual_links_used": [
-    [
-      "Seattle",
-      "San Francisco"
-    ],
-    [
-      "San Francisco",
-      "Los Angeles"
-    ],
-    [
-      "San Francisco",
-      "Salt Lake City"
-    ],
-    [
-      "Salt Lake City",
-      "Denver"
-    ],
-    [
-      "Los Angeles",
-      "San Antonio"
-    ],
-    [
-      "Houston",
-      "San Antonio"
-    ],
-    [
-      "San Antonio",
-      "Dallas"
-    ],
-    [
-      "Houston",
-      "Dallas"
-    ],
-    [
-      "Houston",
-      "Atlanta"
-    ],
-    [
-      "Orlando",
-      "Atlanta"
-    ],
-    [
-      "Dallas",
-      "Chicago"
-    ],
-    [
-      "Denver",
-      "Dallas"
-    ],
-    [
-      "Denver",
-      "Chicago"
-    ],
-    [
-      "Chicago",
-      "Atlanta"
-    ],
-    [
-      "Chicago",
-      "Washington DC"
-    ],
-    [
-      "Atlanta",
-      "Washington DC"
-    ],
-    [
-      "Washington DC",
-      "New York"
-    ]
   ],
   "hub_names": [
     "Chicago",
@@ -94,14 +25,7 @@
     "New York",
     "Washington DC",
     "Orlando",
-    "Salt Lake City"
-  ],
-  "files": {
-    "geopackage": "network_exports\\contiguous_us_rail_network.gpkg",
-    "graphml": "network_exports\\contiguous_us_rail_network.graphml",
-    "flight_csv": "network_exports\\flight_corridor_rail_service_evaluation.csv",
-    "edges_geojson": "network_exports\\network_edges.geojson",
-    "nodes_geojson": "network_exports\\network_nodes.geojson",
-    "hubs_geojson": "network_exports\\fixed_hubs.geojson"
-  }
+    "Salt Lake City",
+    "Phoenix"
+  ]
 }

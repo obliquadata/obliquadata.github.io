@@ -1,16 +1,13 @@
-# Rail network project page
+# Rail Network comparison page
 
-This package contains the updated rail-network page with two interactive maps:
+This package contains the Obliqua Data rail-network comparison page.
 
-1. Method 1: fixed-hub hub-and-spoke with sparse gap fill.
-2. Method 2: hierarchical backbone–feeder construction.
+Method 2 has been updated from the latest Phoenix-hub export. The page loads `data/network_edges_v3_simplified.geojson` for the second map. The update adds Phoenix as a fixed Southwest hub and treats Denver–Phoenix via Albuquerque as a hub-backbone refinement rather than as a post-hoc forced flight-corridor link.
 
-The Method 2 map reads these files:
+Preview with a local server:
 
-- `data/network_edges_v3_simplified.geojson`
-- `data/network_junctions_v3_sample.geojson`
-- `data/fixed_hubs_v3.geojson`
-- `data/metadata_v3.json`
-- `data/flight_corridors_v3_enriched.json`
+```bash
+python -m http.server 8000
+```
 
-If you regenerate the Version 3 network, replace those files and keep the filenames the same.
+Then open the page in your browser.

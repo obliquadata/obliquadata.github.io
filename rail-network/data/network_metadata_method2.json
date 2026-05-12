@@ -1,6 +1,6 @@
 {
   "method_label": "Method 2: Hierarchical backbone\u2013feeder construction",
-  "method_description": "Hierarchical backbone\u2013feeder construction with flight-corridor priority links. Direct hub spokes are replaced where suitable by constrained regional feeder trees. Direct fallback spokes and flight-corridor priority links are retained where needed to avoid excessive detours.",
+  "method_description": "Hierarchical backbone\u2013feeder construction with an evaluation-informed Phoenix hub refinement. Direct hub spokes are replaced where suitable by constrained regional feeder trees, direct fallback spokes are retained where needed to avoid excessive detours, and Phoenix is added as a fixed Southwest hub with the Denver\u2013Phoenix backbone routed via Albuquerque.",
   "network_version": "v3_phoenix_hub_backbone_feeder_gapfill_with_remaining_forced_corridors",
   "crs_network_edges": "EPSG:3857",
   "graph_nodes": 51948,
