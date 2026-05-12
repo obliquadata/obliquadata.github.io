@@ -34,6 +34,7 @@
         <a href="#framework">Framework</a>
         <a href="#method-one">Method 1</a>
         <a href="#method-two">Method 2</a>
+        <a href="#version-four">Version 4</a>
         <a href="#next">Next steps</a>
       </nav>
     </header>
@@ -47,7 +48,7 @@
             This project tests a generalizable framework for designing and evaluating a national passenger rail network when the goal is not simply to map what already exists, but to ask what a coherent rail system could look like if planned around hubs, corridors, geographic constraints, and travel demand.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#method-two">Explore the latest map</a>
+            <a class="button button-primary" href="#version-four">Explore the latest map</a>
             <a class="button button-secondary" href="#framework">See the framework</a>
           </div>
         </div>
@@ -60,7 +61,7 @@
             <div><strong id="metric-corridors">—</strong><span>air corridors tested</span></div>
           </div>
           <p>
-            The present version uses the contiguous United States as a test case. The page compares an initial fixed-hub hub-and-spoke prototype with a newer hierarchical backbone–feeder version that replaces selected direct spokes with regional feeder trees.
+            The present version uses the contiguous United States as a test case. The page compares an initial fixed-hub hub-and-spoke prototype, a hierarchical backbone–feeder version, and a Version 4 refinement that manually guides hub-backbone corridors through selected major cities.
           </p>
         </aside>
       </section>
@@ -102,13 +103,19 @@
           <article>
             <h3>Method 2: hierarchical backbone–feeder construction</h3>
             <p>
-              The newer version keeps the same strategic backbone but modifies the spoke layer. In dense hub catchments, selected direct spokes are replaced by constrained regional feeder trees. Direct fallback spokes are restored where a feeder tree would create an excessive detour to the hub.
+              The second method keeps the same broad backbone idea but modifies the spoke layer. In dense hub catchments, selected direct spokes are replaced by constrained regional feeder trees. Direct fallback spokes are restored where a feeder tree would create an excessive detour to the hub.
             </p>
           </article>
           <article>
-            <h3>Stress test: flight-corridor priority links</h3>
+            <h3>Version 3: Phoenix hub refinement</h3>
             <p>
-              After each network is built, high-frequency domestic air corridors are evaluated by comparing straight-line airport distances with shortest-path distances through the rail graph. Corridors rated poor can then be used to identify missing links or structural refinements. In the latest method, Denver–Phoenix is no longer treated as a post-hoc priority link; Phoenix is added as a Southwest hub, and the Denver–Phoenix corridor is incorporated into the backbone through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff.
+              The next refinement uses the flight-corridor evaluation to change the network structure. Phoenix is added as a Southwest hub, Los Angeles–San Antonio is split through Phoenix, and Denver–Phoenix becomes a backbone corridor rather than a post-hoc priority link.
+            </p>
+          </article>
+          <article>
+            <h3>Version 4: manually guided hub corridors</h3>
+            <p>
+              Version 4 keeps the hierarchical feeder logic but improves the hub backbone itself. Several hub-to-hub links are manually guided through larger intermediate cities to make the network more legible and to reduce implausible shortest-path alignments.
             </p>
           </article>
         </div>
@@ -154,12 +161,28 @@
         </div>
       </section>
 
+      <section class="map-section comparison-map-section" id="version-four">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-label">Version 4</span>
+            <h2>Manual hub-backbone refinements through major cities.</h2>
+          </div>
+          <p>
+            Version 4 keeps the Method 2 backbone–feeder structure, then changes how several hub-to-hub corridors are routed. Instead of allowing the road shortest-path solver to choose every trunk alignment, selected backbone links are manually guided through larger intermediate cities. This includes a Gulf-and-Birmingham route from Houston to Atlanta, a Wyoming corridor from Salt Lake City to Denver, and a shared Santa Fe trunk for Denver–Phoenix and Denver–Dallas.
+          </p>
+        </div>
+        <div class="map-card method-card">
+          <div id="railMapV4" class="rail-map" role="application" aria-label="Interactive map of Version 4 manually guided backbone-feeder rail network"></div>
+          <div class="map-legend" id="legendV4" aria-label="Version 4 map legend"></div>
+        </div>
+      </section>
+
       <section class="method-details-grid">
         <article class="panel result-summary method-comparison-note">
           <span class="section-label">How to read the comparison</span>
-          <h2>The second method changes the spoke logic, not the whole project.</h2>
+          <h2>The three maps separate spoke logic from backbone routing.</h2>
           <p>
-            Both maps share the same broad planning logic: fixed hubs, a strategic backbone, and an evaluation step based on air corridors. The methodological change is mainly in the regional access layer. Method 1 sends most terminals directly to hubs. Method 2 first tries to connect terminals through local feeder trees, then restores direct links only where the tree becomes too indirect. The second map also shows an evaluation-informed structural refinement: Phoenix is added as a hub, and Denver–Phoenix becomes part of the strategic backbone rather than a separate post-hoc correction.
+            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Version 4 keeps that hierarchical access logic but refines the backbone itself, manually guiding selected hub links through larger intermediate cities to make the map more plausible and easier to interpret.
           </p>
         </article>
         <article class="panel result-summary feeder-note">
@@ -170,6 +193,13 @@
           </p>
           <p>
             <strong>Fallback spokes</strong> are direct terminal-to-hub links that are restored after the feeder-tree step if the tree would make a terminal travel too far out of the way. They prevent the algorithm from over-cleaning the map at the expense of useful access.
+          </p>
+        </article>
+        <article class="panel result-summary method-comparison-note">
+          <span class="section-label">What changed from V2/V3 to V4</span>
+          <h2>Version 4 makes the backbone more intentional.</h2>
+          <p>
+            Between the earlier hierarchical map and Version 4, the key change is not another feeder-tree rule. The update focuses on hub corridors: Los Angeles–San Antonio is split through Phoenix; Denver–Phoenix is routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff; Houston–Atlanta is routed through the Gulf cities and Birmingham; Salt Lake City–Denver uses the Wyoming corridor; and Denver–Dallas shares the Denver–Santa Fe trunk before branching toward Texas.
           </p>
         </article>
       </section>
@@ -216,6 +246,28 @@
                 <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
               </thead>
               <tbody id="corridorRowsMethod2"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel corridor-panel">
+          <div class="corridor-panel__top">
+            <div>
+              <span class="section-label">Version 4 flight corridor check</span>
+              <p class="corridor-panel__note">Evaluation after manually guiding selected hub-backbone corridors through major cities. This helps test whether the more legible trunk network still performs reasonably against high-frequency air corridors.</p>
+            </div>
+            <select id="corridorFilterV4" aria-label="Filter Version 4 corridor table by result class">
+              <option value="All">All classes</option>
+              <option value="Good">Good</option>
+              <option value="Okay">Okay</option>
+              <option value="Poor">Poor</option>
+            </select>
+          </div>
+          <div class="corridor-table-wrap">
+            <table class="corridor-table">
+              <thead>
+                <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
+              </thead>
+              <tbody id="corridorRowsV4"></tbody>
             </table>
           </div>
         </article>

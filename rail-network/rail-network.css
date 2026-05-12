@@ -664,3 +664,46 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Version 4 additions */
+.method-explainer {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.method-details-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.corridor-comparison-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#corridorFilterMethod1,
+#corridorFilterMethod2,
+#corridorFilterV4 {
+  min-height: 42px;
+  border: 1px solid rgba(18,63,26,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.78);
+  color: var(--text);
+  padding: 0 12px;
+  font: inherit;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1180px) {
+  .method-explainer,
+  .method-details-grid,
+  .corridor-comparison-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .method-explainer,
+  .method-details-grid,
+  .corridor-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}

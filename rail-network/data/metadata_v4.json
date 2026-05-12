@@ -1,0 +1,203 @@
+{
+  "method_label": "Method 2 / V4: Hierarchical backbone\u2013feeder construction with manually guided hub corridors",
+  "method_description": "Version 4 extends the Phoenix-hub Method 2 network by manually guiding hub-backbone corridors through selected major cities. Phoenix is retained as a fixed Southwest hub, Los Angeles\u2013San Antonio is split into Los Angeles\u2013Phoenix and Phoenix\u2013San Antonio, and Denver\u2013Phoenix is incorporated into the hub backbone. Several hub-to-hub corridors are routed through major intermediate cities to improve network legibility and reduce implausible shortest-path alignments. Within hub catchments, selected direct spokes are replaced by constrained regional feeder trees, while fallback spokes are retained where feeder trees would create excessive detours. Key West is removed from the terminal set. The web map uses safe line simplification to improve browser performance while preserving all line segments needed for route continuity.",
+  "network_version": "v4_manual_hub_backbone_phoenix_hub_feeder_gapfill_with_remaining_forced_corridors",
+  "crs_network_edges_source": "EPSG:3857",
+  "crs_network_edges_export": "EPSG:4326",
+  "crs_nodes_export": "EPSG:4326",
+  "graph_nodes": 57210,
+  "graph_edges": 57304,
+  "web_simplification": {
+    "enabled": true,
+    "method": "per-feature geometry simplification only",
+    "tolerance_m": 2500,
+    "min_line_length_m": 0,
+    "dissolve_by_edge_type": false,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 81828,
+    "web_edge_feature_count": 81828,
+    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+  },
+  "edge_types_present_full": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present": [
+    "augment",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "hub_names": [
+    "Chicago",
+    "Atlanta",
+    "Denver",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Los Angeles",
+    "San Francisco",
+    "Seattle",
+    "New York",
+    "Washington DC",
+    "Orlando",
+    "Salt Lake City",
+    "Phoenix"
+  ],
+  "manual_links_used": [
+    [
+      "Seattle",
+      "San Francisco"
+    ],
+    [
+      "San Francisco",
+      "Los Angeles"
+    ],
+    [
+      "San Francisco",
+      "Salt Lake City"
+    ],
+    [
+      "Salt Lake City",
+      "Denver"
+    ],
+    [
+      "Houston",
+      "San Antonio"
+    ],
+    [
+      "San Antonio",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Atlanta"
+    ],
+    [
+      "Orlando",
+      "Atlanta"
+    ],
+    [
+      "Dallas",
+      "Chicago"
+    ],
+    [
+      "Denver",
+      "Dallas"
+    ],
+    [
+      "Denver",
+      "Chicago"
+    ],
+    [
+      "Chicago",
+      "Atlanta"
+    ],
+    [
+      "Chicago",
+      "Washington DC"
+    ],
+    [
+      "Atlanta",
+      "Washington DC"
+    ],
+    [
+      "Washington DC",
+      "New York"
+    ],
+    [
+      "Denver",
+      "Phoenix"
+    ],
+    [
+      "Los Angeles",
+      "Phoenix"
+    ],
+    [
+      "Phoenix",
+      "San Antonio"
+    ]
+  ],
+  "version_4_manual_waypoints": {
+    "enabled": true,
+    "directional_entries": 38,
+    "los_angeles_san_antonio_split_via_phoenix": true,
+    "houston_atlanta_route": [
+      "Beaumont",
+      "Lafayette",
+      "Baton Rouge",
+      "New Orleans",
+      "Mobile",
+      "Birmingham"
+    ],
+    "salt_lake_city_denver_route": [
+      "Evanston",
+      "Rock Springs",
+      "Rawlins",
+      "Laramie",
+      "Cheyenne"
+    ],
+    "denver_dallas_route": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Clovis",
+      "Lubbock",
+      "Abilene",
+      "Fort Worth"
+    ],
+    "denver_phoenix_route": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Albuquerque",
+      "Flagstaff"
+    ]
+  },
+  "phoenix_hub_refinement": {
+    "phoenix_added_as_fixed_hub": true,
+    "denver_phoenix_handled_as": "hub_backbone",
+    "denver_phoenix_waypoints": [
+      "Colorado Springs",
+      "Pueblo",
+      "Trinidad",
+      "Santa Fe",
+      "Albuquerque",
+      "Flagstaff"
+    ],
+    "den_phx_excluded_from_forced_flight_corridor_links": true,
+    "key_west_removed_from_terminal_set": true
+  },
+  "files": {
+    "edges_geojson": "network_exports_phoenix_hub_v4\\network_edges_method2_v4.geojson",
+    "edges_geojson_website_alias_v4": "network_exports_phoenix_hub_v4\\network_edges_v4_simplified.geojson",
+    "edges_geojson_website_alias_v3_compat": "network_exports_phoenix_hub_v4\\network_edges_v3_simplified.geojson",
+    "hubs_geojson": "network_exports_phoenix_hub_v4\\fixed_hubs_method2_v4.geojson",
+    "hubs_geojson_website_alias_v4": "network_exports_phoenix_hub_v4\\fixed_hubs_v4.geojson",
+    "hubs_geojson_website_alias_v3_compat": "network_exports_phoenix_hub_v4\\fixed_hubs_v3.geojson",
+    "nodes_geojson": "network_exports_phoenix_hub_v4\\network_nodes_method2_v4.geojson",
+    "metadata_json": "network_exports_phoenix_hub_v4\\network_metadata_method2_v4.json",
+    "metadata_json_website_alias_v4": "network_exports_phoenix_hub_v4\\metadata_v4.json",
+    "metadata_json_website_alias_v3_compat": "network_exports_phoenix_hub_v4\\metadata_v3.json",
+    "flight_csv": "network_exports_phoenix_hub_v4\\flight_corridor_rail_service_evaluation_method2_v4.csv",
+    "geopackage": "network_exports_phoenix_hub_v4\\contiguous_us_rail_network_method2_v4_phoenix_hub.gpkg",
+    "graphml": "network_exports_phoenix_hub_v4\\contiguous_us_rail_network_method2_v4_phoenix_hub.graphml"
+  }
+}

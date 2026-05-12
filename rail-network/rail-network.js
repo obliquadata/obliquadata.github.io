@@ -30,6 +30,21 @@ const V3_CONFIG = {
   showCorridorsByDefault: false
 };
 
+const V4_CONFIG = {
+  mapId: "railMapV4",
+  legendId: "legendV4",
+  metadata: "metadata_v4.json",
+  edges: "network_edges_v4_optimized.geojson",
+  hubs: "fixed_hubs_v4.geojson",
+  junctions: "network_junctions_v4_sample.geojson",
+  corridors: "flight_corridors_v4_enriched.json",
+  metricPrefix: "v4",
+  title: "Version 4",
+  defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
+  showJunctionsByDefault: false,
+  showCorridorsByDefault: false
+};
+
 const commonRailStyle = { color: "#123f1a", weight: 3.0, opacity: 0.82, pane: "railPane" };
 const backboneDefault = { color: "#123f1a", weight: 4.3, opacity: 0.94, pane: "railBackbonePane" };
 
@@ -347,23 +362,26 @@ async function initRailMap(config) {
 }
 
 async function init() {
-  const [baseline, v3] = await Promise.all([
+  const [baseline, v3, v4] = await Promise.all([
     initRailMap(BASELINE_CONFIG),
-    initRailMap(V3_CONFIG)
+    initRailMap(V3_CONFIG),
+    initRailMap(V4_CONFIG)
   ]);
 
-  const latest = v3 || baseline;
+  const latest = v4 || v3 || baseline;
   if (latest?.metadata) {
     document.getElementById("metric-nodes").textContent = formatNumber(latest.metadata.graph_nodes);
     document.getElementById("metric-edges").textContent = formatNumber(latest.metadata.graph_edges);
-    document.getElementById("metric-hubs").textContent = formatNumber(latest.metadata.hub_names?.length || 13);
+    document.getElementById("metric-hubs").textContent = formatNumber(latest.metadata.hub_names?.length || 14);
   }
   document.getElementById("metric-corridors").textContent = formatNumber(latest?.corridors?.length || 0);
 
   const baselineCorridors = baseline?.corridors || [];
   const v3Corridors = v3?.corridors || [];
+  const v4Corridors = v4?.corridors || [];
   renderCorridorTable("corridorRowsMethod1", baselineCorridors);
   renderCorridorTable("corridorRowsMethod2", v3Corridors);
+  renderCorridorTable("corridorRowsV4", v4Corridors);
 
   const method1Filter = document.getElementById("corridorFilterMethod1");
   method1Filter?.addEventListener("change", () => {
@@ -374,11 +392,16 @@ async function init() {
   method2Filter?.addEventListener("change", () => {
     renderCorridorTable("corridorRowsMethod2", v3Corridors, method2Filter.value);
   });
+
+  const v4Filter = document.getElementById("corridorFilterV4");
+  v4Filter?.addEventListener("change", () => {
+    renderCorridorTable("corridorRowsV4", v4Corridors, v4Filter.value);
+  });
 }
 
 init().catch((error) => {
   console.error("Unable to load rail project data", error);
-  ["railMapBaseline", "railMapV3"].forEach((id) => {
+  ["railMapBaseline", "railMapV3", "railMapV4"].forEach((id) => {
     const mapElement = document.getElementById(id);
     if (mapElement) {
       mapElement.innerHTML = '<div style="padding: 24px; font-family: Inter, system-ui; color: #17361d;">Unable to load the interactive map data. Please check that the data folder was uploaded with the page.</div>';
