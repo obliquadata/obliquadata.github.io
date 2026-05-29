@@ -37,7 +37,6 @@ const METHOD3_CONFIG = {
   edges: "network_edges_method3_optimized.geojson",
   hubs: "fixed_hubs_method3.geojson",
   junctions: "network_junctions_method3_sample.geojson",
-  corridors: "flight_corridors_method3_enriched.json",
   metricPrefix: "method3",
   title: "Method 3",
   defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
@@ -122,7 +121,7 @@ function styleForType(edgeType, colorByType) {
   return railStylesByType[edgeType] || commonRailStyle;
 }
 
-function createLegend(legendId, edgeTypes, colorByType) {
+function createLegend(legendId, edgeTypes, colorByType, includeCorridors = true) {
   const legend = document.getElementById(legendId);
   if (!legend) return;
 
@@ -135,12 +134,14 @@ function createLegend(legendId, edgeTypes, colorByType) {
     })
     .join("");
 
-  legend.innerHTML = `
-    ${railItems}
-    <span><i class="legend-dot hub"></i>Fixed hubs</span>
+  const corridorItems = includeCorridors ? `
     <span><i class="legend-line flight-good"></i>Good flight corridor fit</span>
     <span><i class="legend-line flight-okay"></i>Okay</span>
-    <span><i class="legend-line flight-poor"></i>Poor</span>
+    <span><i class="legend-line flight-poor"></i>Poor</span>` : "";
+
+  legend.innerHTML = `
+    ${railItems}
+    <span><i class="legend-dot hub"></i>Fixed hubs</span>${corridorItems}
   `;
 }
 
@@ -290,7 +291,7 @@ async function initRailMap(config) {
   function applyRailColorMode(enabled) {
     colorByType = enabled;
     Object.entries(layersByType).forEach(([type, layer]) => layer.setStyle(styleForType(type, colorByType)));
-    createLegend(config.legendId, overlayOrder, colorByType);
+    createLegend(config.legendId, overlayOrder, colorByType, Boolean(config.corridors));
   }
 
   function enforceOverlayOrder() {
@@ -311,7 +312,9 @@ async function initRailMap(config) {
       ? fetch(`${DATA_PATH}${config.accessAnchors}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] }))
       : Promise.resolve({ type: "FeatureCollection", features: [] }),
     fetch(`${DATA_PATH}${config.junctions}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] })),
-    fetch(`${DATA_PATH}${config.corridors}`).then((r) => r.json()).catch(() => [])
+    config.corridors
+      ? fetch(`${DATA_PATH}${config.corridors}`).then((r) => r.json()).catch(() => [])
+      : Promise.resolve([])
   ]);
 
   const grouped = {};
@@ -339,15 +342,17 @@ async function initRailMap(config) {
   if (config.showAccessAnchorsByDefault) accessAnchorLayer.addTo(map);
   junctionLayer.addData(junctions);
   if (config.showJunctionsByDefault) junctionLayer.addTo(map);
-  addFlightCorridors(flightLayer, corridors, canvasRenderer);
-  if (config.showCorridorsByDefault) flightLayer.addTo(map);
+  if (config.corridors) {
+    addFlightCorridors(flightLayer, corridors, canvasRenderer);
+    if (config.showCorridorsByDefault) flightLayer.addTo(map);
+  }
 
   const overlays = {};
   edgeTypes.forEach((type) => { overlays[displayNames[type] || type] = layersByType[type]; });
   overlays["Fixed hubs"] = hubLayer;
   if (config.accessAnchors) overlays["Corridor access anchors"] = accessAnchorLayer;
   overlays["Sampled junctions"] = junctionLayer;
-  overlays["Evaluated air corridors"] = flightLayer;
+  if (config.corridors) overlays["Evaluated air corridors"] = flightLayer;
 
   L.control.layers({ "Light basemap": positron, "Voyager basemap": voyager }, overlays, { collapsed: true }).addTo(map);
 
@@ -399,14 +404,12 @@ async function init() {
       latest.metadata.fixed_hub_names?.length || latest.metadata.hub_names?.length || 14
     );
   }
-  document.getElementById("metric-corridors").textContent = formatNumber(latest?.corridors?.length || 0);
+  document.getElementById("metric-corridors").textContent = formatNumber(Math.max(baseline?.corridors?.length || 0, v3?.corridors?.length || 0));
 
   const baselineCorridors = baseline?.corridors || [];
   const v3Corridors = v3?.corridors || [];
-  const method3Corridors = method3?.corridors || [];
   renderCorridorTable("corridorRowsMethod1", baselineCorridors);
   renderCorridorTable("corridorRowsMethod2", v3Corridors);
-  renderCorridorTable("corridorRowsV4", method3Corridors);
 
   const method1Filter = document.getElementById("corridorFilterMethod1");
   method1Filter?.addEventListener("change", () => {
@@ -416,11 +419,6 @@ async function init() {
   const method2Filter = document.getElementById("corridorFilterMethod2");
   method2Filter?.addEventListener("change", () => {
     renderCorridorTable("corridorRowsMethod2", v3Corridors, method2Filter.value);
-  });
-
-  const method3Filter = document.getElementById("corridorFilterV4");
-  method3Filter?.addEventListener("change", () => {
-    renderCorridorTable("corridorRowsV4", method3Corridors, method3Filter.value);
   });
 }
 

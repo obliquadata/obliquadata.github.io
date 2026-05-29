@@ -145,66 +145,14 @@
         </div>
       </section>
 
-      <section class="map-section comparison-map-section" id="method-two">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 2</span>
-            <h2>Hierarchical backbone–feeder construction.</h2>
-          </div>
-          <p>
-            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. The result should be easier to interpret as a rail system: major corridors remain visible, local access becomes more corridor-like, and fallback spokes only remain where the feeder tree would create excessive detours. It also adds Phoenix as a fixed Southwest hub and treats Denver–Phoenix as a backbone corridor, routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff.
-          </p>
-        </div>
-        <div class="map-card method-card">
-          <div id="railMapV3" class="rail-map" role="application" aria-label="Interactive map of Method 2 hierarchical backbone-feeder rail network"></div>
-          <div class="map-legend" id="legendV3" aria-label="Method 2 map legend"></div>
-        </div>
-      </section>
-
-      <section class="map-section comparison-map-section" id="method-three">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 3</span>
-            <h2>North American manually guided backbone–feeder construction.</h2>
-          </div>
-          <p>
-            Method 3 replaces the corridor-access-anchor experiment with a more controlled fixed-hub structure. Feeder trees and fallback spokes now connect only to fixed hubs, while the backbone expands from the United States into Canada. The Canadian layer uses one west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border links from Vancouver to Seattle, Calgary south through Montana and Wyoming, Winnipeg south through Minnesota and Wisconsin, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York via Burlington, Plattsburgh, Albany, and Poughkeepsie.
-          </p>
-        </div>
-        <div class="map-card method-card">
-          <div id="railMapV4" class="rail-map" role="application" aria-label="Interactive map of Method 3 North American manually guided backbone-feeder rail network"></div>
-          <div class="map-legend" id="legendV4" aria-label="Method 3 map legend"></div>
-        </div>
-      </section>
-
-      <section class="method-details-grid">
-        <article class="panel result-summary method-comparison-note">
-          <span class="section-label">How to read the comparison</span>
-          <h2>The three maps separate hub choice, feeder logic, and geographic expansion.</h2>
-          <p>
-            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, adds Albuquerque and Pittsburgh as fixed interchange hubs, and extends the network into Canada through a simple trunk-and-cross-border structure.
-          </p>
-        </article>
-        <article class="panel result-summary feeder-note">
-          <span class="section-label">Feeder trees vs. fallback spokes</span>
-          <h2>Feeder trees are shared branches; fallback spokes are safety valves.</h2>
-          <p>
-            <strong>Regional feeder trees</strong> are shared local branches that connect nearby terminals through a corridor-like structure before linking them back to the hub. They reduce the unrealistic radial clutter that appears when every terminal receives its own separate spoke.
-          </p>
-          <p>
-            <strong>Fallback spokes</strong> are direct terminal-to-hub links that are restored after the feeder-tree step if the tree would make a terminal travel too far out of the way. They prevent the algorithm from over-cleaning the map at the expense of useful access.
-          </p>
-        </article>
-        <article class="panel result-summary method-comparison-note">
-          <span class="section-label">What changed from Method 2 to Method 3</span>
-          <h2>Method 3 adds Canada and tightens the access logic.</h2>
-          <p>
-            The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It also adds Albuquerque as a Southwest interchange hub, adds Pittsburgh as an Appalachian/Great Lakes interchange hub, leaves Salt Lake City–Denver to the road-routing algorithm instead of forcing waypoints, and adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors into Seattle, Denver, Chicago, Pittsburgh, and New York.
-          </p>
-        </article>
-      </section>
-
       <section class="corridor-comparison-grid" id="corridor-checks">
+        <article class="panel result-summary method-comparison-note corridor-intro-panel">
+          <span class="section-label">Flight corridor checks</span>
+          <h2>Air-corridor evaluation is used as an iteration tool for Methods 1 and 2.</h2>
+          <p>
+            The flight-corridor tables compare high-frequency air corridors with the rail paths produced by the first two network prototypes. Method 1 uses the original fixed-hub hub-and-spoke baseline, while Method 2 shows how the Phoenix hub refinement and hierarchical feeder logic changed the corridor results. Method 3 is now treated as a structural North American expansion, so its flight-corridor table has been removed from the page for clarity.
+          </p>
+        </article>
         <article class="panel corridor-panel">
           <div class="corridor-panel__top">
             <div>
@@ -249,27 +197,64 @@
             </table>
           </div>
         </article>
-        <article class="panel corridor-panel">
-          <div class="corridor-panel__top">
-            <div>
-              <span class="section-label">Method 3 flight corridor check</span>
-              <p class="corridor-panel__note">Evaluation after removing corridor access anchors, adding Canada, and adding Albuquerque and Pittsburgh as fixed interchange hubs. This checks whether the expanded North American structure still performs reasonably against high-frequency air corridors.</p>
-            </div>
-            <select id="corridorFilterV4" aria-label="Filter Method 3 corridor table by result class">
-              <option value="All">All classes</option>
-              <option value="Good">Good</option>
-              <option value="Okay">Okay</option>
-              <option value="Poor">Poor</option>
-            </select>
+      </section>
+
+      <section class="map-section comparison-map-section" id="method-two">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-label">Method 2</span>
+            <h2>Hierarchical backbone–feeder construction.</h2>
           </div>
-          <div class="corridor-table-wrap">
-            <table class="corridor-table">
-              <thead>
-                <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
-              </thead>
-              <tbody id="corridorRowsV4"></tbody>
-            </table>
+          <p>
+            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. The result should be easier to interpret as a rail system: major corridors remain visible, local access becomes more corridor-like, and fallback spokes only remain where the feeder tree would create excessive detours. It also adds Phoenix as a fixed Southwest hub and treats Denver–Phoenix as a backbone corridor, routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff.
+          </p>
+        </div>
+        <div class="map-card method-card">
+          <div id="railMapV3" class="rail-map" role="application" aria-label="Interactive map of Method 2 hierarchical backbone-feeder rail network"></div>
+          <div class="map-legend" id="legendV3" aria-label="Method 2 map legend"></div>
+        </div>
+      </section>
+
+      <section class="map-section comparison-map-section" id="method-three">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-label">Method 3</span>
+            <h2>North American manually guided backbone–feeder construction.</h2>
           </div>
+          <p>
+            Method 3 replaces the corridor-access-anchor experiment with a more controlled fixed-hub structure. Feeder trees and fallback spokes now connect only to fixed hubs, while the backbone expands from the United States into Canada. The Canadian layer uses one west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City. It also adds cross-border links from Vancouver to Seattle, Calgary south through Montana and Wyoming, Winnipeg south through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York through Boston and New England.
+          </p>
+        </div>
+        <div class="map-card method-card">
+          <div id="railMapV4" class="rail-map" role="application" aria-label="Interactive map of Method 3 North American manually guided backbone-feeder rail network"></div>
+          <div class="map-legend" id="legendV4" aria-label="Method 3 map legend"></div>
+        </div>
+      </section>
+
+      <section class="method-details-grid">
+        <article class="panel result-summary method-comparison-note">
+          <span class="section-label">How to read the comparison</span>
+          <h2>The three maps separate hub choice, feeder logic, and geographic expansion.</h2>
+          <p>
+            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, adds Albuquerque, Pittsburgh, and Boston as fixed interchange hubs, and extends the network into Canada through a simple trunk-and-cross-border structure.
+          </p>
+        </article>
+        <article class="panel result-summary feeder-note">
+          <span class="section-label">Feeder trees vs. fallback spokes</span>
+          <h2>Feeder trees are shared branches; fallback spokes are safety valves.</h2>
+          <p>
+            <strong>Regional feeder trees</strong> are shared local branches that connect nearby terminals through a corridor-like structure before linking them back to the hub. They reduce the unrealistic radial clutter that appears when every terminal receives its own separate spoke.
+          </p>
+          <p>
+            <strong>Fallback spokes</strong> are direct terminal-to-hub links that are restored after the feeder-tree step if the tree would make a terminal travel too far out of the way. They prevent the algorithm from over-cleaning the map at the expense of useful access.
+          </p>
+        </article>
+        <article class="panel result-summary method-comparison-note">
+          <span class="section-label">What changed from Method 2 to Method 3</span>
+          <h2>Method 3 adds Canada and tightens the access logic.</h2>
+          <p>
+            The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It also adds Albuquerque as a Southwest interchange hub, adds Pittsburgh as an Appalachian/Great Lakes interchange hub, adds Boston as a New England hub on the Montreal–New York route, leaves Salt Lake City–Denver to the road-routing algorithm instead of forcing waypoints, and adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors into Seattle, Denver, Chicago, Pittsburgh, Boston, and New York.
+          </p>
         </article>
       </section>
 

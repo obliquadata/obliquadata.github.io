@@ -1,12 +1,12 @@
 {
   "method_label": "Method 3: North American manually guided backbone\u2013feeder construction",
-  "method_description": "Method 3 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network via Minnesota, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York via Burlington, Plattsburgh, Albany, and Poughkeepsie. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
-  "network_version": "method3_north_america_manual_backbone_phoenix_albuquerque_hubs_with_remaining_forced_corridors",
+  "method_description": "Method 3 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York via Boston and New England. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub, and Boston is added as a fixed New England hub. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
+  "network_version": "method3_north_america_manual_backbone_phoenix_albuquerque_pittsburgh_boston_hubs_with_remaining_forced_corridors",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
   "crs_nodes_export": "EPSG:4326",
-  "graph_nodes": 61682,
-  "graph_edges": 61785,
+  "graph_nodes": 62173,
+  "graph_edges": 62284,
   "web_simplification": {
     "enabled": true,
     "method": "per-feature geometry simplification only",
@@ -14,8 +14,8 @@
     "min_line_length_m": 0,
     "dissolve_by_edge_type": false,
     "web_node_min_degree": 3,
-    "full_edge_feature_count": 84340,
-    "web_edge_feature_count": 84340,
+    "full_edge_feature_count": 85112,
+    "web_edge_feature_count": 85112,
     "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
   },
   "edge_types_present_full": [
@@ -61,7 +61,8 @@
     "Toronto",
     "Montreal",
     "Quebec City",
-    "Pittsburgh"
+    "Pittsburgh",
+    "Boston"
   ],
   "build_anchor_names": [
     "Chicago",
@@ -85,7 +86,8 @@
     "Toronto",
     "Montreal",
     "Quebec City",
-    "Pittsburgh"
+    "Pittsburgh",
+    "Boston"
   ],
   "manual_links_used": [
     [
@@ -210,6 +212,10 @@
     ],
     [
       "Montreal",
+      "Boston"
+    ],
+    [
+      "Boston",
       "New York"
     ]
   ],
@@ -235,7 +241,23 @@
       "Martinsburg"
     ],
     "toronto_south_connection": "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
-    "montreal_south_connection": "Montreal \u2192 New York via Burlington, Plattsburgh, Albany, and Poughkeepsie"
+    "montreal_south_connection": "Montreal \u2192 Boston via Burlington, Montpelier, Lebanon, and Manchester"
+  },
+  "boston_refinement": {
+    "boston_added_as_fixed_hub": true,
+    "montreal_boston_route": [
+      "Burlington",
+      "Montpelier",
+      "Lebanon",
+      "Manchester"
+    ],
+    "boston_new_york_route": [
+      "Worcester",
+      "Springfield",
+      "Hartford",
+      "New Haven",
+      "Stamford"
+    ]
   },
   "canada_refinement": {
     "canada_added": true,
@@ -250,10 +272,10 @@
     "north_south_corridors": [
       "Vancouver \u2192 Seattle",
       "Calgary \u2192 Denver via Lethbridge, Great Falls, Helena, Bozeman, Billings, Casper, and Cheyenne",
-      "Winnipeg \u2192 Chicago via Minnesota/Wisconsin",
+      "Winnipeg \u2192 Chicago via Grand Forks, Fargo, St. Cloud, Minneapolis, Rochester, La Crosse, Madison, and Milwaukee",
       "Toronto \u2192 Chicago via Detroit",
       "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
-      "Montreal \u2192 New York via Burlington, Plattsburgh, Albany, and Poughkeepsie"
+      "Montreal \u2192 Boston \u2192 New York via Burlington, Montpelier, Lebanon, Manchester, Worcester, Springfield, Hartford, New Haven, and Stamford"
     ]
   },
   "phoenix_hub_refinement": {

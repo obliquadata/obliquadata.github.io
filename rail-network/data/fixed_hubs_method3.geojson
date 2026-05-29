@@ -24,6 +24,7 @@
 { "type": "Feature", "properties": { "name": "Toronto", "lon": -79.3832, "lat": 43.6532 }, "geometry": { "type": "Point", "coordinates": [ -79.3832, 43.6532 ] } },
 { "type": "Feature", "properties": { "name": "Montreal", "lon": -73.5673, "lat": 45.5017 }, "geometry": { "type": "Point", "coordinates": [ -73.5673, 45.5017 ] } },
 { "type": "Feature", "properties": { "name": "Quebec City", "lon": -71.208, "lat": 46.8139 }, "geometry": { "type": "Point", "coordinates": [ -71.208, 46.8139 ] } },
-{ "type": "Feature", "properties": { "name": "Pittsburgh", "lon": -79.9959, "lat": 40.4406 }, "geometry": { "type": "Point", "coordinates": [ -79.9959, 40.4406 ] } }
+{ "type": "Feature", "properties": { "name": "Pittsburgh", "lon": -79.9959, "lat": 40.4406 }, "geometry": { "type": "Point", "coordinates": [ -79.9959, 40.4406 ] } },
+{ "type": "Feature", "properties": { "name": "Boston", "lon": -71.0589, "lat": 42.3601 }, "geometry": { "type": "Point", "coordinates": [ -71.0589, 42.3601 ] } }
 ]
 }
