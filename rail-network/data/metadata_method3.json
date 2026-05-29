@@ -1,12 +1,12 @@
 {
-  "method_label": "Method 3: Corridor-aware backbone\u2013feeder construction",
-  "method_description": "Method 3 extends the manually guided backbone\u2013feeder network by treating intermediate waypoint cities along hub-backbone corridors as corridor access anchors. These anchors are not full fixed hubs, but they allow nearby terminals to feed into the nearest trunk corridor instead of being routed all the way to the nearest fixed hub. This is intended to reduce competing radial spokes and to produce a cleaner trunk-and-branch rail network. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio is split through Phoenix, and hub-backbone corridors are manually guided through selected major cities. Key West is removed from the terminal set.",
-  "network_version": "method3_corridor_aware_manual_backbone_phoenix_hub_feeder_gapfill_with_remaining_forced_corridors",
+  "method_label": "Method 3: North American manually guided backbone\u2013feeder construction",
+  "method_description": "Method 3 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network via Minnesota, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York via Burlington, Plattsburgh, Albany, and Poughkeepsie. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
+  "network_version": "method3_north_america_manual_backbone_phoenix_albuquerque_hubs_with_remaining_forced_corridors",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
   "crs_nodes_export": "EPSG:4326",
-  "graph_nodes": 53341,
-  "graph_edges": 53391,
+  "graph_nodes": 61682,
+  "graph_edges": 61785,
   "web_simplification": {
     "enabled": true,
     "method": "per-feature geometry simplification only",
@@ -14,8 +14,8 @@
     "min_line_length_m": 0,
     "dissolve_by_edge_type": false,
     "web_node_min_degree": 3,
-    "full_edge_feature_count": 63889,
-    "web_edge_feature_count": 63889,
+    "full_edge_feature_count": 84340,
+    "web_edge_feature_count": 84340,
     "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
   },
   "edge_types_present_full": [
@@ -53,7 +53,15 @@
     "Washington DC",
     "Orlando",
     "Salt Lake City",
-    "Phoenix"
+    "Phoenix",
+    "Albuquerque",
+    "Vancouver",
+    "Calgary",
+    "Winnipeg",
+    "Toronto",
+    "Montreal",
+    "Quebec City",
+    "Pittsburgh"
   ],
   "build_anchor_names": [
     "Chicago",
@@ -70,154 +78,15 @@
     "Orlando",
     "Salt Lake City",
     "Phoenix",
-    "Access: Portland",
-    "Access: Eugene",
-    "Access: Medford",
-    "Access: Redding",
-    "Access: Chico",
-    "Access: Yuba City",
-    "Access: Sacramento",
-    "Access: San Jose",
-    "Access: Gilroy",
-    "Access: Madera",
-    "Access: Fresno",
-    "Access: Kings/Tulare",
-    "Access: Bakersfield",
-    "Access: Reno",
-    "Access: Evanston",
-    "Access: Rock Springs",
-    "Access: Rawlins",
-    "Access: Laramie",
-    "Access: Cheyenne",
-    "Access: Riverside",
-    "Access: Palm Springs",
-    "Access: Tucson",
-    "Access: Las Cruces",
-    "Access: El Paso",
-    "Access: Colorado Springs",
-    "Access: Pueblo",
-    "Access: Trinidad",
-    "Access: Santa Fe",
-    "Access: Albuquerque",
-    "Access: Flagstaff",
-    "Access: Clovis",
-    "Access: Lubbock",
-    "Access: Abilene",
-    "Access: Fort Worth",
-    "Access: Austin",
-    "Access: Waco",
-    "Access: College Station",
-    "Access: Beaumont",
-    "Access: Lafayette",
-    "Access: Baton Rouge",
-    "Access: New Orleans",
-    "Access: Mobile",
-    "Access: Birmingham",
-    "Access: Gainesville",
-    "Access: Valdosta",
-    "Access: Macon",
-    "Access: Charlotte",
-    "Access: Greensboro",
-    "Access: Richmond",
-    "Access: Oklahoma City",
-    "Access: Tulsa",
-    "Access: St. Louis",
-    "Access: Springfield",
-    "Access: Urbana",
-    "Access: Lincoln",
-    "Access: Omaha",
-    "Access: Des Moines",
-    "Access: Davenport",
-    "Access: Indianapolis",
-    "Access: Louisville",
-    "Access: Nashville",
-    "Access: Huntsville",
-    "Access: Fort Wayne",
-    "Access: Columbus",
-    "Access: Parkersburg",
-    "Access: Morgantown",
-    "Access: Cumberland",
-    "Access: Martinsburg",
-    "Access: Baltimore",
-    "Access: Wilmington",
-    "Access: Philadelphia",
-    "Access: Trenton"
-  ],
-  "corridor_access_anchor_names": [
-    "Abilene",
     "Albuquerque",
-    "Austin",
-    "Bakersfield",
-    "Baltimore",
-    "Baton Rouge",
-    "Beaumont",
-    "Birmingham",
-    "Charlotte",
-    "Cheyenne",
-    "Chico",
-    "Clovis",
-    "College Station",
-    "Colorado Springs",
-    "Columbus",
-    "Cumberland",
-    "Davenport",
-    "Des Moines",
-    "El Paso",
-    "Eugene",
-    "Evanston",
-    "Flagstaff",
-    "Fort Wayne",
-    "Fort Worth",
-    "Fresno",
-    "Gainesville",
-    "Gilroy",
-    "Greensboro",
-    "Huntsville",
-    "Indianapolis",
-    "Kings/Tulare",
-    "Lafayette",
-    "Laramie",
-    "Las Cruces",
-    "Lincoln",
-    "Louisville",
-    "Lubbock",
-    "Macon",
-    "Madera",
-    "Martinsburg",
-    "Medford",
-    "Mobile",
-    "Morgantown",
-    "Nashville",
-    "New Orleans",
-    "Oklahoma City",
-    "Omaha",
-    "Palm Springs",
-    "Parkersburg",
-    "Philadelphia",
-    "Portland",
-    "Pueblo",
-    "Rawlins",
-    "Redding",
-    "Reno",
-    "Richmond",
-    "Riverside",
-    "Rock Springs",
-    "Sacramento",
-    "San Jose",
-    "Santa Fe",
-    "Springfield",
-    "St. Louis",
-    "Trenton",
-    "Trinidad",
-    "Tucson",
-    "Tulsa",
-    "Urbana",
-    "Valdosta",
-    "Waco",
-    "Wilmington",
-    "Yuba City"
+    "Vancouver",
+    "Calgary",
+    "Winnipeg",
+    "Toronto",
+    "Montreal",
+    "Quebec City",
+    "Pittsburgh"
   ],
-  "corridor_access_anchor_count": 72,
   "manual_links_used": [
     [
       "Seattle",
@@ -234,6 +103,26 @@
     [
       "Salt Lake City",
       "Denver"
+    ],
+    [
+      "Los Angeles",
+      "Phoenix"
+    ],
+    [
+      "Phoenix",
+      "San Antonio"
+    ],
+    [
+      "Denver",
+      "Albuquerque"
+    ],
+    [
+      "Albuquerque",
+      "Phoenix"
+    ],
+    [
+      "Albuquerque",
+      "Dallas"
     ],
     [
       "Houston",
@@ -256,12 +145,12 @@
       "Atlanta"
     ],
     [
-      "Dallas",
-      "Chicago"
+      "Atlanta",
+      "Washington DC"
     ],
     [
-      "Denver",
-      "Dallas"
+      "Dallas",
+      "Chicago"
     ],
     [
       "Denver",
@@ -276,96 +165,113 @@
       "Washington DC"
     ],
     [
-      "Atlanta",
-      "Washington DC"
-    ],
-    [
       "Washington DC",
       "New York"
     ],
     [
-      "Denver",
-      "Phoenix"
+      "Vancouver",
+      "Calgary"
     ],
     [
-      "Los Angeles",
-      "Phoenix"
+      "Calgary",
+      "Winnipeg"
     ],
     [
-      "Phoenix",
-      "San Antonio"
+      "Winnipeg",
+      "Toronto"
+    ],
+    [
+      "Toronto",
+      "Montreal"
+    ],
+    [
+      "Montreal",
+      "Quebec City"
+    ],
+    [
+      "Vancouver",
+      "Seattle"
+    ],
+    [
+      "Calgary",
+      "Denver"
+    ],
+    [
+      "Winnipeg",
+      "Chicago"
+    ],
+    [
+      "Toronto",
+      "Chicago"
+    ],
+    [
+      "Toronto",
+      "Pittsburgh"
+    ],
+    [
+      "Montreal",
+      "New York"
     ]
   ],
-  "method_3_corridor_access": {
-    "enabled": true,
-    "description": "Manual hub-backbone waypoint cities are added to the hub/anchor input during network construction, allowing feeder trees to connect to trunk corridor access points. These anchors are exported separately and are not treated as fixed hubs in the website map.",
-    "anchor_prefix": "Access: ",
-    "minimum_distance_from_fixed_hub_km": 25.0,
-    "anchor_count": 72
+  "corridor_access_anchors": {
+    "enabled": false,
+    "note": "Removed because allowing spokes/feeders to connect to arbitrary backbone midpoint anchors made the network visually messier."
   },
-  "manual_waypoints": {
-    "enabled": true,
-    "directional_entries": 38,
-    "los_angeles_san_antonio_split_via_phoenix": true,
-    "houston_atlanta_route": [
-      "Beaumont",
-      "Lafayette",
-      "Baton Rouge",
-      "New Orleans",
-      "Mobile",
-      "Birmingham"
+  "albuquerque_refinement": {
+    "albuquerque_added_as_fixed_hub": true,
+    "denver_south_branch": "Denver \u2192 Albuquerque",
+    "albuquerque_to_phoenix": true,
+    "albuquerque_to_dallas": true,
+    "den_phx_excluded_from_forced_flight_corridor_links": true
+  },
+  "pittsburgh_refinement": {
+    "pittsburgh_added_as_fixed_hub": true,
+    "chicago_dc_route": [
+      "Fort Wayne",
+      "Columbus",
+      "Pittsburgh",
+      "Morgantown",
+      "Cumberland",
+      "Martinsburg"
     ],
-    "salt_lake_city_denver_route": [
-      "Evanston",
-      "Rock Springs",
-      "Rawlins",
-      "Laramie",
-      "Cheyenne"
+    "toronto_south_connection": "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
+    "montreal_south_connection": "Montreal \u2192 New York via Burlington, Plattsburgh, Albany, and Poughkeepsie"
+  },
+  "canada_refinement": {
+    "canada_added": true,
+    "west_east_trunk": [
+      "Vancouver",
+      "Calgary",
+      "Winnipeg",
+      "Toronto",
+      "Montreal",
+      "Quebec City"
     ],
-    "denver_dallas_route": [
-      "Colorado Springs",
-      "Pueblo",
-      "Trinidad",
-      "Santa Fe",
-      "Clovis",
-      "Lubbock",
-      "Abilene",
-      "Fort Worth"
-    ],
-    "denver_phoenix_route": [
-      "Colorado Springs",
-      "Pueblo",
-      "Trinidad",
-      "Santa Fe",
-      "Albuquerque",
-      "Flagstaff"
+    "north_south_corridors": [
+      "Vancouver \u2192 Seattle",
+      "Calgary \u2192 Denver via Lethbridge, Great Falls, Helena, Bozeman, Billings, Casper, and Cheyenne",
+      "Winnipeg \u2192 Chicago via Minnesota/Wisconsin",
+      "Toronto \u2192 Chicago via Detroit",
+      "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
+      "Montreal \u2192 New York via Burlington, Plattsburgh, Albany, and Poughkeepsie"
     ]
   },
   "phoenix_hub_refinement": {
     "phoenix_added_as_fixed_hub": true,
-    "denver_phoenix_handled_as": "hub_backbone",
-    "denver_phoenix_waypoints": [
-      "Colorado Springs",
-      "Pueblo",
-      "Trinidad",
-      "Santa Fe",
-      "Albuquerque",
-      "Flagstaff"
-    ],
-    "den_phx_excluded_from_forced_flight_corridor_links": true,
+    "los_angeles_san_antonio_split_via_phoenix": true,
     "key_west_removed_from_terminal_set": true
   },
   "files": {
-    "edges_geojson": "network_exports_method3_corridor_aware\\network_edges_method3.geojson",
-    "edges_geojson_website_alias": "network_exports_method3_corridor_aware\\network_edges_method3_simplified.geojson",
-    "hubs_geojson": "network_exports_method3_corridor_aware\\fixed_hubs_method3.geojson",
-    "hubs_geojson_website_alias": "network_exports_method3_corridor_aware\\fixed_hubs_method3.geojson",
-    "corridor_access_anchors_geojson": "network_exports_method3_corridor_aware\\corridor_access_anchors_method3.geojson",
-    "nodes_geojson": "network_exports_method3_corridor_aware\\network_nodes_method3.geojson",
-    "metadata_json": "network_exports_method3_corridor_aware\\network_metadata_method3.json",
-    "metadata_json_website_alias": "network_exports_method3_corridor_aware\\metadata_method3.json",
-    "flight_csv": "network_exports_method3_corridor_aware\\flight_corridor_rail_service_evaluation_method3.csv",
-    "geopackage": "network_exports_method3_corridor_aware\\contiguous_us_rail_network_method3_corridor_aware.gpkg",
-    "graphml": "network_exports_method3_corridor_aware\\contiguous_us_rail_network_method3_corridor_aware.graphml"
+    "edges_geojson": "network_exports_method3_north_america\\network_edges_method3.geojson",
+    "edges_geojson_website_alias": "network_exports_method3_north_america\\network_edges_method3_simplified.geojson",
+    "hubs_geojson": "network_exports_method3_north_america\\fixed_hubs_method3.geojson",
+    "hubs_geojson_website_alias": "network_exports_method3_north_america\\fixed_hubs_method3.geojson",
+    "canada_boundaries_geojson": "network_exports_method3_north_america\\canada_boundaries_method3.geojson",
+    "nodes_geojson": "network_exports_method3_north_america\\network_nodes_method3.geojson",
+    "metadata_json": "network_exports_method3_north_america\\network_metadata_method3.json",
+    "metadata_json_website_alias": "network_exports_method3_north_america\\metadata_method3.json",
+    "flight_csv": "network_exports_method3_north_america\\flight_corridor_rail_service_evaluation_method3.csv",
+    "geopackage": "network_exports_method3_north_america\\north_america_rail_network_method3.gpkg",
+    "graphml": "network_exports_method3_north_america\\north_america_rail_network_method3.graphml"
   }
 }

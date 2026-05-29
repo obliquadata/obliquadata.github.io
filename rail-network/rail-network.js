@@ -36,14 +36,12 @@ const METHOD3_CONFIG = {
   metadata: "metadata_method3.json",
   edges: "network_edges_method3_optimized.geojson",
   hubs: "fixed_hubs_method3.geojson",
-  accessAnchors: "corridor_access_anchors_method3.geojson",
   junctions: "network_junctions_method3_sample.geojson",
   corridors: "flight_corridors_method3_enriched.json",
   metricPrefix: "method3",
   title: "Method 3",
   defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
   showJunctionsByDefault: false,
-  showAccessAnchorsByDefault: false,
   showCorridorsByDefault: false
 };
 
