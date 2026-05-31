@@ -714,3 +714,6 @@
     grid-template-columns: 1fr;
   }
 }
+
+.map-popup-muted { margin-top: 6px; color: #5f6f5c; font-size: 0.86rem; line-height: 1.35; }
+.legend-line.fallback-access-city { background: #7d8a72; }

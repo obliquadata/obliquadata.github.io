@@ -37,9 +37,11 @@ const METHOD3_CONFIG = {
   edges: "network_edges_method3_optimized.geojson",
   hubs: "fixed_hubs_method3.geojson",
   junctions: "network_junctions_method3_sample.geojson",
+  namedNodes: "clickable_nodes_method3.geojson",
   metricPrefix: "method3",
   title: "Method 3",
-  defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "augment"],
+  defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "fallback_access_city", "augment"],
+  showNamedNodesByDefault: true,
   showJunctionsByDefault: false,
   showCorridorsByDefault: false
 };
@@ -52,6 +54,7 @@ const railStylesByType = {
   feeder_tree: { color: "#5f8f4e", weight: 2.55, opacity: 0.78, pane: "railPane" },
   spoke: { color: "#7ca66a", weight: 2.1, opacity: 0.58, pane: "railPane" },
   spoke_fallback: { color: "#65735e", weight: 2.55, opacity: 0.82, pane: "railPane" },
+  fallback_access_city: { color: "#7d8a72", weight: 2.35, opacity: 0.78, pane: "railPane" },
   augment: { color: "#c99534", weight: 3.15, opacity: 0.9, pane: "railPane" },
   forced_flight_corridor: { color: "#b046a3", weight: 3.65, opacity: 0.9, pane: "priorityPane" }
 };
@@ -67,6 +70,7 @@ const displayNames = {
   feeder_tree: "Regional feeder trees",
   spoke: "Direct spokes",
   spoke_fallback: "Fallback spokes",
+  fallback_access_city: "City-anchored fallback access",
   augment: "Gap-fill / augmenting links",
   forced_flight_corridor: "Remaining flight-corridor priority links"
 };
@@ -243,6 +247,37 @@ async function initRailMap(config) {
     }
   });
 
+  const namedNodeLayer = L.geoJSON(null, {
+    renderer: canvasRenderer,
+    pane: "accessPane",
+    pointToLayer: (feature, latlng) => {
+      const p = feature.properties || {};
+      const isHub = p.primary_type === "fixed_hub";
+      return L.circleMarker(latlng, {
+        pane: "accessPane",
+        radius: isHub ? 5.6 : 4.2,
+        color: isHub ? "#123f1a" : "#31572c",
+        weight: isHub ? 1.8 : 1.2,
+        fillColor: isHub ? "#f5f1e4" : "#fffdf3",
+        fillOpacity: 0.92,
+        opacity: 0.95
+      });
+    },
+    onEachFeature: (feature, layer) => {
+      const p = feature.properties || {};
+      const name = p.primary_name || p.node_name || "Named node";
+      const type = p.primary_type ? String(p.primary_type).replaceAll("_", " ") : "node";
+      const allNames = p.all_names && p.all_names !== name ? `<div class="map-popup-muted">Also represents: ${p.all_names}</div>` : "";
+      const represented = p.represented_count ? `<div>Represented records: <strong>${p.represented_count}</strong></div>` : "";
+      layer.bindPopup(`
+        <strong class="map-popup-title">${name}</strong>
+        <div>Type: <strong>${type}</strong></div>
+        ${represented}
+        ${allNames}
+      `);
+    }
+  });
+
   const accessAnchorLayer = L.geoJSON(null, {
     renderer: canvasRenderer,
     pane: "accessPane",
@@ -295,21 +330,25 @@ async function initRailMap(config) {
   }
 
   function enforceOverlayOrder() {
-    ["spoke", "feeder_tree", "spoke_fallback", "augment", "forced_flight_corridor", "hub_backbone"].forEach((type) => {
+    ["spoke", "feeder_tree", "spoke_fallback", "fallback_access_city", "augment", "forced_flight_corridor", "hub_backbone"].forEach((type) => {
       if (layersByType[type]) bringGroupToFront(map, layersByType[type]);
     });
     bringGroupToFront(map, flightLayer);
     bringGroupToFront(map, junctionLayer);
     bringGroupToFront(map, accessAnchorLayer);
+    bringGroupToFront(map, namedNodeLayer);
     bringGroupToFront(map, hubLayer);
   }
 
-  const [metadata, edges, hubs, accessAnchors, junctions, corridors] = await Promise.all([
+  const [metadata, edges, hubs, accessAnchors, namedNodes, junctions, corridors] = await Promise.all([
     fetch(`${DATA_PATH}${config.metadata}`).then((r) => r.json()).catch(() => ({})),
     fetch(`${DATA_PATH}${config.edges}`).then((r) => r.json()),
     fetch(`${DATA_PATH}${config.hubs}`).then((r) => r.json()),
     config.accessAnchors
       ? fetch(`${DATA_PATH}${config.accessAnchors}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] }))
+      : Promise.resolve({ type: "FeatureCollection", features: [] }),
+    config.namedNodes
+      ? fetch(`${DATA_PATH}${config.namedNodes}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] }))
       : Promise.resolve({ type: "FeatureCollection", features: [] }),
     fetch(`${DATA_PATH}${config.junctions}`).then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] })),
     config.corridors
@@ -324,7 +363,7 @@ async function initRailMap(config) {
     grouped[type].push(feature);
   });
 
-  const preferredOrder = ["spoke", "feeder_tree", "spoke_fallback", "augment", "forced_flight_corridor", "hub_backbone"];
+  const preferredOrder = ["spoke", "feeder_tree", "spoke_fallback", "fallback_access_city", "augment", "forced_flight_corridor", "hub_backbone"];
   const edgeTypes = [...preferredOrder.filter((t) => grouped[t]), ...Object.keys(grouped).filter((t) => !preferredOrder.includes(t))];
 
   const defaultEdgeTypes = new Set(config.defaultEdgeTypes || edgeTypes);
@@ -340,6 +379,8 @@ async function initRailMap(config) {
   hubLayer.addData(hubs).addTo(map);
   accessAnchorLayer.addData(accessAnchors);
   if (config.showAccessAnchorsByDefault) accessAnchorLayer.addTo(map);
+  namedNodeLayer.addData(namedNodes);
+  if (config.showNamedNodesByDefault) namedNodeLayer.addTo(map);
   junctionLayer.addData(junctions);
   if (config.showJunctionsByDefault) junctionLayer.addTo(map);
   if (config.corridors) {
@@ -351,6 +392,7 @@ async function initRailMap(config) {
   edgeTypes.forEach((type) => { overlays[displayNames[type] || type] = layersByType[type]; });
   overlays["Fixed hubs"] = hubLayer;
   if (config.accessAnchors) overlays["Corridor access anchors"] = accessAnchorLayer;
+  if (config.namedNodes) overlays["Named nodes"] = namedNodeLayer;
   overlays["Sampled junctions"] = junctionLayer;
   if (config.corridors) overlays["Evaluated air corridors"] = flightLayer;
 

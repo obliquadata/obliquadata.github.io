@@ -115,7 +115,7 @@
           <article>
             <h3>Method 3: North American manually guided backbone</h3>
             <p>
-              Method 3 removes the corridor-access-anchor experiment and returns feeder assignment to fixed hubs only. It then expands the latest manually guided backbone into Canada with a west–east Canadian trunk and selected north–south cross-border corridors.
+              Method 3 removes the corridor-access-anchor experiment, returns feeder assignment to fixed hubs only, and adds a clickable named-node layer for the cities, colleges, waypoints, and hubs represented by the network. It then expands the manually guided backbone into Canada with a west–east Canadian trunk and selected north–south cross-border corridors.
             </p>
           </article>
         </div>
@@ -150,7 +150,7 @@
           <span class="section-label">Flight corridor checks</span>
           <h2>Air-corridor evaluation is used as an iteration tool for Methods 1 and 2.</h2>
           <p>
-            The flight-corridor tables compare high-frequency air corridors with the rail paths produced by the first two network prototypes. Method 1 uses the original fixed-hub hub-and-spoke baseline, while Method 2 shows how the Phoenix hub refinement and hierarchical feeder logic changed the corridor results. Method 3 is now treated as a structural North American expansion, so its flight-corridor table has been removed from the page for clarity.
+            The flight-corridor tables compare high-frequency air corridors with the rail paths produced by Methods 1 and 2. Method 1 uses the original fixed-hub hub-and-spoke baseline, while Method 2 shows how the Phoenix hub refinement and hierarchical feeder logic changed the corridor results. Method 3 is treated as a structural North American expansion rather than a new air-corridor evaluation, so the duplicate Method 3 flight-corridor check is not shown.
           </p>
         </article>
         <article class="panel corridor-panel">
@@ -222,7 +222,7 @@
             <h2>North American manually guided backbone–feeder construction.</h2>
           </div>
           <p>
-            Method 3 replaces the corridor-access-anchor experiment with a more controlled fixed-hub structure. Feeder trees and fallback spokes now connect only to fixed hubs, while the backbone expands from the United States into Canada. The Canadian layer uses one west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City. It also adds cross-border links from Vancouver to Seattle, Calgary south through Montana and Wyoming, Winnipeg south through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York through Boston and New England.
+            Method 3 replaces the corridor-access-anchor experiment with a more controlled fixed-hub structure. Feeder trees and fallback spokes now connect only to fixed hubs, while the backbone expands from the United States into Canada. The Canadian layer uses one west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus selected north–south cross-border corridors. The latest map also adds Boise–Portland as an ordinary gap-fill link and includes clickable named nodes for fixed hubs, manual waypoints, cities, colleges, metros, and airports.
           </p>
         </div>
         <div class="map-card method-card">
@@ -236,7 +236,7 @@
           <span class="section-label">How to read the comparison</span>
           <h2>The three maps separate hub choice, feeder logic, and geographic expansion.</h2>
           <p>
-            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, adds Albuquerque, Pittsburgh, and Boston as fixed interchange hubs, and extends the network into Canada through a simple trunk-and-cross-border structure.
+            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, adds Albuquerque, Pittsburgh, and Boston as fixed interchange hubs, extends the network into Canada, and adds clickable named nodes to make the map easier to inspect.
           </p>
         </article>
         <article class="panel result-summary feeder-note">
@@ -253,7 +253,7 @@
           <span class="section-label">What changed from Method 2 to Method 3</span>
           <h2>Method 3 adds Canada and tightens the access logic.</h2>
           <p>
-            The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It also adds Albuquerque as a Southwest interchange hub, adds Pittsburgh as an Appalachian/Great Lakes interchange hub, adds Boston as a New England hub on the Montreal–New York route, leaves Salt Lake City–Denver to the road-routing algorithm instead of forcing waypoints, and adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors into Seattle, Denver, Chicago, Pittsburgh, Boston, and New York.
+            The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It adds Albuquerque as a Southwest interchange hub, Pittsburgh as an Appalachian/Great Lakes interchange hub, and Boston as a New England hub on the Montreal–New York route; leaves Salt Lake City–Denver to the road-routing algorithm; adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors; and adds Boise–Portland as a normal gap-fill link. A new clickable named-node layer lets users inspect the cities, colleges, waypoints, hubs, metros, and airports represented by the graph.
           </p>
         </article>
       </section>

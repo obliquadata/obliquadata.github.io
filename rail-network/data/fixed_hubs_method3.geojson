@@ -18,13 +18,21 @@
 { "type": "Feature", "properties": { "name": "Salt Lake City", "lon": -111.891, "lat": 40.7608 }, "geometry": { "type": "Point", "coordinates": [ -111.891, 40.7608 ] } },
 { "type": "Feature", "properties": { "name": "Phoenix", "lon": -112.074, "lat": 33.4484 }, "geometry": { "type": "Point", "coordinates": [ -112.074, 33.4484 ] } },
 { "type": "Feature", "properties": { "name": "Albuquerque", "lon": -106.6504, "lat": 35.0844 }, "geometry": { "type": "Point", "coordinates": [ -106.6504, 35.0844 ] } },
+{ "type": "Feature", "properties": { "name": "Pittsburgh", "lon": -79.9959, "lat": 40.4406 }, "geometry": { "type": "Point", "coordinates": [ -79.9959, 40.4406 ] } },
+{ "type": "Feature", "properties": { "name": "Boston", "lon": -71.0589, "lat": 42.3601 }, "geometry": { "type": "Point", "coordinates": [ -71.0589, 42.3601 ] } },
 { "type": "Feature", "properties": { "name": "Vancouver", "lon": -123.1207, "lat": 49.2827 }, "geometry": { "type": "Point", "coordinates": [ -123.1207, 49.2827 ] } },
 { "type": "Feature", "properties": { "name": "Calgary", "lon": -114.0719, "lat": 51.0447 }, "geometry": { "type": "Point", "coordinates": [ -114.0719, 51.0447 ] } },
 { "type": "Feature", "properties": { "name": "Winnipeg", "lon": -97.1384, "lat": 49.8951 }, "geometry": { "type": "Point", "coordinates": [ -97.1384, 49.8951 ] } },
 { "type": "Feature", "properties": { "name": "Toronto", "lon": -79.3832, "lat": 43.6532 }, "geometry": { "type": "Point", "coordinates": [ -79.3832, 43.6532 ] } },
 { "type": "Feature", "properties": { "name": "Montreal", "lon": -73.5673, "lat": 45.5017 }, "geometry": { "type": "Point", "coordinates": [ -73.5673, 45.5017 ] } },
 { "type": "Feature", "properties": { "name": "Quebec City", "lon": -71.208, "lat": 46.8139 }, "geometry": { "type": "Point", "coordinates": [ -71.208, 46.8139 ] } },
-{ "type": "Feature", "properties": { "name": "Pittsburgh", "lon": -79.9959, "lat": 40.4406 }, "geometry": { "type": "Point", "coordinates": [ -79.9959, 40.4406 ] } },
-{ "type": "Feature", "properties": { "name": "Boston", "lon": -71.0589, "lat": 42.3601 }, "geometry": { "type": "Point", "coordinates": [ -71.0589, 42.3601 ] } }
+{ "type": "Feature", "properties": { "name": "Birmingham", "lon": -86.8025, "lat": 33.5186 }, "geometry": { "type": "Point", "coordinates": [ -86.8025, 33.5186 ] } },
+{ "type": "Feature", "properties": { "name": "Nashville", "lon": -86.7816, "lat": 36.1627 }, "geometry": { "type": "Point", "coordinates": [ -86.7816, 36.1627 ] } },
+{ "type": "Feature", "properties": { "name": "Charlotte", "lon": -80.8431, "lat": 35.2271 }, "geometry": { "type": "Point", "coordinates": [ -80.8431, 35.2271 ] } },
+{ "type": "Feature", "properties": { "name": "Louisville", "lon": -85.7585, "lat": 38.2527 }, "geometry": { "type": "Point", "coordinates": [ -85.7585, 38.2527 ] } },
+{ "type": "Feature", "properties": { "name": "Oklahoma City", "lon": -97.5164, "lat": 35.4676 }, "geometry": { "type": "Point", "coordinates": [ -97.5164, 35.4676 ] } },
+{ "type": "Feature", "properties": { "name": "Kansas City", "lon": -94.5786, "lat": 39.0997 }, "geometry": { "type": "Point", "coordinates": [ -94.5786, 39.0997 ] } },
+{ "type": "Feature", "properties": { "name": "Omaha", "lon": -95.9345, "lat": 41.2565 }, "geometry": { "type": "Point", "coordinates": [ -95.9345, 41.2565 ] } },
+{ "type": "Feature", "properties": { "name": "St. Louis", "lon": -90.1994, "lat": 38.627 }, "geometry": { "type": "Point", "coordinates": [ -90.1994, 38.627 ] } }
 ]
 }

@@ -1,7 +1,7 @@
 {
-  "method_label": "Method 3: North American manually guided backbone\u2013feeder construction",
-  "method_description": "Method 3 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to Pittsburgh via Buffalo and Erie, and Montreal to New York via Boston and New England. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub, and Boston is added as a fixed New England hub. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
-  "network_version": "method3_north_america_manual_backbone_phoenix_albuquerque_pittsburgh_boston_hubs_with_remaining_forced_corridors",
+  "method_label": "Method 3: North American backbone\u2013feeder network with clickable named nodes",
+  "method_description": "Method 3 keeps the manually guided North American backbone\u2013feeder network, removes the Method 3 flight-corridor check from the website, and adds a clickable named-node layer for fixed hubs, manual waypoints, cities, colleges, metros, and airports. Boise\u2013Portland is included as an ordinary gap-fill / augmenting link, not as a fixed hub or special corridor.",
+  "network_version": "method3_with_boise_portland_gapfill_clickable_nodes",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
   "crs_nodes_export": "EPSG:4326",
@@ -295,5 +295,11 @@
     "flight_csv": "network_exports_method3_north_america\\flight_corridor_rail_service_evaluation_method3.csv",
     "geopackage": "network_exports_method3_north_america\\north_america_rail_network_method3.gpkg",
     "graphml": "network_exports_method3_north_america\\north_america_rail_network_method3.graphml"
+  },
+  "website_exports": {
+    "edges_geojson_optimized": "data/network_edges_method3_optimized.geojson",
+    "clickable_nodes_geojson": "data/clickable_nodes_method3.geojson",
+    "method3_flight_corridor_check_shown": false,
+    "edge_optimization": "Dissolved by edge type, line-merged, simplified at 2.5 km in EPSG:3857, and rounded to 5 decimal places for Leaflet performance."
   }
 }
