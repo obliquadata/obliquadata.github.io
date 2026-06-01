@@ -1,0 +1,612 @@
+{
+  "method_label": "Method 4: North American manually guided backbone\u2013feeder construction",
+  "method_description": "Method 4 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. This update adds Birmingham, Nashville, Charlotte, Louisville, Oklahoma City, Kansas City, Omaha, and St. Louis as eastern/central structural hubs, removes Virginia Beach after visual review, and replaces the older direct Chicago\u2013Atlanta and Atlanta\u2013Washington DC links with a decomposed eastern hub chain to test whether denser fixed hubs reduce messy fallback access in the eastern US. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany, and Montreal to New York via Boston and New England. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub, Boston is added as a fixed New England hub, and Philadelphia is added as a fixed hub on the DC\u2013NYC corridor. The Canada boundary is cached and simplified to speed up repeated runs. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. The targeted structural fixes and Mississippi gap-fill cleanup is retained; the previous redundant-gap-fill pruning experiment is not applied. Fallback spokes are repaired after feeder-tree construction: where possible, old direct fallback spokes are replaced by short access links to named city/interchange anchors that already lie on the built network. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
+  "network_version": "method4_population_hubs_western_structural_corridors_mississippi_cleanup",
+  "crs_network_edges_source": "EPSG:3857",
+  "crs_network_edges_export": "EPSG:4326",
+  "crs_nodes_export": "EPSG:4326",
+  "graph_nodes": 63186,
+  "graph_edges": 63281,
+  "web_simplification": {
+    "enabled": true,
+    "method": "per-feature geometry simplification only",
+    "tolerance_m": 2500,
+    "min_line_length_m": 0,
+    "dissolve_by_edge_type": false,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 76076,
+    "web_edge_feature_count": 76076,
+    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+  },
+  "edge_types_present_full": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "fixed_hub_names": [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Phoenix",
+    "Philadelphia",
+    "San Antonio",
+    "San Diego",
+    "Dallas",
+    "Fort Worth",
+    "Jacksonville",
+    "Austin",
+    "San Jose",
+    "Charlotte",
+    "Columbus",
+    "Indianapolis",
+    "San Francisco",
+    "Seattle",
+    "Denver",
+    "Nashville",
+    "Oklahoma City",
+    "Washington",
+    "El Paso",
+    "Las Vegas",
+    "Boston",
+    "Detroit",
+    "Louisville",
+    "Portland",
+    "Memphis",
+    "Baltimore",
+    "Milwaukee",
+    "Albuquerque",
+    "Fresno",
+    "Tucson",
+    "Sacramento",
+    "Atlanta",
+    "Kansas City",
+    "Mesa",
+    "Raleigh",
+    "Colorado Springs",
+    "Huntsville",
+    "Little Rock",
+    "Des Moines",
+    "Boise",
+    "Wichita",
+    "New Orleans",
+    "Minneapolis",
+    "Omaha",
+    "Newark",
+    "Sioux Falls",
+    "Salt Lake City",
+    "Virginia Beach",
+    "Bridgeport",
+    "Wilmington",
+    "Portland",
+    "Jackson",
+    "Billings",
+    "Fargo",
+    "Manchester",
+    "Providence",
+    "Charleston SC",
+    "Burlington",
+    "Charleston WV",
+    "Cheyenne",
+    "Vancouver",
+    "Calgary",
+    "Winnipeg",
+    "Toronto",
+    "Montreal",
+    "Quebec City"
+  ],
+  "build_anchor_names": [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Phoenix",
+    "Philadelphia",
+    "San Antonio",
+    "San Diego",
+    "Dallas",
+    "Fort Worth",
+    "Jacksonville",
+    "Austin",
+    "San Jose",
+    "Charlotte",
+    "Columbus",
+    "Indianapolis",
+    "Seattle",
+    "Denver",
+    "Nashville",
+    "Oklahoma City",
+    "Washington",
+    "El Paso",
+    "Las Vegas",
+    "Boston",
+    "Detroit",
+    "Louisville",
+    "Portland",
+    "Memphis",
+    "Baltimore",
+    "Milwaukee",
+    "Albuquerque",
+    "Fresno",
+    "Tucson",
+    "Sacramento",
+    "Atlanta",
+    "Kansas City",
+    "Mesa",
+    "Raleigh",
+    "Colorado Springs",
+    "Huntsville",
+    "Little Rock",
+    "Des Moines",
+    "Boise",
+    "Wichita",
+    "New Orleans",
+    "Minneapolis",
+    "Omaha",
+    "Newark",
+    "Sioux Falls",
+    "Salt Lake City",
+    "Virginia Beach",
+    "Bridgeport",
+    "Wilmington",
+    "Jackson",
+    "Billings",
+    "Fargo",
+    "Manchester",
+    "Providence",
+    "Charleston SC",
+    "Burlington",
+    "Charleston WV",
+    "Cheyenne",
+    "Vancouver",
+    "Calgary",
+    "Winnipeg",
+    "Toronto",
+    "Montreal",
+    "Quebec City"
+  ],
+  "manual_links_used": [
+    [
+      "Seattle",
+      "Portland"
+    ],
+    [
+      "Portland",
+      "Sacramento"
+    ],
+    [
+      "San Jose",
+      "Los Angeles"
+    ],
+    [
+      "Los Angeles",
+      "San Diego"
+    ],
+    [
+      "Sacramento",
+      "Salt Lake City"
+    ],
+    [
+      "Portland",
+      "Boise"
+    ],
+    [
+      "Boise",
+      "Salt Lake City"
+    ],
+    [
+      "Los Angeles",
+      "Las Vegas"
+    ],
+    [
+      "Las Vegas",
+      "Salt Lake City"
+    ],
+    [
+      "Las Vegas",
+      "Phoenix"
+    ],
+    [
+      "Salt Lake City",
+      "Denver"
+    ],
+    [
+      "Los Angeles",
+      "Phoenix"
+    ],
+    [
+      "Phoenix",
+      "San Antonio"
+    ],
+    [
+      "Denver",
+      "Albuquerque"
+    ],
+    [
+      "Albuquerque",
+      "Phoenix"
+    ],
+    [
+      "Albuquerque",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "San Antonio"
+    ],
+    [
+      "San Antonio",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Dallas"
+    ],
+    [
+      "Houston",
+      "Atlanta"
+    ],
+    [
+      "Jacksonville",
+      "Atlanta"
+    ],
+    [
+      "Atlanta",
+      "Charlotte"
+    ],
+    [
+      "Charlotte",
+      "Raleigh"
+    ],
+    [
+      "Raleigh",
+      "Washington"
+    ],
+    [
+      "Dallas",
+      "Oklahoma City"
+    ],
+    [
+      "Oklahoma City",
+      "Kansas City"
+    ],
+    [
+      "Denver",
+      "Omaha"
+    ],
+    [
+      "Omaha",
+      "Chicago"
+    ],
+    [
+      "Omaha",
+      "Kansas City"
+    ],
+    [
+      "Chicago",
+      "Milwaukee"
+    ],
+    [
+      "Milwaukee",
+      "Minneapolis"
+    ],
+    [
+      "Memphis",
+      "Nashville"
+    ],
+    [
+      "Chicago",
+      "Louisville"
+    ],
+    [
+      "Louisville",
+      "Nashville"
+    ],
+    [
+      "Nashville",
+      "Atlanta"
+    ],
+    [
+      "Chicago",
+      "Washington"
+    ],
+    [
+      "Charleston WV",
+      "Columbus"
+    ],
+    [
+      "Detroit",
+      "Chicago"
+    ],
+    [
+      "Detroit",
+      "Columbus"
+    ],
+    [
+      "Washington",
+      "Baltimore"
+    ],
+    [
+      "Baltimore",
+      "Philadelphia"
+    ],
+    [
+      "Philadelphia",
+      "New York"
+    ],
+    [
+      "New York",
+      "Boston"
+    ],
+    [
+      "Vancouver",
+      "Calgary"
+    ],
+    [
+      "Calgary",
+      "Winnipeg"
+    ],
+    [
+      "Winnipeg",
+      "Toronto"
+    ],
+    [
+      "Toronto",
+      "Montreal"
+    ],
+    [
+      "Montreal",
+      "Quebec City"
+    ],
+    [
+      "Vancouver",
+      "Seattle"
+    ],
+    [
+      "Calgary",
+      "Denver"
+    ],
+    [
+      "Winnipeg",
+      "Minneapolis"
+    ],
+    [
+      "Toronto",
+      "Detroit"
+    ],
+    [
+      "Toronto",
+      "New York"
+    ],
+    [
+      "Montreal",
+      "Boston"
+    ],
+    [
+      "Fort Worth",
+      "Dallas"
+    ],
+    [
+      "Austin",
+      "San Antonio"
+    ],
+    [
+      "Indianapolis",
+      "Louisville"
+    ],
+    [
+      "Fresno",
+      "San Jose"
+    ],
+    [
+      "Tucson",
+      "Phoenix"
+    ],
+    [
+      "Mesa",
+      "Phoenix"
+    ],
+    [
+      "Colorado Springs",
+      "Denver"
+    ],
+    [
+      "Huntsville",
+      "Nashville"
+    ],
+    [
+      "Little Rock",
+      "Memphis"
+    ],
+    [
+      "Des Moines",
+      "Omaha"
+    ],
+    [
+      "Wichita",
+      "Oklahoma City"
+    ],
+    [
+      "Newark",
+      "New York"
+    ],
+    [
+      "Bridgeport",
+      "New York"
+    ],
+    [
+      "Wilmington",
+      "Philadelphia"
+    ],
+    [
+      "Manchester",
+      "Boston"
+    ],
+    [
+      "Providence",
+      "Boston"
+    ],
+    [
+      "Burlington",
+      "Montreal"
+    ],
+    [
+      "Cheyenne",
+      "Denver"
+    ]
+  ],
+  "fallback_repair": {
+    "enabled": true,
+    "method": "city_anchored_fallback_access",
+    "max_access_m": 120000,
+    "max_total_ratio": 1.2,
+    "max_access_share_of_direct": 0.75,
+    "summary_counts": {
+      "city_anchored_access": 7,
+      "direct_hub_fallback_last_resort": 1
+    }
+  },
+  "ordinary_gap_fill_safeguards": {
+    "enabled": true,
+    "links_requested": [
+      "Omaha \u2192 Kansas City",
+      "Boise \u2192 Portland"
+    ],
+    "style": "edge_type='augment' so these render as normal gap-fill / augmenting links",
+    "summary": []
+  },
+  "corridor_access_anchors": {
+    "enabled": false,
+    "note": "Removed because allowing spokes/feeders to connect to arbitrary backbone midpoint anchors made the network visually messier."
+  },
+  "albuquerque_refinement": {
+    "albuquerque_added_as_fixed_hub": true,
+    "denver_south_branch": "Denver \u2192 Albuquerque",
+    "albuquerque_to_phoenix": true,
+    "albuquerque_to_dallas": true,
+    "den_phx_excluded_from_forced_flight_corridor_links": true
+  },
+  "eastern_hub_refinement": {
+    "enabled": true,
+    "new_eastern_hubs": [
+      "Birmingham",
+      "Nashville",
+      "Charlotte",
+      "Louisville",
+      "Oklahoma City",
+      "Kansas City",
+      "Omaha",
+      "St. Louis"
+    ],
+    "removed_direct_backbone_links": [
+      "Chicago \u2192 Atlanta",
+      "Atlanta \u2192 Washington DC"
+    ],
+    "replacement_backbone_chain": [
+      "Chicago \u2192 Louisville",
+      "Louisville \u2192 Nashville",
+      "Nashville \u2192 Birmingham",
+      "Birmingham \u2192 Atlanta",
+      "Atlanta \u2192 Charlotte",
+      "Charlotte \u2192 Washington DC",
+      "Dallas \u2192 Oklahoma City \u2192 Kansas City \u2192 St. Louis \u2192 Springfield \u2192 Urbana \u2192 Chicago",
+      "Denver \u2192 Omaha \u2192 Des Moines \u2192 Davenport \u2192 Chicago"
+    ],
+    "purpose": "Use more fixed eastern hubs to reduce overlong fallback spokes and give feeder trees cleaner intermediate anchors in the dense eastern network."
+  },
+  "pittsburgh_refinement": {
+    "pittsburgh_added_as_fixed_hub": false,
+    "chicago_dc_route": [
+      "Fort Wayne",
+      "Columbus",
+      "Pittsburgh",
+      "Morgantown",
+      "Cumberland",
+      "Martinsburg"
+    ],
+    "toronto_south_connection": "Toronto \u2192 New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany",
+    "montreal_south_connection": "Montreal \u2192 Boston via Burlington, Montpelier, Lebanon, and Manchester"
+  },
+  "boston_refinement": {
+    "boston_added_as_fixed_hub": true,
+    "montreal_boston_route": [
+      "Burlington",
+      "Montpelier",
+      "Lebanon",
+      "Manchester"
+    ],
+    "boston_new_york_route": [
+      "Worcester",
+      "Springfield",
+      "Hartford",
+      "New Haven",
+      "Stamford"
+    ]
+  },
+  "canada_refinement": {
+    "canada_added": true,
+    "west_east_trunk": [
+      "Vancouver",
+      "Calgary",
+      "Winnipeg",
+      "Toronto",
+      "Montreal",
+      "Quebec City"
+    ],
+    "north_south_corridors": [
+      "Vancouver \u2192 Seattle",
+      "Calgary \u2192 Denver via Lethbridge, Great Falls, Helena, Bozeman, Billings, Casper, and Cheyenne",
+      "Winnipeg \u2192 Chicago via Grand Forks, Fargo, St. Cloud, Minneapolis, Rochester, La Crosse, Madison, and Milwaukee",
+      "Toronto \u2192 Chicago via Detroit",
+      "Toronto \u2192 New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany",
+      "Montreal \u2192 Boston \u2192 New York via Burlington, Montpelier, Lebanon, Manchester, Worcester, Springfield, Hartford, New Haven, and Stamford"
+    ]
+  },
+  "phoenix_hub_refinement": {
+    "phoenix_added_as_fixed_hub": true,
+    "los_angeles_san_antonio_split_via_phoenix": true,
+    "key_west_removed_from_terminal_set": true
+  },
+  "canada_boundary_optimization": {
+    "enabled": true,
+    "cache_path": "network_cache\\canada_boundary_simplified_method3.gpkg",
+    "simplify_tolerance_m": 30000,
+    "note": "Canada boundary is cached and simplified; gap-fill pruning is not applied in this version."
+  },
+  "gap_fill_pruning": {
+    "enabled": false,
+    "note": "Returned to targeted structural fixes and Mississippi gap-fill cleanup because the pruning experiment increased runtime without improving the problematic Florida/Iowa-Missouri cases."
+  },
+  "files": {
+    "edges_geojson": "network_exports_method4_north_america\\network_edges_method4.geojson",
+    "edges_geojson_website_alias": "network_exports_method4_north_america\\network_edges_method4_simplified.geojson",
+    "hubs_geojson": "network_exports_method4_north_america\\fixed_hubs_method4.geojson",
+    "hubs_geojson_website_alias": "network_exports_method4_north_america\\fixed_hubs_method4.geojson",
+    "canada_boundaries_geojson": "network_exports_method4_north_america\\canada_boundaries_method4.geojson",
+    "nodes_geojson": "network_exports_method4_north_america\\network_nodes_method4.geojson",
+    "metadata_json": "network_exports_method4_north_america\\network_metadata_method4.json",
+    "metadata_json_website_alias": "network_exports_method4_north_america\\metadata_method4.json",
+    "flight_csv": "network_exports_method4_north_america\\flight_corridor_rail_service_evaluation_method4.csv",
+    "geopackage": "network_exports_method4_north_america\\north_america_rail_network_method4.gpkg",
+    "graphml": "network_exports_method4_north_america\\north_america_rail_network_method4.graphml"
+  }
+}

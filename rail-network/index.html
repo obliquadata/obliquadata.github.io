@@ -35,6 +35,7 @@
         <a href="#method-one">Method 1</a>
         <a href="#method-two">Method 2</a>
         <a href="#method-three">Method 3</a>
+        <a href="#method-four">Method 4</a>
         <a href="#next">Next steps</a>
       </nav>
     </header>
@@ -48,7 +49,7 @@
             This project tests a generalizable framework for designing and evaluating a national passenger rail network when the goal is not simply to map what already exists, but to ask what a coherent rail system could look like if planned around hubs, corridors, geographic constraints, and travel demand.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#method-three">Explore the latest map</a>
+            <a class="button button-primary" href="#method-four">Explore the latest map</a>
             <a class="button button-secondary" href="#framework">See the framework</a>
           </div>
         </div>
@@ -61,7 +62,7 @@
             <div><strong id="metric-corridors">—</strong><span>air corridors tested</span></div>
           </div>
           <p>
-            The present version compares an initial contiguous-U.S. fixed-hub prototype, a hierarchical backbone–feeder version, and a North American Method 3 that extends the manually guided network into Canada while retaining the original gap-fill behaviour except for a few manually removed redundant links.
+            The present version compares an initial contiguous-U.S. fixed-hub prototype, a hierarchical backbone–feeder version, a manually guided North American Method 3, and a more repeatable Method 4 that selects U.S. hubs from population rules while keeping the Canadian trunk structure.
           </p>
         </aside>
       </section>
@@ -116,6 +117,12 @@
             <h3>Method 3: North American manually guided backbone</h3>
             <p>
               Method 3 removes the corridor-access-anchor experiment, returns feeder assignment to fixed hubs only, and expands the manually guided backbone into Canada with a west–east Canadian trunk and selected north–south cross-border corridors. This updated data also removes the redundant Fort Lauderdale–Naples and Des Moines–Kansas City gap-fill links while retaining Miami/Miami Beach–Naples, Omaha–Kansas City, and Boise–Portland.
+            </p>
+          </article>
+          <article>
+            <h3>Method 4: population-based hub selection</h3>
+            <p>
+              Method 4 tests a more repeatable hub-selection rule. Instead of relying mainly on manually chosen U.S. hubs, it selects the largest U.S. cities by population as fixed hubs, adds the largest city in each otherwise uncovered state, and keeps the remaining large cities as ordinary nodes. These hubs are then connected to nearby hubs where the geography produces a sensible corridor.
             </p>
           </article>
         </div>
@@ -231,12 +238,31 @@
         </div>
       </section>
 
+      <section class="map-section comparison-map-section" id="method-four">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-label">Method 4</span>
+            <h2>Population-based hub backbone–feeder construction.</h2>
+          </div>
+          <p>
+            Method 4 recreates the North American backbone–feeder network with a more repeatable hub-selection rule. The U.S. hub set is based on population: the largest U.S. cities are treated as fixed hubs, and the largest city in each otherwise uncovered state is added so every state has at least one population anchor. The remaining cities from the largest-120 list stay in the model as ordinary nodes rather than hubs. Canadian hubs are kept from Method 3 to preserve the simple west–east trunk from Vancouver to Quebec City and the selected north–south cross-border corridors.
+          </p>
+          <p>
+            After the population hubs are selected, they are connected where the geography supports a coherent corridor. This includes nearest-neighbour style links where adjacent hubs form a sensible regional chain, plus manually reviewed structural corridors in the West, Midwest, South, Northeast, and Canada. The goal is to test whether a rule-based hub set can make the method more reproducible while still allowing geographic judgement where a pure nearest-neighbour graph would create awkward endpoints or missing trunk connections.
+          </p>
+        </div>
+        <div class="map-card method-card">
+          <div id="railMapMethod4" class="rail-map" role="application" aria-label="Interactive map of Method 4 population-based North American backbone-feeder rail network"></div>
+          <div class="map-legend" id="legendMethod4" aria-label="Method 4 map legend"></div>
+        </div>
+      </section>
+
       <section class="method-details-grid">
         <article class="panel result-summary method-comparison-note">
           <span class="section-label">How to read the comparison</span>
-          <h2>The three maps separate hub choice, feeder logic, and geographic expansion.</h2>
+          <h2>The four maps separate hub choice, feeder logic, geographic expansion, and repeatability.</h2>
           <p>
-            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, adds additional interchange hubs such as Albuquerque, Pittsburgh, Boston, Baltimore, and Philadelphia, extends the network into Canada, and manually removes a small number of redundant gap-fill branches.
+            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, extends the network into Canada, and manually removes a small number of redundant gap-fill branches. Method 4 keeps the same broad North American structure but changes the U.S. hub-selection rule, using population-based hubs and state coverage to make the method easier to repeat.
           </p>
         </article>
         <article class="panel result-summary feeder-note">
@@ -254,6 +280,13 @@
           <h2>Method 3 adds Canada and tightens the access logic.</h2>
           <p>
             The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It adds Albuquerque as a Southwest interchange hub, Pittsburgh as an Appalachian/Great Lakes interchange hub, Boston as a New England hub, and Baltimore and Philadelphia along the DC–New York corridor; leaves Salt Lake City–Denver to the road-routing algorithm; adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors; and adds Boise–Portland as a normal gap-fill link. This data refresh also removes redundant Fort Lauderdale–Naples and Des Moines–Kansas City gap-fill branches while retaining the cleaner Miami/Miami Beach–Naples and Omaha–Kansas City connections.
+          </p>
+        </article>
+        <article class="panel result-summary method-comparison-note">
+          <span class="section-label">What changed from Method 3 to Method 4</span>
+          <h2>Method 4 makes hub selection more rule-based.</h2>
+          <p>
+            Method 4 replaces the manually selected U.S. hub set with a population-based rule. The largest U.S. cities become fixed hubs, and the largest city in each state without one of those hubs is added for state coverage. The remaining cities from the largest-120 list remain as ordinary nodes, so they can still be served by feeder trees, fallback spokes, or gap-fill links. The Canadian hubs stay the same as Method 3. Once the hubs are selected, the method connects nearby hubs where the geography creates a sensible corridor, then adds manually reviewed structural links to close obvious endpoints such as the West Coast spine, western cross-links, Midwest chains, and Northeast corridors.
           </p>
         </article>
       </section>

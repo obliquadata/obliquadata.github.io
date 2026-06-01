@@ -44,6 +44,21 @@ const METHOD3_CONFIG = {
   showCorridorsByDefault: false
 };
 
+
+const METHOD4_CONFIG = {
+  mapId: "railMapMethod4",
+  legendId: "legendMethod4",
+  metadata: "metadata_method4.json",
+  edges: "network_edges_method4_optimized.geojson",
+  hubs: "fixed_hubs_method4.geojson",
+  junctions: "network_nodes_method4.geojson",
+  metricPrefix: "method4",
+  title: "Method 4",
+  defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "fallback_access_city", "augment"],
+  showJunctionsByDefault: false,
+  showCorridorsByDefault: false
+};
+
 const commonRailStyle = { color: "#123f1a", weight: 3.0, opacity: 0.82, pane: "railPane" };
 const backboneDefault = { color: "#123f1a", weight: 4.3, opacity: 0.94, pane: "railBackbonePane" };
 
@@ -391,13 +406,14 @@ async function initRailMap(config) {
 }
 
 async function init() {
-  const [baseline, v3, method3] = await Promise.all([
+  const [baseline, v3, method3, method4] = await Promise.all([
     initRailMap(BASELINE_CONFIG),
     initRailMap(V3_CONFIG),
-    initRailMap(METHOD3_CONFIG)
+    initRailMap(METHOD3_CONFIG),
+    initRailMap(METHOD4_CONFIG)
   ]);
 
-  const latest = method3 || v3 || baseline;
+  const latest = method4 || method3 || v3 || baseline;
   if (latest?.metadata) {
     document.getElementById("metric-nodes").textContent = formatNumber(latest.metadata.graph_nodes);
     document.getElementById("metric-edges").textContent = formatNumber(latest.metadata.graph_edges);
@@ -425,7 +441,7 @@ async function init() {
 
 init().catch((error) => {
   console.error("Unable to load rail project data", error);
-  ["railMapBaseline", "railMapV3", "railMapV4"].forEach((id) => {
+  ["railMapBaseline", "railMapV3", "railMapV4", "railMapMethod4"].forEach((id) => {
     const mapElement = document.getElementById(id);
     if (mapElement) {
       mapElement.innerHTML = '<div style="padding: 24px; font-family: Inter, system-ui; color: #17361d;">Unable to load the interactive map data. Please check that the data folder was uploaded with the page.</div>';
