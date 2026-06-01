@@ -33,6 +33,8 @@
 { "type": "Feature", "properties": { "name": "Oklahoma City", "lon": -97.5164, "lat": 35.4676 }, "geometry": { "type": "Point", "coordinates": [ -97.5164, 35.4676 ] } },
 { "type": "Feature", "properties": { "name": "Kansas City", "lon": -94.5786, "lat": 39.0997 }, "geometry": { "type": "Point", "coordinates": [ -94.5786, 39.0997 ] } },
 { "type": "Feature", "properties": { "name": "Omaha", "lon": -95.9345, "lat": 41.2565 }, "geometry": { "type": "Point", "coordinates": [ -95.9345, 41.2565 ] } },
-{ "type": "Feature", "properties": { "name": "St. Louis", "lon": -90.1994, "lat": 38.627 }, "geometry": { "type": "Point", "coordinates": [ -90.1994, 38.627 ] } }
+{ "type": "Feature", "properties": { "name": "St. Louis", "lon": -90.1994, "lat": 38.627 }, "geometry": { "type": "Point", "coordinates": [ -90.1994, 38.627 ] } },
+{ "type": "Feature", "properties": { "name": "Baltimore", "lon": -76.6122, "lat": 39.2904 }, "geometry": { "type": "Point", "coordinates": [ -76.6122, 39.2904 ] } },
+{ "type": "Feature", "properties": { "name": "Philadelphia", "lon": -75.1652, "lat": 39.9526 }, "geometry": { "type": "Point", "coordinates": [ -75.1652, 39.9526 ] } }
 ]
 }

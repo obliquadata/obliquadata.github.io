@@ -1,12 +1,31 @@
 {
-  "method_label": "Method 3: North American backbone\u2013feeder network with clickable named nodes",
-  "method_description": "Method 3 keeps the manually guided North American backbone\u2013feeder network, removes the Method 3 flight-corridor check from the website, and adds a clickable named-node layer for fixed hubs, manual waypoints, cities, colleges, metros, and airports. Boise\u2013Portland is included as an ordinary gap-fill / augmenting link, not as a fixed hub or special corridor.",
-  "network_version": "method3_with_boise_portland_gapfill_clickable_nodes",
+  "method_label": "Method 3: North American backbone\u2013feeder network with selected redundant gap-fills removed",
+  "method_description": "This Method 3 export preserves the existing North American backbone\u2013feeder network and manually removes two redundant ordinary gap-fill links: Fort Lauderdale\u2013Naples and Des Moines\u2013Kansas City. The Miami/Miami Beach\u2013Naples, Omaha\u2013Kansas City, and Boise\u2013Portland gap-fill connections are retained. The removed links are not treated as special corridors; they are simply omitted from the exported edge layer.",
+  "network_version": "method3_manual_gapfill_removals",
   "crs_network_edges_source": "EPSG:3857",
   "crs_network_edges_export": "EPSG:4326",
   "crs_nodes_export": "EPSG:4326",
-  "graph_nodes": 62173,
-  "graph_edges": 62284,
+  "graph_nodes": 59029,
+  "graph_edges": 58852,
+  "manual_gapfill_removals": {
+    "enabled": true,
+    "removed_links": [
+      {
+        "label": "Fort Lauderdale\u2013Naples redundant gap-fill",
+        "from": "Fort Lauderdale",
+        "to": "Naples",
+        "remove_buffer_m": 30000
+      },
+      {
+        "label": "Des Moines\u2013Kansas City redundant gap-fill",
+        "from": "Des Moines",
+        "to": "Kansas City",
+        "remove_buffer_m": 35000
+      }
+    ],
+    "segments_removed": 0,
+    "graph_edges_removed": 0
+  },
   "web_simplification": {
     "enabled": true,
     "method": "per-feature geometry simplification only",
@@ -14,12 +33,12 @@
     "min_line_length_m": 0,
     "dissolve_by_edge_type": false,
     "web_node_min_degree": 3,
-    "full_edge_feature_count": 85112,
-    "web_edge_feature_count": 85112,
-    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+    "full_edge_feature_count": 70402,
+    "web_edge_feature_count": 70402
   },
   "edge_types_present_full": [
     "augment",
+    "fallback_access_city",
     "feeder_tree",
     "hub_backbone",
     "spoke",
@@ -27,6 +46,7 @@
   ],
   "edge_types_present_web": [
     "augment",
+    "fallback_access_city",
     "feeder_tree",
     "hub_backbone",
     "spoke",
@@ -34,12 +54,13 @@
   ],
   "edge_types_present": [
     "augment",
+    "fallback_access_city",
     "feeder_tree",
     "hub_backbone",
     "spoke",
     "spoke_fallback"
   ],
-  "fixed_hub_names": [
+  "hub_names": [
     "Chicago",
     "Atlanta",
     "Denver",
@@ -55,251 +76,34 @@
     "Salt Lake City",
     "Phoenix",
     "Albuquerque",
+    "Pittsburgh",
+    "Boston",
     "Vancouver",
     "Calgary",
     "Winnipeg",
     "Toronto",
     "Montreal",
     "Quebec City",
-    "Pittsburgh",
-    "Boston"
+    "Birmingham",
+    "Nashville",
+    "Charlotte",
+    "Louisville",
+    "Oklahoma City",
+    "Kansas City",
+    "Omaha",
+    "St. Louis",
+    "Baltimore",
+    "Philadelphia"
   ],
-  "build_anchor_names": [
-    "Chicago",
-    "Atlanta",
-    "Denver",
-    "Dallas",
-    "Houston",
-    "San Antonio",
-    "Los Angeles",
-    "San Francisco",
-    "Seattle",
-    "New York",
-    "Washington DC",
-    "Orlando",
-    "Salt Lake City",
-    "Phoenix",
-    "Albuquerque",
-    "Vancouver",
-    "Calgary",
-    "Winnipeg",
-    "Toronto",
-    "Montreal",
-    "Quebec City",
-    "Pittsburgh",
-    "Boston"
-  ],
-  "manual_links_used": [
-    [
-      "Seattle",
-      "San Francisco"
-    ],
-    [
-      "San Francisco",
-      "Los Angeles"
-    ],
-    [
-      "San Francisco",
-      "Salt Lake City"
-    ],
-    [
-      "Salt Lake City",
-      "Denver"
-    ],
-    [
-      "Los Angeles",
-      "Phoenix"
-    ],
-    [
-      "Phoenix",
-      "San Antonio"
-    ],
-    [
-      "Denver",
-      "Albuquerque"
-    ],
-    [
-      "Albuquerque",
-      "Phoenix"
-    ],
-    [
-      "Albuquerque",
-      "Dallas"
-    ],
-    [
-      "Houston",
-      "San Antonio"
-    ],
-    [
-      "San Antonio",
-      "Dallas"
-    ],
-    [
-      "Houston",
-      "Dallas"
-    ],
-    [
-      "Houston",
-      "Atlanta"
-    ],
-    [
-      "Orlando",
-      "Atlanta"
-    ],
-    [
-      "Atlanta",
-      "Washington DC"
-    ],
-    [
-      "Dallas",
-      "Chicago"
-    ],
-    [
-      "Denver",
-      "Chicago"
-    ],
-    [
-      "Chicago",
-      "Atlanta"
-    ],
-    [
-      "Chicago",
-      "Washington DC"
-    ],
-    [
-      "Washington DC",
-      "New York"
-    ],
-    [
-      "Vancouver",
-      "Calgary"
-    ],
-    [
-      "Calgary",
-      "Winnipeg"
-    ],
-    [
-      "Winnipeg",
-      "Toronto"
-    ],
-    [
-      "Toronto",
-      "Montreal"
-    ],
-    [
-      "Montreal",
-      "Quebec City"
-    ],
-    [
-      "Vancouver",
-      "Seattle"
-    ],
-    [
-      "Calgary",
-      "Denver"
-    ],
-    [
-      "Winnipeg",
-      "Chicago"
-    ],
-    [
-      "Toronto",
-      "Chicago"
-    ],
-    [
-      "Toronto",
-      "Pittsburgh"
-    ],
-    [
-      "Montreal",
-      "Boston"
-    ],
-    [
-      "Boston",
-      "New York"
-    ]
-  ],
-  "corridor_access_anchors": {
-    "enabled": false,
-    "note": "Removed because allowing spokes/feeders to connect to arbitrary backbone midpoint anchors made the network visually messier."
-  },
-  "albuquerque_refinement": {
-    "albuquerque_added_as_fixed_hub": true,
-    "denver_south_branch": "Denver \u2192 Albuquerque",
-    "albuquerque_to_phoenix": true,
-    "albuquerque_to_dallas": true,
-    "den_phx_excluded_from_forced_flight_corridor_links": true
-  },
-  "pittsburgh_refinement": {
-    "pittsburgh_added_as_fixed_hub": true,
-    "chicago_dc_route": [
-      "Fort Wayne",
-      "Columbus",
-      "Pittsburgh",
-      "Morgantown",
-      "Cumberland",
-      "Martinsburg"
-    ],
-    "toronto_south_connection": "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
-    "montreal_south_connection": "Montreal \u2192 Boston via Burlington, Montpelier, Lebanon, and Manchester"
-  },
-  "boston_refinement": {
-    "boston_added_as_fixed_hub": true,
-    "montreal_boston_route": [
-      "Burlington",
-      "Montpelier",
-      "Lebanon",
-      "Manchester"
-    ],
-    "boston_new_york_route": [
-      "Worcester",
-      "Springfield",
-      "Hartford",
-      "New Haven",
-      "Stamford"
-    ]
-  },
-  "canada_refinement": {
-    "canada_added": true,
-    "west_east_trunk": [
-      "Vancouver",
-      "Calgary",
-      "Winnipeg",
-      "Toronto",
-      "Montreal",
-      "Quebec City"
-    ],
-    "north_south_corridors": [
-      "Vancouver \u2192 Seattle",
-      "Calgary \u2192 Denver via Lethbridge, Great Falls, Helena, Bozeman, Billings, Casper, and Cheyenne",
-      "Winnipeg \u2192 Chicago via Grand Forks, Fargo, St. Cloud, Minneapolis, Rochester, La Crosse, Madison, and Milwaukee",
-      "Toronto \u2192 Chicago via Detroit",
-      "Toronto \u2192 Pittsburgh via Hamilton, Buffalo, and Erie",
-      "Montreal \u2192 Boston \u2192 New York via Burlington, Montpelier, Lebanon, Manchester, Worcester, Springfield, Hartford, New Haven, and Stamford"
-    ]
-  },
-  "phoenix_hub_refinement": {
-    "phoenix_added_as_fixed_hub": true,
-    "los_angeles_san_antonio_split_via_phoenix": true,
-    "key_west_removed_from_terminal_set": true
-  },
   "files": {
-    "edges_geojson": "network_exports_method3_north_america\\network_edges_method3.geojson",
-    "edges_geojson_website_alias": "network_exports_method3_north_america\\network_edges_method3_simplified.geojson",
-    "hubs_geojson": "network_exports_method3_north_america\\fixed_hubs_method3.geojson",
-    "hubs_geojson_website_alias": "network_exports_method3_north_america\\fixed_hubs_method3.geojson",
-    "canada_boundaries_geojson": "network_exports_method3_north_america\\canada_boundaries_method3.geojson",
-    "nodes_geojson": "network_exports_method3_north_america\\network_nodes_method3.geojson",
-    "metadata_json": "network_exports_method3_north_america\\network_metadata_method3.json",
-    "metadata_json_website_alias": "network_exports_method3_north_america\\metadata_method3.json",
-    "flight_csv": "network_exports_method3_north_america\\flight_corridor_rail_service_evaluation_method3.csv",
-    "geopackage": "network_exports_method3_north_america\\north_america_rail_network_method3.gpkg",
-    "graphml": "network_exports_method3_north_america\\north_america_rail_network_method3.graphml"
-  },
-  "website_exports": {
-    "edges_geojson_optimized": "data/network_edges_method3_optimized.geojson",
-    "clickable_nodes_geojson": "data/clickable_nodes_method3.geojson",
-    "method3_flight_corridor_check_shown": false,
-    "edge_optimization": "Dissolved by edge type, line-merged, simplified at 2.5 km in EPSG:3857, and rounded to 5 decimal places for Leaflet performance."
+    "edges_geojson": "network_exports_method3\\network_edges_method3.geojson",
+    "edges_geojson_compatibility_alias_v4": "network_exports_method3\\network_edges_v4_simplified.geojson",
+    "hubs_geojson": "network_exports_method3\\fixed_hubs_method3.geojson",
+    "hubs_geojson_compatibility_alias_v4": "network_exports_method3\\fixed_hubs_v4.geojson",
+    "nodes_geojson": "network_exports_method3\\network_nodes_method3.geojson",
+    "metadata_json": "network_exports_method3\\metadata_method3.json",
+    "metadata_json_compatibility_alias_v4": "network_exports_method3\\metadata_v4.json",
+    "geopackage": "network_exports_method3\\contiguous_us_rail_network_method3.gpkg",
+    "graphml": "network_exports_method3\\contiguous_us_rail_network_method3.graphml"
   }
 }
