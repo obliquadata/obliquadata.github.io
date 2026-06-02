@@ -1339,3 +1339,77 @@
     min-height: 460px;
   }
 }
+
+
+/* Final blog polish: full-width hero, static main header, sticky article nav */
+.rail-shell .site-header {
+  position: relative;
+  top: auto;
+  z-index: 10;
+}
+
+.rail-blog-hero {
+  display: block;
+}
+
+.rail-blog-hero .rail-hero__copy {
+  width: 100%;
+  min-height: 540px;
+}
+
+.rail-blog-hero .rail-hero__copy h1 {
+  max-width: 16ch;
+}
+
+.rail-blog-hero .hero-text {
+  max-width: 860px;
+}
+
+.blog-subnav {
+  position: sticky;
+  top: 12px;
+  z-index: 900;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-subnav .subnav-top-link {
+  width: 40px;
+  min-width: 40px;
+  justify-content: center;
+  padding: 0;
+  border-color: rgba(18, 63, 26, 0.14);
+  background: rgba(18, 63, 26, 0.08);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.blog-subnav .subnav-top-link:hover {
+  background: rgba(18, 63, 26, 0.12);
+  text-decoration: none;
+}
+
+/* With the hero card removed, keep the hero from feeling too empty. */
+.rail-blog-hero .rail-hero__copy::after {
+  right: -40px;
+  bottom: -120px;
+  width: 520px;
+  height: 520px;
+}
+
+@media (max-width: 980px) {
+  .blog-subnav {
+    position: sticky;
+    top: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rail-blog-hero .rail-hero__copy {
+    min-height: auto;
+  }
+
+  .blog-subnav {
+    position: static;
+  }
+}
