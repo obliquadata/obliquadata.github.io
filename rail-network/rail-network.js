@@ -430,18 +430,28 @@ async function init() {
   });
 
   const latest = method4 || method3 || v3 || baseline;
+  const metricNodes = document.getElementById("metric-nodes");
+  const metricEdges = document.getElementById("metric-edges");
+  const metricHubs = document.getElementById("metric-hubs");
+  const metricCorridors = document.getElementById("metric-corridors");
+
   if (latest?.metadata) {
-    document.getElementById("metric-nodes").textContent = formatNumber(latest.metadata.graph_nodes);
-    document.getElementById("metric-edges").textContent = formatNumber(latest.metadata.graph_edges);
-    document.getElementById("metric-hubs").textContent = formatNumber(
-      latest.metadata.fixed_hub_names?.length || latest.metadata.hub_names?.length || 14
-    );
+    if (metricNodes) metricNodes.textContent = formatNumber(latest.metadata.graph_nodes);
+    if (metricEdges) metricEdges.textContent = formatNumber(latest.metadata.graph_edges);
+    if (metricHubs) {
+      metricHubs.textContent = formatNumber(
+        latest.metadata.fixed_hub_names?.length || latest.metadata.hub_names?.length || 14
+      );
+    }
   }
-  document.getElementById("metric-corridors").textContent = formatNumber(Math.max(
-    baseline?.corridors?.length || 0,
-    v3?.corridors?.length || 0,
-    method4?.corridors?.length || 0
-  ));
+
+  if (metricCorridors) {
+    metricCorridors.textContent = formatNumber(Math.max(
+      baseline?.corridors?.length || 0,
+      v3?.corridors?.length || 0,
+      method4?.corridors?.length || 0
+    ));
+  }
 
   const baselineCorridors = baseline?.corridors || [];
   const v3Corridors = v3?.corridors || [];
