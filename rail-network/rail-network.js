@@ -52,6 +52,7 @@ const METHOD4_CONFIG = {
   edges: "network_edges_method4_optimized.geojson",
   hubs: "fixed_hubs_method4.geojson",
   junctions: "network_nodes_method4.geojson",
+  corridors: "flight_corridors_method4_enriched.json",
   metricPrefix: "method4",
   title: "Method 4",
   defaultEdgeTypes: ["hub_backbone", "feeder_tree", "spoke", "spoke_fallback", "fallback_access_city", "augment"],
@@ -421,12 +422,18 @@ async function init() {
       latest.metadata.fixed_hub_names?.length || latest.metadata.hub_names?.length || 14
     );
   }
-  document.getElementById("metric-corridors").textContent = formatNumber(Math.max(baseline?.corridors?.length || 0, v3?.corridors?.length || 0));
+  document.getElementById("metric-corridors").textContent = formatNumber(Math.max(
+    baseline?.corridors?.length || 0,
+    v3?.corridors?.length || 0,
+    method4?.corridors?.length || 0
+  ));
 
   const baselineCorridors = baseline?.corridors || [];
   const v3Corridors = v3?.corridors || [];
+  const method4Corridors = method4?.corridors || [];
   renderCorridorTable("corridorRowsMethod1", baselineCorridors);
   renderCorridorTable("corridorRowsMethod2", v3Corridors);
+  renderCorridorTable("corridorRowsMethod4", method4Corridors);
 
   const method1Filter = document.getElementById("corridorFilterMethod1");
   method1Filter?.addEventListener("change", () => {
@@ -436,6 +443,11 @@ async function init() {
   const method2Filter = document.getElementById("corridorFilterMethod2");
   method2Filter?.addEventListener("change", () => {
     renderCorridorTable("corridorRowsMethod2", v3Corridors, method2Filter.value);
+  });
+
+  const method4Filter = document.getElementById("corridorFilterMethod4");
+  method4Filter?.addEventListener("change", () => {
+    renderCorridorTable("corridorRowsMethod4", method4Corridors, method4Filter.value);
   });
 }
 
