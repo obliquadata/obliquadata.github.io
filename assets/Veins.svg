@@ -2,8 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 3199 1677" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <defs>
-        <!-- Classic Pride palette, kept on the vine layer so it can be reassembled with the original outline and nodes. -->
-        <linearGradient id="prideMain" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideMain" gradientUnits="userSpaceOnUse" x1="0" y1="1677" x2="3199" y2="0">
             <stop offset="0%" stop-color="#E40303"/>
             <stop offset="18%" stop-color="#FF8C00"/>
             <stop offset="36%" stop-color="#FFED00"/>
@@ -11,28 +10,27 @@
             <stop offset="74%" stop-color="#004DFF"/>
             <stop offset="100%" stop-color="#750787"/>
         </linearGradient>
-        <linearGradient id="prideRedOrange" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideRedOrange" gradientUnits="userSpaceOnUse" x1="0" y1="1677" x2="950" y2="900">
             <stop offset="0%" stop-color="#E40303"/>
             <stop offset="100%" stop-color="#FF8C00"/>
         </linearGradient>
-        <linearGradient id="prideOrangeYellow" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideOrangeYellow" gradientUnits="userSpaceOnUse" x1="500" y1="1400" x2="1400" y2="250">
             <stop offset="0%" stop-color="#FF8C00"/>
             <stop offset="100%" stop-color="#FFED00"/>
         </linearGradient>
-        <linearGradient id="prideYellowGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideYellowGreen" gradientUnits="userSpaceOnUse" x1="950" y1="1100" x2="1950" y2="1350">
             <stop offset="0%" stop-color="#FFED00"/>
-            <stop offset="100%" stop-color="#008026"/>
+            <stop offset="100%" stop-color="#7BCB00"/>
         </linearGradient>
-        <linearGradient id="prideGreenBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideGreenBlue" gradientUnits="userSpaceOnUse" x1="1650" y1="800" x2="2500" y2="300">
             <stop offset="0%" stop-color="#008026"/>
             <stop offset="100%" stop-color="#004DFF"/>
         </linearGradient>
-        <linearGradient id="prideBluePurple" x1="0%" y1="100%" x2="100%" y2="0%">
+        <linearGradient id="prideBluePurple" gradientUnits="userSpaceOnUse" x1="1850" y1="900" x2="2850" y2="500">
             <stop offset="0%" stop-color="#004DFF"/>
             <stop offset="100%" stop-color="#750787"/>
         </linearGradient>
     </defs>
-
     <g transform="matrix(1,0,0,1,-9292.05,-1710.87)">
         <g transform="matrix(2.21204,0,0,2.21204,-239.791,-4774.72)">
             <g id="veins">
