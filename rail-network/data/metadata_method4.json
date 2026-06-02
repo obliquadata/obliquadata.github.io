@@ -1,191 +1,1288 @@
 {
-  "method_label": "Method 4: Population-based hub-tree backbone\u2013feeder construction",
-  "method_description": "Method 4 removes the previous corridor-access-anchor experiment, so feeder trees and fallback spokes connect only to fixed hubs rather than to arbitrary intermediate backbone points. This update adds Birmingham, Nashville, Charlotte, Louisville, Oklahoma City, Kansas City, Omaha, and St. Louis as eastern/central structural hubs, removes Virginia Beach after visual review, and replaces the older direct Chicago\u2013Atlanta and Atlanta\u2013Washington DC links with a decomposed eastern hub chain to test whether denser fixed hubs reduce messy fallback access in the eastern US. The method adds Canada through a deliberately simple manually guided structure: one west-east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus cross-border corridors from Vancouver to Seattle, Calgary to the US network via Montana and Wyoming, Winnipeg to the US network through the Red River Valley, Twin Cities, southern Minnesota, and Wisconsin, Toronto to Chicago via Detroit, Toronto to New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany, and Montreal to New York via Boston and New England. Albuquerque is added as a fixed Southwest interchange hub, with Denver routed south to Albuquerque, and Albuquerque connected onward to Phoenix and Dallas. Pittsburgh is added as a fixed Appalachian/Great Lakes interchange hub, Boston is added as a fixed New England hub, and Philadelphia is added as a fixed hub on the DC\u2013NYC corridor. The Canada boundary is cached and simplified to speed up repeated runs. Salt Lake City\u2013Denver is left without forced waypoints so the road-routing algorithm can choose its own path. The targeted structural fixes and Mississippi gap-fill cleanup are retained; the Bay Area spine is simplified by using San Jose as the southbound Bay Area gateway, the San Francisco hub point is moved to the 4th and King station area, Sioux Falls is connected into the Upper Midwest, the Chicago\u2013Washington corridor is restored through Columbus, Pittsburgh, Morgantown, Cumberland, and Martinsburg, and duplicate MST links in the Denver\u2013Albuquerque and Cheyenne\u2013Montana areas are pruned before routing. The previous redundant-gap-fill pruning experiment is not applied. Fallback spokes are repaired after feeder-tree construction: where possible, old direct fallback spokes are replaced by short access links to named city/interchange anchors that already lie on the built network. Phoenix remains a fixed Southwest hub, Los Angeles\u2013San Antonio remains split through Phoenix, and Key West is removed from the terminal set.",
-  "network_version": "method4_population_hubs_regional_chains_bay_sioux_chicago_dc",
-  "crs_network_edges_source": "EPSG:3857",
-  "crs_network_edges_export": "EPSG:4326",
-  "crs_nodes_export": "EPSG:4326",
-  "graph_nodes": 71477,
-  "graph_edges": 71474,
-  "web_simplification": {
-    "enabled": true,
-    "method": "per-feature geometry simplification only",
-    "tolerance_m": 2500,
-    "min_line_length_m": 0,
-    "dissolve_by_edge_type": false,
-    "web_node_min_degree": 3,
-    "full_edge_feature_count": 90460,
-    "web_edge_feature_count": 90460,
-    "note": "The web GeoJSON edge export is simplified per feature. No short segments are dropped and no edge-type dissolve is applied, to preserve route continuity. The GeoPackage full-detail layer and GraphML preserve the full network."
+  "network_graph": {
+    "graph_nodes": 71478,
+    "graph_edges": 71395,
+    "note": "NetworkX graph omitted from JSON metadata; exported separately as GraphML where available."
   },
-  "edge_types_present_full": [
-    "augment",
-    "fallback_access_city",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
+  "road_graph": {
+    "graph_nodes": 678545,
+    "graph_edges": 718382,
+    "note": "NetworkX graph omitted from JSON metadata; exported separately as GraphML where available."
+  },
+  "terminal_nodes": [
+    [
+      -8929786.726,
+      2972383.333
+    ],
+    [
+      -13162799.308,
+      4035895.997
+    ],
+    [
+      -9060044.668,
+      3316610.38
+    ],
+    [
+      -13627198.397,
+      4548043.222
+    ],
+    [
+      -12821821.362,
+      4318512.645
+    ],
+    [
+      -8575993.904,
+      4706699.147
+    ],
+    [
+      -9756575.62,
+      5138636.715
+    ],
+    [
+      -7910061.34,
+      5215096.837
+    ],
+    [
+      -10617668.617,
+      3473146.044
+    ],
+    [
+      -9394326.523,
+      3996406.331
+    ],
+    [
+      -8921190.524,
+      3016050.466
+    ],
+    [
+      -10776626.17,
+      3866077.351
+    ],
+    [
+      -13043321.434,
+      3857449.528
+    ],
+    [
+      -13122811.677,
+      3994675.187
+    ],
+    [
+      -13617912.125,
+      6041645.945
+    ],
+    [
+      -12426411.748,
+      4190431.477
+    ],
+    [
+      -8367139.392,
+      4859166.849
+    ],
+    [
+      -9179268.511,
+      3242343.498
+    ],
+    [
+      -13567118.044,
+      4481267.376
+    ],
+    [
+      -12475999.906,
+      3954954.454
+    ],
+    [
+      -13066125.121,
+      4026454.459
+    ],
+    [
+      -8780607.588,
+      5294673.173
+    ],
+    [
+      -11684069.82,
+      4827769.756
+    ],
+    [
+      -10026742.347,
+      3501388.615
+    ],
+    [
+      -9659767.181,
+      4322913.631
+    ],
+    [
+      -8912765.865,
+      3086966.305
+    ],
+    [
+      -10879594.25,
+      3542210.855
+    ],
+    [
+      -13542675.957,
+      4394268.151
+    ],
+    [
+      -9244751.533,
+      5210788.145
+    ],
+    [
+      -9105444.541,
+      3017385.875
+    ],
+    [
+      -8258001.318,
+      4973439.257
+    ],
+    [
+      -13523695.984,
+      4661455.388
+    ],
+    [
+      -13326839.932,
+      4086359.881
+    ],
+    [
+      -9089656.432,
+      3544273.429
+    ],
+    [
+      -10383111.436,
+      5618932.142
+    ],
+    [
+      -8980301.396,
+      3248857.421
+    ],
+    [
+      -8999535.846,
+      4194692.63
+    ],
+    [
+      -10964273.762,
+      3429858.563
+    ],
+    [
+      -12643493.549,
+      4451399.777
+    ],
+    [
+      -12455339.453,
+      4975505.65
+    ],
+    [
+      -8528729.206,
+      4762791.566
+    ],
+    [
+      -9145679.858,
+      3131660.62
+    ],
+    [
+      -13608587.671,
+      4551279.107
+    ],
+    [
+      -13655165.193,
+      5703229.568
+    ],
+    [
+      -9127085.495,
+      3079219.658
+    ],
+    [
+      -9091781.409,
+      5083754.499
+    ],
+    [
+      -9590911.957,
+      4837504.606
+    ],
+    [
+      -10724586.646,
+      3583833.34
+    ],
+    [
+      -9322373.278,
+      5202169.111
+    ],
+    [
+      -10835192.134,
+      3863146.304
+    ],
+    [
+      -13614716.588,
+      6049274.545
+    ],
+    [
+      -13552350.4,
+      4656202.298
+    ],
+    [
+      -7915720.934,
+      5213789.428
+    ],
+    [
+      -8237001.118,
+      4972363.918
+    ],
+    [
+      -10880157.527,
+      3539677.325
+    ],
+    [
+      -8564374.932,
+      4720025.003
+    ],
+    [
+      -9632131.895,
+      4745234.543
+    ],
+    [
+      -13049828.726,
+      3879032.471
+    ],
+    [
+      -8476091.117,
+      5317830.121
+    ],
+    [
+      -13167152.791,
+      4031946.522
+    ],
+    [
+      -8900524.84,
+      4930735.481
+    ],
+    [
+      -13609693.519,
+      4561504.987
+    ],
+    [
+      -9952010.567,
+      5323516.201
+    ],
+    [
+      -10379008.2,
+      5615878.458
+    ],
+    [
+      -13183351.558,
+      4037787.393
+    ],
+    [
+      -10629003.056,
+      3529833.964
+    ],
+    [
+      -11719369.342,
+      4867462.415
+    ],
+    [
+      -9281010.518,
+      4023205.316
+    ],
+    [
+      -8598185.444,
+      4698325.033
+    ],
+    [
+      -8232994.841,
+      4984448.895
+    ],
+    [
+      -9167401.741,
+      3458904.244
+    ],
+    [
+      -8370400.941,
+      4858742.822
+    ],
+    [
+      -12436829.471,
+      4906578.501
+    ],
+    [
+      -13341924.391,
+      4084970.433
+    ],
+    [
+      -9675041.663,
+      4928605.089
+    ],
+    [
+      -8667511.772,
+      4982067.552
+    ],
+    [
+      -10757717.108,
+      3916762.719
+    ],
+    [
+      -8926757.5,
+      2971744.313
+    ],
+    [
+      -12429778.717,
+      4902427.207
+    ],
+    [
+      -12351164.559,
+      3794327.475
+    ],
+    [
+      -9763916.027,
+      5167114.032
+    ],
+    [
+      -11697130.602,
+      4949754.98
+    ],
+    [
+      -10774541.602,
+      3864168.248
+    ],
+    [
+      -8089924.917,
+      5126369.326
+    ],
+    [
+      -7916908.49,
+      5217222.008
+    ],
+    [
+      -8738965.972,
+      4584613.993
+    ],
+    [
+      -10732088.133,
+      3524766.178
+    ],
+    [
+      -12462078.847,
+      5041535.744
+    ],
+    [
+      -9803594.301,
+      5135566.712
+    ],
+    [
+      -10617857.303,
+      3470431.195
+    ],
+    [
+      -7913628.796,
+      5212059.296
+    ],
+    [
+      -12460974.669,
+      4963443.461
+    ],
+    [
+      -8513150.711,
+      5227647.156
+    ],
+    [
+      -9515781.988,
+      3842161.215
+    ],
+    [
+      -12460542.081,
+      3951445.9
+    ],
+    [
+      -8073679.618,
+      5218815.635
+    ],
+    [
+      -13021194.57,
+      4004022.716
+    ],
+    [
+      -10421538.813,
+      5116593.141
+    ],
+    [
+      -10937368.064,
+      3026176.434
+    ],
+    [
+      -8287487.736,
+      4938489.435
+    ],
+    [
+      -11841711.132,
+      3733637.434
+    ],
+    [
+      -13122792.196,
+      3996624.717
+    ],
+    [
+      -10150833.857,
+      3556515.776
+    ],
+    [
+      -13151883.207,
+      4033829.069
+    ],
+    [
+      -9751570.25,
+      5129047.755
+    ],
+    [
+      -13061136.338,
+      4024873.397
+    ],
+    [
+      -9394938.001,
+      3998140.682
+    ],
+    [
+      -9040003.82,
+      3324547.059
+    ],
+    [
+      -8800256.146,
+      4288282.501
+    ],
+    [
+      -11691331.19,
+      4851370.679
+    ],
+    [
+      -9742721.353,
+      4676213.784
+    ],
+    [
+      -13598784.543,
+      4500240.127
+    ],
+    [
+      -8923296.243,
+      3022433.615
+    ],
+    [
+      -9745637.701,
+      3923153.895
+    ],
+    [
+      -10810747.598,
+      3859160.244
+    ],
+    [
+      -8191858.393,
+      4986550.425
+    ],
+    [
+      -8577181.349,
+      4707296.602
+    ],
+    [
+      -8947013.751,
+      2969538.061
+    ],
+    [
+      -8921201.99,
+      3014243.043
+    ],
+    [
+      -10483854.685,
+      4310308.363
+    ],
+    [
+      -10769564.841,
+      3892405.825
+    ],
+    [
+      -9373289.366,
+      4830820.044
+    ],
+    [
+      -10929159.921,
+      3036748.345
+    ],
+    [
+      -10877518.587,
+      3545030.796
+    ],
+    [
+      -13334312.03,
+      4407263.516
+    ],
+    [
+      -9838681.537,
+      4633195.904
+    ],
+    [
+      -12970182.414,
+      5405853.461
+    ],
+    [
+      -8787256.033,
+      4301743.408
+    ],
+    [
+      -11340181.872,
+      3973139.768
+    ],
+    [
+      -13243307.901,
+      4218033.924
+    ],
+    [
+      -13139748.492,
+      4031712.418
+    ],
+    [
+      -12343517.689,
+      3792445.403
+    ],
+    [
+      -12827876.586,
+      4322540.943
+    ],
+    [
+      -10424449.484,
+      5164389.841
+    ],
+    [
+      -8758119.27,
+      4270489.071
+    ],
+    [
+      -8042710.758,
+      5132666.46
+    ],
+    [
+      -12936460.066,
+      5404794.46
+    ],
+    [
+      -8579418.648,
+      4708076.049
+    ],
+    [
+      -8527854.903,
+      4778731.425
+    ],
+    [
+      -9238077.039,
+      4861317.037
+    ],
+    [
+      -9403862.819,
+      5271428.112
+    ],
+    [
+      -13508679.207,
+      4673211.728
+    ],
+    [
+      -7908827.92,
+      5207909.596
+    ],
+    [
+      -9245567.171,
+      5210197.428
+    ],
+    [
+      -9758347.826,
+      5161068.123
+    ],
+    [
+      -8118142.515,
+      5058210.401
+    ],
+    [
+      -8432853.402,
+      4819788.664
+    ],
+    [
+      -10544578.577,
+      4711285.158
+    ],
+    [
+      -9407200.734,
+      4585026.14
+    ],
+    [
+      -7837863.748,
+      5389568.879
+    ],
+    [
+      -10053259.874,
+      4671763.557
+    ],
+    [
+      -9885016.16,
+      3956332.048
+    ],
+    [
+      -12361914.682,
+      5729110.178
+    ],
+    [
+      -10775731.162,
+      5924203.038
+    ],
+    [
+      -10681769.274,
+      5057377.852
+    ],
+    [
+      -7894247.182,
+      5333497.683
+    ],
+    [
+      -11868951.568,
+      4174888.327
+    ],
+    [
+      -10805986.463,
+      4316578.845
+    ],
+    [
+      -13700798.058,
+      5472831.329
+    ],
+    [
+      -7948271.31,
+      5135142.135
+    ],
+    [
+      -9219873.742,
+      4120859.671
+    ],
+    [
+      -10774440.969,
+      5514187.181
+    ],
+    [
+      -9342463.886,
+      4293656.997
+    ],
+    [
+      -8148662.535,
+      5539457.438
+    ],
+    [
+      -8900725.883,
+      4812768.031
+    ],
+    [
+      -11665178.457,
+      5027434.939
+    ],
+    [
+      -9143827.056,
+      3399482.569
+    ],
+    [
+      -8781632.061,
+      3987223.538
+    ],
+    [
+      -9120634.976,
+      4157021.055
+    ],
+    [
+      -9122064.652,
+      3254299.449
+    ],
+    [
+      -9133468.221,
+      3114713.036
+    ],
+    [
+      -9639110.18,
+      4128326.374
+    ],
+    [
+      -8676782.348,
+      4059129.046
+    ],
+    [
+      -12642043.836,
+      4452532.417
+    ],
+    [
+      -10481617.052,
+      4309239.146
+    ],
+    [
+      -8753957.257,
+      4270331.546
+    ],
+    [
+      -9784780.528,
+      3581412.087
+    ],
+    [
+      -9123704.5,
+      3369854.397
+    ],
+    [
+      -12935581.199,
+      5406059.341
+    ],
+    [
+      -8945431.679,
+      3157635.368
+    ],
+    [
+      -10880720.469,
+      3537932.047
+    ],
+    [
+      -8929473.807,
+      2972523.281
+    ],
+    [
+      -13155655.825,
+      3998678.234
+    ],
+    [
+      -13606282.022,
+      4547204.271
+    ],
+    [
+      -13251398.713,
+      4211895.365
+    ],
+    [
+      -10675050.697,
+      4318997.114
+    ],
+    [
+      -9180255.469,
+      3246651.017
+    ],
+    [
+      -11658060.8,
+      4822207.713
+    ],
+    [
+      -10811660.084,
+      3855461.393
+    ],
+    [
+      -9092593.374,
+      5083021.965
+    ],
+    [
+      -12806269.028,
+      4304790.168
+    ],
+    [
+      -13109176.598,
+      4011054.39
+    ],
+    [
+      -9044056.963,
+      3300086.34
+    ],
+    [
+      -9402068.794,
+      4585448.482
+    ],
+    [
+      -13504366.69,
+      4578200.54
+    ],
+    [
+      -13068200.895,
+      4021101.236
+    ],
+    [
+      -13109343.132,
+      3986248.659
+    ],
+    [
+      -9407552.392,
+      4741427.64
+    ],
+    [
+      -8886801.15,
+      4314703.12
+    ],
+    [
+      -8903417.588,
+      4929849.102
+    ],
+    [
+      -10363782.031,
+      5613768.737
+    ],
+    [
+      -8782356.751,
+      4298433.639
+    ],
+    [
+      -8244154.286,
+      4969372.396
+    ],
+    [
+      -10762625.741,
+      4984065.912
+    ],
+    [
+      -12810640.878,
+      4338760.446
+    ],
+    [
+      -10770209.938,
+      3902917.099
+    ],
+    [
+      -12438778.342,
+      3936098.761
+    ],
+    [
+      -9957656.803,
+      5323431.925
+    ],
+    [
+      -13340946.561,
+      4800743.308
+    ],
+    [
+      -12450149.405,
+      3932083.924
+    ],
+    [
+      -10045568.699,
+      4670082.574
+    ],
+    [
+      -13025746.87,
+      3845418.407
+    ],
+    [
+      -9477766.604,
+      5025296.499
+    ],
+    [
+      -8778896.719,
+      5295849.331
+    ],
+    [
+      -11342106.586,
+      3971514.864
+    ],
+    [
+      -11074053.259,
+      3192907.216
+    ],
+    [
+      -8950045.76,
+      3156589.383
+    ],
+    [
+      -9199269.172,
+      3219659.772
+    ],
+    [
+      -9303439.169,
+      5109965.049
+    ],
+    [
+      -12488517.003,
+      3966047.242
+    ],
+    [
+      -8933243.753,
+      4314533.655
+    ],
+    [
+      -10795452.634,
+      3877575.58
+    ],
+    [
+      -8498907.048,
+      4394583.373
+    ],
+    [
+      -10756898.798,
+      3883464.297
+    ],
+    [
+      -12455605.396,
+      3988415.793
+    ],
+    [
+      -8625786.11,
+      4512621.971
+    ],
+    [
+      -10776080.593,
+      3916978.41
+    ],
+    [
+      -9126924.527,
+      3079300.862
+    ],
+    [
+      -10757790.245,
+      3921671.144
+    ],
+    [
+      -8486829.997,
+      4427282.344
+    ],
+    [
+      -8938820.748,
+      2982574.203
+    ],
+    [
+      -13071878.668,
+      6052336.106
+    ],
+    [
+      -13632516.463,
+      5982992.404
+    ],
+    [
+      -13189697.993,
+      4082018.827
+    ],
+    [
+      -13574544.278,
+      4507344.239
+    ],
+    [
+      -10144751.694,
+      3559795.709
+    ],
+    [
+      -13056965.753,
+      4048348.631
+    ],
+    [
+      -13072794.717,
+      4043133.269
+    ],
+    [
+      -13469740.762,
+      4528601.612
+    ],
+    [
+      -13049470.389,
+      4017709.676
+    ],
+    [
+      -7993675.191,
+      5201652.646
+    ],
+    [
+      -8223355.909,
+      5004683.836
+    ],
+    [
+      -10800706.803,
+      3854464.012
+    ],
+    [
+      -8790262.773,
+      4175004.634
+    ],
+    [
+      -8640980.775,
+      5337065.251
+    ]
   ],
-  "edge_types_present_web": [
-    "augment",
-    "fallback_access_city",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
-  ],
-  "edge_types_present": [
-    "augment",
-    "fallback_access_city",
-    "feeder_tree",
-    "hub_backbone",
-    "spoke",
-    "spoke_fallback"
-  ],
-  "fixed_hub_names": [
-    "New York",
-    "Los Angeles",
-    "Chicago",
-    "Houston",
-    "Phoenix",
-    "Philadelphia",
-    "San Antonio",
-    "San Diego",
-    "Dallas",
-    "Fort Worth",
-    "Jacksonville",
-    "Austin",
-    "San Jose",
-    "Charlotte",
-    "Columbus",
-    "Indianapolis",
-    "San Francisco",
-    "Seattle",
-    "Denver",
-    "Nashville",
-    "Oklahoma City",
-    "Washington",
-    "El Paso",
-    "Las Vegas",
-    "Boston",
-    "Detroit",
-    "Louisville",
-    "Portland",
-    "Memphis",
-    "Baltimore",
-    "Milwaukee",
-    "Albuquerque",
-    "Fresno",
-    "Tucson",
-    "Sacramento",
-    "Atlanta",
-    "Kansas City",
-    "Mesa",
-    "Raleigh",
-    "Colorado Springs",
-    "Huntsville",
-    "Little Rock",
-    "Des Moines",
-    "Boise",
-    "Wichita",
-    "New Orleans",
-    "Minneapolis",
-    "Omaha",
-    "Newark",
-    "Sioux Falls",
-    "Salt Lake City",
-    "Virginia Beach",
-    "Bridgeport",
-    "Wilmington",
-    "Portland ME",
-    "Jackson",
-    "Billings",
-    "Fargo",
-    "Manchester",
-    "Providence",
-    "Charleston SC",
-    "Burlington",
-    "Charleston WV",
-    "Cheyenne",
-    "Vancouver",
-    "Calgary",
-    "Winnipeg",
-    "Toronto",
-    "Montreal",
-    "Quebec City"
-  ],
-  "build_anchor_names": [
-    "New York",
-    "Los Angeles",
-    "Chicago",
-    "Houston",
-    "Phoenix",
-    "Philadelphia",
-    "San Antonio",
-    "San Diego",
-    "Dallas",
-    "Fort Worth",
-    "Jacksonville",
-    "Austin",
-    "San Jose",
-    "Charlotte",
-    "Columbus",
-    "Indianapolis",
-    "San Francisco",
-    "Seattle",
-    "Denver",
-    "Nashville",
-    "Oklahoma City",
-    "Washington",
-    "El Paso",
-    "Las Vegas",
-    "Boston",
-    "Detroit",
-    "Louisville",
-    "Portland",
-    "Memphis",
-    "Baltimore",
-    "Milwaukee",
-    "Albuquerque",
-    "Fresno",
-    "Tucson",
-    "Sacramento",
-    "Atlanta",
-    "Kansas City",
-    "Mesa",
-    "Raleigh",
-    "Colorado Springs",
-    "Huntsville",
-    "Little Rock",
-    "Des Moines",
-    "Boise",
-    "Wichita",
-    "New Orleans",
-    "Minneapolis",
-    "Omaha",
-    "Newark",
-    "Sioux Falls",
-    "Salt Lake City",
-    "Virginia Beach",
-    "Bridgeport",
-    "Wilmington",
-    "Portland ME",
-    "Jackson",
-    "Billings",
-    "Fargo",
-    "Manchester",
-    "Providence",
-    "Charleston SC",
-    "Burlington",
-    "Charleston WV",
-    "Cheyenne",
-    "Vancouver",
-    "Calgary",
-    "Winnipeg",
-    "Toronto",
-    "Montreal",
-    "Quebec City"
-  ],
+  "hub_nodes": {
+    "New York": [
+      -8229997.453,
+      4962407.374
+    ],
+    "Los Angeles": [
+      -13181145.094,
+      4031190.904
+    ],
+    "Chicago": [
+      -9759979.77,
+      5136934.688
+    ],
+    "Houston": [
+      -10618606.817,
+      3474886.065
+    ],
+    "Phoenix": [
+      -12477941.095,
+      3970885.862
+    ],
+    "Philadelphia": [
+      -8363498.243,
+      4867586.535
+    ],
+    "San Antonio": [
+      -10967527.297,
+      3434509.259
+    ],
+    "San Diego": [
+      -13041175.974,
+      3870576.218
+    ],
+    "Dallas": [
+      -10772275.359,
+      3867463.034
+    ],
+    "Fort Worth": [
+      -10836839.439,
+      3866279.003
+    ],
+    "Jacksonville": [
+      -9090462.496,
+      3546563.466
+    ],
+    "Austin": [
+      -10881312.244,
+      3541933.395
+    ],
+    "San Jose": [
+      -13560019.868,
+      4480732.941
+    ],
+    "Charlotte": [
+      -8997688.499,
+      4192571.999
+    ],
+    "Columbus": [
+      -9238043.643,
+      4864325.03
+    ],
+    "Indianapolis": [
+      -9590109.121,
+      4834407.802
+    ],
+    "San Francisco": [
+      -13624726.103,
+      4547893.933
+    ],
+    "Seattle": [
+      -13619978.438,
+      6043632.105
+    ],
+    "Denver": [
+      -11677300.816,
+      4831140.648
+    ],
+    "Nashville": [
+      -9661097.338,
+      4323643.19
+    ],
+    "Oklahoma City": [
+      -10855065.223,
+      4227905.142
+    ],
+    "Washington": [
+      -8573707.735,
+      4707518.314
+    ],
+    "El Paso": [
+      -11846913.426,
+      3743088.292
+    ],
+    "Las Vegas": [
+      -12829212.865,
+      4332716.109
+    ],
+    "Boston": [
+      -7906481.639,
+      5211792.131
+    ],
+    "Detroit": [
+      -9250856.183,
+      5218047.044
+    ],
+    "Louisville": [
+      -9535551.328,
+      4604708.483
+    ],
+    "Portland": [
+      -13654627.409,
+      5707083.755
+    ],
+    "Memphis": [
+      -10016171.559,
+      4179416.353
+    ],
+    "Baltimore": [
+      -8528084.555,
+      4764564.948
+    ],
+    "Milwaukee": [
+      -9792492.186,
+      5321201.71
+    ],
+    "Albuquerque": [
+      -11871914.559,
+      4176773.737
+    ],
+    "Fresno": [
+      -13334354.666,
+      4408460.949
+    ],
+    "Tucson": [
+      -12342547.651,
+      3781906.429
+    ],
+    "Sacramento": [
+      -13521633.568,
+      4660103.136
+    ],
+    "Atlanta": [
+      -9397299.533,
+      3998367.538
+    ],
+    "Kansas City": [
+      -10526214.757,
+      4739010.886
+    ],
+    "Mesa": [
+      -12436540.374,
+      3947696.142
+    ],
+    "Raleigh": [
+      -8753702.446,
+      4277376.153
+    ],
+    "Colorado Springs": [
+      -11661517.382,
+      4702759.143
+    ],
+    "Huntsville": [
+      -9632254.235,
+      4133070.366
+    ],
+    "Little Rock": [
+      -10280962.223,
+      4125487.281
+    ],
+    "Des Moines": [
+      -10419162.476,
+      5096744.154
+    ],
+    "Boise": [
+      -12940162.887,
+      5404161.392
+    ],
+    "Wichita": [
+      -10837300.97,
+      4535821.94
+    ],
+    "New Orleans": [
+      -10011953.441,
+      3510486.628
+    ],
+    "Minneapolis": [
+      -10382727.718,
+      5615238.3
+    ],
+    "Omaha": [
+      -10692510.714,
+      5051245.607
+    ],
+    "Newark": [
+      -8257221.191,
+      4971653.407
+    ],
+    "Sioux Falls": [
+      -10768078.614,
+      5394752.116
+    ],
+    "Salt Lake City": [
+      -12461035.004,
+      4980070.63
+    ],
+    "Virginia Beach": [
+      -8464618.642,
+      4409114.063
+    ],
+    "Bridgeport": [
+      -8147965.118,
+      5040075.348
+    ],
+    "Wilmington": [
+      -8408912.365,
+      4828660.654
+    ],
+    "Portland ME": [
+      -7820166.621,
+      5412676.845
+    ],
+    "Jackson": [
+      -10039274.027,
+      3802573.421
+    ],
+    "Billings": [
+      -12078299.114,
+      5745645.143
+    ],
+    "Fargo": [
+      -10774596.816,
+      5922011.118
+    ],
+    "Manchester": [
+      -7954415.144,
+      5311291.492
+    ],
+    "Providence": [
+      -7949609.815,
+      5135073.117
+    ],
+    "Charleston SC": [
+      -8897436.726,
+      3865721.456
+    ],
+    "Burlington": [
+      -8149810.907,
+      5539401.586
+    ],
+    "Charleston WV": [
+      -9087674.833,
+      4628651.339
+    ],
+    "Cheyenne": [
+      -11668379.115,
+      5033058.698
+    ],
+    "Vancouver": [
+      -13705337.221,
+      6322817.369
+    ],
+    "Calgary": [
+      -12697426.061,
+      6629679.51
+    ],
+    "Winnipeg": [
+      -10813376.408,
+      6428185.643
+    ],
+    "Toronto": [
+      -8836457.912,
+      5411812.454
+    ],
+    "Montreal": [
+      -8189062.604,
+      5700551.921
+    ],
+    "Quebec City": [
+      -7926261.331,
+      5911470.447
+    ]
+  },
+  "terminals_3857": {
+    "type": "GeoDataFrame omitted",
+    "rows": 246,
+    "crs": "EPSG:3857"
+  },
+  "hubs_3857": {
+    "type": "GeoDataFrame omitted",
+    "rows": 70,
+    "crs": "EPSG:3857"
+  },
   "manual_links_used": [
     [
       "Seattle",
@@ -616,185 +1713,195 @@
       "Virginia Beach"
     ]
   ],
-  "hub_mst_initialization": {
-    "enabled": true,
-    "method": "minimum_spanning_tree_over_fixed_hubs_using_straight_line_distance",
-    "purpose": "Ensure every population/state-coverage hub has at least one backbone connection before feeder trees, fallback spokes, and gap-fill links are generated.",
-    "mst_links_total": 69,
-    "mst_links_added": 41,
-    "mst_links_pruned_before_routing": 2,
-    "mst_pruned_pairs": [
-      [
-        "Albuquerque",
-        "Colorado Springs"
-      ],
-      [
-        "Billings",
-        "Cheyenne"
-      ]
-    ],
-    "note": "Manual strategic corridors and waypoint-guided links are retained on top of this algorithmic base tree; selected MST edges that duplicate stronger manual Denver\u2013Albuquerque and Cheyenne\u2013Montana corridors are pruned before routing."
+  "network_version": "method4_population_hubs_regional_chains_bay_sioux_chicago_dc_naples_gapfill_pruned",
+  "feeder_settings": {
+    "min_nodes_for_tree": 4,
+    "k_nearest": 4,
+    "max_candidate_edge_m": 300000,
+    "detour_ratio_max": 1.5
   },
-  "fallback_repair": {
-    "enabled": true,
-    "method": "city_anchored_fallback_access",
-    "max_access_m": 120000,
-    "max_total_ratio": 1.2,
-    "max_access_share_of_direct": 0.75,
-    "summary_counts": {
-      "city_anchored_access": 5,
-      "direct_hub_fallback_last_resort": 1
-    }
+  "city_fallback_anchors_3857": {
+    "type": "GeoDataFrame omitted",
+    "rows": 273,
+    "crs": "EPSG:3857"
   },
-  "ordinary_gap_fill_safeguards": {
-    "enabled": true,
-    "links_requested": [
-      "Omaha \u2192 Kansas City",
-      "Boise \u2192 Portland"
-    ],
-    "style": "edge_type='augment' so these render as normal gap-fill / augmenting links",
-    "summary": []
+  "city_fallback_links_gdf_3857": {
+    "type": "GeoDataFrame omitted",
+    "rows": 224,
+    "crs": "EPSG:3857"
   },
-  "corridor_access_anchors": {
-    "enabled": false,
-    "note": "Removed because allowing spokes/feeders to connect to arbitrary backbone midpoint anchors made the network visually messier."
-  },
-  "albuquerque_refinement": {
-    "albuquerque_added_as_fixed_hub": true,
-    "denver_south_branch": "Denver \u2192 Albuquerque",
-    "albuquerque_to_phoenix": true,
-    "albuquerque_to_dallas": true,
-    "den_phx_excluded_from_forced_flight_corridor_links": true
-  },
-  "eastern_hub_refinement": {
-    "enabled": true,
-    "new_eastern_hubs": [
-      "Birmingham",
-      "Nashville",
-      "Charlotte",
-      "Louisville",
-      "Oklahoma City",
-      "Kansas City",
-      "Omaha",
-      "St. Louis"
-    ],
-    "removed_direct_backbone_links": [
-      "Chicago \u2192 Atlanta",
-      "Atlanta \u2192 Washington DC"
-    ],
-    "replacement_backbone_chain": [
-      "Chicago \u2192 Louisville",
-      "Louisville \u2192 Nashville",
-      "Nashville \u2192 Birmingham",
-      "Birmingham \u2192 Atlanta",
-      "Atlanta \u2192 Charlotte",
-      "Charlotte \u2192 Washington DC",
-      "Dallas \u2192 Oklahoma City \u2192 Kansas City \u2192 St. Louis \u2192 Springfield \u2192 Urbana \u2192 Chicago",
-      "Denver \u2192 Omaha \u2192 Des Moines \u2192 Davenport \u2192 Chicago"
-    ],
-    "purpose": "Use more fixed eastern hubs to reduce overlong fallback spokes and give feeder trees cleaner intermediate anchors in the dense eastern network."
-  },
-  "pittsburgh_refinement": {
-    "pittsburgh_added_as_fixed_hub": false,
-    "chicago_dc_route": [
-      "Fort Wayne",
-      "Columbus",
-      "Pittsburgh",
-      "Morgantown",
-      "Cumberland",
-      "Martinsburg"
-    ],
-    "toronto_south_connection": "Toronto \u2192 New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany",
-    "montreal_south_connection": "Montreal \u2192 Boston via Burlington, Montpelier, Lebanon, and Manchester"
-  },
-  "boston_refinement": {
-    "boston_added_as_fixed_hub": true,
-    "montreal_boston_route": [
-      "Burlington",
-      "Montpelier",
-      "Lebanon",
-      "Manchester"
-    ],
-    "boston_new_york_route": [
-      "Worcester",
-      "Springfield",
-      "Hartford",
-      "New Haven",
-      "Stamford"
+  "city_fallback_summary_df": {
+    "type": "DataFrame omitted",
+    "rows": 6,
+    "columns": [
+      "fallback_type",
+      "assigned_hub",
+      "anchor_name",
+      "anchor_type",
+      "access_len_km",
+      "direct_fallback_len_km",
+      "total_ratio"
     ]
   },
-  "canada_refinement": {
-    "canada_added": true,
-    "west_east_trunk": [
-      "Vancouver",
-      "Calgary",
-      "Winnipeg",
-      "Toronto",
-      "Montreal",
-      "Quebec City"
-    ],
-    "north_south_corridors": [
-      "Vancouver \u2192 Seattle",
-      "Calgary \u2192 Denver via Lethbridge, Great Falls, Helena, Bozeman, Billings, Casper, and Cheyenne",
-      "Winnipeg \u2192 Chicago via Grand Forks, Fargo, St. Cloud, Minneapolis, Rochester, La Crosse, Madison, and Milwaukee",
-      "Toronto \u2192 Chicago via Detroit",
-      "Toronto \u2192 New York via Hamilton, Buffalo, Rochester, Syracuse, and Albany",
-      "Montreal \u2192 Boston \u2192 New York via Burlington, Montpelier, Lebanon, Manchester, Worcester, Springfield, Hartford, New Haven, and Stamford"
-    ]
-  },
-  "phoenix_hub_refinement": {
-    "phoenix_added_as_fixed_hub": true,
-    "los_angeles_san_antonio_split_via_phoenix": true,
-    "key_west_removed_from_terminal_set": true
-  },
-  "canada_boundary_optimization": {
-    "enabled": true,
-    "cache_path": "network_cache\\canada_boundary_simplified_method3.gpkg",
-    "simplify_tolerance_m": 30000,
-    "note": "Canada boundary is cached and simplified; gap-fill pruning is not applied in this version."
-  },
-  "regional_hub_chain_refinement": {
-    "enabled": true,
-    "purpose": "Connect population-based hubs through readable regional chains before feeder/fallback generation, reducing isolated stubs and awkward local hub trees.",
-    "chains_added_or_reinforced": {
-      "california_bay_area_spine": [
-        "San Francisco hub coordinate moved to 4th and King station so it snaps on land near the rail terminal",
-        "Sacramento -> San Jose is the main through-spine via Stockton, Modesto, and Fremont",
-        "San Francisco -> San Jose remains the local Bay Area connector",
-        "San Jose -> Los Angeles via the Central Valley"
-      ],
-      "southeast_coastal_chain": [
-        "Charlotte -> Columbia -> Charleston SC",
-        "Charleston SC -> Savannah -> Jacksonville"
-      ],
-      "appalachian_chain": [
-        "Louisville -> Lexington -> Huntington -> Charleston WV",
-        "Charleston WV -> Morgantown -> Cumberland -> Martinsburg -> Washington"
-      ],
-      "new_england_chain": [
-        "Boston -> Providence",
-        "Boston -> Portsmouth -> Portland ME"
-      ],
-      "phoenix_metro_cleanup": [
-        "Mesa -> Phoenix"
-      ]
+  "fixed_hub_count": 70,
+  "corridor_access_anchor_count": 0,
+  "canada_added": true,
+  "fallback_repair_method": "city_anchored_fallback_access",
+  "city_fallback_summary": [
+    {
+      "fallback_type": "city_anchored_access",
+      "assigned_hub": "Los Angeles",
+      "anchor_name": "Riverside",
+      "anchor_type": "manual_backbone_waypoint",
+      "access_len_km": 4.541367152306776,
+      "direct_fallback_len_km": 123.5143373826224,
+      "total_ratio": 1.0351605946147757
+    },
+    {
+      "fallback_type": "city_anchored_access",
+      "assigned_hub": "Los Angeles",
+      "anchor_name": "Riverside",
+      "anchor_type": "manual_backbone_waypoint",
+      "access_len_km": 9.990425385687901,
+      "direct_fallback_len_km": 127.4046233391698,
+      "total_ratio": 1.0463217869805699
+    },
+    {
+      "fallback_type": "city_anchored_access",
+      "assigned_hub": "Fort Worth",
+      "anchor_name": "Lubbock",
+      "anchor_type": "manual_backbone_waypoint",
+      "access_len_km": 2.5867383300440725,
+      "direct_fallback_len_km": 553.3554437528716,
+      "total_ratio": 1.0797613134102342
+    },
+    {
+      "fallback_type": "city_anchored_access",
+      "assigned_hub": "Fort Worth",
+      "anchor_name": "Lubbock",
+      "anchor_type": "manual_backbone_waypoint",
+      "access_len_km": 4.386711203563814,
+      "direct_fallback_len_km": 556.0700291787062,
+      "total_ratio": 1.0777271605303993
+    },
+    {
+      "fallback_type": "direct_hub_fallback_last_resort",
+      "assigned_hub": "Los Angeles",
+      "anchor_name": "Los Angeles",
+      "anchor_type": "fixed_hub",
+      "access_len_km": null,
+      "direct_fallback_len_km": null,
+      "total_ratio": null
+    },
+    {
+      "fallback_type": "city_anchored_access",
+      "assigned_hub": "Los Angeles",
+      "anchor_name": "Riverside",
+      "anchor_type": "manual_backbone_waypoint",
+      "access_len_km": 21.479594096769393,
+      "direct_fallback_len_km": 142.58961711771965,
+      "total_ratio": 1.0154694626423417
     }
+  ],
+  "forced_links_gdf_3857": {
+    "type": "GeoDataFrame omitted",
+    "rows": 0,
+    "crs": "EPSG:3857"
   },
-  "gap_fill_pruning": {
-    "enabled": false,
-    "note": "Returned to targeted structural fixes and Mississippi gap-fill cleanup because the pruning experiment increased runtime without improving the problematic Florida/Iowa-Missouri cases."
+  "forced_summary_df": {
+    "type": "DataFrame omitted",
+    "rows": 0,
+    "columns": []
+  },
+  "method4_mississippi_gapfill_cleanup": {
+    "enabled": true,
+    "removed_segments": 206,
+    "graph_edges_removed": 141,
+    "added_links": [
+      {
+        "name": "Jackson\u2013Memphis",
+        "a_name": "Jackson",
+        "a_lon": -90.1848,
+        "a_lat": 32.2988,
+        "b_name": "Memphis",
+        "b_lon": -89.9711,
+        "b_lat": 35.1175,
+        "added": true,
+        "reason": "added_as_cleaned_ordinary_augment",
+        "road_len_km": 395.1460347050355,
+        "graph_edges_added": false
+      },
+      {
+        "name": "Jackson\u2013New Orleans",
+        "a_name": "Jackson",
+        "a_lon": -90.1848,
+        "a_lat": 32.2988,
+        "b_name": "New Orleans",
+        "b_lon": -90.0715,
+        "b_lat": 29.9511,
+        "added": true,
+        "reason": "added_as_cleaned_ordinary_augment",
+        "road_len_km": 342.7250224983951,
+        "graph_edges_added": true
+      }
+    ],
+    "note": "Dense Mississippi ordinary gap-fill cluster removed and replaced with at most two ordinary augment links."
+  },
+  "method4_postprocess_pruning": {
+    "enabled": true,
+    "removed_redundant_gap_fill": "Fort Lauderdale-Naples",
+    "protected_gap_fill": "Miami Beach-Naples",
+    "miami_side_connector_added": true,
+    "edge_type_removed": "augment",
+    "features_removed": 80,
+    "segments_removed": 80,
+    "note": "The redundant Fort Lauderdale-Naples ordinary gap-fill was removed after Method 4 generation. The Miami/Miami Beach-Naples gap-fill was protected and retained. If the retained gap-fill stopped short of the Miami-side node, a short ordinary augment connector was added to complete it."
+  },
+  "edge_types_present_full": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present_web": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "edge_types_present": [
+    "augment",
+    "fallback_access_city",
+    "feeder_tree",
+    "hub_backbone",
+    "spoke",
+    "spoke_fallback"
+  ],
+  "web_simplification": {
+    "enabled": true,
+    "method": "per-feature geometry simplification only plus grouped optimized website layer",
+    "tolerance_m": 2500,
+    "min_line_length_m": 0,
+    "dissolve_by_edge_type": false,
+    "web_node_min_degree": 3,
+    "full_edge_feature_count": 90381,
+    "web_edge_feature_count": 90381
   },
   "files": {
-    "edges_geojson": "network_exports_method4_north_america\\network_edges_method4.geojson",
-    "edges_geojson_website_alias": "network_exports_method4_north_america\\network_edges_method4_simplified.geojson",
-    "hubs_geojson": "network_exports_method4_north_america\\fixed_hubs_method4.geojson",
-    "hubs_geojson_website_alias": "network_exports_method4_north_america\\fixed_hubs_method4.geojson",
-    "canada_boundaries_geojson": "network_exports_method4_north_america\\canada_boundaries_method4.geojson",
-    "nodes_geojson": "network_exports_method4_north_america\\network_nodes_method4.geojson",
-    "metadata_json": "network_exports_method4_north_america\\network_metadata_method4.json",
-    "metadata_json_website_alias": "network_exports_method4_north_america\\metadata_method4.json",
-    "flight_csv": "network_exports_method4_north_america\\flight_corridor_rail_service_evaluation_method4.csv",
-    "geopackage": "network_exports_method4_north_america\\north_america_rail_network_method4.gpkg",
-    "graphml": "network_exports_method4_north_america\\north_america_rail_network_method4.graphml"
+    "edges_geojson": "network_exports_method4_naples_pruned\\network_edges_method4.geojson",
+    "edges_geojson_website_alias": "network_exports_method4_naples_pruned\\network_edges_method4_simplified.geojson",
+    "edges_geojson_optimized": "network_exports_method4_naples_pruned\\network_edges_method4_optimized.geojson",
+    "hubs_geojson": "network_exports_method4_naples_pruned\\fixed_hubs_method4.geojson",
+    "nodes_geojson": "network_exports_method4_naples_pruned\\network_nodes_method4.geojson",
+    "canada_boundaries_geojson": "network_exports_method4_naples_pruned\\canada_boundaries_method4.geojson",
+    "metadata_json": "network_exports_method4_naples_pruned\\network_metadata_method4.json",
+    "metadata_json_website_alias": "network_exports_method4_naples_pruned\\metadata_method4.json",
+    "flight_csv": "network_exports_method4_naples_pruned\\flight_corridor_rail_service_evaluation_method4.csv",
+    "geopackage": "network_exports_method4_naples_pruned\\north_america_rail_network_method4.gpkg",
+    "graphml": "network_exports_method4_naples_pruned\\north_america_rail_network_method4.graphml"
   }
 }
