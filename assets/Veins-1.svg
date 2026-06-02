@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 3199 1677" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <defs>
+        <!-- Classic Pride palette, kept on the vine layer so it can be reassembled with the original outline and nodes. -->
+        <linearGradient id="prideMain" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#E40303"/>
+            <stop offset="18%" stop-color="#FF8C00"/>
+            <stop offset="36%" stop-color="#FFED00"/>
+            <stop offset="55%" stop-color="#008026"/>
+            <stop offset="74%" stop-color="#004DFF"/>
+            <stop offset="100%" stop-color="#750787"/>
+        </linearGradient>
+        <linearGradient id="prideRedOrange" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#E40303"/>
+            <stop offset="100%" stop-color="#FF8C00"/>
+        </linearGradient>
+        <linearGradient id="prideOrangeYellow" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF8C00"/>
+            <stop offset="100%" stop-color="#FFED00"/>
+        </linearGradient>
+        <linearGradient id="prideYellowGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFED00"/>
+            <stop offset="100%" stop-color="#008026"/>
+        </linearGradient>
+        <linearGradient id="prideGreenBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#008026"/>
+            <stop offset="100%" stop-color="#004DFF"/>
+        </linearGradient>
+        <linearGradient id="prideBluePurple" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#004DFF"/>
+            <stop offset="100%" stop-color="#750787"/>
+        </linearGradient>
+    </defs>
+
+    <g transform="matrix(1,0,0,1,-9292.05,-1710.87)">
+        <g transform="matrix(2.21204,0,0,2.21204,-239.791,-4774.72)">
+            <g id="veins">
+                <g id="veins-NW" serif:id="veins NW" transform="matrix(0.564712,0,0,0.564712,4108.01,2604.74)">
+                    <path d="M532.904,1730.11C528.567,1734.23 521.699,1734.06 517.578,1729.72C513.457,1725.38 513.632,1718.52 517.97,1714.39C569.995,1664.96 635.144,1618.22 741.844,1561.61C860.214,1498.81 973.008,1428.83 1106.25,1374.36L1106.46,1374.29C1285.17,1309.81 1375.59,1263.75 1544.86,1183.56C1696.8,1111.58 1724.34,1101.12 1863.15,1076.62C2018.28,1015.99 2028.65,1012.01 2128.15,947.63C2224.66,885.186 2558.89,780.628 2804.6,712.191C2810.36,710.585 2816.34,713.961 2817.95,719.725C2819.55,725.489 2816.18,731.472 2810.41,733.077C2566.95,800.892 2235.56,903.956 2139.93,965.833C2038.74,1031.3 2028.43,1035.3 1870.04,1097.2L1869.04,1097.59L1867.98,1097.78C1730.65,1122 1703.85,1132.23 1554.15,1203.15C1384.2,1283.66 1293.38,1329.89 1114.03,1394.61C981.795,1448.68 869.689,1518.33 752.006,1580.76C647.619,1636.15 583.8,1681.75 532.904,1730.11Z" style="fill:url(#prideMain);"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,4108.01,2604.74)">
+                    <path d="M1866.1,1087.1C1986.67,1107.76 1992.93,1120.82 2070,1195.39C2143.4,1266.4 2233.51,1326.67 2391.48,1289.94" style="fill:none;stroke:url(#prideBluePurple);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,4108.01,2604.74)">
+                    <path d="M1110.14,1384.49C1224.34,1355.16 1255.59,1396.6 1464.88,1516.86C1582.56,1584.49 1625.77,1609.96 1786.35,1596.95" style="fill:none;stroke:url(#prideYellowGreen);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,3766.28,2810.01)">
+                    <path d="M1116.93,1372.73C1228.48,1328.42 1321.78,1467.19 1616.16,1531.57C1780.43,1567.5 2019.86,1535.99 2169,1470.4" style="fill:none;stroke:url(#prideOrangeYellow);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,3508.7,2554.34)">
+                    <path d="M1596.17,1795.22C1632.91,1679.66 1585.8,1664.46 1580.62,1568.3C1576.04,1483.51 1569.16,1380.55 1656.26,1245.51" style="fill:none;stroke:url(#prideRedOrange);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,4108.01,2604.74)">
+                    <path d="M1110.14,1384.49C1178.31,1246.6 1179.6,1130.94 1162.31,949.557C1153.26,854.594 1191.03,682.711 1309.15,594.705" style="fill:none;stroke:url(#prideOrangeYellow);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.564712,0,0,0.564712,4108.01,2604.74)">
+                    <path d="M1868.42,1088.35C1978.02,1012.56 2031.31,1034.47 2088.91,836.095C2116.41,741.426 2129.66,680.841 2221.29,590.262" style="fill:none;stroke:url(#prideGreenBlue);stroke-width:21.68px;"/>
+                </g>
+                <g transform="matrix(0.452071,0,0,0.452071,108.403,2158.51)">
+                    <path d="M9478.81,3141.73C9365.72,3272.66 9292.4,3379.92 9295.28,3383.86C9298.15,3387.8 9427.71,3237.09 9496.06,3165.35L9478.81,3141.73Z" style="fill:#E40303;stroke:#E40303;stroke-width:0.63px;stroke-linejoin:miter;stroke-miterlimit:10;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
