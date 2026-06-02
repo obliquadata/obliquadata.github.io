@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rail Network from Scratch | Obliqua Data</title>
-  <meta name="description" content="Preliminary results from Obliqua Data's experimental framework for constructing and evaluating a passenger rail network from first principles." />
-  <meta property="og:title" content="Rail Network from Scratch | Obliqua Data" />
-  <meta property="og:description" content="A preliminary interactive map and framework for constructing passenger rail networks from first principles." />
+  <title>Building a Theoretical High-Speed Rail Network with the TRAC Framework | Obliqua Data</title>
+  <meta name="description" content="A blog-style research note introducing the TRAC Framework and four interactive methods for constructing and evaluating conceptual high-speed rail networks." />
+  <meta property="og:title" content="Building a Theoretical High-Speed Rail Network with the TRAC Framework | Obliqua Data" />
+  <meta property="og:description" content="An interactive research note on nodes, hubs, feeder trees, gap-fill links, and air-corridor evaluation for conceptual rail network design." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://obliquadata.github.io/rail-network/" />
   <meta property="og:image" content="https://obliquadata.github.io/assets/logo.png" />
@@ -20,7 +20,7 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 </head>
 <body>
-  <div class="page-shell rail-shell">
+  <div class="page-shell rail-shell rail-blog-shell">
     <header class="site-header">
       <a class="brand" href="../index.html#top" aria-label="Obliqua Data home">
         <img src="../assets/logoNoText.png" alt="Obliqua Data logo" class="brand-mark" />
@@ -40,17 +40,20 @@
       </nav>
     </header>
 
-    <main id="top">
-      <section class="rail-hero">
+    <main id="top" class="rail-blog">
+      <section class="rail-hero rail-blog-hero">
         <div class="rail-hero__copy">
-          <span class="eyebrow">Preliminary research note</span>
-          <h1>Building a passenger rail network from first principles.</h1>
+          <span class="eyebrow">Research note · June 1st, 2026</span>
+          <h1>Building a theoretical high-speed rail network with the TRAC Framework.</h1>
           <p class="hero-text">
-            This project tests a generalizable framework for designing and evaluating a national passenger rail network when the goal is not simply to map what already exists, but to ask what a coherent rail system could look like if planned around hubs, corridors, geographic constraints, and travel demand.
+            This page tells the story of an experimental workflow for generating conceptual high-speed rail networks from nodes, corridors, hubs, feeder trees, gap-fill links, and iterative evaluation.
+          </p>
+          <p class="hero-text hero-text-small">
+            The maps are exploratory models. They are not final investment proposals, engineering alignments, or costed plans.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#method-four">Explore the latest map</a>
-            <a class="button button-secondary" href="#framework">See the framework</a>
+            <a class="button button-secondary" href="#framework">Read the framework</a>
           </div>
         </div>
         <aside class="rail-hero__card">
@@ -58,280 +61,292 @@
           <div class="metric-grid" aria-label="Prototype summary metrics">
             <div><strong id="metric-nodes">—</strong><span>graph nodes</span></div>
             <div><strong id="metric-edges">—</strong><span>graph edges</span></div>
-            <div><strong id="metric-hubs">13</strong><span>fixed hubs</span></div>
+            <div><strong id="metric-hubs">—</strong><span>fixed hubs</span></div>
             <div><strong id="metric-corridors">—</strong><span>air corridors tested</span></div>
           </div>
           <p>
-            The present version compares an initial contiguous-U.S. fixed-hub prototype, a hierarchical backbone–feeder version, a manually guided North American Method 3, and a more repeatable Method 4 that selects U.S. hubs from population rules while keeping the Canadian trunk structure.
+            The latest version compares four methods: a fixed-hub baseline, a hierarchical feeder version, a manually guided North American expansion, and a population-based hub-tree network.
           </p>
         </aside>
       </section>
 
-      <section class="content-grid rail-intro" id="about-project">
-        <article class="panel panel-large">
-          <span class="section-label">Project idea</span>
+      <nav class="project-subnav blog-subnav" aria-label="Article sections">
+        <a href="#about-project">Why this exists</a>
+        <a href="#framework">TRAC Framework</a>
+        <a href="#method-one">Method 1</a>
+        <a href="#corridor-checks">Air-corridor checks</a>
+        <a href="#method-two">Method 2</a>
+        <a href="#method-three">Method 3</a>
+        <a href="#method-four">Method 4</a>
+        <a href="#next">Next steps</a>
+      </nav>
+
+      <p class="collapse-hint">Each section is open by default. Click a section heading to collapse or reopen it.</p>
+
+      <details class="blog-section panel" id="about-project" open>
+        <summary>
+          <span class="section-label">Why this project exists</span>
           <h2>From network sketch to decision-support workflow.</h2>
+        </summary>
+        <div class="blog-section__body article-copy">
           <p>
-            The aim is to develop a repeatable method for rail-network design that can be adapted to other countries. Instead of treating rail planning as only a route-drawing exercise, the framework links spatial data preparation, hub selection, network construction, and corridor evaluation into one transparent workflow.
+            A national rail map can look persuasive even when the logic behind it is unclear. This project takes the opposite approach. It treats the map as an output of an explicit workflow: identify nodes, select hubs, build a backbone, connect regional destinations, fill missing links, and evaluate where the system still performs poorly.
           </p>
-        </article>
-        <article class="panel">
-          <span class="section-label">Why compare methods?</span>
           <p>
-            A pure hub-and-spoke system is simple and easy to explain, but it can create unrealistic radial clutter around dense regions. Comparing methods makes it easier to see where the framework needs more hierarchy, local feeder logic, and demand-responsive correction.
+            The goal is not to produce a single perfect rail plan. The goal is to create a repeatable way to compare design choices. Each method changes one part of the workflow so we can see how the network responds.
           </p>
-        </article>
-        <article class="panel">
-          <span class="section-label">Status</span>
-          <p>
-            These are preliminary outputs. The maps are not a final investment proposal, engineering alignment, or costed plan. They are exploratory models to support comparison, critique, and further development.
-          </p>
-        </article>
-      </section>
-
-      <section class="panel framework-panel" id="framework">
-        <div class="section-heading compact-heading">
-          <span class="section-label">Framework under development</span>
-          <h2>A general workflow for constructing rail networks from scratch.</h2>
-        </div>
-        <div class="method-explainer">
-          <article>
-            <h3>Method 1: fixed-hub hub-and-spoke with sparse gap fill</h3>
-            <p>
-              The first prototype starts with fixed national hubs, connects them through a manually reviewed strategic backbone, and then routes important terminals directly to their nearest hub. A sparse gap-fill step adds links where the resulting network creates large detours between nearby terminals.
-            </p>
-          </article>
-          <article>
-            <h3>Method 2: hierarchical backbone–feeder construction</h3>
-            <p>
-              The second method keeps the same broad backbone idea but modifies the spoke layer. In dense hub catchments, selected direct spokes are replaced by constrained regional feeder trees. Direct fallback spokes are restored where a feeder tree would create an excessive detour to the hub.
-            </p>
-          </article>
-          <article>
-            <h3>Version 3: Phoenix hub refinement</h3>
-            <p>
-              The next refinement uses the flight-corridor evaluation to change the network structure. Phoenix is added as a Southwest hub, Los Angeles–San Antonio is split through Phoenix, and Denver–Phoenix becomes a backbone corridor rather than a post-hoc priority link.
-            </p>
-          </article>
-          <article>
-            <h3>Method 3: North American manually guided backbone</h3>
-            <p>
-              Method 3 removes the corridor-access-anchor experiment, returns feeder assignment to fixed hubs only, and expands the manually guided backbone into Canada with a west–east Canadian trunk and selected north–south cross-border corridors. This updated data also removes the redundant Fort Lauderdale–Naples and Des Moines–Kansas City gap-fill links while retaining Miami/Miami Beach–Naples, Omaha–Kansas City, and Boise–Portland.
-            </p>
-          </article>
-          <article>
-            <h3>Method 4: population-based hub selection</h3>
-            <p>
-              Method 4 tests a more repeatable hub-selection rule. Instead of relying mainly on manually chosen U.S. hubs, it selects large U.S. cities by population as fixed hubs, adds the largest city in each otherwise uncovered state, and keeps the remaining large cities as ordinary nodes. It then creates an algorithmic minimum-spanning-tree backbone across the hubs so each hub is connected from the start, before adding manually reviewed strategic corridors.
-            </p>
-          </article>
-        </div>
-        <div class="step-grid">
-          <article><span>01</span><h3>Frame the planning question</h3><p>Define the territorial scope, policy objective, and evaluation criteria before drawing routes.</p></article>
-          <article><span>02</span><h3>Assemble spatial evidence</h3><p>Prepare hubs, boundaries, settlement patterns, existing corridors, constraints, and candidate alignments.</p></article>
-          <article><span>03</span><h3>Select strategic hubs</h3><p>Identify a manageable set of national or regional anchors to structure the high-level network.</p></article>
-          <article><span>04</span><h3>Construct the backbone</h3><p>Connect core hubs through manually reviewed and algorithmically supported trunk corridors.</p></article>
-          <article><span>05</span><h3>Build regional access</h3><p>Compare direct spokes with constrained feeder trees to connect important terminals to the hub system.</p></article>
-          <article><span>06</span><h3>Evaluate and revise</h3><p>Use detour ratios and air-corridor checks to identify missing links, weak regions, and method improvements.</p></article>
-        </div>
-      </section>
-
-      <section class="map-section comparison-map-section" id="method-one">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 1</span>
-            <h2>Fixed-hub hub-and-spoke with sparse gap fill.</h2>
+          <div class="note-grid">
+            <article>
+              <h3>What the maps show</h3>
+              <p>Conceptual high-speed rail networks based on hubs, corridors, feeder trees, and gap-fill links.</p>
+            </article>
+            <article>
+              <h3>What the maps do not show</h3>
+              <p>Detailed engineering feasibility, exact station siting, construction costs, land acquisition, or environmental permitting.</p>
+            </article>
           </div>
+        </div>
+      </details>
+
+      <details class="blog-section panel framework-panel" id="framework" open>
+        <summary>
+          <span class="section-label">TRAC Framework</span>
+          <h2>Theoretical Rail Alignment &amp; Connectivity.</h2>
+        </summary>
+        <div class="blog-section__body article-copy">
           <p>
-            This initial version connects fixed hubs through a strategic backbone, routes terminals to their nearest hub as direct spokes, and adds augmenting links where the network produces large detours. It is useful as a transparent baseline, but it can produce competing radial spokes in dense regions and can miss some important city-pair corridors, such as the later Denver–Phoenix priority connection.
+            The TRAC Framework is a conceptual method for generating and evaluating theoretical rail networks. It starts with places that should be served, turns some of them into hubs, connects those hubs through a backbone, and then adds feeder trees, fallback spokes, and gap-fill links.
           </p>
-        </div>
-        <div class="map-card method-card">
-          <div id="railMapBaseline" class="rail-map" role="application" aria-label="Interactive map of Method 1 fixed-hub hub-and-spoke rail network"></div>
-          <div class="map-legend" id="legendBaseline" aria-label="Method 1 map legend"></div>
-        </div>
-      </section>
-
-      <section class="corridor-comparison-single" id="corridor-checks">
-        <article class="panel corridor-evaluation-panel">
-          <div class="corridor-evaluation-intro">
-            <span class="section-label">Flight corridor checks</span>
-            <h2>Air-corridor evaluation is used as an iteration tool.</h2>
-            <p>
-              The flight-corridor checks compare high-frequency air corridors with the rail paths produced by each method. Method 1 gives the original fixed-hub baseline, Method 2 shows the effect of the Phoenix hub and hierarchical feeder logic, and Method 4 adds a new check for the population-based hub-tree network. Method 3 is not repeated here because its flight-corridor result was effectively duplicated by the Method 2 comparison.
-            </p>
+          <div class="step-grid blog-step-grid">
+            <article><span>01</span><h3>Identify nodes</h3><p>Use population, visitation, universities, growth, strategic borders, and other context-specific indicators.</p></article>
+            <article><span>02</span><h3>Select hubs</h3><p>Choose the cities or transfer points that should anchor the network structure.</p></article>
+            <article><span>03</span><h3>Build the backbone</h3><p>Connect major hubs through algorithmic routing and manually reviewed strategic corridors.</p></article>
+            <article><span>04</span><h3>Add regional access</h3><p>Use feeder trees first, with fallback spokes only where the feeder tree creates poor access.</p></article>
+            <article><span>05</span><h3>Fill gaps</h3><p>Add ordinary augmenting links where the network creates large detours between nearby places.</p></article>
+            <article><span>06</span><h3>Evaluate and revise</h3><p>Use air-corridor checks, visual review, and existing rail comparison to identify weak parts of the network.</p></article>
           </div>
+          <div class="method-explainer blog-method-explainer">
+            <article><h3>Method 1</h3><p>A fixed-hub hub-and-spoke baseline with sparse gap fill.</p></article>
+            <article><h3>Method 2</h3><p>A hierarchical backbone-feeder version that replaces some direct spokes with feeder trees.</p></article>
+            <article><h3>Method 3</h3><p>A manually guided North American expansion with Canada and refined gap-fill cleanup.</p></article>
+            <article><h3>Method 4</h3><p>A more repeatable population-based hub-tree network with manual strategic corridor overlays.</p></article>
+          </div>
+        </div>
+      </details>
 
-          <div class="corridor-evaluation-list">
-            <section class="corridor-evaluation-entry">
-              <div class="corridor-panel__top">
-                <div>
-                  <span class="section-label">Method 1 flight corridor check</span>
-                  <p class="corridor-panel__note">Original evaluation of the fixed-hub hub-and-spoke network. In this version, Denver–Phoenix remains a poor rail match because the rail graph forces a relatively indirect route.</p>
+      <details class="blog-section map-section comparison-map-section" id="method-one" open>
+        <summary>
+          <span class="section-label">Method 1</span>
+          <h2>Fixed-hub hub-and-spoke with sparse gap fill.</h2>
+        </summary>
+        <div class="blog-section__body">
+          <div class="article-copy">
+            <p>
+              Method 1 is the baseline. It starts with a small set of fixed hubs, connects them through a strategic backbone, and routes terminals to their nearest hub as direct spokes. A sparse gap-fill step adds links where the initial graph creates large detours between nearby destinations.
+            </p>
+            <div class="note-grid">
+              <article><h3>What to notice</h3><p>The structure is transparent, but dense regions can produce competing radial spokes.</p></article>
+              <article><h3>Why it matters</h3><p>This baseline makes it easier to see what changes when feeder trees are introduced in Method 2.</p></article>
+            </div>
+          </div>
+          <div class="map-card method-card">
+            <div id="railMapBaseline" class="rail-map" role="application" aria-label="Interactive map of Method 1 fixed-hub hub-and-spoke rail network"></div>
+            <div class="map-legend" id="legendBaseline" aria-label="Method 1 map legend"></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="blog-section corridor-comparison-single" id="corridor-checks" open>
+        <summary>
+          <span class="section-label">Evaluation</span>
+          <h2>Air-corridor checks are used as an iteration tool.</h2>
+        </summary>
+        <div class="blog-section__body">
+          <article class="panel corridor-evaluation-panel">
+            <div class="corridor-evaluation-intro">
+              <p>
+                The air-corridor checks compare high-frequency air corridors with the rail paths produced by each method. The score is based on the rail-network distance relative to straight-line distance. A lower detour ratio means the generated rail graph follows the air corridor more directly.
+              </p>
+              <p>
+                Method 3 is not repeated here because its flight-corridor result was effectively duplicated by the Method 2 comparison. Method 4 is shown because it changes the hub-selection logic and adds an MST-based population hub backbone.
+              </p>
+            </div>
+
+            <div class="corridor-evaluation-list">
+              <section class="corridor-evaluation-entry">
+                <div class="corridor-panel__top">
+                  <div>
+                    <span class="section-label">Method 1 flight corridor check</span>
+                    <p class="corridor-panel__note">Original evaluation of the fixed-hub hub-and-spoke network.</p>
+                  </div>
+                  <select id="corridorFilterMethod1" aria-label="Filter Method 1 corridor table by result class">
+                    <option value="All">All classes</option>
+                    <option value="Good">Good</option>
+                    <option value="Okay">Okay</option>
+                    <option value="Poor">Poor</option>
+                  </select>
                 </div>
-                <select id="corridorFilterMethod1" aria-label="Filter Method 1 corridor table by result class">
-                  <option value="All">All classes</option>
-                  <option value="Good">Good</option>
-                  <option value="Okay">Okay</option>
-                  <option value="Poor">Poor</option>
-                </select>
-              </div>
-              <div class="corridor-table-wrap">
-                <table class="corridor-table">
-                  <thead>
-                    <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
-                  </thead>
-                  <tbody id="corridorRowsMethod1"></tbody>
-                </table>
-              </div>
-            </section>
-
-            <section class="corridor-evaluation-entry">
-              <div class="corridor-panel__top">
-                <div>
-                  <span class="section-label">Method 2 flight corridor check</span>
-                  <p class="corridor-panel__note">Updated evaluation after the hierarchical feeder method and Phoenix hub refinement. The Denver–Phoenix corridor is incorporated into the backbone to test whether a structural Southwest hub connection can improve a poor-rated air corridor.</p>
+                <div class="corridor-table-wrap">
+                  <table class="corridor-table">
+                    <thead><tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr></thead>
+                    <tbody id="corridorRowsMethod1"></tbody>
+                  </table>
                 </div>
-                <select id="corridorFilterMethod2" aria-label="Filter Method 2 corridor table by result class">
-                  <option value="All">All classes</option>
-                  <option value="Good">Good</option>
-                  <option value="Okay">Okay</option>
-                  <option value="Poor">Poor</option>
-                </select>
-              </div>
-              <div class="corridor-table-wrap">
-                <table class="corridor-table">
-                  <thead>
-                    <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
-                  </thead>
-                  <tbody id="corridorRowsMethod2"></tbody>
-                </table>
-              </div>
-            </section>
+              </section>
 
-            <section class="corridor-evaluation-entry">
-              <div class="corridor-panel__top">
-                <div>
-                  <span class="section-label">Method 4 flight corridor check</span>
-                  <p class="corridor-panel__note">Evaluation of the population-based hub-tree network. This check is useful to see whether the algorithmic hub MST and manual strategic corridors reduce poor matches without relying on separate post-hoc priority links.</p>
+              <section class="corridor-evaluation-entry">
+                <div class="corridor-panel__top">
+                  <div>
+                    <span class="section-label">Method 2 flight corridor check</span>
+                    <p class="corridor-panel__note">Updated evaluation after the hierarchical feeder method and Phoenix hub refinement.</p>
+                  </div>
+                  <select id="corridorFilterMethod2" aria-label="Filter Method 2 corridor table by result class">
+                    <option value="All">All classes</option>
+                    <option value="Good">Good</option>
+                    <option value="Okay">Okay</option>
+                    <option value="Poor">Poor</option>
+                  </select>
                 </div>
-                <select id="corridorFilterMethod4" aria-label="Filter Method 4 corridor table by result class">
-                  <option value="All">All classes</option>
-                  <option value="Good">Good</option>
-                  <option value="Okay">Okay</option>
-                  <option value="Poor">Poor</option>
-                </select>
-              </div>
-              <div class="corridor-table-wrap">
-                <table class="corridor-table">
-                  <thead>
-                    <tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr>
-                  </thead>
-                  <tbody id="corridorRowsMethod4"></tbody>
-                </table>
-              </div>
-            </section>
+                <div class="corridor-table-wrap">
+                  <table class="corridor-table">
+                    <thead><tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr></thead>
+                    <tbody id="corridorRowsMethod2"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="corridor-evaluation-entry">
+                <div class="corridor-panel__top">
+                  <div>
+                    <span class="section-label">Method 4 flight corridor check</span>
+                    <p class="corridor-panel__note">Evaluation after population-based hub selection, hub-tree initialization, and manual strategic corridor overlays.</p>
+                  </div>
+                  <select id="corridorFilterMethod4" aria-label="Filter Method 4 corridor table by result class">
+                    <option value="All">All classes</option>
+                    <option value="Good">Good</option>
+                    <option value="Okay">Okay</option>
+                    <option value="Poor">Poor</option>
+                  </select>
+                </div>
+                <div class="corridor-table-wrap">
+                  <table class="corridor-table">
+                    <thead><tr><th>Corridor</th><th>Flights/day</th><th>Detour</th><th>Class</th></tr></thead>
+                    <tbody id="corridorRowsMethod4"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details class="blog-section map-section comparison-map-section" id="method-two" open>
+        <summary>
+          <span class="section-label">Method 2</span>
+          <h2>Hierarchical backbone–feeder construction.</h2>
+        </summary>
+        <div class="blog-section__body">
+          <div class="article-copy">
+            <p>
+              Method 2 keeps the national hub backbone but changes the regional access layer. Instead of drawing every local connection as a direct spoke to a hub, it uses feeder trees where several destinations can share a corridor. Direct fallback spokes remain only where a feeder tree would create excessive detours.
+            </p>
+            <p>
+              This version also adds Phoenix as a Southwest hub and treats Denver–Phoenix as a backbone corridor routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff.
+            </p>
           </div>
-        </article>
-      </section>
-
-      <section class="map-section comparison-map-section" id="method-two">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 2</span>
-            <h2>Hierarchical backbone–feeder construction.</h2>
+          <div class="map-card method-card">
+            <div id="railMapV3" class="rail-map" role="application" aria-label="Interactive map of Method 2 hierarchical backbone-feeder rail network"></div>
+            <div class="map-legend" id="legendV3" aria-label="Method 2 map legend"></div>
           </div>
-          <p>
-            This newer version keeps the national hub backbone but replaces suitable direct-spoke clusters with regional feeder trees. The result should be easier to interpret as a rail system: major corridors remain visible, local access becomes more corridor-like, and fallback spokes only remain where the feeder tree would create excessive detours. It also adds Phoenix as a fixed Southwest hub and treats Denver–Phoenix as a backbone corridor, routed through Colorado Springs, Pueblo, Trinidad, Santa Fe, Albuquerque, and Flagstaff.
-          </p>
         </div>
-        <div class="map-card method-card">
-          <div id="railMapV3" class="rail-map" role="application" aria-label="Interactive map of Method 2 hierarchical backbone-feeder rail network"></div>
-          <div class="map-legend" id="legendV3" aria-label="Method 2 map legend"></div>
-        </div>
-      </section>
+      </details>
 
-      <section class="map-section comparison-map-section" id="method-three">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 3</span>
-            <h2>North American manually guided backbone–feeder construction.</h2>
+      <details class="blog-section map-section comparison-map-section" id="method-three" open>
+        <summary>
+          <span class="section-label">Method 3</span>
+          <h2>North American manually guided backbone–feeder construction.</h2>
+        </summary>
+        <div class="blog-section__body">
+          <div class="article-copy">
+            <p>
+              Method 3 expands the framework beyond the contiguous United States. It adds a deliberately simple Canadian west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus selected north–south cross-border corridors.
+            </p>
+            <p>
+              It also removes the corridor-access-anchor experiment, so feeder trees and fallback spokes connect to fixed hubs rather than arbitrary intermediate backbone points. This makes the map more controlled and easier to interpret.
+            </p>
+            <div class="note-grid">
+              <article><h3>Manual cleanup</h3><p>Boise–Portland is retained as an ordinary gap-fill. Miami/Miami Beach–Naples and Omaha–Kansas City are retained, while redundant Fort Lauderdale–Naples and Des Moines–Kansas City branches are removed.</p></article>
+              <article><h3>What remains experimental</h3><p>Some regions still depend on manual review because local fallback and gap-fill links can become messy in dense networks.</p></article>
+            </div>
           </div>
-          <p>
-            Method 3 replaces the corridor-access-anchor experiment with a more controlled fixed-hub structure. Feeder trees and fallback spokes now connect only to fixed hubs, while the backbone expands from the United States into Canada. The Canadian layer uses one west–east trunk from Vancouver through Calgary, Winnipeg, Toronto, Montreal, and Quebec City, plus selected north–south cross-border corridors. The latest map keeps Boise–Portland as an ordinary gap-fill link, retains Miami/Miami Beach–Naples and Omaha–Kansas City, and removes redundant Fort Lauderdale–Naples and Des Moines–Kansas City gap-fill branches.
-          </p>
-        </div>
-        <div class="map-card method-card">
-          <div id="railMapV4" class="rail-map" role="application" aria-label="Interactive map of Method 3 North American manually guided backbone-feeder rail network"></div>
-          <div class="map-legend" id="legendV4" aria-label="Method 3 map legend"></div>
-        </div>
-      </section>
-
-      <section class="map-section comparison-map-section" id="method-four">
-        <div class="section-heading map-heading">
-          <div>
-            <span class="section-label">Method 4</span>
-            <h2>Population-based hub backbone–feeder construction.</h2>
+          <div class="map-card method-card">
+            <div id="railMapV4" class="rail-map" role="application" aria-label="Interactive map of Method 3 North American manually guided backbone-feeder rail network"></div>
+            <div class="map-legend" id="legendV4" aria-label="Method 3 map legend"></div>
           </div>
-          <p>
-            Method 4 recreates the North American backbone–feeder network with a more repeatable hub-selection rule. The U.S. hub set is based on population: the largest U.S. cities are treated as fixed hubs, and the largest city in each otherwise uncovered state is added so every state has at least one population anchor. The remaining cities from the largest-120 list stay in the model as ordinary nodes rather than hubs. Canadian hubs are kept from Method 3 to preserve the simple west–east trunk from Vancouver to Quebec City and the selected north–south cross-border corridors.
-          </p>
-          <p>
-            After the hubs are selected, Method 4 first builds an algorithmic minimum-spanning-tree backbone across the fixed hubs using straight-line distance. This gives every population and state-coverage hub at least one backbone connection before feeder trees, fallback spokes, or gap-fill links are added. Manual strategic corridors are then layered on top where geography and corridor logic matter, such as the West Coast spine, Chicago–DC via the Appalachian corridor, Canada cross-border routes, and selected Midwest and Southwest links. A small number of MST links are pruned where they duplicate a stronger manually guided corridor.
-          </p>
         </div>
-        <div class="map-card method-card">
-          <div id="railMapMethod4" class="rail-map" role="application" aria-label="Interactive map of Method 4 population-based North American backbone-feeder rail network"></div>
-          <div class="map-legend" id="legendMethod4" aria-label="Method 4 map legend"></div>
+      </details>
+
+      <details class="blog-section map-section comparison-map-section" id="method-four" open>
+        <summary>
+          <span class="section-label">Method 4</span>
+          <h2>Population-based hub-tree backbone–feeder construction.</h2>
+        </summary>
+        <div class="blog-section__body">
+          <div class="article-copy">
+            <p>
+              Method 4 is designed to be more repeatable. The U.S. hub set is selected by a population rule: the largest U.S. cities are treated as fixed hubs, and the largest city in each otherwise uncovered state is added so that every state has at least one population anchor. The remaining large cities stay in the model as ordinary nodes rather than hubs.
+            </p>
+            <p>
+              After hub selection, Method 4 builds an algorithmic minimum-spanning-tree backbone across all fixed hubs using straight-line distance. This gives every population and state-coverage hub at least one backbone connection before feeder trees, fallback spokes, or gap-fill links are generated.
+            </p>
+            <p>
+              The MST is not treated as the final rail plan. Manual strategic corridors are layered on top where geography and corridor logic matter, such as the West Coast spine, Chicago–DC via Columbus, Pittsburgh, Morgantown, Cumberland, and Martinsburg, Canada cross-border routes, and selected Midwest and Southwest links. A small number of duplicate MST links are pruned where they conflict with stronger manually guided corridors.
+            </p>
+            <div class="note-grid">
+              <article><h3>Why this method is more repeatable</h3><p>Hub selection follows a population rule first, rather than starting from a fully manual hub list.</p></article>
+              <article><h3>Why manual links still matter</h3><p>A tree guarantees connectivity, but strategic corridors are still needed to represent readable regional rail structure.</p></article>
+            </div>
+          </div>
+          <div class="map-card method-card">
+            <div id="railMapMethod4" class="rail-map" role="application" aria-label="Interactive map of Method 4 population-based North American backbone-feeder rail network"></div>
+            <div class="map-legend" id="legendMethod4" aria-label="Method 4 map legend"></div>
+          </div>
         </div>
-      </section>
+      </details>
 
-      <section class="method-details-grid">
-        <article class="panel result-summary method-comparison-note">
-          <span class="section-label">How to read the comparison</span>
-          <h2>The four maps separate hub choice, feeder logic, geographic expansion, and repeatability.</h2>
-          <p>
-            Method 1 is the transparent baseline: fixed hubs, a strategic backbone, direct spokes, and sparse gap filling. Method 2 changes the regional access layer by introducing feeder trees and fallback spokes. Method 3 keeps the manually guided backbone idea, removes arbitrary corridor-access anchors, extends the network into Canada, and manually removes a small number of redundant gap-fill branches. Method 4 keeps the same broad North American structure but changes the U.S. hub-selection rule, using population-based hubs and state coverage to make the method easier to repeat.
-          </p>
-        </article>
-        <article class="panel result-summary feeder-note">
-          <span class="section-label">Feeder trees vs. fallback spokes</span>
-          <h2>Feeder trees are shared branches; fallback spokes are safety valves.</h2>
-          <p>
-            <strong>Regional feeder trees</strong> are shared local branches that connect nearby terminals through a corridor-like structure before linking them back to the hub. They reduce the unrealistic radial clutter that appears when every terminal receives its own separate spoke.
-          </p>
-          <p>
-            <strong>Fallback spokes</strong> are direct terminal-to-hub links that are restored after the feeder-tree step if the tree would make a terminal travel too far out of the way. They prevent the algorithm from over-cleaning the map at the expense of useful access.
-          </p>
-        </article>
-        <article class="panel result-summary method-comparison-note">
-          <span class="section-label">What changed from Method 2 to Method 3</span>
-          <h2>Method 3 adds Canada and tightens the access logic.</h2>
-          <p>
-            The earlier Method 3 experiment allowed spokes and feeder trees to connect to intermediate backbone waypoints. That made some areas cleaner, but it also created strange local attachments. The updated Method 3 removes those corridor access anchors, so feeder trees and fallback spokes attach only to fixed hubs. It adds Albuquerque as a Southwest interchange hub, Pittsburgh as an Appalachian/Great Lakes interchange hub, Boston as a New England hub, and Baltimore and Philadelphia along the DC–New York corridor; leaves Salt Lake City–Denver to the road-routing algorithm; adds a Canadian trunk from Vancouver to Quebec City with selected cross-border corridors; and adds Boise–Portland as a normal gap-fill link. This data refresh also removes redundant Fort Lauderdale–Naples and Des Moines–Kansas City gap-fill branches while retaining the cleaner Miami/Miami Beach–Naples and Omaha–Kansas City connections.
-          </p>
-        </article>
-        <article class="panel result-summary method-comparison-note">
-          <span class="section-label">What changed from Method 3 to Method 4</span>
-          <h2>Method 4 makes hub selection more rule-based.</h2>
-          <p>
-            Method 4 replaces the manually selected U.S. hub set with a population-based rule. Large U.S. cities become fixed hubs, and the largest city in each state without one of those hubs is added for state coverage. The remaining cities from the largest-120 list remain as ordinary nodes, so they can still be served by feeder trees, fallback spokes, or gap-fill links. The Canadian hubs stay the same as Method 3. Once the hubs are selected, Method 4 builds a minimum-spanning-tree hub backbone so every hub is connected from the start. Manually reviewed structural links are then added on top to close obvious endpoint problems and preserve meaningful regional corridors.
-          </p>
-        </article>
-      </section>
+      <details class="blog-section panel" id="findings" open>
+        <summary>
+          <span class="section-label">What we learned</span>
+          <h2>The maps separate hub choice, feeder logic, geographic expansion, and repeatability.</h2>
+        </summary>
+        <div class="blog-section__body method-details-grid">
+          <article class="result-summary method-comparison-note">
+            <h3>Feeder trees reduce radial clutter.</h3>
+            <p>Method 2 shows why regional feeder trees are useful. They make local access look more like a rail corridor and less like many independent spokes to a single hub.</p>
+          </article>
+          <article class="result-summary method-comparison-note">
+            <h3>Manual corridors are still needed.</h3>
+            <p>Method 3 and Method 4 show that algorithmic routing alone can miss the way people expect regions to connect. Strategic corridors improve legibility.</p>
+          </article>
+          <article class="result-summary method-comparison-note">
+            <h3>Population hubs improve repeatability.</h3>
+            <p>Method 4 makes the hub set less arbitrary, but a population-based hub set still needs pruning and corridor review to avoid awkward local structures.</p>
+          </article>
+        </div>
+      </details>
 
-      <section class="panel next-panel" id="next">
-        <div>
+      <details class="blog-section panel next-panel" id="next" open>
+        <summary>
           <span class="section-label">Next steps</span>
           <h2>What we want to do next.</h2>
-        </div>
-        <div class="next-grid">
+        </summary>
+        <div class="blog-section__body next-grid">
           <article><h3>Improve feeder-tree rules</h3><p>Test different detour thresholds, catchment definitions, and candidate-edge rules to avoid over-cleaning or under-cleaning local networks.</p></article>
           <article><h3>Add stronger demand data</h3><p>Incorporate population, travel demand, current rail ridership, airport flows, and regional development priorities.</p></article>
           <article><h3>Model constraints and costs</h3><p>Introduce terrain, protected areas, urban constraints, construction cost proxies, and capacity assumptions.</p></article>
           <article><h3>Compare alternatives</h3><p>Generate multiple networks under different objectives, such as coverage, emissions reduction, travel time, or equity.</p></article>
         </div>
-      </section>
+      </details>
 
       <section class="contact-panel rail-contact">
         <div>

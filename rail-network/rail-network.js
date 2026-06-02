@@ -1,4 +1,5 @@
 const DATA_PATH = "data/";
+const initializedRailMaps = [];
 
 const BASELINE_CONFIG = {
   mapId: "railMapBaseline",
@@ -413,6 +414,20 @@ async function init() {
     initRailMap(METHOD3_CONFIG),
     initRailMap(METHOD4_CONFIG)
   ]);
+
+  [baseline, v3, method3, method4].forEach((item) => {
+    if (item?.map) initializedRailMaps.push(item.map);
+  });
+
+  document.querySelectorAll("details.blog-section").forEach((section) => {
+    section.addEventListener("toggle", () => {
+      if (section.open) {
+        setTimeout(() => {
+          initializedRailMaps.forEach((railMap) => railMap.invalidateSize({ animate: false }));
+        }, 80);
+      }
+    });
+  });
 
   const latest = method4 || method3 || v3 || baseline;
   if (latest?.metadata) {
