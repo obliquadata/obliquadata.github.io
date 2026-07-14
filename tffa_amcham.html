@@ -1,28 +1,12 @@
-<!--
-Tax Fairness for Americans Abroad — AmCham Support Map
-Squarespace Code Block version
+<!-- Tax Fairness for Americans Abroad — AmCham Support Map (amCharts 5) -->
 
-BEFORE USING:
-1. Keep the Google Sheet tab name exactly: Public Status
-2. Share the sheet so anyone with the link can view it, or publish it to the web.
-3. Keep these headers:
-   amcham_id, country, amcham_name, website, status, public_note,
-   support_letter_url, support_date, last_updated, source_url
-
-TESTING NOTE:
-Opening this file directly from your computer uses a file:// address. Some browsers
-restrict cross-origin fetches from local files. Test the code in a Squarespace page
-preview or through a small local web server for a reliable result.
--->
-
-<div id="tffa-amcham-map-app">
+<div id="tffa-amcham-app">
   <div class="tffa-map-header">
     <p class="tffa-eyebrow">GLOBAL BUSINESS SUPPORT</p>
     <h2>AmCham support for tax fairness</h2>
     <p class="tffa-intro">
       Explore American Chambers of Commerce and partner organizations around the world.
-      Countries are highlighted according to the most advanced public status recorded for
-      an organization located there.
+      Select a country to view its current public status and organization details.
     </p>
   </div>
 
@@ -42,1040 +26,342 @@ preview or through a small local web server for a reliable result.
   </div>
 
   <div class="tffa-map-toolbar">
-    <label class="tffa-search-label" for="tffa-country-search">Find a country or AmCham</label>
+    <label for="tffa-search-input">Find a country or AmCham</label>
     <div class="tffa-search-row">
-      <input
-        id="tffa-country-search"
-        type="search"
-        placeholder="Search by country or organization"
-        autocomplete="off"
-      />
+      <input id="tffa-search-input" type="search"
+        placeholder="Search by country or organization" autocomplete="off">
       <button id="tffa-search-button" type="button">Search</button>
     </div>
   </div>
 
   <div id="tffa-search-results" class="tffa-search-results" hidden></div>
 
-  <div class="tffa-map-frame">
-    <div id="tffa-map" role="region" aria-label="Interactive world map of AmCham support"></div>
-    <div id="tffa-map-status" class="tffa-map-status">Loading current AmCham data…</div>
+  <div class="tffa-map-shell">
+    <div id="tffa-mapdiv" role="region" aria-label="Interactive world map of AmCham support"></div>
+
+    <div class="tffa-zoom-panel" aria-label="Map zoom controls">
+      <button id="tffa-zoom-in" type="button" aria-label="Zoom in">+</button>
+      <input id="tffa-zoom-slider" type="range" min="1" max="8" step="0.1" value="1.55"
+        orient="vertical" aria-label="Map zoom level">
+      <button id="tffa-zoom-out" type="button" aria-label="Zoom out">−</button>
+      <button id="tffa-reset-map" type="button" aria-label="Reset map">⌂</button>
+    </div>
+
+    <div id="tffa-loading" class="tffa-loading">Loading current AmCham data…</div>
   </div>
 
   <div class="tffa-legend" aria-label="Map legend">
     <div><span class="tffa-swatch tffa-confirmed"></span>Confirmed supporter</div>
     <div><span class="tffa-swatch tffa-uncontacted"></span>Not yet contacted</div>
-    <div><span class="tffa-swatch tffa-united-states"></span>United States</div>
+    <div><span class="tffa-swatch tffa-usa"></span>United States</div>
   </div>
 
-  <noscript>
-    <p>This map requires JavaScript. Please use the accompanying AmCham directory instead.</p>
-  </noscript>
+  <div id="tffa-details" class="tffa-details" aria-live="polite">
+    <h3>Select a country</h3>
+    <p>Click a country on the map to view its AmCham information.</p>
+  </div>
 </div>
 
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIINfQ3ynHT6HwcJaG/YN0uHfXQYV2uY6E0="
-  crossorigin=""
->
-
 <style>
-  #tffa-amcham-map-app {
-    --tffa-ink: #172d3f;
-    --tffa-blue: #1f4e6d;
-    --tffa-blue-dark: #15384f;
-    --tffa-gold: #d8aa4b;
-    --tffa-cream: #f7f4ee;
-    --tffa-border: #d9dee2;
-    --tffa-muted: #65727c;
-    --tffa-confirmed: #1f6b52;
-    --tffa-engaged: #6f8e3d;
-    --tffa-contacted: #d8aa4b;
-    --tffa-uncontacted: #d8e0e5;
-    --tffa-no-data: #f1f1ef;
-    color: var(--tffa-ink);
-    font-family: inherit;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  #tffa-amcham-map-app *,
-  #tffa-amcham-map-app *::before,
-  #tffa-amcham-map-app *::after {
-    box-sizing: border-box;
-  }
-
-  .tffa-map-header {
-    max-width: 850px;
-    margin-bottom: 2rem;
-  }
-
-  .tffa-eyebrow {
-    margin: 0 0 .55rem;
-    color: var(--tffa-blue);
-    font-size: .77rem;
-    font-weight: 700;
-    letter-spacing: .16em;
-  }
-
-  .tffa-map-header h2 {
-    margin: 0 0 .8rem;
-    color: var(--tffa-ink);
-    font-size: clamp(2rem, 4vw, 3.6rem);
-    line-height: 1.04;
-  }
-
-  .tffa-intro {
-    margin: 0;
-    max-width: 760px;
-    color: var(--tffa-muted);
-    font-size: 1.05rem;
-    line-height: 1.65;
-  }
-
-  .tffa-stat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    overflow: hidden;
-    margin: 0 0 1.4rem;
-    border: 1px solid var(--tffa-border);
-    border-radius: 8px;
-    background: var(--tffa-border);
-  }
-
-  .tffa-stat {
-    display: flex;
-    min-height: 104px;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.15rem 1.35rem;
-    background: #fff;
-  }
-
-  .tffa-stat-number {
-    color: var(--tffa-blue-dark);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .tffa-stat-label {
-    margin-top: .4rem;
-    color: var(--tffa-muted);
-    font-size: .87rem;
-  }
-
-  .tffa-map-toolbar {
-    margin-bottom: .8rem;
-  }
-
-  .tffa-search-label {
-    display: block;
-    margin-bottom: .4rem;
-    font-size: .82rem;
-    font-weight: 700;
-  }
-
-  .tffa-search-row {
-    display: flex;
-    gap: .55rem;
-  }
-
-  #tffa-country-search {
-    width: 100%;
-    min-height: 46px;
-    padding: .72rem .85rem;
-    border: 1px solid var(--tffa-border);
-    border-radius: 4px;
-    background: #fff;
-    color: var(--tffa-ink);
-    font: inherit;
-  }
-
-  #tffa-country-search:focus {
-    border-color: var(--tffa-blue);
-    outline: 3px solid rgba(31, 78, 109, .14);
-  }
-
-  #tffa-search-button {
-    min-width: 82px;
-    padding: .72rem 1rem;
-    border: 1px solid var(--tffa-blue);
-    border-radius: 4px;
-    background: #fff;
-    color: var(--tffa-blue);
-    font: inherit;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  #tffa-search-button:hover {
-    background: var(--tffa-cream);
-  }
-
-  .tffa-map-frame {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--tffa-border);
-    border-radius: 8px;
-    background: var(--tffa-cream);
-    box-shadow: 0 14px 35px rgba(23, 45, 63, .08);
-  }
-
-  #tffa-map {
-    width: 100%;
-    height: min(68vh, 680px);
-    min-height: 470px;
-    background:
-      radial-gradient(circle at 50% 40%, #ffffff 0, #f7f4ee 67%, #eef1f2 100%);
-  }
-
-  .tffa-map-status {
-    position: absolute;
-    z-index: 800;
-    top: .8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: .55rem .8rem;
-    border: 1px solid rgba(23, 45, 63, .15);
-    border-radius: 4px;
-    background: rgba(255, 255, 255, .95);
-    color: var(--tffa-ink);
-    font-size: .82rem;
-    box-shadow: 0 6px 18px rgba(23, 45, 63, .08);
-  }
-
-  .tffa-map-status[hidden] {
-    display: none;
-  }
-
-  .tffa-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .65rem 1.25rem;
-    margin: 1rem 0 0;
-    color: var(--tffa-muted);
-    font-size: .82rem;
-  }
-
-  .tffa-legend > div {
-    display: inline-flex;
-    align-items: center;
-    gap: .42rem;
-  }
-
-  .tffa-swatch {
-    display: inline-block;
-    width: 18px;
-    height: 12px;
-    border: 1px solid rgba(23, 45, 63, .25);
-    border-radius: 2px;
-  }
-
-  .tffa-confirmed { background: var(--tffa-confirmed); }
-  .tffa-engaged { background: var(--tffa-engaged); }
-  .tffa-contacted { background: var(--tffa-contacted); }
-  .tffa-uncontacted { background: var(--tffa-uncontacted); }
-  .tffa-nodata { background: var(--tffa-no-data); }
-  .tffa-united-states { background: #1f4e6d; }
-
-  .tffa-search-results {
-    margin: 0 0 1rem;
-    border: 1px solid var(--tffa-border);
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .tffa-result {
-    padding: 1rem 1.15rem;
-    border-bottom: 1px solid var(--tffa-border);
-  }
-
-  .tffa-result:last-child {
-    border-bottom: 0;
-  }
-
-  .tffa-result button {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--tffa-blue);
-    font: inherit;
-    font-weight: 700;
-    text-align: left;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  .tffa-result p {
-    margin: .25rem 0 0;
-    color: var(--tffa-muted);
-    font-size: .9rem;
-  }
-
-  .leaflet-control-zoom a {
-    color: var(--tffa-blue-dark) !important;
-  }
-
-  #tffa-map .leaflet-interactive {
-    cursor: pointer;
-    pointer-events: auto;
-  }
-
-  #tffa-map .leaflet-overlay-pane svg {
-    pointer-events: auto;
-  }
-
-  .leaflet-popup-content-wrapper {
-    border-radius: 7px;
-    box-shadow: 0 14px 36px rgba(23, 45, 63, .2);
-  }
-
-  .leaflet-popup-content {
-    min-width: 245px;
-    margin: 1rem 1.05rem 1.1rem;
-    color: var(--tffa-ink);
-    font-family: inherit;
-  }
-
-  .tffa-popup-country {
-    margin: 0 0 .2rem;
-    color: var(--tffa-ink);
-    font-size: 1.15rem;
-    line-height: 1.25;
-  }
-
-  .tffa-popup-status {
-    display: inline-block;
-    margin: .1rem 0 .75rem;
-    padding: .22rem .48rem;
-    border-radius: 999px;
-    background: var(--tffa-cream);
-    color: var(--tffa-blue-dark);
-    font-size: .74rem;
-    font-weight: 700;
-  }
-
-  .tffa-popup-chamber {
-    padding: .68rem 0;
-    border-top: 1px solid var(--tffa-border);
-  }
-
-  .tffa-popup-chamber:first-of-type {
-    border-top: 0;
-  }
-
-  .tffa-popup-chamber-name {
-    margin: 0 0 .2rem;
-    font-weight: 700;
-    line-height: 1.35;
-  }
-
-  .tffa-popup-note {
-    margin: .3rem 0;
-    color: var(--tffa-muted);
-    font-size: .86rem;
-    line-height: 1.45;
-  }
-
-  .tffa-popup-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .35rem .75rem;
-    margin-top: .38rem;
-  }
-
-  .tffa-popup-links a {
-    color: var(--tffa-blue);
-    font-size: .84rem;
-    font-weight: 700;
-    text-decoration: underline;
-  }
-
-  @media (max-width: 700px) {
-    .tffa-stat-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .tffa-stat {
-      min-height: 82px;
-    }
-
-    #tffa-map {
-      height: 520px;
-      min-height: 440px;
-    }
-
-    .tffa-search-row {
-      align-items: stretch;
-    }
-
-    .tffa-legend {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: .55rem;
-    }
-  }
+#tffa-amcham-app {
+  --ink:#172d3f; --blue:#1f4e6d; --blue-dark:#15384f; --gold:#d8aa4b;
+  --cream:#f7f4ee; --border:#d9dee2; --muted:#65727c;
+  --confirmed:#1f6b52; --uncontacted:#d8e0e5; --usa:#1f4e6d; --nodata:#f1f1ef;
+  max-width:1200px; margin:0 auto; color:var(--ink); font-family:inherit;
+}
+#tffa-amcham-app * { box-sizing:border-box; }
+.tffa-map-header { max-width:850px; margin-bottom:2rem; }
+.tffa-eyebrow { margin:0 0 .55rem; color:var(--blue); font-size:.77rem; font-weight:700; letter-spacing:.16em; }
+.tffa-map-header h2 { margin:0 0 .8rem; font-size:clamp(2rem,4vw,3.6rem); line-height:1.04; }
+.tffa-intro { margin:0; max-width:760px; color:var(--muted); font-size:1.05rem; line-height:1.65; }
+.tffa-stat-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; overflow:hidden;
+  margin:0 0 1.4rem; border:1px solid var(--border); border-radius:8px; background:var(--border); }
+.tffa-stat { display:flex; min-height:104px; flex-direction:column; justify-content:center; padding:1.15rem 1.35rem; background:#fff; }
+.tffa-stat-number { color:var(--blue-dark); font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; line-height:1; }
+.tffa-stat-label { margin-top:.4rem; color:var(--muted); font-size:.87rem; }
+.tffa-map-toolbar { margin-bottom:.8rem; }
+.tffa-map-toolbar label { display:block; margin-bottom:.4rem; font-size:.82rem; font-weight:700; }
+.tffa-search-row { display:flex; gap:.55rem; }
+#tffa-search-input { width:100%; min-height:46px; padding:.72rem .85rem; border:1px solid var(--border);
+  border-radius:4px; background:#fff; color:var(--ink); font:inherit; }
+#tffa-search-input:focus { border-color:var(--blue); outline:3px solid rgba(31,78,109,.14); }
+#tffa-search-button { min-width:92px; border:1px solid var(--blue); border-radius:4px;
+  background:var(--blue); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+#tffa-search-button:hover { background:var(--blue-dark); }
+.tffa-search-results { margin:0 0 1rem; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.tffa-result { padding:.9rem 1.1rem; border-bottom:1px solid var(--border); }
+.tffa-result:last-child { border-bottom:0; }
+.tffa-result button { padding:0; border:0; background:none; color:var(--blue); font:inherit; font-weight:700;
+  text-decoration:underline; cursor:pointer; }
+.tffa-result p { margin:.2rem 0 0; color:var(--muted); font-size:.88rem; }
+.tffa-map-shell { position:relative; overflow:hidden; border:1px solid var(--border); border-radius:8px;
+  background:radial-gradient(circle at 50% 40%,#fff 0,#f7f4ee 68%,#eef1f2 100%);
+  box-shadow:0 14px 35px rgba(23,45,63,.08); }
+#tffa-mapdiv { width:100%; height:min(68vh,680px); min-height:500px; }
+.tffa-loading { position:absolute; top:.8rem; left:50%; transform:translateX(-50%); z-index:20;
+  padding:.55rem .8rem; border:1px solid rgba(23,45,63,.15); border-radius:4px;
+  background:rgba(255,255,255,.95); font-size:.82rem; }
+.tffa-zoom-panel { position:absolute; z-index:15; right:14px; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:7px; padding:8px;
+  border:1px solid var(--border); border-radius:7px; background:rgba(255,255,255,.96);
+  box-shadow:0 8px 22px rgba(23,45,63,.14); }
+.tffa-zoom-panel button { width:34px; height:34px; border:1px solid var(--border); border-radius:4px;
+  background:#fff; color:var(--blue-dark); font-size:1.2rem; font-weight:700; cursor:pointer; }
+#tffa-zoom-slider { writing-mode:vertical-lr; direction:rtl; width:28px; height:170px; cursor:pointer; }
+.tffa-legend { display:flex; flex-wrap:wrap; gap:.65rem 1.25rem; margin:1rem 0;
+  color:var(--muted); font-size:.82rem; }
+.tffa-legend div { display:inline-flex; align-items:center; gap:.42rem; }
+.tffa-swatch { width:18px; height:12px; border:1px solid rgba(23,45,63,.25); border-radius:2px; }
+.tffa-confirmed { background:var(--confirmed); } .tffa-uncontacted { background:var(--uncontacted); }
+.tffa-usa { background:var(--usa); }
+.tffa-details { margin-top:1rem; padding:1.25rem 1.35rem; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.tffa-details h3 { margin:0 0 .45rem; font-size:1.35rem; }
+.tffa-details p { margin:.25rem 0; color:var(--muted); line-height:1.55; }
+.tffa-status-pill { display:inline-block; margin:.1rem 0 .65rem; padding:.22rem .5rem; border-radius:999px;
+  background:var(--cream); color:var(--blue-dark); font-size:.75rem; font-weight:700; }
+.tffa-chamber { padding:.8rem 0; border-top:1px solid var(--border); }
+.tffa-chamber:first-of-type { border-top:0; }
+.tffa-chamber strong { display:block; margin-bottom:.2rem; }
+.tffa-links { display:flex; flex-wrap:wrap; gap:.4rem .8rem; margin-top:.4rem; }
+.tffa-links a { color:var(--blue); font-weight:700; font-size:.86rem; text-decoration:underline; }
+@media(max-width:700px){
+  .tffa-stat-grid{grid-template-columns:1fr}.tffa-stat{min-height:82px}
+  #tffa-mapdiv{height:520px;min-height:460px}.tffa-legend{display:grid;grid-template-columns:1fr}
+  .tffa-zoom-panel{right:8px}.tffa-search-row{align-items:stretch}
+}
 </style>
 
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin=""
-></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
 
 <script>
 (() => {
-  "use strict";
+"use strict";
 
-  const SHEET_ID = "1mRI_hgixxuguFCOJlyIBKe0qB3nMuYyv1hb0ZFZGiEM";
-  const SHEET_NAME = "Public Status";
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1HJC3s_JVVdiANUEzALcwBF03wqP8N8EpiMbxjyTKzY_spcethMQZpYr4BLN-ImOmmkv0615SPwIa/pub?gid=0&single=true&output=csv";
 
-  // Exact published CSV endpoint for the Public Status worksheet.
-  // Although this URL looks like a download link, fetch() reads it silently in
-  // the background and visitors are not prompted to download anything.
-  const SHEET_CSV_URLS = [
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1HJC3s_JVVdiANUEzALcwBF03wqP8N8EpiMbxjyTKzY_spcethMQZpYr4BLN-ImOmmkv0615SPwIa/pub?gid=0&single=true&output=csv"
-  ];
+const COLORS = {
+  confirmed: 0x1f6b52,
+  uncontacted: 0xd8e0e5,
+  usa: 0x1f4e6d,
+  noData: 0xf1f1ef,
+  selectedStroke: 0xd8aa4b,
+  normalStroke: 0xffffff
+};
 
-  // Use a fallback host in case one CDN is blocked temporarily.
-  const WORLD_GEOJSON_URLS = [
-    "https://cdn.jsdelivr.net/gh/datasets/geo-countries@master/data/countries.geojson",
-    "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
-  ];
+const STATUS_PRIORITY = {
+  "Confirmed supporter":5, "Positive engagement":4,
+  "Follow-up needed":3, "Contacted":2,
+  "Not yet contacted":1, "Not applicable":0
+};
 
-  const STATUS_PRIORITY = {
-    "Confirmed supporter": 5,
-    "Positive engagement": 4,
-    "Follow-up needed": 3,
-    "Contacted": 2,
-    "Not yet contacted": 1,
-    "Not applicable": 0
-  };
+const COUNTRY_ALIASES = {
+  "China Mainland":"China", "Ivory Coast":"Côte d'Ivoire",
+  "South Korea":"South Korea", "Türkiye":"Turkey",
+  "Russia":"Russia", "Vietnam":"Vietnam",
+  "Palestinian Territories":"Palestine",
+  "Tanzania":"Tanzania", "Czech Republic":"Czechia"
+};
 
-  const STATUS_COLORS = {
-    "Confirmed supporter": "#1f6b52",
-    "Positive engagement": "#6f8e3d",
-    "Follow-up needed": "#d8aa4b",
-    "Contacted": "#d8aa4b",
-    "Not yet contacted": "#d8e0e5",
-    "Not applicable": "#ececea",
-    "United States": "#1f4e6d",
-    "No listed organization": "#f1f1ef"
-  };
+const normalize = value => String(value || "").normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/&/g,"and")
+  .replace(/[^a-z0-9]+/g," ").trim();
 
-  // Maps names used in the Sheet to names commonly used in the GeoJSON.
-  const COUNTRY_ALIASES = {
-    "China Mainland": "China",
-    "Ivory Coast": "Côte d'Ivoire",
-    "South Korea": "Republic of Korea",
-    "Türkiye": "Turkey",
-    "Russia": "Russian Federation",
-    "Vietnam": "Viet Nam",
-    "Palestinian Territories": "Palestine",
-    "Bolivia": "Bolivia",
-    "Tanzania": "United Republic of Tanzania",
-    "Moldova": "Moldova",
-    "Syria": "Syrian Arab Republic",
-    "Laos": "Lao People's Democratic Republic",
-    "Iran": "Iran",
-    "Venezuela": "Venezuela",
-    "Czech Republic": "Czechia",
-    "North Macedonia": "North Macedonia",
-    "Brunei": "Brunei Darussalam",
-    "Cape Verde": "Cabo Verde",
-    "East Timor": "Timor-Leste",
-    "Swaziland": "Eswatini"
-  };
+const esc = value => String(value || "").replace(/[&<>"']/g, ch =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
 
-  const normalize = value =>
-    String(value || "")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, " ")
-      .trim();
+const validUrl = value => /^https?:\/\//i.test(String(value || "").trim())
+  ? String(value).trim() : "";
 
-  const cleanUrl = value => {
-    const url = String(value || "").trim();
-    return /^https?:\/\//i.test(url) ? url : "";
-  };
+function parseRows(csv) {
+  const result = Papa.parse(csv.replace(/^\uFEFF/,""), {header:true, skipEmptyLines:"greedy",
+    transformHeader:h=>h.trim().toLowerCase().replace(/\s+/g,"_")});
+  return result.data.map(r => ({
+    id:String(r.amcham_id||"").trim(),
+    country:String(r.country||"").trim(),
+    chamber:String(r.amcham_name||"").trim(),
+    website:validUrl(r.website),
+    status:String(r.status||"Not yet contacted").trim(),
+    note:String(r.public_note||"").trim(),
+    letter:validUrl(r.support_letter_url),
+    supportDate:String(r.support_date||"").trim()
+  })).filter(r=>r.country && r.chamber);
+}
 
-  const escapeHtml = value =>
-    String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+function aggregate(rows) {
+  const map = new Map();
+  rows.forEach(row => {
+    if (!map.has(row.country)) map.set(row.country,{country:row.country,status:"Not yet contacted",chambers:[]});
+    const item = map.get(row.country);
+    item.chambers.push(row);
+    if ((STATUS_PRIORITY[row.status]||0) > (STATUS_PRIORITY[item.status]||0)) item.status=row.status;
+  });
+  return map;
+}
 
-  function parseRows(csvText) {
-    // Parse as raw rows instead of relying on Google to preserve header names.
-    // This is more reliable for imported XLSX files and published Google Sheets.
-    const parsed = Papa.parse(csvText.replace(/^\uFEFF/, ""), {
-      header: false,
-      skipEmptyLines: "greedy"
+function countryMatch(title, countries) {
+  for (const item of countries.values()) {
+    const candidate = COUNTRY_ALIASES[item.country] || item.country;
+    if (normalize(candidate) === normalize(title)) return item;
+  }
+  return null;
+}
+
+function detailsHtml(item, title) {
+  if (normalize(title)==="united states" || normalize(title)==="united states of america") {
+    return `<h3>United States</h3><span class="tffa-status-pill">Campaign home country</span>
+      <p>Tax Fairness for Americans Abroad advocates for residence-based taxation and fair treatment of Americans living overseas.</p>
+      <div class="tffa-links"><a href="https://www.taxfairnessabroad.org" target="_blank" rel="noopener">Visit Tax Fairness for Americans Abroad</a></div>`;
+  }
+  if (!item) return `<h3>${esc(title)}</h3><p>No AmCham organization is currently listed for this country.</p>`;
+  const chambers = item.chambers.map(c => `<div class="tffa-chamber">
+    <strong>${esc(c.chamber)}</strong><span class="tffa-status-pill">${esc(c.status)}</span>
+    ${c.note?`<p>${esc(c.note)}</p>`:""}
+    ${c.supportDate&&c.status==="Confirmed supporter"?`<p>Support recorded: ${esc(c.supportDate)}</p>`:""}
+    <div class="tffa-links">
+      ${c.website?`<a href="${esc(c.website)}" target="_blank" rel="noopener">Visit website</a>`:""}
+      ${c.letter?`<a href="${esc(c.letter)}" target="_blank" rel="noopener">Read support letter</a>`:""}
+    </div></div>`).join("");
+  return `<h3>${esc(item.country)}</h3>${chambers}`;
+}
+
+async function init() {
+  const loading = document.getElementById("tffa-loading");
+  try {
+    const response = await fetch(CSV_URL,{cache:"no-store"});
+    if (!response.ok) throw new Error(`CSV request returned ${response.status}`);
+    const rows = parseRows(await response.text());
+    if (!rows.length) throw new Error("No AmCham rows were found.");
+    const countries = aggregate(rows);
+
+    const confirmed = rows.filter(r=>r.status==="Confirmed supporter");
+    document.getElementById("tffa-supporter-count").textContent=confirmed.length;
+    document.getElementById("tffa-country-count").textContent=new Set(confirmed.map(r=>r.country)).size;
+    document.getElementById("tffa-directory-count").textContent=rows.length;
+
+    const root = am5.Root.new("tffa-mapdiv");
+    root.setThemes([am5themes_Animated.new(root)]);
+    if (root._logo) root._logo.dispose();
+
+    const chart = root.container.children.push(am5map.MapChart.new(root,{
+      panX:"translateX", panY:"translateY",
+      projection:am5map.geoMercator(),
+      homeZoomLevel:1.55, homeGeoPoint:{longitude:5,latitude:20},
+      wheelX:"none", wheelY:"zoom"
+    }));
+
+    const series = chart.series.push(am5map.MapPolygonSeries.new(root,{
+      geoJSON:am5geodata_worldLow,
+      exclude:["AQ"]
+    }));
+
+    series.mapPolygons.template.setAll({
+      tooltipText:"{name}",
+      interactive:true,
+      cursorOverStyle:"pointer",
+      stroke:am5.color(COLORS.normalStroke),
+      strokeWidth:0.8,
+      fill:am5.color(COLORS.noData)
     });
 
-    if (parsed.errors.length) {
-      console.warn("Google Sheet CSV warnings:", parsed.errors);
-    }
+    let selectedPolygon = null;
 
-    const rawRows = parsed.data.map(row =>
-      row.map(cell => String(cell == null ? "" : cell).trim())
-    );
-
-    // Find the header row even if Google inserts blank lines or metadata.
-    const headerIndex = rawRows.findIndex(row => {
-      const normalized = row.map(cell =>
-        cell.toLowerCase().replace(/\s+/g, "_")
-      );
-      return normalized.includes("country") &&
-             normalized.includes("amcham_name") &&
-             normalized.includes("status");
+    series.mapPolygons.template.adapters.add("fill",(fill,target)=>{
+      const dc=target.dataItem && target.dataItem.dataContext;
+      const title=dc && (dc.name||dc.title) || "";
+      if (normalize(title)==="united states" || normalize(title)==="united states of america")
+        return am5.color(COLORS.usa);
+      const item=countryMatch(title,countries);
+      if (!item) return am5.color(COLORS.noData);
+      return am5.color(item.status==="Confirmed supporter"?COLORS.confirmed:COLORS.uncontacted);
     });
 
-    if (headerIndex === -1) {
-      console.error("CSV preview:", rawRows.slice(0, 5));
-      throw new Error(
-        "The Google Sheet loaded, but its header row was not recognized. " +
-        "The sheet must include country, amcham_name, and status columns."
-      );
-    }
+    series.mapPolygons.template.events.on("click",ev=>{
+      const polygon=ev.target;
+      const dc=polygon.dataItem.dataContext;
+      const title=dc.name||dc.title||"Country";
+      const item=countryMatch(title,countries);
 
-    const headers = rawRows[headerIndex].map(cell =>
-      cell
-        .toLowerCase()
-        .replace(/^\uFEFF/, "")
-        .trim()
-        .replace(/\s+/g, "_")
-    );
-
-    const columnIndex = name => headers.indexOf(name);
-
-    const indexes = {
-      amchamId: columnIndex("amcham_id"),
-      country: columnIndex("country"),
-      chamber: columnIndex("amcham_name"),
-      website: columnIndex("website"),
-      status: columnIndex("status"),
-      note: columnIndex("public_note"),
-      letterUrl: columnIndex("support_letter_url"),
-      supportDate: columnIndex("support_date"),
-      updated: columnIndex("last_updated")
-    };
-
-    const getCell = (row, index) =>
-      index >= 0 && index < row.length ? row[index] : "";
-
-    const rows = rawRows
-      .slice(headerIndex + 1)
-      .map(row => ({
-        amchamId: getCell(row, indexes.amchamId),
-        country: getCell(row, indexes.country),
-        chamber: getCell(row, indexes.chamber),
-        website: cleanUrl(getCell(row, indexes.website)),
-        status: getCell(row, indexes.status) || "Not yet contacted",
-        note: getCell(row, indexes.note),
-        letterUrl: cleanUrl(getCell(row, indexes.letterUrl)),
-        supportDate: getCell(row, indexes.supportDate),
-        updated: getCell(row, indexes.updated)
-      }))
-      .filter(row => row.country && row.chamber);
-
-    console.info(`Loaded ${rows.length} AmCham rows from Google Sheets.`);
-
-    return rows;
-  }
-
-  function aggregateByCountry(rows) {
-    const countries = new Map();
-
-    rows.forEach(row => {
-      if (!countries.has(row.country)) {
-        countries.set(row.country, {
-          country: row.country,
-          chambers: [],
-          status: "Not yet contacted"
-        });
+      if(selectedPolygon){
+        selectedPolygon.setAll({stroke:am5.color(COLORS.normalStroke),strokeWidth:0.8});
       }
+      polygon.setAll({stroke:am5.color(COLORS.selectedStroke),strokeWidth:3});
+      selectedPolygon=polygon;
 
-      const item = countries.get(row.country);
-      item.chambers.push(row);
-
-      const currentPriority = STATUS_PRIORITY[item.status] ?? 0;
-      const rowPriority = STATUS_PRIORITY[row.status] ?? 0;
-
-      if (rowPriority > currentPriority) {
-        item.status = row.status;
-      }
+      document.getElementById("tffa-details").innerHTML=detailsHtml(item,title);
     });
 
-    return countries;
-  }
-
-  function statusColor(status) {
-    return STATUS_COLORS[status] || STATUS_COLORS["Not yet contacted"];
-  }
-
-  function makePopup(countryData, geoName = "") {
-    if (normalize(geoName) === normalize("United States of America") ||
-        normalize(geoName) === normalize("United States")) {
-      return `
-        <h3 class="tffa-popup-country">United States</h3>
-        <span class="tffa-popup-status">Campaign home country</span>
-        <p class="tffa-popup-note">
-          Tax Fairness for Americans Abroad advocates for residence-based taxation
-          and fair treatment of Americans living overseas.
-        </p>
-        <div class="tffa-popup-links">
-          <a href="https://www.taxfairnessabroad.org" target="_blank" rel="noopener noreferrer">
-            Visit Tax Fairness for Americans Abroad
-          </a>
-        </div>
-      `;
-    }
-
-    if (!countryData) {
-      return `
-        <h3 class="tffa-popup-country">${escapeHtml(geoName || "Country")}</h3>
-        <p class="tffa-popup-note">
-          No AmCham organization is currently listed for this country.
-        </p>
-      `;
-    }
-
-    const chambers = countryData.chambers.map(chamber => {
-      const website = chamber.website
-        ? `<a href="${escapeHtml(chamber.website)}" target="_blank" rel="noopener noreferrer">Visit website</a>`
-        : "";
-
-      const letter = chamber.letterUrl
-        ? `<a href="${escapeHtml(chamber.letterUrl)}" target="_blank" rel="noopener noreferrer">Read support letter</a>`
-        : "";
-
-      const links = [website, letter].filter(Boolean).join("");
-
-      const note = chamber.note
-        ? `<p class="tffa-popup-note">${escapeHtml(chamber.note)}</p>`
-        : "";
-
-      const supportDate =
-        chamber.status === "Confirmed supporter" && chamber.supportDate
-          ? `<p class="tffa-popup-note">Support recorded: ${escapeHtml(chamber.supportDate)}</p>`
-          : "";
-
-      return `
-        <div class="tffa-popup-chamber">
-          <p class="tffa-popup-chamber-name">${escapeHtml(chamber.chamber)}</p>
-          <span class="tffa-popup-status">${escapeHtml(chamber.status)}</span>
-          ${note}
-          ${supportDate}
-          ${links ? `<div class="tffa-popup-links">${links}</div>` : ""}
-        </div>
-      `;
-    }).join("");
-
-    return `
-      <h3 class="tffa-popup-country">${escapeHtml(countryData.country)}</h3>
-      ${chambers}
-    `;
-  }
-
-  function getGeoName(feature) {
-    const props = feature.properties || {};
-    return (
-      props.ADMIN ||
-      props.name ||
-      props.NAME ||
-      props.NAME_EN ||
-      props.SOVEREIGNT ||
-      ""
-    );
-  }
-
-  function findCountryData(geoName, countries) {
-    const direct = [...countries.values()].find(
-      item => normalize(item.country) === normalize(geoName)
-    );
-    if (direct) return direct;
-
-    return [...countries.values()].find(item => {
-      const alias = COUNTRY_ALIASES[item.country] || item.country;
-      return normalize(alias) === normalize(geoName);
+    series.events.on("datavalidated",()=>{
+      chart.goHome(0);
+      loading.hidden=true;
     });
-  }
 
-  function setStatusMessage(message, isError = false) {
-    const element = document.getElementById("tffa-map-status");
-    element.textContent = message;
-    element.style.color = isError ? "#8a2f2f" : "";
-    element.hidden = false;
-  }
+    const slider=document.getElementById("tffa-zoom-slider");
+    const syncSlider=()=>{ slider.value=Math.min(8,Math.max(1,chart.get("zoomLevel")||1)); };
+    chart.events.on("zoomLevel",syncSlider);
 
-  function hideStatusMessage() {
-    document.getElementById("tffa-map-status").hidden = true;
-  }
+    document.getElementById("tffa-zoom-in").onclick=()=>chart.zoomIn();
+    document.getElementById("tffa-zoom-out").onclick=()=>chart.zoomOut();
+    document.getElementById("tffa-reset-map").onclick=()=>chart.goHome();
+    slider.addEventListener("input",()=>chart.zoomToGeoPoint(chart.invert({x:chart.width()/2,y:chart.height()/2}),Number(slider.value),true));
 
-  async function fetchFirstText(urls, label) {
-    const failures = [];
+    const searchInput=document.getElementById("tffa-search-input");
+    const results=document.getElementById("tffa-search-results");
 
-    for (const url of urls) {
-      try {
-        const response = await fetch(url, {
-          cache: "no-store",
-          redirect: "follow"
-        });
+    const searchItems=[];
+    countries.forEach(item=>item.chambers.forEach(c=>searchItems.push({
+      country:item.country,chamber:c.chamber,status:c.status,item,
+      text:normalize(`${item.country} ${c.chamber}`)
+    })));
+    searchItems.push({country:"United States",chamber:"Tax Fairness for Americans Abroad",
+      status:"Campaign home country",item:null,text:normalize("United States USA Tax Fairness for Americans Abroad")});
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const text = await response.text();
-
-        // Google sometimes returns an HTML sign-in/error page instead of CSV.
-        if (/^\s*<!doctype html|^\s*<html/i.test(text)) {
-          throw new Error("received HTML instead of CSV");
-        }
-
-        return text;
-      } catch (error) {
-        failures.push(`${url}: ${error.message}`);
-      }
-    }
-
-    throw new Error(`${label} failed. ${failures.join(" | ")}`);
-  }
-
-  async function fetchFirstJson(urls, label) {
-    const failures = [];
-
-    for (const url of urls) {
-      try {
-        const response = await fetch(url, {
-          cache: "force-cache",
-          redirect: "follow"
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        return await response.json();
-      } catch (error) {
-        failures.push(`${url}: ${error.message}`);
-      }
-    }
-
-    throw new Error(`${label} failed. ${failures.join(" | ")}`);
-  }
-
-  async function initialize() {
-    const app = document.getElementById("tffa-amcham-map-app");
-    if (!app || app.dataset.initialized === "true") return;
-    app.dataset.initialized = "true";
-
-    if (typeof L === "undefined" || typeof Papa === "undefined") {
-      setStatusMessage("The map libraries could not be loaded.", true);
-      return;
-    }
-
-    try {
-      setStatusMessage("Loading current AmCham data…");
-
-      let csvText;
-      let worldGeoJson;
-
-      try {
-        csvText = await fetchFirstText(SHEET_CSV_URLS, "Google Sheet request");
-      } catch (sheetError) {
-        console.error(sheetError);
-        throw new Error(
-          "The published Google Sheets CSV could not be loaded. Confirm that the published CSV link is still active."
-        );
-      }
-
-      try {
-        worldGeoJson = await fetchFirstJson(
-          WORLD_GEOJSON_URLS,
-          "World boundary request"
-        );
-      } catch (mapError) {
-        console.error(mapError);
-        throw new Error(
-          "The country-boundary map file could not be loaded. This is usually a temporary CDN or browser-network restriction rather than a Google Sheet problem."
-        );
-      }
-
-      const rows = parseRows(csvText);
-
-      if (!rows.length) {
-        throw new Error(
-          "The Sheet loaded successfully, but no complete country and AmCham-name rows were found."
-        );
-      }
-
-      const countries = aggregateByCountry(rows);
-      const supporterRows = rows.filter(row => row.status === "Confirmed supporter");
-      const supporterCountries = new Set(supporterRows.map(row => row.country));
-
-      document.getElementById("tffa-supporter-count").textContent =
-        supporterRows.length.toLocaleString();
-      document.getElementById("tffa-country-count").textContent =
-        supporterCountries.size.toLocaleString();
-      document.getElementById("tffa-directory-count").textContent =
-        rows.length.toLocaleString();
-
-      const map = L.map("tffa-map", {
-        zoomControl: true,
-        attributionControl: false,
-        minZoom: 1,
-        maxZoom: 7,
-        zoomSnap: 0.25,
-        zoomDelta: 0.5,
-        worldCopyJump: false,
-        scrollWheelZoom: true,
-        doubleClickZoom: false
-      }).setView([20, 5], 2.5);
-
-      let geoLayer;
-
-      geoLayer = L.geoJSON(worldGeoJson, {
-        style: feature => {
-          const geoName = getGeoName(feature);
-          const countryData = findCountryData(geoName, countries);
-          const isUnitedStates =
-            normalize(geoName) === normalize("United States of America") ||
-            normalize(geoName) === normalize("United States");
-          const status = isUnitedStates
-            ? "United States"
-            : countryData
-              ? countryData.status
-              : "No listed organization";
-
-          return {
-            color: "#ffffff",
-            weight: 0.7,
-            opacity: 1,
-            fillColor: statusColor(status),
-            fillOpacity: 0.95,
-            interactive: true
-          };
-        },
-        onEachFeature: (feature, layer) => {
-          const geoName = getGeoName(feature);
-          const countryData = findCountryData(geoName, countries);
-
-          const popupHtml = makePopup(countryData, geoName);
-
-          layer.on({
-            mouseover: event => {
-              event.target.setStyle({
-                weight: 1.8,
-                color: "#172d3f"
-              });
-              event.target.bringToFront();
-            },
-            mouseout: event => {
-              geoLayer.resetStyle(event.target);
-            },
-            click: event => {
-              L.DomEvent.stopPropagation(event);
-              L.popup({
-                maxWidth: 390,
-                closeButton: true,
-                autoPan: true
-              })
-                .setLatLng(event.latlng)
-                .setContent(popupHtml)
-                .openOn(map);
-            }
-          });
-
-          layer._tffaCountryData = countryData;
-          layer._tffaGeoName = geoName;
-
-          if (layer.getElement && layer.getElement()) {
-            layer.getElement().setAttribute("tabindex", "0");
-            layer.getElement().setAttribute("role", "button");
-            layer.getElement().setAttribute(
-              "aria-label",
-              `Open details for ${countryData ? countryData.country : geoName}`
-            );
-          }
-
-          layer.on("add", () => {
-            const element = layer.getElement && layer.getElement();
-            if (!element) return;
-            element.setAttribute("tabindex", "0");
-            element.setAttribute("role", "button");
-            element.setAttribute(
-              "aria-label",
-              `Open details for ${countryData ? countryData.country : geoName}`
-            );
-            element.addEventListener("keydown", keyboardEvent => {
-              if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
-                keyboardEvent.preventDefault();
-                L.popup({
-                  maxWidth: 390,
-                  closeButton: true,
-                  autoPan: true
-                })
-                  .setLatLng(layer.getBounds().getCenter())
-                  .setContent(popupHtml)
-                  .openOn(map);
-              }
-            });
-          });
-        }
-      }).addTo(map);
-
-      const searchInput = document.getElementById("tffa-country-search");
-      const searchButton = document.getElementById("tffa-search-button");
-      const resultsBox = document.getElementById("tffa-search-results");
-
-      const allSearchItems = [{
-        country: "United States",
-        chamber: "Tax Fairness for Americans Abroad",
-        status: "Campaign home country",
-        countryData: null,
-        specialGeoName: "United States of America",
-        searchText: normalize("United States USA Tax Fairness for Americans Abroad")
-      }];
-
-      countries.forEach(country => {
-        country.chambers.forEach(chamber => {
-          allSearchItems.push({
-            country: country.country,
-            chamber: chamber.chamber,
-            status: chamber.status,
-            countryData: country,
-            searchText: normalize(`${country.country} ${chamber.chamber}`)
-          });
-        });
+    function selectByCountryName(name,item){
+      let found=null;
+      series.mapPolygons.each(p=>{
+        const dc=p.dataItem.dataContext;
+        const title=dc.name||dc.title||"";
+        if(normalize(title)===normalize(COUNTRY_ALIASES[name]||name) ||
+           (name==="United States" && normalize(title).includes("united states"))) found=p;
       });
-
-      function locateCountry(countryData, specialGeoName = "") {
-        let targetLayer = null;
-
-        geoLayer.eachLayer(layer => {
-          if (
-            specialGeoName &&
-            normalize(layer._tffaGeoName) === normalize(specialGeoName)
-          ) {
-            targetLayer = layer;
-          } else if (
-            countryData &&
-            layer._tffaCountryData &&
-            layer._tffaCountryData.country === countryData.country
-          ) {
-            targetLayer = layer;
-          }
-        });
-
-        if (targetLayer) {
-          map.fitBounds(targetLayer.getBounds(), {
-            maxZoom: 4,
-            padding: [45, 45]
-          });
-          const targetGeoName = targetLayer._tffaGeoName || "";
-          const targetCountryData = targetLayer._tffaCountryData || null;
-
-          L.popup({
-            maxWidth: 390,
-            closeButton: true,
-            autoPan: true
-          })
-            .setLatLng(targetLayer.getBounds().getCenter())
-            .setContent(makePopup(targetCountryData, targetGeoName))
-            .openOn(map);
-
-          document.getElementById("tffa-map").scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        }
+      if(found){
+        const dc=found.dataItem.dataContext;
+        const title=dc.name||dc.title||name;
+        if(selectedPolygon) selectedPolygon.setAll({stroke:am5.color(COLORS.normalStroke),strokeWidth:0.8});
+        found.setAll({stroke:am5.color(COLORS.selectedStroke),strokeWidth:3});
+        selectedPolygon=found;
+        chart.zoomToDataItem(found.dataItem);
+        document.getElementById("tffa-details").innerHTML=detailsHtml(item,title);
       }
-
-      function renderSearchResults(query) {
-        const normalizedQuery = normalize(query);
-
-        if (!normalizedQuery) {
-          resultsBox.hidden = true;
-          resultsBox.innerHTML = "";
-          return;
-        }
-
-        const matches = allSearchItems
-          .filter(item => item.searchText.includes(normalizedQuery))
-          .slice(0, 12);
-
-        if (!matches.length) {
-          resultsBox.hidden = false;
-          resultsBox.innerHTML = `
-            <div class="tffa-result">
-              <p>No matching country or organization was found.</p>
-            </div>
-          `;
-          return;
-        }
-
-        resultsBox.innerHTML = matches.map((item, index) => `
-          <div class="tffa-result">
-            <button type="button" data-result-index="${index}">
-              ${escapeHtml(item.country)}
-            </button>
-            <p>${escapeHtml(item.chamber)} · ${escapeHtml(item.status)}</p>
-          </div>
-        `).join("");
-
-        resultsBox.hidden = false;
-
-        resultsBox.querySelectorAll("[data-result-index]").forEach(button => {
-          button.addEventListener("click", () => {
-            const item = matches[Number(button.dataset.resultIndex)];
-            locateCountry(item.countryData, item.specialGeoName || "");
-          });
-        });
-      }
-
-      function runSearch() {
-        renderSearchResults(searchInput.value);
-      }
-
-      searchButton.addEventListener("click", runSearch);
-
-      searchInput.addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          runSearch();
-        }
-      });
-
-      hideStatusMessage();
-
-      // Leaflet sometimes needs a size refresh after Squarespace finishes layout.
-      window.setTimeout(() => map.invalidateSize(), 300);
-      window.addEventListener("resize", () => map.invalidateSize());
-    } catch (error) {
-      console.error("AmCham map error:", error);
-      setStatusMessage(
-        error && error.message
-          ? error.message
-          : "The map could not be loaded. Open the browser console for technical details.",
-        true
-      );
     }
-  }
 
-  // Works both on normal page loads and within Squarespace's editor.
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialize, { once: true });
-  } else {
-    initialize();
+    function runSearch(){
+      const q=normalize(searchInput.value);
+      if(!q){results.hidden=true;results.innerHTML="";return;}
+      const matches=searchItems.filter(x=>x.text.includes(q)).slice(0,12);
+      results.innerHTML=matches.length?matches.map((m,i)=>`<div class="tffa-result">
+        <button type="button" data-i="${i}">${esc(m.country)}</button>
+        <p>${esc(m.chamber)} · ${esc(m.status)}</p></div>`).join("")
+        :`<div class="tffa-result"><p>No matching country or organization was found.</p></div>`;
+      results.hidden=false;
+      results.querySelectorAll("[data-i]").forEach(btn=>btn.onclick=()=>{
+        const m=matches[Number(btn.dataset.i)]; selectByCountryName(m.country,m.item);
+        document.getElementById("tffa-mapdiv").scrollIntoView({behavior:"smooth",block:"center"});
+      });
+    }
+    document.getElementById("tffa-search-button").onclick=runSearch;
+    searchInput.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();runSearch();}});
+  } catch(err) {
+    console.error(err);
+    loading.textContent=err.message||"The map could not be loaded.";
+    loading.style.color="#8a2f2f";
   }
+}
+
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init,{once:true});
+else init();
 })();
 </script>
