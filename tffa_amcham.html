@@ -425,12 +425,11 @@ preview or through a small local web server for a reliable result.
   const SHEET_ID = "1mRI_hgixxuguFCOJlyIBKe0qB3nMuYyv1hb0ZFZGiEM";
   const SHEET_NAME = "Public Status";
 
-  // Try several public CSV endpoints. The first successful response is used.
-  // gid=0 is the first worksheet, which should be the Public Status tab.
+  // Exact published CSV endpoint for the Public Status worksheet.
+  // Although this URL looks like a download link, fetch() reads it silently in
+  // the background and visitors are not prompted to download anything.
   const SHEET_CSV_URLS = [
-    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`,
-    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=0`,
-    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1HJC3s_JVVdiANUEzALcwBF03wqP8N8EpiMbxjyTKzY_spcethMQZpYr4BLN-ImOmmkv0615SPwIa/pub?gid=0&single=true&output=csv"
   ];
 
   // Use a fallback host in case one CDN is blocked temporarily.
@@ -769,7 +768,7 @@ preview or through a small local web server for a reliable result.
       } catch (sheetError) {
         console.error(sheetError);
         throw new Error(
-          "Google Sheet data could not be loaded. Confirm that the first tab is named “Public Status,” is publicly viewable, and contains the expected headers."
+          "The published Google Sheets CSV could not be loaded. Confirm that the published CSV link is still active."
         );
       }
 
