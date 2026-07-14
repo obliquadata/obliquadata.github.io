@@ -505,29 +505,82 @@ preview or through a small local web server for a reliable result.
       .replace(/'/g, "&#039;");
 
   function parseRows(csvText) {
-    const parsed = Papa.parse(csvText, {
-      header: true,
-      skipEmptyLines: true,
-      transformHeader: header => header.trim().toLowerCase()
+    // Parse as raw rows instead of relying on Google to preserve header names.
+    // This is more reliable for imported XLSX files and published Google Sheets.
+    const parsed = Papa.parse(csvText.replace(/^\uFEFF/, ""), {
+      header: false,
+      skipEmptyLines: "greedy"
     });
 
     if (parsed.errors.length) {
       console.warn("Google Sheet CSV warnings:", parsed.errors);
     }
 
-    return parsed.data
+    const rawRows = parsed.data.map(row =>
+      row.map(cell => String(cell == null ? "" : cell).trim())
+    );
+
+    // Find the header row even if Google inserts blank lines or metadata.
+    const headerIndex = rawRows.findIndex(row => {
+      const normalized = row.map(cell =>
+        cell.toLowerCase().replace(/\s+/g, "_")
+      );
+      return normalized.includes("country") &&
+             normalized.includes("amcham_name") &&
+             normalized.includes("status");
+    });
+
+    if (headerIndex === -1) {
+      console.error("CSV preview:", rawRows.slice(0, 5));
+      throw new Error(
+        "The Google Sheet loaded, but its header row was not recognized. " +
+        "The sheet must include country, amcham_name, and status columns."
+      );
+    }
+
+    const headers = rawRows[headerIndex].map(cell =>
+      cell
+        .toLowerCase()
+        .replace(/^\uFEFF/, "")
+        .trim()
+        .replace(/\s+/g, "_")
+    );
+
+    const columnIndex = name => headers.indexOf(name);
+
+    const indexes = {
+      amchamId: columnIndex("amcham_id"),
+      country: columnIndex("country"),
+      chamber: columnIndex("amcham_name"),
+      website: columnIndex("website"),
+      status: columnIndex("status"),
+      note: columnIndex("public_note"),
+      letterUrl: columnIndex("support_letter_url"),
+      supportDate: columnIndex("support_date"),
+      updated: columnIndex("last_updated")
+    };
+
+    const getCell = (row, index) =>
+      index >= 0 && index < row.length ? row[index] : "";
+
+    const rows = rawRows
+      .slice(headerIndex + 1)
       .map(row => ({
-        amchamId: String(row.amcham_id || "").trim(),
-        country: String(row.country || "").trim(),
-        chamber: String(row.amcham_name || "").trim(),
-        website: cleanUrl(row.website),
-        status: String(row.status || "Not yet contacted").trim(),
-        note: String(row.public_note || "").trim(),
-        letterUrl: cleanUrl(row.support_letter_url),
-        supportDate: String(row.support_date || "").trim(),
-        updated: String(row.last_updated || "").trim()
+        amchamId: getCell(row, indexes.amchamId),
+        country: getCell(row, indexes.country),
+        chamber: getCell(row, indexes.chamber),
+        website: cleanUrl(getCell(row, indexes.website)),
+        status: getCell(row, indexes.status) || "Not yet contacted",
+        note: getCell(row, indexes.note),
+        letterUrl: cleanUrl(getCell(row, indexes.letterUrl)),
+        supportDate: getCell(row, indexes.supportDate),
+        updated: getCell(row, indexes.updated)
       }))
       .filter(row => row.country && row.chamber);
+
+    console.info(`Loaded ${rows.length} AmCham rows from Google Sheets.`);
+
+    return rows;
   }
 
   function aggregateByCountry(rows) {
@@ -736,7 +789,7 @@ preview or through a small local web server for a reliable result.
 
       if (!rows.length) {
         throw new Error(
-          "No rows were found. Confirm that the tab is named “Public Status” and the sheet is publicly viewable."
+          "The Sheet loaded successfully, but no complete country and AmCham-name rows were found."
         );
       }
 
