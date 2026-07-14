@@ -855,7 +855,8 @@ preview or through a small local web server for a reliable result.
             weight: 0.7,
             opacity: 1,
             fillColor: statusColor(status),
-            fillOpacity: 0.95
+            fillOpacity: 0.95,
+            interactive: true
           };
         },
         onEachFeature: (feature, layer) => {
@@ -885,10 +886,37 @@ preview or through a small local web server for a reliable result.
 
           layer._tffaCountryData = countryData;
           layer._tffaGeoName = geoName;
+
+          if (layer.getElement && layer.getElement()) {
+            layer.getElement().setAttribute("tabindex", "0");
+            layer.getElement().setAttribute("role", "button");
+            layer.getElement().setAttribute(
+              "aria-label",
+              `Open details for ${countryData ? countryData.country : geoName}`
+            );
+          }
+
+          layer.on("add", () => {
+            const element = layer.getElement && layer.getElement();
+            if (!element) return;
+            element.setAttribute("tabindex", "0");
+            element.setAttribute("role", "button");
+            element.setAttribute(
+              "aria-label",
+              `Open details for ${countryData ? countryData.country : geoName}`
+            );
+            element.addEventListener("keydown", keyboardEvent => {
+              if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+                keyboardEvent.preventDefault();
+                layer.openPopup();
+              }
+            });
+          });
         }
       }).addTo(map);
 
       const searchInput = document.getElementById("tffa-country-search");
+      const searchButton = document.getElementById("tffa-search-button");
       const clearButton = document.getElementById("tffa-clear-search");
       const resultsBox = document.getElementById("tffa-search-results");
 
