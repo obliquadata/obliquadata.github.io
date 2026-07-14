@@ -1,0 +1,931 @@
+<!--
+Tax Fairness for Americans Abroad — AmCham Support Map
+Squarespace Code Block version
+
+BEFORE USING:
+1. Keep the Google Sheet tab name exactly: Public Status
+2. Share the sheet so anyone with the link can view it, or publish it to the web.
+3. Keep these headers:
+   amcham_id, country, amcham_name, website, status, public_note,
+   support_letter_url, support_date, last_updated, source_url
+
+TESTING NOTE:
+Opening this file directly from your computer uses a file:// address. Some browsers
+restrict cross-origin fetches from local files. Test the code in a Squarespace page
+preview or through a small local web server for a reliable result.
+-->
+
+<div id="tffa-amcham-map-app">
+  <div class="tffa-map-header">
+    <p class="tffa-eyebrow">GLOBAL BUSINESS SUPPORT</p>
+    <h2>AmCham support for tax fairness</h2>
+    <p class="tffa-intro">
+      Explore American Chambers of Commerce and partner organizations around the world.
+      Countries are highlighted according to the most advanced public status recorded for
+      an organization located there.
+    </p>
+  </div>
+
+  <div class="tffa-stat-grid" aria-live="polite">
+    <div class="tffa-stat">
+      <span id="tffa-supporter-count" class="tffa-stat-number">—</span>
+      <span class="tffa-stat-label">confirmed supporters</span>
+    </div>
+    <div class="tffa-stat">
+      <span id="tffa-country-count" class="tffa-stat-number">—</span>
+      <span class="tffa-stat-label">countries represented</span>
+    </div>
+    <div class="tffa-stat">
+      <span id="tffa-directory-count" class="tffa-stat-number">—</span>
+      <span class="tffa-stat-label">organizations listed</span>
+    </div>
+  </div>
+
+  <div class="tffa-map-toolbar">
+    <label class="tffa-search-label" for="tffa-country-search">Find a country or AmCham</label>
+    <div class="tffa-search-row">
+      <input
+        id="tffa-country-search"
+        type="search"
+        placeholder="Search by country or organization"
+        autocomplete="off"
+      />
+      <button id="tffa-clear-search" type="button">Clear</button>
+    </div>
+  </div>
+
+  <div class="tffa-map-frame">
+    <div id="tffa-map" role="region" aria-label="Interactive world map of AmCham support"></div>
+    <div id="tffa-map-status" class="tffa-map-status">Loading current AmCham data…</div>
+  </div>
+
+  <div class="tffa-legend" aria-label="Map legend">
+    <div><span class="tffa-swatch tffa-confirmed"></span>Confirmed supporter</div>
+    <div><span class="tffa-swatch tffa-engaged"></span>Positive engagement</div>
+    <div><span class="tffa-swatch tffa-contacted"></span>Contacted or follow-up needed</div>
+    <div><span class="tffa-swatch tffa-uncontacted"></span>Not yet contacted</div>
+    <div><span class="tffa-swatch tffa-nodata"></span>No listed organization</div>
+  </div>
+
+  <div id="tffa-search-results" class="tffa-search-results" hidden></div>
+
+  <noscript>
+    <p>This map requires JavaScript. Please use the accompanying AmCham directory instead.</p>
+  </noscript>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIINfQ3ynHT6HwcJaG/YN0uHfXQYV2uY6E0="
+  crossorigin=""
+>
+
+<style>
+  #tffa-amcham-map-app {
+    --tffa-ink: #172d3f;
+    --tffa-blue: #1f4e6d;
+    --tffa-blue-dark: #15384f;
+    --tffa-gold: #d8aa4b;
+    --tffa-cream: #f7f4ee;
+    --tffa-border: #d9dee2;
+    --tffa-muted: #65727c;
+    --tffa-confirmed: #1f6b52;
+    --tffa-engaged: #6f8e3d;
+    --tffa-contacted: #d8aa4b;
+    --tffa-uncontacted: #d8e0e5;
+    --tffa-no-data: #f1f1ef;
+    color: var(--tffa-ink);
+    font-family: inherit;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #tffa-amcham-map-app *,
+  #tffa-amcham-map-app *::before,
+  #tffa-amcham-map-app *::after {
+    box-sizing: border-box;
+  }
+
+  .tffa-map-header {
+    max-width: 850px;
+    margin-bottom: 2rem;
+  }
+
+  .tffa-eyebrow {
+    margin: 0 0 .55rem;
+    color: var(--tffa-blue);
+    font-size: .77rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+  }
+
+  .tffa-map-header h2 {
+    margin: 0 0 .8rem;
+    color: var(--tffa-ink);
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 1.04;
+  }
+
+  .tffa-intro {
+    margin: 0;
+    max-width: 760px;
+    color: var(--tffa-muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .tffa-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    margin: 0 0 1.4rem;
+    border: 1px solid var(--tffa-border);
+    border-radius: 8px;
+    background: var(--tffa-border);
+  }
+
+  .tffa-stat {
+    display: flex;
+    min-height: 104px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.15rem 1.35rem;
+    background: #fff;
+  }
+
+  .tffa-stat-number {
+    color: var(--tffa-blue-dark);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .tffa-stat-label {
+    margin-top: .4rem;
+    color: var(--tffa-muted);
+    font-size: .87rem;
+  }
+
+  .tffa-map-toolbar {
+    margin-bottom: .8rem;
+  }
+
+  .tffa-search-label {
+    display: block;
+    margin-bottom: .4rem;
+    font-size: .82rem;
+    font-weight: 700;
+  }
+
+  .tffa-search-row {
+    display: flex;
+    gap: .55rem;
+  }
+
+  #tffa-country-search {
+    width: 100%;
+    min-height: 46px;
+    padding: .72rem .85rem;
+    border: 1px solid var(--tffa-border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--tffa-ink);
+    font: inherit;
+  }
+
+  #tffa-country-search:focus {
+    border-color: var(--tffa-blue);
+    outline: 3px solid rgba(31, 78, 109, .14);
+  }
+
+  #tffa-clear-search {
+    min-width: 82px;
+    padding: .72rem 1rem;
+    border: 1px solid var(--tffa-blue);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--tffa-blue);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  #tffa-clear-search:hover {
+    background: var(--tffa-cream);
+  }
+
+  .tffa-map-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--tffa-border);
+    border-radius: 8px;
+    background: var(--tffa-cream);
+    box-shadow: 0 14px 35px rgba(23, 45, 63, .08);
+  }
+
+  #tffa-map {
+    width: 100%;
+    height: min(68vh, 680px);
+    min-height: 470px;
+    background:
+      radial-gradient(circle at 50% 40%, #ffffff 0, #f7f4ee 67%, #eef1f2 100%);
+  }
+
+  .tffa-map-status {
+    position: absolute;
+    z-index: 800;
+    top: .8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: .55rem .8rem;
+    border: 1px solid rgba(23, 45, 63, .15);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .95);
+    color: var(--tffa-ink);
+    font-size: .82rem;
+    box-shadow: 0 6px 18px rgba(23, 45, 63, .08);
+  }
+
+  .tffa-map-status[hidden] {
+    display: none;
+  }
+
+  .tffa-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem 1.25rem;
+    margin: 1rem 0 0;
+    color: var(--tffa-muted);
+    font-size: .82rem;
+  }
+
+  .tffa-legend > div {
+    display: inline-flex;
+    align-items: center;
+    gap: .42rem;
+  }
+
+  .tffa-swatch {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+    border: 1px solid rgba(23, 45, 63, .25);
+    border-radius: 2px;
+  }
+
+  .tffa-confirmed { background: var(--tffa-confirmed); }
+  .tffa-engaged { background: var(--tffa-engaged); }
+  .tffa-contacted { background: var(--tffa-contacted); }
+  .tffa-uncontacted { background: var(--tffa-uncontacted); }
+  .tffa-nodata { background: var(--tffa-no-data); }
+
+  .tffa-search-results {
+    margin-top: 1rem;
+    border: 1px solid var(--tffa-border);
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .tffa-result {
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid var(--tffa-border);
+  }
+
+  .tffa-result:last-child {
+    border-bottom: 0;
+  }
+
+  .tffa-result button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--tffa-blue);
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .tffa-result p {
+    margin: .25rem 0 0;
+    color: var(--tffa-muted);
+    font-size: .9rem;
+  }
+
+  .leaflet-control-zoom a {
+    color: var(--tffa-blue-dark) !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 7px;
+    box-shadow: 0 14px 36px rgba(23, 45, 63, .2);
+  }
+
+  .leaflet-popup-content {
+    min-width: 245px;
+    margin: 1rem 1.05rem 1.1rem;
+    color: var(--tffa-ink);
+    font-family: inherit;
+  }
+
+  .tffa-popup-country {
+    margin: 0 0 .2rem;
+    color: var(--tffa-ink);
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .tffa-popup-status {
+    display: inline-block;
+    margin: .1rem 0 .75rem;
+    padding: .22rem .48rem;
+    border-radius: 999px;
+    background: var(--tffa-cream);
+    color: var(--tffa-blue-dark);
+    font-size: .74rem;
+    font-weight: 700;
+  }
+
+  .tffa-popup-chamber {
+    padding: .68rem 0;
+    border-top: 1px solid var(--tffa-border);
+  }
+
+  .tffa-popup-chamber:first-of-type {
+    border-top: 0;
+  }
+
+  .tffa-popup-chamber-name {
+    margin: 0 0 .2rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .tffa-popup-note {
+    margin: .3rem 0;
+    color: var(--tffa-muted);
+    font-size: .86rem;
+    line-height: 1.45;
+  }
+
+  .tffa-popup-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem .75rem;
+    margin-top: .38rem;
+  }
+
+  .tffa-popup-links a {
+    color: var(--tffa-blue);
+    font-size: .84rem;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 700px) {
+    .tffa-stat-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tffa-stat {
+      min-height: 82px;
+    }
+
+    #tffa-map {
+      height: 520px;
+      min-height: 440px;
+    }
+
+    .tffa-search-row {
+      align-items: stretch;
+    }
+
+    .tffa-legend {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .55rem;
+    }
+  }
+</style>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+
+<script>
+(() => {
+  "use strict";
+
+  const SHEET_ID = "1mRI_hgixxuguFCOJlyIBKe0qB3nMuYyv1hb0ZFZGiEM";
+  const SHEET_NAME = "Public Status";
+
+  // Try several public CSV endpoints. The first successful response is used.
+  // gid=0 is the first worksheet, which should be the Public Status tab.
+  const SHEET_CSV_URLS = [
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`,
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=0`,
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`
+  ];
+
+  // Use a fallback host in case one CDN is blocked temporarily.
+  const WORLD_GEOJSON_URLS = [
+    "https://cdn.jsdelivr.net/gh/datasets/geo-countries@master/data/countries.geojson",
+    "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
+  ];
+
+  const STATUS_PRIORITY = {
+    "Confirmed supporter": 5,
+    "Positive engagement": 4,
+    "Follow-up needed": 3,
+    "Contacted": 2,
+    "Not yet contacted": 1,
+    "Not applicable": 0
+  };
+
+  const STATUS_COLORS = {
+    "Confirmed supporter": "#1f6b52",
+    "Positive engagement": "#6f8e3d",
+    "Follow-up needed": "#d8aa4b",
+    "Contacted": "#d8aa4b",
+    "Not yet contacted": "#d8e0e5",
+    "Not applicable": "#ececea",
+    "No listed organization": "#f1f1ef"
+  };
+
+  // Maps names used in the Sheet to names commonly used in the GeoJSON.
+  const COUNTRY_ALIASES = {
+    "China Mainland": "China",
+    "Ivory Coast": "Côte d'Ivoire",
+    "South Korea": "Republic of Korea",
+    "Türkiye": "Turkey",
+    "Russia": "Russian Federation",
+    "Vietnam": "Viet Nam",
+    "Palestinian Territories": "Palestine",
+    "Bolivia": "Bolivia",
+    "Tanzania": "United Republic of Tanzania",
+    "Moldova": "Moldova",
+    "Syria": "Syrian Arab Republic",
+    "Laos": "Lao People's Democratic Republic",
+    "Iran": "Iran",
+    "Venezuela": "Venezuela",
+    "Czech Republic": "Czechia",
+    "North Macedonia": "North Macedonia",
+    "Brunei": "Brunei Darussalam",
+    "Cape Verde": "Cabo Verde",
+    "East Timor": "Timor-Leste",
+    "Swaziland": "Eswatini"
+  };
+
+  const normalize = value =>
+    String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+  const cleanUrl = value => {
+    const url = String(value || "").trim();
+    return /^https?:\/\//i.test(url) ? url : "";
+  };
+
+  const escapeHtml = value =>
+    String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  function parseRows(csvText) {
+    const parsed = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      transformHeader: header => header.trim().toLowerCase()
+    });
+
+    if (parsed.errors.length) {
+      console.warn("Google Sheet CSV warnings:", parsed.errors);
+    }
+
+    return parsed.data
+      .map(row => ({
+        amchamId: String(row.amcham_id || "").trim(),
+        country: String(row.country || "").trim(),
+        chamber: String(row.amcham_name || "").trim(),
+        website: cleanUrl(row.website),
+        status: String(row.status || "Not yet contacted").trim(),
+        note: String(row.public_note || "").trim(),
+        letterUrl: cleanUrl(row.support_letter_url),
+        supportDate: String(row.support_date || "").trim(),
+        updated: String(row.last_updated || "").trim()
+      }))
+      .filter(row => row.country && row.chamber);
+  }
+
+  function aggregateByCountry(rows) {
+    const countries = new Map();
+
+    rows.forEach(row => {
+      if (!countries.has(row.country)) {
+        countries.set(row.country, {
+          country: row.country,
+          chambers: [],
+          status: "Not yet contacted"
+        });
+      }
+
+      const item = countries.get(row.country);
+      item.chambers.push(row);
+
+      const currentPriority = STATUS_PRIORITY[item.status] ?? 0;
+      const rowPriority = STATUS_PRIORITY[row.status] ?? 0;
+
+      if (rowPriority > currentPriority) {
+        item.status = row.status;
+      }
+    });
+
+    return countries;
+  }
+
+  function statusColor(status) {
+    return STATUS_COLORS[status] || STATUS_COLORS["Not yet contacted"];
+  }
+
+  function makePopup(countryData) {
+    if (!countryData) {
+      return `
+        <h3 class="tffa-popup-country">No listed organization</h3>
+        <p class="tffa-popup-note">
+          The current AmCham Finder data does not list an organization for this country.
+        </p>
+      `;
+    }
+
+    const chambers = countryData.chambers.map(chamber => {
+      const website = chamber.website
+        ? `<a href="${escapeHtml(chamber.website)}" target="_blank" rel="noopener noreferrer">Visit website</a>`
+        : "";
+
+      const letter = chamber.letterUrl
+        ? `<a href="${escapeHtml(chamber.letterUrl)}" target="_blank" rel="noopener noreferrer">Read support letter</a>`
+        : "";
+
+      const links = [website, letter].filter(Boolean).join("");
+
+      const note = chamber.note
+        ? `<p class="tffa-popup-note">${escapeHtml(chamber.note)}</p>`
+        : "";
+
+      const supportDate =
+        chamber.status === "Confirmed supporter" && chamber.supportDate
+          ? `<p class="tffa-popup-note">Support recorded: ${escapeHtml(chamber.supportDate)}</p>`
+          : "";
+
+      return `
+        <div class="tffa-popup-chamber">
+          <p class="tffa-popup-chamber-name">${escapeHtml(chamber.chamber)}</p>
+          <span class="tffa-popup-status">${escapeHtml(chamber.status)}</span>
+          ${note}
+          ${supportDate}
+          ${links ? `<div class="tffa-popup-links">${links}</div>` : ""}
+        </div>
+      `;
+    }).join("");
+
+    return `
+      <h3 class="tffa-popup-country">${escapeHtml(countryData.country)}</h3>
+      ${chambers}
+    `;
+  }
+
+  function getGeoName(feature) {
+    const props = feature.properties || {};
+    return (
+      props.ADMIN ||
+      props.name ||
+      props.NAME ||
+      props.NAME_EN ||
+      props.SOVEREIGNT ||
+      ""
+    );
+  }
+
+  function findCountryData(geoName, countries) {
+    const direct = [...countries.values()].find(
+      item => normalize(item.country) === normalize(geoName)
+    );
+    if (direct) return direct;
+
+    return [...countries.values()].find(item => {
+      const alias = COUNTRY_ALIASES[item.country] || item.country;
+      return normalize(alias) === normalize(geoName);
+    });
+  }
+
+  function setStatusMessage(message, isError = false) {
+    const element = document.getElementById("tffa-map-status");
+    element.textContent = message;
+    element.style.color = isError ? "#8a2f2f" : "";
+    element.hidden = false;
+  }
+
+  function hideStatusMessage() {
+    document.getElementById("tffa-map-status").hidden = true;
+  }
+
+  async function fetchFirstText(urls, label) {
+    const failures = [];
+
+    for (const url of urls) {
+      try {
+        const response = await fetch(url, {
+          cache: "no-store",
+          redirect: "follow"
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const text = await response.text();
+
+        // Google sometimes returns an HTML sign-in/error page instead of CSV.
+        if (/^\s*<!doctype html|^\s*<html/i.test(text)) {
+          throw new Error("received HTML instead of CSV");
+        }
+
+        return text;
+      } catch (error) {
+        failures.push(`${url}: ${error.message}`);
+      }
+    }
+
+    throw new Error(`${label} failed. ${failures.join(" | ")}`);
+  }
+
+  async function fetchFirstJson(urls, label) {
+    const failures = [];
+
+    for (const url of urls) {
+      try {
+        const response = await fetch(url, {
+          cache: "force-cache",
+          redirect: "follow"
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        return await response.json();
+      } catch (error) {
+        failures.push(`${url}: ${error.message}`);
+      }
+    }
+
+    throw new Error(`${label} failed. ${failures.join(" | ")}`);
+  }
+
+  async function initialize() {
+    const app = document.getElementById("tffa-amcham-map-app");
+    if (!app || app.dataset.initialized === "true") return;
+    app.dataset.initialized = "true";
+
+    if (typeof L === "undefined" || typeof Papa === "undefined") {
+      setStatusMessage("The map libraries could not be loaded.", true);
+      return;
+    }
+
+    try {
+      setStatusMessage("Loading current AmCham data…");
+
+      let csvText;
+      let worldGeoJson;
+
+      try {
+        csvText = await fetchFirstText(SHEET_CSV_URLS, "Google Sheet request");
+      } catch (sheetError) {
+        console.error(sheetError);
+        throw new Error(
+          "Google Sheet data could not be loaded. Confirm that the first tab is named “Public Status,” is publicly viewable, and contains the expected headers."
+        );
+      }
+
+      try {
+        worldGeoJson = await fetchFirstJson(
+          WORLD_GEOJSON_URLS,
+          "World boundary request"
+        );
+      } catch (mapError) {
+        console.error(mapError);
+        throw new Error(
+          "The country-boundary map file could not be loaded. This is usually a temporary CDN or browser-network restriction rather than a Google Sheet problem."
+        );
+      }
+
+      const rows = parseRows(csvText);
+
+      if (!rows.length) {
+        throw new Error(
+          "No rows were found. Confirm that the tab is named “Public Status” and the sheet is publicly viewable."
+        );
+      }
+
+      const countries = aggregateByCountry(rows);
+      const supporterRows = rows.filter(row => row.status === "Confirmed supporter");
+      const supporterCountries = new Set(supporterRows.map(row => row.country));
+
+      document.getElementById("tffa-supporter-count").textContent =
+        supporterRows.length.toLocaleString();
+      document.getElementById("tffa-country-count").textContent =
+        supporterCountries.size.toLocaleString();
+      document.getElementById("tffa-directory-count").textContent =
+        rows.length.toLocaleString();
+
+      const map = L.map("tffa-map", {
+        zoomControl: true,
+        attributionControl: false,
+        minZoom: 1,
+        maxZoom: 7,
+        worldCopyJump: false,
+        scrollWheelZoom: false
+      }).setView([18, 8], 2);
+
+      let geoLayer;
+
+      geoLayer = L.geoJSON(worldGeoJson, {
+        style: feature => {
+          const countryData = findCountryData(getGeoName(feature), countries);
+          const status = countryData
+            ? countryData.status
+            : "No listed organization";
+
+          return {
+            color: "#ffffff",
+            weight: 0.7,
+            opacity: 1,
+            fillColor: statusColor(status),
+            fillOpacity: 0.95
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const geoName = getGeoName(feature);
+          const countryData = findCountryData(geoName, countries);
+
+          layer.bindPopup(makePopup(countryData), {
+            maxWidth: 390,
+            closeButton: true
+          });
+
+          layer.on({
+            mouseover: event => {
+              event.target.setStyle({
+                weight: 1.8,
+                color: "#172d3f"
+              });
+              event.target.bringToFront();
+            },
+            mouseout: event => {
+              geoLayer.resetStyle(event.target);
+            }
+          });
+
+          layer._tffaCountryData = countryData;
+          layer._tffaGeoName = geoName;
+        }
+      }).addTo(map);
+
+      map.fitBounds(geoLayer.getBounds(), {
+        padding: [8, 8]
+      });
+
+      const searchInput = document.getElementById("tffa-country-search");
+      const clearButton = document.getElementById("tffa-clear-search");
+      const resultsBox = document.getElementById("tffa-search-results");
+
+      const allSearchItems = [];
+      countries.forEach(country => {
+        country.chambers.forEach(chamber => {
+          allSearchItems.push({
+            country: country.country,
+            chamber: chamber.chamber,
+            status: chamber.status,
+            countryData: country,
+            searchText: normalize(`${country.country} ${chamber.chamber}`)
+          });
+        });
+      });
+
+      function locateCountry(countryData) {
+        let targetLayer = null;
+
+        geoLayer.eachLayer(layer => {
+          if (
+            layer._tffaCountryData &&
+            layer._tffaCountryData.country === countryData.country
+          ) {
+            targetLayer = layer;
+          }
+        });
+
+        if (targetLayer) {
+          map.fitBounds(targetLayer.getBounds(), {
+            maxZoom: 4,
+            padding: [45, 45]
+          });
+          targetLayer.openPopup();
+          document.getElementById("tffa-map").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }
+      }
+
+      function renderSearchResults(query) {
+        const normalizedQuery = normalize(query);
+
+        if (!normalizedQuery) {
+          resultsBox.hidden = true;
+          resultsBox.innerHTML = "";
+          return;
+        }
+
+        const matches = allSearchItems
+          .filter(item => item.searchText.includes(normalizedQuery))
+          .slice(0, 12);
+
+        if (!matches.length) {
+          resultsBox.hidden = false;
+          resultsBox.innerHTML = `
+            <div class="tffa-result">
+              <p>No matching country or organization was found.</p>
+            </div>
+          `;
+          return;
+        }
+
+        resultsBox.innerHTML = matches.map((item, index) => `
+          <div class="tffa-result">
+            <button type="button" data-result-index="${index}">
+              ${escapeHtml(item.country)}
+            </button>
+            <p>${escapeHtml(item.chamber)} · ${escapeHtml(item.status)}</p>
+          </div>
+        `).join("");
+
+        resultsBox.hidden = false;
+
+        resultsBox.querySelectorAll("[data-result-index]").forEach(button => {
+          button.addEventListener("click", () => {
+            const item = matches[Number(button.dataset.resultIndex)];
+            locateCountry(item.countryData);
+          });
+        });
+      }
+
+      searchInput.addEventListener("input", event => {
+        renderSearchResults(event.target.value);
+      });
+
+      clearButton.addEventListener("click", () => {
+        searchInput.value = "";
+        renderSearchResults("");
+        map.fitBounds(geoLayer.getBounds(), {
+          padding: [8, 8]
+        });
+        searchInput.focus();
+      });
+
+      hideStatusMessage();
+
+      // Leaflet sometimes needs a size refresh after Squarespace finishes layout.
+      window.setTimeout(() => map.invalidateSize(), 300);
+      window.addEventListener("resize", () => map.invalidateSize());
+    } catch (error) {
+      console.error("AmCham map error:", error);
+      setStatusMessage(
+        error && error.message
+          ? error.message
+          : "The map could not be loaded. Open the browser console for technical details.",
+        true
+      );
+    }
+  }
+
+  // Works both on normal page loads and within Squarespace's editor.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize, { once: true });
+  } else {
+    initialize();
+  }
+})();
+</script>
