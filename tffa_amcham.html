@@ -50,9 +50,11 @@ preview or through a small local web server for a reliable result.
         placeholder="Search by country or organization"
         autocomplete="off"
       />
-      <button id="tffa-clear-search" type="button">Clear</button>
+      <button id="tffa-search-button" type="button">Search</button>
     </div>
   </div>
+
+  <div id="tffa-search-results" class="tffa-search-results" hidden></div>
 
   <div class="tffa-map-frame">
     <div id="tffa-map" role="region" aria-label="Interactive world map of AmCham support"></div>
@@ -61,13 +63,9 @@ preview or through a small local web server for a reliable result.
 
   <div class="tffa-legend" aria-label="Map legend">
     <div><span class="tffa-swatch tffa-confirmed"></span>Confirmed supporter</div>
-    <div><span class="tffa-swatch tffa-engaged"></span>Positive engagement</div>
-    <div><span class="tffa-swatch tffa-contacted"></span>Contacted or follow-up needed</div>
     <div><span class="tffa-swatch tffa-uncontacted"></span>Not yet contacted</div>
-    <div><span class="tffa-swatch tffa-nodata"></span>No listed organization</div>
+    <div><span class="tffa-swatch tffa-united-states"></span>United States</div>
   </div>
-
-  <div id="tffa-search-results" class="tffa-search-results" hidden></div>
 
   <noscript>
     <p>This map requires JavaScript. Please use the accompanying AmCham directory instead.</p>
@@ -200,7 +198,7 @@ preview or through a small local web server for a reliable result.
     outline: 3px solid rgba(31, 78, 109, .14);
   }
 
-  #tffa-clear-search {
+  #tffa-search-button {
     min-width: 82px;
     padding: .72rem 1rem;
     border: 1px solid var(--tffa-blue);
@@ -212,7 +210,7 @@ preview or through a small local web server for a reliable result.
     cursor: pointer;
   }
 
-  #tffa-clear-search:hover {
+  #tffa-search-button:hover {
     background: var(--tffa-cream);
   }
 
@@ -280,9 +278,10 @@ preview or through a small local web server for a reliable result.
   .tffa-contacted { background: var(--tffa-contacted); }
   .tffa-uncontacted { background: var(--tffa-uncontacted); }
   .tffa-nodata { background: var(--tffa-no-data); }
+  .tffa-united-states { background: #1f4e6d; }
 
   .tffa-search-results {
-    margin-top: 1rem;
+    margin: 0 0 1rem;
     border: 1px solid var(--tffa-border);
     border-radius: 8px;
     background: #fff;
@@ -317,6 +316,10 @@ preview or through a small local web server for a reliable result.
 
   .leaflet-control-zoom a {
     color: var(--tffa-blue-dark) !important;
+  }
+
+  #tffa-map .leaflet-interactive {
+    cursor: pointer;
   }
 
   .leaflet-popup-content-wrapper {
@@ -454,6 +457,7 @@ preview or through a small local web server for a reliable result.
     "Contacted": "#d8aa4b",
     "Not yet contacted": "#d8e0e5",
     "Not applicable": "#ececea",
+    "United States": "#1f4e6d",
     "No listed organization": "#f1f1ef"
   };
 
@@ -612,12 +616,29 @@ preview or through a small local web server for a reliable result.
     return STATUS_COLORS[status] || STATUS_COLORS["Not yet contacted"];
   }
 
-  function makePopup(countryData) {
+  function makePopup(countryData, geoName = "") {
+    if (normalize(geoName) === normalize("United States of America") ||
+        normalize(geoName) === normalize("United States")) {
+      return `
+        <h3 class="tffa-popup-country">United States</h3>
+        <span class="tffa-popup-status">Campaign home country</span>
+        <p class="tffa-popup-note">
+          Tax Fairness for Americans Abroad advocates for residence-based taxation
+          and fair treatment of Americans living overseas.
+        </p>
+        <div class="tffa-popup-links">
+          <a href="https://www.taxfairnessabroad.org" target="_blank" rel="noopener noreferrer">
+            Visit Tax Fairness for Americans Abroad
+          </a>
+        </div>
+      `;
+    }
+
     if (!countryData) {
       return `
-        <h3 class="tffa-popup-country">No listed organization</h3>
+        <h3 class="tffa-popup-country">${escapeHtml(geoName || "Country")}</h3>
         <p class="tffa-popup-note">
-          The current AmCham Finder data does not list an organization for this country.
+          No AmCham organization is currently listed for this country.
         </p>
       `;
     }
@@ -808,18 +829,26 @@ preview or through a small local web server for a reliable result.
         attributionControl: false,
         minZoom: 1,
         maxZoom: 7,
+        zoomSnap: 0.25,
+        zoomDelta: 0.5,
         worldCopyJump: false,
-        scrollWheelZoom: false
-      }).setView([18, 8], 2);
+        scrollWheelZoom: true
+      }).setView([20, 5], 2.5);
 
       let geoLayer;
 
       geoLayer = L.geoJSON(worldGeoJson, {
         style: feature => {
-          const countryData = findCountryData(getGeoName(feature), countries);
-          const status = countryData
-            ? countryData.status
-            : "No listed organization";
+          const geoName = getGeoName(feature);
+          const countryData = findCountryData(geoName, countries);
+          const isUnitedStates =
+            normalize(geoName) === normalize("United States of America") ||
+            normalize(geoName) === normalize("United States");
+          const status = isUnitedStates
+            ? "United States"
+            : countryData
+              ? countryData.status
+              : "No listed organization";
 
           return {
             color: "#ffffff",
@@ -833,7 +862,7 @@ preview or through a small local web server for a reliable result.
           const geoName = getGeoName(feature);
           const countryData = findCountryData(geoName, countries);
 
-          layer.bindPopup(makePopup(countryData), {
+          layer.bindPopup(makePopup(countryData, geoName), {
             maxWidth: 390,
             closeButton: true
           });
@@ -848,6 +877,9 @@ preview or through a small local web server for a reliable result.
             },
             mouseout: event => {
               geoLayer.resetStyle(event.target);
+            },
+            click: event => {
+              event.target.openPopup();
             }
           });
 
@@ -856,15 +888,19 @@ preview or through a small local web server for a reliable result.
         }
       }).addTo(map);
 
-      map.fitBounds(geoLayer.getBounds(), {
-        padding: [8, 8]
-      });
-
       const searchInput = document.getElementById("tffa-country-search");
       const clearButton = document.getElementById("tffa-clear-search");
       const resultsBox = document.getElementById("tffa-search-results");
 
-      const allSearchItems = [];
+      const allSearchItems = [{
+        country: "United States",
+        chamber: "Tax Fairness for Americans Abroad",
+        status: "Campaign home country",
+        countryData: null,
+        specialGeoName: "United States of America",
+        searchText: normalize("United States USA Tax Fairness for Americans Abroad")
+      }];
+
       countries.forEach(country => {
         country.chambers.forEach(chamber => {
           allSearchItems.push({
@@ -877,11 +913,17 @@ preview or through a small local web server for a reliable result.
         });
       });
 
-      function locateCountry(countryData) {
+      function locateCountry(countryData, specialGeoName = "") {
         let targetLayer = null;
 
         geoLayer.eachLayer(layer => {
           if (
+            specialGeoName &&
+            normalize(layer._tffaGeoName) === normalize(specialGeoName)
+          ) {
+            targetLayer = layer;
+          } else if (
+            countryData &&
             layer._tffaCountryData &&
             layer._tffaCountryData.country === countryData.country
           ) {
@@ -939,22 +981,22 @@ preview or through a small local web server for a reliable result.
         resultsBox.querySelectorAll("[data-result-index]").forEach(button => {
           button.addEventListener("click", () => {
             const item = matches[Number(button.dataset.resultIndex)];
-            locateCountry(item.countryData);
+            locateCountry(item.countryData, item.specialGeoName || "");
           });
         });
       }
 
-      searchInput.addEventListener("input", event => {
-        renderSearchResults(event.target.value);
-      });
+      function runSearch() {
+        renderSearchResults(searchInput.value);
+      }
 
-      clearButton.addEventListener("click", () => {
-        searchInput.value = "";
-        renderSearchResults("");
-        map.fitBounds(geoLayer.getBounds(), {
-          padding: [8, 8]
-        });
-        searchInput.focus();
+      searchButton.addEventListener("click", runSearch);
+
+      searchInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          runSearch();
+        }
       });
 
       hideStatusMessage();
