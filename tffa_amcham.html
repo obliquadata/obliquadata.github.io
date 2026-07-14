@@ -320,6 +320,11 @@ preview or through a small local web server for a reliable result.
 
   #tffa-map .leaflet-interactive {
     cursor: pointer;
+    pointer-events: auto;
+  }
+
+  #tffa-map .leaflet-overlay-pane svg {
+    pointer-events: auto;
   }
 
   .leaflet-popup-content-wrapper {
@@ -832,7 +837,8 @@ preview or through a small local web server for a reliable result.
         zoomSnap: 0.25,
         zoomDelta: 0.5,
         worldCopyJump: false,
-        scrollWheelZoom: true
+        scrollWheelZoom: true,
+        doubleClickZoom: false
       }).setView([20, 5], 2.5);
 
       let geoLayer;
@@ -863,10 +869,7 @@ preview or through a small local web server for a reliable result.
           const geoName = getGeoName(feature);
           const countryData = findCountryData(geoName, countries);
 
-          layer.bindPopup(makePopup(countryData, geoName), {
-            maxWidth: 390,
-            closeButton: true
-          });
+          const popupHtml = makePopup(countryData, geoName);
 
           layer.on({
             mouseover: event => {
@@ -880,7 +883,15 @@ preview or through a small local web server for a reliable result.
               geoLayer.resetStyle(event.target);
             },
             click: event => {
-              event.target.openPopup();
+              L.DomEvent.stopPropagation(event);
+              L.popup({
+                maxWidth: 390,
+                closeButton: true,
+                autoPan: true
+              })
+                .setLatLng(event.latlng)
+                .setContent(popupHtml)
+                .openOn(map);
             }
           });
 
@@ -908,7 +919,14 @@ preview or through a small local web server for a reliable result.
             element.addEventListener("keydown", keyboardEvent => {
               if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
                 keyboardEvent.preventDefault();
-                layer.openPopup();
+                L.popup({
+                  maxWidth: 390,
+                  closeButton: true,
+                  autoPan: true
+                })
+                  .setLatLng(layer.getBounds().getCenter())
+                  .setContent(popupHtml)
+                  .openOn(map);
               }
             });
           });
@@ -917,7 +935,6 @@ preview or through a small local web server for a reliable result.
 
       const searchInput = document.getElementById("tffa-country-search");
       const searchButton = document.getElementById("tffa-search-button");
-      const clearButton = document.getElementById("tffa-clear-search");
       const resultsBox = document.getElementById("tffa-search-results");
 
       const allSearchItems = [{
@@ -964,7 +981,18 @@ preview or through a small local web server for a reliable result.
             maxZoom: 4,
             padding: [45, 45]
           });
-          targetLayer.openPopup();
+          const targetGeoName = targetLayer._tffaGeoName || "";
+          const targetCountryData = targetLayer._tffaCountryData || null;
+
+          L.popup({
+            maxWidth: 390,
+            closeButton: true,
+            autoPan: true
+          })
+            .setLatLng(targetLayer.getBounds().getCenter())
+            .setContent(makePopup(targetCountryData, targetGeoName))
+            .openOn(map);
+
           document.getElementById("tffa-map").scrollIntoView({
             behavior: "smooth",
             block: "center"
